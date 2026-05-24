@@ -1,0 +1,10 @@
+﻿node_modules
+.pnpm-store
+.next
+dist
+build
+.expo
+.turbo
+coverage
+supabase/.temp
+supabase/.branches

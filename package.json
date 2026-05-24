@@ -1,0 +1,25 @@
+﻿{
+  "name": "puente",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A civic technology platform for social software, open-source tools, community learning, and research projects.",
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "clean": "git clean -xdf node_modules .next .turbo dist build .expo"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  }
+}
