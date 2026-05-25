@@ -1,0 +1,31 @@
+﻿{
+  "expo": {
+    "name": "Puente",
+    "slug": "puente",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f7f4ed"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "org.puente.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#10233f"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "org.puente.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
