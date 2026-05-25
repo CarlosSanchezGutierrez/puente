@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import {
   ArrowRight,
   BookOpenCheck,
@@ -120,13 +122,13 @@ function BookCover({
 
   if (book.coverUrl && !hasImageError) {
     return (
-      <div className={`${sizeClass} ${radiusClass} overflow-hidden border border-[#d7dedf] bg-white shadow-sm`}>
-        <img
+      <div className={`${sizeClass} ${radiusClass} relative overflow-hidden border border-[#d7dedf] bg-white shadow-sm`}>
+        <Image
           alt={`Portada de ${book.title}`}
-          className="h-full w-full object-cover"
-          decoding="async"
-          loading="lazy"
+          className="object-cover"
+          fill
           onError={() => setHasImageError(true)}
+          sizes={variant === "mini" ? "80px" : variant === "detail" ? "(min-width: 768px) 320px, 100vw" : "(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"}
           src={book.coverUrl}
         />
       </div>
