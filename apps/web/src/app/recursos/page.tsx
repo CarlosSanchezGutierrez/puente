@@ -23,22 +23,24 @@ export default async function RecursosPage() {
 
         <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
-            <h1 className="text-5xl font-semibold tracking-[-0.04em] md:text-7xl">
-              GuÃ­as y materiales abiertos.
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#60738c]">
+              Guías abiertas
+            </p>
+            <h1 className="mt-4 font-[var(--font-serif)] text-6xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-8xl">
+              Guías y materiales abiertos.
             </h1>
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Recursos gratuitos para estudiantes, organizaciones, voluntarios y personas
-            que buscan orientaciÃ³n prÃ¡ctica en tecnologÃ­a, comunidad, carrera profesional
-            y vida universitaria.
+            Recursos gratuitos para estudiantes, organizaciones, voluntarios y personas que buscan
+            orientación práctica en tecnología, comunidad, carrera profesional y vida universitaria.
           </p>
         </div>
 
         {resources.length === 0 ? (
           <Card className="mt-12 border-[#d7dedf] bg-white/75 shadow-sm">
             <CardContent className="p-7 text-[#425875]">
-              TodavÃ­a no hay recursos publicados en Supabase.
+              Todavía no hay recursos publicados en Supabase.
             </CardContent>
           </Card>
         ) : (
@@ -55,7 +57,7 @@ export default async function RecursosPage() {
                   </h2>
 
                   <p className="mt-5 leading-7 text-[#425875]">
-                    {resource.description ?? "DescripciÃ³n pendiente."}
+                    {resource.description ?? "Descripción pendiente."}
                   </p>
 
                   <Button className="mt-6 rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]">

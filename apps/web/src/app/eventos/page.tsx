@@ -23,21 +23,24 @@ export default async function EventosPage() {
 
         <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
-            <h1 className="text-5xl font-semibold tracking-[-0.04em] md:text-7xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#60738c]">
+              Formación y comunidad
+            </p>
+            <h1 className="mt-4 font-[var(--font-serif)] text-6xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-8xl">
               Eventos, talleres y grupos de estudio.
             </h1>
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Actividades gratuitas o comunitarias para compartir conocimiento, orientar
-            estudiantes, preparar oportunidades y fortalecer redes tÃ©cnicas y humanas.
+            Actividades gratuitas o comunitarias para compartir conocimiento, orientar estudiantes,
+            preparar oportunidades y fortalecer redes técnicas y humanas.
           </p>
         </div>
 
         {events.length === 0 ? (
           <Card className="mt-12 border-[#d7dedf] bg-white/75 shadow-sm">
             <CardContent className="p-7 text-[#425875]">
-              TodavÃ­a no hay eventos publicados en Supabase.
+              Todavía no hay eventos publicados en Supabase.
             </CardContent>
           </Card>
         ) : (
@@ -60,7 +63,7 @@ export default async function EventosPage() {
 
                   <p className="mt-2 text-sm text-[#60738c]">{formatEventDate(event.startsAt)}</p>
                   <p className="mt-5 leading-7 text-[#425875]">
-                    {event.description ?? "DescripciÃ³n pendiente."}
+                    {event.description ?? "Descripción pendiente."}
                   </p>
 
                   <EventRegistrationForm eventTitle={event.title} />

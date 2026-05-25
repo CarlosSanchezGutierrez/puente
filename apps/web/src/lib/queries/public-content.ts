@@ -129,7 +129,7 @@ export async function listPublishedResources(): Promise<PublicResource[]> {
 
 export function formatEventDate(value: string | null) {
   if (!value) {
-    return "Próximamente";
+    return "PrÃ³ximamente";
   }
 
   return new Intl.DateTimeFormat("es-MX", {
