@@ -1,3 +1,4 @@
+import { VocationalHomeSection } from "@/components/home/vocational-home-section";
 import { TeamTrustSection } from "@/components/home/team-trust-section";
 import {
   ArrowRight,
@@ -397,6 +398,8 @@ export default function Home() {
       </section>
     
       <TeamTrustSection />
-</SiteShell>
+      <VocationalHomeSection />
+
+    </SiteShell>
   );
 }
