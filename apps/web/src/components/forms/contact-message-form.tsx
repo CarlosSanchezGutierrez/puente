@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormError } from "@/components/forms/form-error";
 import { FormStatusMessage } from "@/components/forms/form-status-message";
+import { PrivacyConsentField } from "@/components/forms/privacy-consent-field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,6 +24,7 @@ export function ContactMessageForm() {
       email: "",
       subject: "",
       message: "",
+      privacyAccepted: false,
     },
   });
 
@@ -72,6 +74,11 @@ export function ContactMessageForm() {
         />
         <FormError message={form.formState.errors.message?.message} />
       </div>
+
+      <PrivacyConsentField
+        registration={form.register("privacyAccepted")}
+        message={form.formState.errors.privacyAccepted?.message}
+      />
 
       <Button
         className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]"

@@ -4,10 +4,10 @@ import { FormError } from "@/components/forms/form-error";
 
 export function PrivacyConsentField({
   registration,
-  error,
+  message,
 }: {
   registration: UseFormRegisterReturn;
-  error?: string;
+  message?: string;
 }) {
   return (
     <div className="grid gap-2">
@@ -21,7 +21,7 @@ export function PrivacyConsentField({
           y autorizo que Puente use mis datos para dar seguimiento a esta solicitud.
         </span>
       </label>
-      <FormError error={undefined} message={error} />
+      <FormError message={message} />
     </div>
   );
 }

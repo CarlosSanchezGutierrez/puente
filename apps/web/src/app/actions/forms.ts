@@ -106,7 +106,7 @@ async function enforceRateLimit({
 
     return {
       ok: false,
-      message: "No pudimos validar el envÃ­o. Intenta de nuevo en unos minutos.",
+      message: "No pudimos validar el envÃƒÂ­o. Intenta de nuevo en unos minutos.",
     };
   }
 
@@ -129,7 +129,7 @@ async function enforceRateLimit({
 
     return {
       ok: false,
-      message: "No pudimos validar el envÃ­o. Intenta de nuevo en unos minutos.",
+      message: "No pudimos validar el envÃƒÂ­o. Intenta de nuevo en unos minutos.",
     };
   }
 
@@ -144,7 +144,7 @@ export async function submitVolunteerApplication(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La aplicaciÃ³n tiene datos incompletos o invÃ¡lidos.",
+      message: "La aplicaciÃƒÂ³n tiene datos incompletos o invÃƒÂ¡lidos.",
     };
   }
 
@@ -175,6 +175,8 @@ export async function submitVolunteerApplication(
         availability_hours_per_week: parsed.data.availabilityHoursPerWeek,
         linkedin_url: toNullableString(parsed.data.linkedinUrl),
         github_url: toNullableString(parsed.data.githubUrl),
+        privacy_accepted_at: new Date().toISOString(),
+        source_path: "/voluntariado",
       })
       .select("id")
       .single();
@@ -184,7 +186,7 @@ export async function submitVolunteerApplication(
 
       return {
         ok: false,
-        message: "No pudimos guardar tu aplicaciÃ³n. Intenta de nuevo.",
+        message: "No pudimos guardar tu aplicaciÃƒÂ³n. Intenta de nuevo.",
       };
     }
 
@@ -193,14 +195,14 @@ export async function submitVolunteerApplication(
     return {
       ok: true,
       id: data.id,
-      message: "Tu aplicaciÃ³n de voluntariado fue recibida correctamente.",
+      message: "Tu aplicaciÃƒÂ³n de voluntariado fue recibida correctamente.",
     };
   } catch (error) {
     console.error("submitVolunteerApplication exception:", getErrorMessage(error));
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar tu aplicaciÃ³n.",
+      message: "OcurriÃƒÂ³ un error inesperado al guardar tu aplicaciÃƒÂ³n.",
     };
   }
 }
@@ -211,7 +213,7 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La solicitud de la organizaciÃ³n tiene datos incompletos o invÃ¡lidos.",
+      message: "La solicitud de la organizaciÃƒÂ³n tiene datos incompletos o invÃƒÂ¡lidos.",
     };
   }
 
@@ -244,6 +246,8 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
         approximate_budget_mxn: toNullableNumber(parsed.data.approximateBudgetMxn),
         wants_annual_free_program: parsed.data.wantsAnnualFreeProgram,
         wants_social_discount_quote: parsed.data.wantsSocialDiscountQuote,
+        privacy_accepted_at: new Date().toISOString(),
+        source_path: "/ongs",
       })
       .select("id")
       .single();
@@ -262,14 +266,14 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
     return {
       ok: true,
       id: data.id,
-      message: "La solicitud de la organizaciÃ³n fue recibida correctamente.",
+      message: "La solicitud de la organizaciÃƒÂ³n fue recibida correctamente.",
     };
   } catch (error) {
     console.error("submitNgoRequest exception:", getErrorMessage(error));
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar la solicitud.",
+      message: "OcurriÃƒÂ³ un error inesperado al guardar la solicitud.",
     };
   }
 }
@@ -280,7 +284,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La solicitud del libro tiene datos incompletos o invÃ¡lidos.",
+      message: "La solicitud del libro tiene datos incompletos o invÃƒÂ¡lidos.",
     };
   }
 
@@ -305,7 +309,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
     if (!book?.id) {
       return {
         ok: false,
-        message: "No encontramos ese libro en el catÃ¡logo.",
+        message: "No encontramos ese libro en el catÃƒÂ¡logo.",
       };
     }
 
@@ -316,6 +320,8 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
         requester_name: parsed.data.requesterName,
         requester_email: parsed.data.requesterEmail,
         reason: parsed.data.reason,
+        privacy_accepted_at: new Date().toISOString(),
+        source_path: "/biblioteca",
       })
       .select("id")
       .single();
@@ -341,7 +347,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar la solicitud del libro.",
+      message: "OcurriÃƒÂ³ un error inesperado al guardar la solicitud del libro.",
     };
   }
 }
@@ -354,7 +360,7 @@ export async function submitEventRegistration(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "El registro al evento tiene datos incompletos o invÃ¡lidos.",
+      message: "El registro al evento tiene datos incompletos o invÃƒÂ¡lidos.",
     };
   }
 
@@ -379,7 +385,7 @@ export async function submitEventRegistration(
     if (!event?.id) {
       return {
         ok: false,
-        message: "No encontramos ese evento en el catÃ¡logo.",
+        message: "No encontramos ese evento en el catÃƒÂ¡logo.",
       };
     }
 
@@ -389,6 +395,8 @@ export async function submitEventRegistration(
         event_id: event.id,
         full_name: parsed.data.fullName,
         email: parsed.data.email,
+        privacy_accepted_at: new Date().toISOString(),
+        source_path: "/eventos",
       })
       .select("id")
       .single();
@@ -414,7 +422,7 @@ export async function submitEventRegistration(
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar tu registro.",
+      message: "OcurriÃƒÂ³ un error inesperado al guardar tu registro.",
     };
   }
 }
@@ -427,7 +435,7 @@ export async function submitContactMessage(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "El mensaje tiene datos incompletos o invÃ¡lidos.",
+      message: "El mensaje tiene datos incompletos o invÃƒÂ¡lidos.",
     };
   }
 
@@ -450,6 +458,8 @@ export async function submitContactMessage(
         email: parsed.data.email,
         subject: toNullableString(parsed.data.subject),
         message: parsed.data.message,
+        privacy_accepted_at: new Date().toISOString(),
+        source_path: "/contacto",
       })
       .select("id")
       .single();
@@ -475,7 +485,7 @@ export async function submitContactMessage(
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar tu mensaje.",
+      message: "OcurriÃƒÂ³ un error inesperado al guardar tu mensaje.",
     };
   }
 }
