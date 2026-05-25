@@ -23,7 +23,7 @@ import { Card, CardContent } from "@/components/ui/card";
 export const metadata = {
   title: "Nosotros",
   description:
-    "Equipo de Puente Impacto y Salva Systems: software, datos, arquitectura, operaciones, ingeniería, automatización y proyectos sociales.",
+    "Equipo de Puente Impacto y Salva Systems: software, datos, arquitectura, operaciones, ingenierÃ­a, automatizaciÃ³n y proyectos sociales.",
 };
 
 type TeamMember = {
@@ -46,14 +46,14 @@ type TeamMember = {
 
 const team: TeamMember[] = [
   {
-    name: "Carlos Sánchez Gutiérrez",
+    name: "Carlos SÃ¡nchez GutiÃ©rrez",
     role: "Digital Systems & Data Lead",
     strategicRole: "Forward Deployed Engineer / Software Architect",
     initials: "CS",
     description:
-      "Diseña, construye e integra sistemas digitales con enfoque en operación, datos y automatización.",
+      "DiseÃ±a, construye e integra sistemas digitales con enfoque en operaciÃ³n, datos y automatizaciÃ³n.",
     education:
-      "Ingeniería en Tecnologías Computacionales · Tecnológico de Monterrey",
+      "IngenierÃ­a en TecnologÃ­as Computacionales Â· TecnolÃ³gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -68,25 +68,25 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/carlos-sanchez-gutierrez-cv.pdf",
     highlights: [
-      "CEMEX · Data Science Intern (plataformas globales de datos)",
-      "Santander · Plataforma de analítica operativa",
-      "IEEE · Sistema con IA + IoT",
-      "Oracle Cloud Infrastructure · Data Platform · AI Foundations",
-      "Scrum Master (CSM) · Product Owner",
-      "English · C1",
+      "CEMEX Â· Data Science Intern (plataformas globales de datos)",
+      "Santander Â· Plataforma de analÃ­tica operativa",
+      "IEEE Â· Sistema con IA + IoT",
+      "Oracle Cloud Infrastructure Â· Data Platform Â· AI Foundations",
+      "Scrum Master (CSM) Â· Product Owner",
+      "English Â· C1",
     ],
-    tags: ["Software", "Datos", "Arquitectura", "Cloud", "Automatización"],
+    tags: ["Software", "Datos", "Arquitectura", "Cloud", "AutomatizaciÃ³n"],
     icon: Database,
   },
   {
-    name: "Leonel Francisco Bailón Sifuentes",
+    name: "Leonel Francisco BailÃ³n Sifuentes",
     role: "Systems Engineering & Automation Lead",
     strategicRole: "Forward Deployed Engineer / Software Architect",
     initials: "LB",
     description:
-      "Construye soluciones full stack, automatización, redes e infraestructura técnica para convertir necesidades operativas en sistemas utilizables.",
+      "Construye soluciones full stack, automatizaciÃ³n, redes e infraestructura tÃ©cnica para convertir necesidades operativas en sistemas utilizables.",
     education:
-      "Ingeniería en Tecnologías Computacionales · Tecnológico de Monterrey",
+      "IngenierÃ­a en TecnologÃ­as Computacionales Â· TecnolÃ³gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -101,25 +101,25 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/leonel-francisco-bail%C3%B3n-sifuentes-cv.pdf",
     highlights: [
-      "Profucom · IT Support / Automation & Processes Development",
-      "QuoteMaster Pro · AI-powered sales quoting orchestrator",
-      "Santander · Backend TypeScript/Node.js + Unity training game",
-      "Velatia · Network Design (#1 Ranked Team)",
-      "HackMTY 2025 · Wallet Mobile App Flutter",
-      "Lenovo Data Sales · Dell Storage & Server Certifications",
+      "Profucom Â· IT Support / Automation & Processes Development",
+      "QuoteMaster Pro Â· AI-powered sales quoting orchestrator",
+      "Santander Â· Backend TypeScript/Node.js + Unity training game",
+      "Velatia Â· Network Design (#1 Ranked Team)",
+      "HackMTY 2025 Â· Wallet Mobile App Flutter",
+      "Lenovo Data Sales Â· Dell Storage & Server Certifications",
     ],
-    tags: ["Full Stack", "Automatización", "Redes", "DevOps", "Soporte técnico"],
+    tags: ["Full Stack", "AutomatizaciÃ³n", "Redes", "DevOps", "Soporte tÃ©cnico"],
     icon: Code2,
   },
   {
-    name: "Lehi Salvador Rangel Cárdenas",
+    name: "Lehi Salvador Rangel CÃ¡rdenas",
     role: "Business & Operations Lead",
     strategicRole: "Project Management / Business Operations",
     initials: "LS",
     description:
-      "Aterriza soluciones conectando tecnología con la operación del negocio.",
+      "Aterriza soluciones conectando tecnologÃ­a con la operaciÃ³n del negocio.",
     education:
-      "Ingeniería Industrial · Tecnológico de Monterrey",
+      "IngenierÃ­a Industrial Â· TecnolÃ³gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -129,22 +129,22 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/lehi-salvador-rangel-cardenas-cv.pdf",
     highlights: [
-      "Sabor a Mí · Operación de negocio familiar",
-      "Cooper / T. Smith · Experiencia empresarial",
-      "Salva Exclusive Caps · Emprendimiento",
+      "Sabor a MÃ­ Â· OperaciÃ³n de negocio familiar",
+      "Cooper / T. Smith Â· Experiencia empresarial",
+      "Salva Exclusive Caps Â· Emprendimiento",
     ],
-    tags: ["Operación", "Procesos", "Gestión", "Documentación", "Negocio"],
+    tags: ["OperaciÃ³n", "Procesos", "GestiÃ³n", "DocumentaciÃ³n", "Negocio"],
     icon: Network,
   },
   {
-    name: "Maximiliano Lozano Suárez",
+    name: "Maximiliano Lozano SuÃ¡rez",
     role: "Engineering & Innovation Lead",
     strategicRole: "Engineering Research / Applied Innovation",
     initials: "ML",
     description:
-      "Aporta profundidad técnica, estructura de ingeniería e innovación aplicada en proyectos de alto nivel.",
+      "Aporta profundidad tÃ©cnica, estructura de ingenierÃ­a e innovaciÃ³n aplicada en proyectos de alto nivel.",
     education:
-      "Ingeniería en Mecatrónica · Tecnológico de Monterrey",
+      "IngenierÃ­a en MecatrÃ³nica Â· TecnolÃ³gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -154,48 +154,48 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/maximiliano-lozano-suarez-cv.pdf",
     highlights: [
-      "Líder del Mañana · Tec de Monterrey (beca de excelencia académica y liderazgo)",
-      "McGill University · Estancia de investigación (Canadá)",
-      "Degas Café · Proyecto sostenible",
-      "LARC & LARS 2025 · Competencias internacionales",
-      "IPECO · Maintenance Intern",
-      "Técnico Analista Programador · ICEST",
+      "LÃ­der del MaÃ±ana Â· Tec de Monterrey (beca de excelencia acadÃ©mica y liderazgo)",
+      "McGill University Â· Estancia de investigaciÃ³n (CanadÃ¡)",
+      "Degas CafÃ© Â· Proyecto sostenible",
+      "LARC & LARS 2025 Â· Competencias internacionales",
+      "IPECO Â· Maintenance Intern",
+      "TÃ©cnico Analista Programador Â· ICEST",
     ],
-    tags: ["Mecatrónica", "Investigación", "Innovación", "Robótica", "Sostenibilidad"],
+    tags: ["MecatrÃ³nica", "InvestigaciÃ³n", "InnovaciÃ³n", "RobÃ³tica", "Sostenibilidad"],
     icon: Layers3,
   },
 ];
 
 const operatingRoles = [
   {
-    title: "Ejecución técnica diaria",
+    title: "EjecuciÃ³n tÃ©cnica diaria",
     people: "Carlos + Leonel",
     description:
-      "Discovery técnico, arquitectura, desarrollo, automatización, datos, documentación técnica, soporte de implementación y construcción directa de sistemas.",
+      "Discovery tÃ©cnico, arquitectura, desarrollo, automatizaciÃ³n, datos, documentaciÃ³n tÃ©cnica, soporte de implementaciÃ³n y construcciÃ³n directa de sistemas.",
     icon: Code2,
   },
   {
-    title: "Operación y project management",
+    title: "OperaciÃ³n y project management",
     people: "Lehi",
     description:
-      "Gestión, documentación, seguimiento, aterrizaje operativo, procesos, validación de necesidades y conexión entre tecnología y negocio.",
+      "GestiÃ³n, documentaciÃ³n, seguimiento, aterrizaje operativo, procesos, validaciÃ³n de necesidades y conexiÃ³n entre tecnologÃ­a y negocio.",
     icon: BriefcaseBusiness,
   },
   {
-    title: "Ingeniería e innovación aplicada",
+    title: "IngenierÃ­a e innovaciÃ³n aplicada",
     people: "Max",
     description:
-      "Criterio de ingeniería, investigación aplicada, sistemas físicos, innovación técnica, mecatrónica y validación de proyectos de mayor complejidad.",
+      "Criterio de ingenierÃ­a, investigaciÃ³n aplicada, sistemas fÃ­sicos, innovaciÃ³n tÃ©cnica, mecatrÃ³nica y validaciÃ³n de proyectos de mayor complejidad.",
     icon: GraduationCap,
   },
 ];
 
 const trustPrinciples = [
   "Todos formamos parte de Salva Systems, nuestra consultora de software.",
-  "Puente Impacto aprovecha esa capacidad técnica para crear infraestructura social, educativa y comunitaria.",
-  "No vendemos improvisación: trabajamos con documentación, arquitectura, seguimiento y entregables claros.",
-  "Carlos y Leonel ejecutan la mayor parte del trabajo técnico día a día.",
-  "Lehi y Max complementan el equipo con operación, gestión, ingeniería, investigación y criterio multidisciplinario.",
+  "Puente Impacto aprovecha esa capacidad tÃ©cnica para crear infraestructura social, educativa y comunitaria.",
+  "No vendemos improvisaciÃ³n: trabajamos con documentaciÃ³n, arquitectura, seguimiento y entregables claros.",
+  "Carlos y Leonel ejecutan la mayor parte del trabajo tÃ©cnico dÃ­a a dÃ­a.",
+  "Lehi y Max complementan el equipo con operaciÃ³n, gestiÃ³n, ingenierÃ­a, investigaciÃ³n y criterio multidisciplinario.",
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -362,13 +362,13 @@ export default function NosotrosPage() {
             </Badge>
 
             <h1 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.065em] text-[#10233f] sm:text-6xl md:text-8xl">
-              Un equipo técnico construyendo impacto real.
+              Un equipo tÃ©cnico construyendo impacto real.
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875] md:text-xl md:leading-9">
-              Puente Impacto es una iniciativa social y tecnológica impulsada por el equipo de
-              Salva Systems. Combinamos software, datos, automatización, operación, ingeniería,
-              documentación y visión comunitaria para construir soluciones con seriedad.
+              Puente Impacto es una iniciativa social y tecnolÃ³gica impulsada por el equipo de
+              Salva Systems. Combinamos software, datos, automatizaciÃ³n, operaciÃ³n, ingenierÃ­a,
+              documentaciÃ³n y visiÃ³n comunitaria para construir soluciones con seriedad.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -376,13 +376,13 @@ export default function NosotrosPage() {
                 <Code2 className="mb-4 size-5 text-[#10233f]" />
                 <p className="font-semibold text-[#10233f]">Software real</p>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
-                  Sistemas, datos, automatización y arquitectura.
+                  Sistemas, datos, automatizaciÃ³n y arquitectura.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-[#d7dedf] bg-white/65 p-4">
                 <Building2 className="mb-4 size-5 text-[#10233f]" />
-                <p className="font-semibold text-[#10233f]">Consultoría</p>
+                <p className="font-semibold text-[#10233f]">ConsultorÃ­a</p>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
                   Todos somos parte de Salva Systems.
                 </p>
@@ -392,7 +392,7 @@ export default function NosotrosPage() {
                 <HeartIcon />
                 <p className="font-semibold text-[#10233f]">Impacto</p>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
-                  Tecnología aplicada a organizaciones y comunidad.
+                  TecnologÃ­a aplicada a organizaciones y comunidad.
                 </p>
               </div>
             </div>
@@ -408,7 +408,7 @@ export default function NosotrosPage() {
               </div>
 
               <p className="font-[var(--font-serif)] text-3xl font-semibold leading-10 tracking-[-0.04em] md:text-4xl md:leading-[1.08]">
-                Carlos y Leonel ejecutan la mayor parte del trabajo técnico. Lehi y Max fortalecen operación, gestión, ingeniería e innovación.
+                Carlos y Leonel ejecutan la mayor parte del trabajo tÃ©cnico. Lehi y Max fortalecen operaciÃ³n, gestiÃ³n, ingenierÃ­a e innovaciÃ³n.
               </p>
 
               <div className="mt-10 grid gap-3">
@@ -434,12 +434,12 @@ export default function NosotrosPage() {
           <div>
             <SectionLabel>Equipo</SectionLabel>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-6xl">
-              Quiénes construyen Puente.
+              QuiÃ©nes construyen Puente.
             </h2>
           </div>
 
           <p className="max-w-md text-sm leading-6 text-[#60738c]">
-            Perfiles públicos del equipo. Los botones de CV apuntan a archivos PDF que deben
+            Perfiles pÃºblicos del equipo. Los botones de CV apuntan a archivos PDF que deben
             cargarse en <span className="font-mono">/public/cv</span>.
           </p>
         </div>
@@ -456,13 +456,13 @@ export default function NosotrosPage() {
           <div>
             <SectionLabel>Responsabilidades</SectionLabel>
             <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              Cada perfil cumple una función estratégica.
+              Cada perfil cumple una funciÃ³n estratÃ©gica.
             </h2>
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            No presentamos al equipo como una lista decorativa. La intención es que una organización
-            entienda quién ejecuta, quién gestiona, quién documenta y quién aporta criterio técnico
+            No presentamos al equipo como una lista decorativa. La intenciÃ³n es que una organizaciÃ³n
+            entienda quiÃ©n ejecuta, quiÃ©n gestiona, quiÃ©n documenta y quiÃ©n aporta criterio tÃ©cnico
             para que el trabajo sea confiable.
           </p>
         </div>
@@ -486,13 +486,13 @@ export default function NosotrosPage() {
             <div>
               <SectionLabel>Salva Systems</SectionLabel>
               <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-7xl">
-                Puente no nace desde cero: nace desde capacidad técnica.
+                Puente no nace desde cero: nace desde capacidad tÃ©cnica.
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-[#c9d8e8]">
                 Salva Systems es nuestra consultora de software. Puente Impacto usa esa misma base
-                profesional para construir herramientas, documentación, diagnóstico y soluciones
-                orientadas a organizaciones sociales, comunidad y educación.
+                profesional para construir herramientas, documentaciÃ³n, diagnÃ³stico y soluciones
+                orientadas a organizaciones sociales, comunidad y educaciÃ³n.
               </p>
             </div>
 
