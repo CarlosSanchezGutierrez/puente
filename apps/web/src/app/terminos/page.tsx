@@ -16,7 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
-  title: "T&eacute;rminos y Condiciones",
+  title: "Terminos y Condiciones",
+  description: "Terminos y Condiciones de uso de la plataforma Puente, biblioteca, eventos, recursos, voluntariado y solicitudes.",
 };
 
 function SectionLabel({ children }: { children: React.ReactNode }) {

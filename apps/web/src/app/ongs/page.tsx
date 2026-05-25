@@ -16,7 +16,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
-  title: "ONG's",
+  title: "ONGs",
+  description: "Apoyo tecnologico para organizaciones sociales: software, datos, reportes, procesos y herramientas digitales con enfoque social.",
 };
 
 const problems = [

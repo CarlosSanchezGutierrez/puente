@@ -7,6 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Biblioteca",
+  description: "Catalogo comunitario de libros sobre tecnologia, idiomas, ciencia, literatura, educacion, desarrollo profesional e impacto social.",
 };
 
 export default async function BibliotecaPage() {
@@ -22,7 +23,7 @@ export default async function BibliotecaPage() {
         <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#60738c]">
-              Catálogo vivo
+              CatÃ¡logo vivo
             </p>
             <h1 className="mt-4 font-[var(--font-serif)] text-6xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-8xl">
               Biblioteca comunitaria.
@@ -30,8 +31,8 @@ export default async function BibliotecaPage() {
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Un catálogo de libros para aprender, compartir conocimiento y formar círculos de lectura
-            alrededor de tecnología, idiomas, ciencia, historia, cultura, carrera profesional y
+            Un catÃ¡logo de libros para aprender, compartir conocimiento y formar cÃ­rculos de lectura
+            alrededor de tecnologÃ­a, idiomas, ciencia, historia, cultura, carrera profesional y
             desarrollo personal.
           </p>
         </div>

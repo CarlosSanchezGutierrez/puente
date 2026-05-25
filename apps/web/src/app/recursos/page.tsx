@@ -19,6 +19,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Recursos",
+  description: "Guias, materiales abiertos, plantillas y recursos educativos para estudiantes, comunidad y organizaciones sociales.",
 };
 
 const resourceAreas = [

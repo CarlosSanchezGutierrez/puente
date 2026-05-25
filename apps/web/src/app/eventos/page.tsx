@@ -18,6 +18,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Eventos",
+  description: "Eventos, talleres, platicas y grupos de estudio para comunidad, carrera profesional, tecnologia e impacto social.",
 };
 
 const eventTracks = [

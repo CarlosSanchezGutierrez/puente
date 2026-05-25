@@ -17,6 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
   title: "Contacto",
+  description: "Contacta a Puente para proponer colaboraciones, solicitar informacion, presentar una organizacion o participar en la comunidad.",
 };
 
 const contactReasons = [

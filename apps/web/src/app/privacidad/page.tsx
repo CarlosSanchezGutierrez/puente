@@ -15,6 +15,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
   title: "Aviso de Privacidad",
+  description: "Aviso de Privacidad de Puente sobre tratamiento de datos personales, finalidades, derechos y canales de contacto.",
 };
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
