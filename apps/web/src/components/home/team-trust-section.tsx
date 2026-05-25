@@ -5,31 +5,31 @@ import { Card, CardContent } from "@/components/ui/card";
 const teamPreview = [
   {
     initials: "CS",
-    name: "Carlos S\u00e1nchez",
+    name: "Carlos Sánchez",
     area: "Sistemas digitales, datos y arquitectura",
   },
   {
     initials: "LB",
-    name: "Leonel Bail\u00f3n",
-    area: "Automatizaci\u00f3n, full stack y redes",
+    name: "Leonel Bailón",
+    area: "Automatización, full stack y redes",
   },
   {
     initials: "LS",
     name: "Lehi Salvador",
-    area: "Operaci\u00f3n, gesti\u00f3n y procesos",
+    area: "Operación, gestión y procesos",
   },
   {
     initials: "ML",
     name: "Maximiliano Lozano",
-    area: "Ingenier\u00eda, investigaci\u00f3n e innovaci\u00f3n",
+    area: "Ingeniería, investigación e innovación",
   },
 ];
 
 const capabilities = [
-  "Software y automatizaci\u00f3n",
-  "Datos, documentaci\u00f3n y trazabilidad",
-  "Operaci\u00f3n, gesti\u00f3n y procesos",
-  "Ingenier\u00eda e investigaci\u00f3n aplicada",
+  "Software y automatización",
+  "Datos, documentación y trazabilidad",
+  "Operación, gestión y procesos",
+  "Ingeniería e investigación aplicada",
 ];
 
 export function TeamTrustSection() {
@@ -47,8 +47,8 @@ export function TeamTrustSection() {
             </h2>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#425875]">
-              Puente Impacto se construye con perfiles de tecnolog&iacute;a, operaci&oacute;n,
-              ingenier&iacute;a y gesti&oacute;n. El equipo tambi&eacute;n forma parte de Salva Systems,
+              Puente Impacto se construye con perfiles de tecnología, operación,
+              ingeniería y gestión. El equipo también forma parte de Salva Systems,
               nuestra consultora de software, y busca aplicar esa experiencia en proyectos sociales,
               educativos y comunitarios.
             </p>
@@ -119,15 +119,15 @@ export function TeamTrustSection() {
                 <Building2 className="mb-5 size-6 text-[#10233f]" />
                 <p className="font-semibold text-[#10233f]">Base profesional</p>
                 <p className="mt-2 text-sm leading-6 text-[#60738c]">
-                  Puente se apoya en experiencia de consultor&iacute;a, desarrollo y documentaci&oacute;n.
+                  Puente se apoya en experiencia de consultoría, desarrollo y documentación.
                 </p>
               </div>
 
               <div className="rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-5">
                 <GraduationCap className="mb-5 size-6 text-[#10233f]" />
-                <p className="font-semibold text-[#10233f]">Formaci&oacute;n t&eacute;cnica</p>
+                <p className="font-semibold text-[#10233f]">Formación técnica</p>
                 <p className="mt-2 text-sm leading-6 text-[#60738c]">
-                  El equipo combina tecnolog&iacute;a, ingenier&iacute;a, operaci&oacute;n e investigaci&oacute;n.
+                  El equipo combina tecnología, ingeniería, operación e investigación.
                 </p>
               </div>
             </div>
