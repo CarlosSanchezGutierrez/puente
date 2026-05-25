@@ -1,17 +1,20 @@
 "use client";
 
+import { submitVolunteerApplication, type FormActionResult } from "@/app/actions/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { volunteerApplicationSchema, type VolunteerApplicationInput } from "@puente/schemas";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormError } from "@/components/forms/form-error";
+import { FormStatusMessage } from "@/components/forms/form-status-message";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 export function VolunteerApplicationForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [result, setResult] = useState<FormActionResult | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<VolunteerApplicationInput>({
     resolver: zodResolver(volunteerApplicationSchema),
@@ -31,22 +34,26 @@ export function VolunteerApplicationForm() {
     },
   });
 
-  function onSubmit(values: VolunteerApplicationInput) {
-    console.log("Volunteer application draft:", values);
-    setSubmitted(true);
-    form.reset();
-  }
+  async function onSubmit(values: VolunteerApplicationInput) {
+    setIsSubmitting(true);
+    setResult(null);
 
-  if (submitted) {
-    return (
-      <div className="rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] p-5 text-[#425875]">
-        Recibimos tu aplicación localmente. El siguiente paso será conectar este formulario a Supabase.
-      </div>
-    );
+    try {
+      const response = await submitVolunteerApplication(values);
+      setResult(response);
+
+      if (response.ok) {
+        form.reset();
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <form className="mt-6 grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
+      <FormStatusMessage result={result} />
+
       <div className="grid gap-2">
         <Label>Nombre completo</Label>
         <Input placeholder="Tu nombre" {...form.register("fullName")} />
@@ -83,8 +90,12 @@ export function VolunteerApplicationForm() {
         <FormError message={form.formState.errors.motivation?.message} />
       </div>
 
-      <Button className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]" type="submit">
-        Enviar aplicación
+      <Button
+        className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]"
+        disabled={isSubmitting}
+        type="submit"
+      >
+        {isSubmitting ? "Enviando..." : "Enviar aplicación"}
       </Button>
     </form>
   );

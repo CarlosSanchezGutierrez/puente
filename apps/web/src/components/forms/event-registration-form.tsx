@@ -1,16 +1,19 @@
 "use client";
 
+import { submitEventRegistration, type FormActionResult } from "@/app/actions/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { eventRegistrationSchema, type EventRegistrationInput } from "@puente/schemas";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormError } from "@/components/forms/form-error";
+import { FormStatusMessage } from "@/components/forms/form-status-message";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function EventRegistrationForm({ eventTitle }: { eventTitle?: string }) {
-  const [submitted, setSubmitted] = useState(false);
+  const [result, setResult] = useState<FormActionResult | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<EventRegistrationInput>({
     resolver: zodResolver(eventRegistrationSchema),
@@ -22,27 +25,31 @@ export function EventRegistrationForm({ eventTitle }: { eventTitle?: string }) {
     },
   });
 
-  function onSubmit(values: EventRegistrationInput) {
-    console.log("Event registration draft:", values);
-    setSubmitted(true);
-    form.reset({
-      eventTitle: eventTitle ?? "",
-      fullName: "",
-      email: "",
-      note: "",
-    });
-  }
+  async function onSubmit(values: EventRegistrationInput) {
+    setIsSubmitting(true);
+    setResult(null);
 
-  if (submitted) {
-    return (
-      <div className="mt-4 rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm text-[#425875]">
-        Registro guardado localmente. Después lo conectaremos a Supabase.
-      </div>
-    );
+    try {
+      const response = await submitEventRegistration(values);
+      setResult(response);
+
+      if (response.ok) {
+        form.reset({
+          eventTitle: eventTitle ?? "",
+          fullName: "",
+          email: "",
+          note: "",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <form className="mt-5 grid gap-4" onSubmit={form.handleSubmit(onSubmit)}>
+      <FormStatusMessage result={result} />
+
       <input type="hidden" {...form.register("eventTitle")} />
 
       <div className="grid gap-2">
@@ -57,8 +64,12 @@ export function EventRegistrationForm({ eventTitle }: { eventTitle?: string }) {
         <FormError message={form.formState.errors.email?.message} />
       </div>
 
-      <Button className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]" type="submit">
-        Registrarme
+      <Button
+        className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]"
+        disabled={isSubmitting}
+        type="submit"
+      >
+        {isSubmitting ? "Enviando..." : "Registrarme"}
       </Button>
     </form>
   );

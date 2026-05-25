@@ -1,17 +1,20 @@
 "use client";
 
+import { submitNgoRequest, type FormActionResult } from "@/app/actions/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ngoRequestSchema, type NgoRequestInput } from "@puente/schemas";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormError } from "@/components/forms/form-error";
+import { FormStatusMessage } from "@/components/forms/form-status-message";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 export function NgoRequestForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [result, setResult] = useState<FormActionResult | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<NgoRequestInput>({
     resolver: zodResolver(ngoRequestSchema),
@@ -33,22 +36,26 @@ export function NgoRequestForm() {
     },
   });
 
-  function onSubmit(values: NgoRequestInput) {
-    console.log("NGO request draft:", values);
-    setSubmitted(true);
-    form.reset();
-  }
+  async function onSubmit(values: NgoRequestInput) {
+    setIsSubmitting(true);
+    setResult(null);
 
-  if (submitted) {
-    return (
-      <div className="rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] p-5 text-[#425875]">
-        Recibimos tu solicitud localmente. El siguiente paso será conectarla a Supabase.
-      </div>
-    );
+    try {
+      const response = await submitNgoRequest(values);
+      setResult(response);
+
+      if (response.ok) {
+        form.reset();
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <form className="mt-6 grid gap-5" onSubmit={form.handleSubmit(onSubmit)}>
+      <FormStatusMessage result={result} />
+
       <div className="grid gap-2">
         <Label>Nombre de la organización</Label>
         <Input placeholder="Nombre de la ONG o proyecto social" {...form.register("organizationName")} />
@@ -101,8 +108,12 @@ export function NgoRequestForm() {
         <span>Queremos recibir una cotización con cuota social si el proyecto no entra al programa gratuito.</span>
       </label>
 
-      <Button className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]" type="submit">
-        Enviar solicitud
+      <Button
+        className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]"
+        disabled={isSubmitting}
+        type="submit"
+      >
+        {isSubmitting ? "Enviando..." : "Enviar solicitud"}
       </Button>
     </form>
   );
