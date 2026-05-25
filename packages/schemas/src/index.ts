@@ -35,8 +35,8 @@ export const ngoRequestSchema = z.object({
   desiredSolution: z.string().max(1500).optional().or(z.literal("")),
   urgency: z.string().max(120).optional().or(z.literal("")),
   approximateBudgetMxn: z.coerce.number().int().min(0).optional().or(z.literal("")),
-  wantsAnnualFreeProgram: z.boolean().default(false),
-  wantsSocialDiscountQuote: z.boolean().default(true),
+  wantsAnnualFreeProgram: z.boolean(),
+  wantsSocialDiscountQuote: z.boolean(),
 });
 
 export const bookRequestSchema = z.object({
