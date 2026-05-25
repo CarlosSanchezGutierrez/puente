@@ -1,9 +1,7 @@
 import {
   Database,
-  FileText,
   LockKeyhole,
   Mail,
-  RefreshCcw,
   ShieldCheck,
   UserCheck,
 } from "lucide-react";

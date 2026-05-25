@@ -247,15 +247,7 @@ function TeamCard({ member }: { member: TeamMember }) {
         <div className="grid md:grid-cols-[0.86fr_1.14fr]">
           <div className="min-h-[280px] border-b border-[#d7dedf] md:border-b-0 md:border-r">
             {member.photoSrc ? (
-              {member.photoSrc ? (
               <TeamPhoto alt={`Foto de ${member.name}`} initials={member.initials} src={member.photoSrc} />
-            ) : (
-              <div className="flex h-full min-h-[280px] w-full items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(16,35,63,0.12),transparent_42%),#fbfaf7]">
-                <div className="flex size-24 items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 text-2xl font-semibold tracking-[0.18em] text-[#10233f] shadow-sm">
-                  {member.initials}
-                </div>
-              </div>
-            )}
             ) : (
               <div className="flex h-full min-h-[280px] w-full items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(16,35,63,0.12),transparent_42%),#fbfaf7]">
                 <div className="flex size-24 items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 text-2xl font-semibold tracking-[0.18em] text-[#10233f] shadow-sm">

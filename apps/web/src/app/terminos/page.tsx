@@ -1,12 +1,8 @@
 import {
   AlertTriangle,
-  BookOpen,
   FileText,
   Handshake,
-  HeartHandshake,
   Scale,
-  ShieldCheck,
-  Sparkles,
   UserCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";

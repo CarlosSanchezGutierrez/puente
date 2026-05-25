@@ -2,7 +2,6 @@ import { getSiteUrl } from "@/lib/site-url";
 import type { Metadata } from "next";
 import { Instrument_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import { siteConfig } from "@/lib/site";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-sans",
