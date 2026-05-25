@@ -17,7 +17,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
   title: "Terminos y Condiciones",
-  description: "Terminos y Condiciones de uso de la plataforma Puente, biblioteca, eventos, recursos, voluntariado y solicitudes.",
+  description: "Terminos y Condiciones de uso de la plataforma Puente Impacto, biblioteca, eventos, recursos, voluntariado y solicitudes.",
 };
 
 function SectionLabel({ children }: { children: React.ReactNode }) {

@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Puente";
+export const alt = "Puente Impacto";
 export const size = {
   width: 1200,
   height: 630,
@@ -16,7 +16,7 @@ export default function Image() {
         style={{
           alignItems: "stretch",
           background:
-            "radial-gradient(circle at top left, rgba(215,231,246,0.35), transparent 34%), linear-gradient(135deg, #f7f4ed 0%, #f3efe6 100%)",
+            "radial-gradient(circle at top left, rgba(215,231,246,0.38), transparent 34%), linear-gradient(135deg, #f7f4ed 0%, #f3efe6 100%)",
           color: "#10233f",
           display: "flex",
           flexDirection: "column",
@@ -57,8 +57,8 @@ export default function Image() {
             >
               P
             </div>
-            <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: 8 }}>
-              PUENTE
+            <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: 7 }}>
+              PUENTE IMPACTO
             </div>
           </div>
 
@@ -66,11 +66,11 @@ export default function Image() {
             style={{
               border: "1px solid rgba(16,35,63,0.18)",
               borderRadius: 999,
-              fontSize: 24,
+              fontSize: 23,
               padding: "14px 24px",
             }}
           >
-            Tecnologia civica y comunidad
+            puenteimpacto.org
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export default function Image() {
               fontWeight: 800,
               letterSpacing: -4,
               lineHeight: 0.95,
-              maxWidth: 980,
+              maxWidth: 1000,
             }}
           >
             Conocimiento, comunidad y accion social.
@@ -92,7 +92,7 @@ export default function Image() {
               color: "#425875",
               fontSize: 32,
               lineHeight: 1.35,
-              maxWidth: 930,
+              maxWidth: 940,
             }}
           >
             Biblioteca comunitaria, voluntariado, recursos abiertos y software para organizaciones sociales.

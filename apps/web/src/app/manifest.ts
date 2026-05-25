@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Puente",
+    name: "Puente Impacto",
     short_name: "Puente",
     description:
       "Tecnologia civica, biblioteca comunitaria, voluntariado y software para impacto social.",

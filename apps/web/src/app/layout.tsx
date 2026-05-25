@@ -13,23 +13,6 @@ const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url),
-  openGraph: {
-    title: siteConfig.name,
-    description: siteConfig.description,
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url,
-    siteName: siteConfig.name,
-    locale: "es_MX",
-    type: "website",
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{

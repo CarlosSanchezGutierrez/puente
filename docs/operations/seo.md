@@ -1,39 +1,31 @@
 # SEO and Sharing Setup
 
-Puente includes:
-
-- manifest.ts
-- robots.ts
-- sitemap.ts
-- opengraph-image.tsx
-- twitter-image.tsx
-- public SVG icons
-- page-level metadata
-
-## Required production environment variable
-
-Set this in Vercel:
+Production domain:
 
 ```txt
-NEXT_PUBLIC_SITE_URL=https://your-domain.com
+https://puenteimpacto.org
 
-Examples:
+Required Vercel environment variable:
 
-NEXT_PUBLIC_SITE_URL=https://puente.vercel.app
-NEXT_PUBLIC_SITE_URL=https://your-custom-domain.com
+NEXT_PUBLIC_SITE_URL=https://puenteimpacto.org
 
-This is used by sitemap and canonical URL generation.
+Generated routes:
 
-Routes included in sitemap
-/
-/biblioteca
-/ongs
-/voluntariado
-/eventos
-/recursos
-/contacto
-/privacidad
-/terminos
-Routes blocked in robots
+/manifest.webmanifest
+/robots.txt
+/sitemap.xml
+/opengraph-image
+/twitter-image
+
+Sharing preview should use:
+
+Title: Puente Impacto
+Description: Biblioteca comunitaria, voluntariado, recursos abiertos y software para impacto social.
+Image: /opengraph-image
+
+Robots blocks:
+
 /admin
 /api/debug
+
+After changing NEXT_PUBLIC_SITE_URL in Vercel, redeploy without cache.

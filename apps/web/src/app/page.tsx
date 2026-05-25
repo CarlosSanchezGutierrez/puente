@@ -190,7 +190,7 @@ function ActionCard({
 }
 
 export const metadata = {
-  title: "Puente",
+  title: "Inicio",
   description: "Tecnologia civica, biblioteca comunitaria, voluntariado, recursos abiertos y software para impacto social.",
 };
 export default function Home() {

@@ -20,7 +20,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
   title: "Voluntariado",
-  description: "Formas de participar en Puente mediante tecnologia, educacion, comunidad, contenido, eventos y proyectos sociales.",
+  description: "Formas de participar en Puente Impacto mediante tecnologia, educacion, comunidad, contenido, eventos y proyectos sociales.",
 };
 
 const tracks = [
