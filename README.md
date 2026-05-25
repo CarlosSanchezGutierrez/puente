@@ -36,3 +36,15 @@ Mobile: Expo, React Native, TypeScript
 Backend: Supabase
 Hosting: Vercel
 Repo: GitHub monorepo
+Backend strategy
+
+Puente starts without a custom backend. Supabase is used as the managed backend for authentication, PostgreSQL, storage, row level security, and lightweight functions when needed.
+
+The first workflows are:
+
+NGO/social software requests
+Volunteer applications
+Book catalogue and requests
+Event registrations
+Public resources
+Contact messages

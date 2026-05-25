@@ -3,3 +3,5 @@
 export function createSupabaseBrowserClient(url: string, anonKey: string) {
   return createClient(url, anonKey);
 }
+
+export * from "./types";
