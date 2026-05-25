@@ -1,4 +1,4 @@
-﻿
+
 Architecture
 
 Puente is structured as a modular monorepo.

@@ -1,4 +1,4 @@
-﻿# Puente Data Model
+# Puente Data Model
 
 ## Core entities
 

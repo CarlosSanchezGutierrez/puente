@@ -1,4 +1,4 @@
-﻿# Mobile Release Strategy
+# Mobile Release Strategy
 
 Puente uses Expo and EAS for mobile builds.
 

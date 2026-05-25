@@ -1,4 +1,4 @@
-﻿import { puenteActions, puenteBrand, puentePrinciples } from "@puente/brand";
+import { puenteActions, puenteBrand, puentePrinciples } from "@puente/brand";
 import { StatusBar } from "expo-status-bar";
 import {
   SafeAreaView,

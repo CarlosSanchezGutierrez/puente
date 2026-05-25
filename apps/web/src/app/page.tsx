@@ -1,4 +1,4 @@
-﻿import { ArrowRight, Braces, GraduationCap, HeartHandshake, Microscope, PlayCircle } from "lucide-react";
+import { ArrowRight, Braces, GraduationCap, HeartHandshake, Microscope, PlayCircle } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

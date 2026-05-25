@@ -1,4 +1,4 @@
-﻿# Brand System
+# Brand System
 
 Puente uses a shared brand package:
 

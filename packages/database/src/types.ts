@@ -1,4 +1,4 @@
-﻿export type RequestStatus =
+export type RequestStatus =
   | "pending"
   | "reviewing"
   | "approved"

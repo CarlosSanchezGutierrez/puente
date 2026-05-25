@@ -1,4 +1,4 @@
-﻿# Backend Strategy
+# Backend Strategy
 
 Puente will not start with a custom backend.
 
