@@ -432,7 +432,7 @@ export default function NosotrosPage() {
           </div>
 
           <p className="max-w-md text-sm leading-6 text-[#60738c]">
-            Perfiles publicos del equipo. Si una foto o CV aun no esta cargado, la pagina mantiene una presentacion limpia con iniciales o enlace pendiente.
+            Perfiles profesionales del equipo, enlaces publicos y curriculum de referencia.
           </p>
         </div>
 
