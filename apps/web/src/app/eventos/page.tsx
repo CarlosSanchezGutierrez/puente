@@ -3,13 +3,15 @@ import { EventRegistrationForm } from "@/components/forms/event-registration-for
 import { SiteShell } from "@/components/site/site-shell";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { events } from "@/lib/mock-data";
+import { formatEventDate, listPublishedEvents } from "@/lib/queries/public-content";
 
 export const metadata = {
   title: "Eventos",
 };
 
-export default function EventosPage() {
+export default async function EventosPage() {
+  const events = await listPublishedEvents();
+
   return (
     <SiteShell>
       <section className="mx-auto max-w-7xl px-6 py-16">
@@ -30,29 +32,41 @@ export default function EventosPage() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {events.map((event) => (
-            <Card key={event.title} className="border-[#d7dedf] bg-white/75 shadow-sm">
-              <CardContent className="p-7">
-                <CalendarDays className="mb-8 size-7 text-[#10233f]" />
+        {events.length === 0 ? (
+          <Card className="mt-12 border-[#d7dedf] bg-white/75 shadow-sm">
+            <CardContent className="p-7 text-[#425875]">
+              Todavía no hay eventos publicados en Supabase.
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {events.map((event) => (
+              <Card key={event.id} className="border-[#d7dedf] bg-white/75 shadow-sm">
+                <CardContent className="p-7">
+                  <CalendarDays className="mb-8 size-7 text-[#10233f]" />
 
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline">{event.type}</Badge>
-                  <Badge variant="outline">{event.location}</Badge>
-                </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline">{event.eventType}</Badge>
+                    <Badge variant="outline">
+                      {event.location ?? (event.isOnline ? "Online" : "Por definir")}
+                    </Badge>
+                  </div>
 
-                <h2 className="mt-5 text-2xl font-semibold tracking-[-0.02em]">
-                  {event.title}
-                </h2>
+                  <h2 className="mt-5 text-2xl font-semibold tracking-[-0.02em]">
+                    {event.title}
+                  </h2>
 
-                <p className="mt-2 text-sm text-[#60738c]">{event.date}</p>
-                <p className="mt-5 leading-7 text-[#425875]">{event.description}</p>
+                  <p className="mt-2 text-sm text-[#60738c]">{formatEventDate(event.startsAt)}</p>
+                  <p className="mt-5 leading-7 text-[#425875]">
+                    {event.description ?? "Descripción pendiente."}
+                  </p>
 
-                <EventRegistrationForm eventTitle={event.title} />
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  <EventRegistrationForm eventTitle={event.title} />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
       </section>
     </SiteShell>
   );

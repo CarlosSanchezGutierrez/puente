@@ -1,15 +1,17 @@
-﻿import { FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { SiteShell } from "@/components/site/site-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { resources } from "@/lib/mock-data";
+import { listPublishedResources } from "@/lib/queries/public-content";
 
 export const metadata = {
   title: "Recursos",
 };
 
-export default function RecursosPage() {
+export default async function RecursosPage() {
+  const resources = await listPublishedResources();
+
   return (
     <SiteShell>
       <section className="mx-auto max-w-7xl px-6 py-16">
@@ -31,27 +33,37 @@ export default function RecursosPage() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {resources.map((resource) => (
-            <Card key={resource.title} className="border-[#d7dedf] bg-white/75 shadow-sm">
-              <CardContent className="p-7">
-                <FileText className="mb-8 size-7 text-[#10233f]" />
+        {resources.length === 0 ? (
+          <Card className="mt-12 border-[#d7dedf] bg-white/75 shadow-sm">
+            <CardContent className="p-7 text-[#425875]">
+              Todavía no hay recursos publicados en Supabase.
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="mt-12 grid gap-4 md:grid-cols-2">
+            {resources.map((resource) => (
+              <Card key={resource.id} className="border-[#d7dedf] bg-white/75 shadow-sm">
+                <CardContent className="p-7">
+                  <FileText className="mb-8 size-7 text-[#10233f]" />
 
-                <Badge variant="outline">{resource.category}</Badge>
+                  <Badge variant="outline">{resource.category}</Badge>
 
-                <h2 className="mt-5 text-2xl font-semibold tracking-[-0.02em]">
-                  {resource.title}
-                </h2>
+                  <h2 className="mt-5 text-2xl font-semibold tracking-[-0.02em]">
+                    {resource.title}
+                  </h2>
 
-                <p className="mt-5 leading-7 text-[#425875]">{resource.description}</p>
+                  <p className="mt-5 leading-7 text-[#425875]">
+                    {resource.description ?? "Descripción pendiente."}
+                  </p>
 
-                <Button className="mt-6 rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]">
-                  Ver recurso
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  <Button className="mt-6 rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]">
+                    Ver recurso
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
       </section>
     </SiteShell>
   );
