@@ -11,7 +11,8 @@ import {
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BookRequestForm } from "@/components/forms/book-request-form";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import type { PublicBook } from "@/lib/queries/public-content";
 
 type SortMode = "featured" | "title" | "category" | "availability";
+type CoverVariant = "card" | "detail" | "mini";
 
 function normalize(value: string) {
   return value
@@ -100,35 +102,127 @@ function StatCard({
 
 function BookCover({
   book,
-  compact = false,
+  variant = "card",
 }: {
   book: PublicBook;
-  compact?: boolean;
+  variant?: CoverVariant;
 }) {
-  const height = compact ? "h-52 sm:h-56" : "h-72";
+  const [hasImageError, setHasImageError] = useState(false);
 
-  if (book.coverUrl) {
+  const sizeClass =
+    variant === "mini"
+      ? "h-28 w-20 shrink-0"
+      : variant === "detail"
+        ? "aspect-[2/3] w-full max-w-sm md:max-w-none"
+        : "aspect-[2/3] w-full";
+
+  const radiusClass = variant === "mini" ? "rounded-2xl" : "rounded-[1.35rem]";
+
+  if (book.coverUrl && !hasImageError) {
     return (
-      <div
-        aria-label={`Portada de ${book.title}`}
-        className={`${height} rounded-[1.25rem] border border-[#d7dedf] bg-cover bg-center shadow-sm md:rounded-[1.35rem]`}
-        role="img"
-        style={{ backgroundImage: `url(${book.coverUrl})` }}
-      />
+      <div className={`${sizeClass} ${radiusClass} overflow-hidden border border-[#d7dedf] bg-white shadow-sm`}>
+        <img
+          alt={`Portada de ${book.title}`}
+          className="h-full w-full object-cover"
+          decoding="async"
+          loading="lazy"
+          onError={() => setHasImageError(true)}
+          src={book.coverUrl}
+        />
+      </div>
     );
   }
 
   return (
-    <div className={`flex ${height} items-center justify-center rounded-[1.25rem] border border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_38%),#10233f] p-5 text-center text-white shadow-sm md:rounded-[1.35rem] md:p-6`}>
+    <div className={`${sizeClass} ${radiusClass} flex items-center justify-center border border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_38%),#10233f] p-5 text-center text-white shadow-sm`}>
       <div>
-        <p className="font-[var(--font-serif)] text-5xl font-semibold md:text-6xl">
+        <p className="font-[var(--font-serif)] text-4xl font-semibold md:text-6xl">
           {book.title.slice(0, 1).toUpperCase()}
         </p>
-        <p className="mx-auto mt-4 max-w-[13rem] text-xs leading-5 text-[#c9d8e8] md:mt-5 md:text-sm md:leading-6">
-          {book.title}
-        </p>
+        {variant !== "mini" ? (
+          <p className="mx-auto mt-4 max-w-[13rem] text-xs leading-5 text-[#c9d8e8] md:text-sm md:leading-6">
+            {book.title}
+          </p>
+        ) : null}
       </div>
     </div>
+  );
+}
+
+function SelectField({
+  label,
+  value,
+  onChange,
+  children,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  children: ReactNode;
+}) {
+  return (
+    <label className="grid gap-2">
+      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#60738c]">
+        {label}
+      </span>
+      <select
+        className="min-h-12 rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3 text-sm text-[#425875] outline-none"
+        onChange={(event) => onChange(event.target.value)}
+        value={value}
+      >
+        {children}
+      </select>
+    </label>
+  );
+}
+
+function FeaturedShelf({
+  books,
+  onSelect,
+}: {
+  books: PublicBook[];
+  onSelect: (book: PublicBook) => void;
+}) {
+  if (books.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className="mt-8 rounded-[1.75rem] border border-[#d7dedf] bg-[#10233f] p-5 text-white shadow-sm md:p-6">
+      <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b7c8dc]">
+            Selecci&oacute;n inicial
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] md:text-3xl">
+            Libros destacados
+          </h2>
+        </div>
+        <p className="text-sm leading-6 text-[#c9d8e8]">
+          Punto de partida recomendado para explorar la biblioteca.
+        </p>
+      </div>
+
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {books.map((book) => (
+          <button
+            className="grid grid-cols-[80px_1fr] gap-4 rounded-[1.25rem] border border-white/15 bg-white/10 p-3 text-left transition hover:bg-white/15"
+            key={book.id}
+            onClick={() => onSelect(book)}
+            type="button"
+          >
+            <BookCover book={book} variant="mini" />
+            <div className="min-w-0">
+              <p className="line-clamp-2 font-semibold leading-6">{book.title}</p>
+              <p className="mt-1 line-clamp-1 text-sm text-[#c9d8e8]">
+                {book.author ?? "Autor por definir"}
+              </p>
+              <p className="mt-3 text-xs text-[#b7c8dc]">Ver detalles</p>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -142,7 +236,7 @@ function BookCard({
   return (
     <Card className="overflow-hidden border-[#d7dedf] bg-white/78 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
       <CardContent className="grid gap-5 p-4 sm:p-5">
-        <BookCover book={book} compact />
+        <BookCover book={book} />
 
         <div>
           <div className="mb-4 flex flex-wrap gap-2">
@@ -196,33 +290,6 @@ function BookCard({
   );
 }
 
-function SelectField({
-  label,
-  value,
-  onChange,
-  children,
-}: {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="grid gap-2">
-      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#60738c]">
-        {label}
-      </span>
-      <select
-        className="min-h-12 rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3 text-sm text-[#425875] outline-none"
-        onChange={(event) => onChange(event.target.value)}
-        value={value}
-      >
-        {children}
-      </select>
-    </label>
-  );
-}
-
 function BookDetailPanel({
   book,
   onClose,
@@ -231,8 +298,17 @@ function BookDetailPanel({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#10233f]/35 px-3 py-3 backdrop-blur-sm sm:px-4 sm:py-6">
-      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-[#d7dedf] bg-[#f7f4ed] p-4 shadow-2xl sm:rounded-[2rem] md:p-6">
+    <div
+      className="fixed inset-0 z-50 overflow-y-auto bg-[#10233f]/40 px-3 py-3 backdrop-blur-sm sm:px-4 sm:py-6"
+      onClick={onClose}
+      role="presentation"
+    >
+      <div
+        aria-modal="true"
+        className="mx-auto max-w-5xl rounded-[1.5rem] border border-[#d7dedf] bg-[#f7f4ed] p-4 shadow-2xl sm:rounded-[2rem] md:p-6"
+        onClick={(event) => event.stopPropagation()}
+        role="dialog"
+      >
         <div className="mb-4 flex items-center justify-between gap-4">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#60738c] sm:text-sm">
             Detalle del libro
@@ -248,7 +324,7 @@ function BookDetailPanel({
         </div>
 
         <div className="grid gap-6 md:grid-cols-[320px_1fr] md:gap-8">
-          <BookCover book={book} />
+          <BookCover book={book} variant="detail" />
 
           <div>
             <div className="mb-4 flex flex-wrap gap-2">
@@ -273,7 +349,9 @@ function BookDetailPanel({
               </Badge>
               {book.language ? <Badge variant="outline">{book.language}</Badge> : null}
               {book.publisher ? <Badge variant="outline">{book.publisher}</Badge> : null}
-              {book.publicationYear ? <Badge variant="outline">A&ntilde;o {book.publicationYear}</Badge> : null}
+              {book.publicationYear ? (
+                <Badge variant="outline">A&ntilde;o {book.publicationYear}</Badge>
+              ) : null}
             </div>
 
             <p className="mt-7 text-base leading-8 text-[#425875] sm:mt-8 sm:text-lg">
@@ -326,6 +404,28 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
   const [status, setStatus] = useState("Todos");
   const [sortMode, setSortMode] = useState<SortMode>("featured");
   const [selectedBook, setSelectedBook] = useState<PublicBook | null>(null);
+
+  useEffect(() => {
+    if (!selectedBook) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setSelectedBook(null);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedBook]);
 
   const categories = useMemo(
     () => ["Todas", ...uniqueSorted(books.map((book) => book.category))],
@@ -408,6 +508,14 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
 
   const totalAvailable = books.filter((book) => book.status === "available").length;
   const totalFeatured = books.filter((book) => book.isFeatured).length;
+  const featuredBooks = books.filter((book) => book.isFeatured).slice(0, 6);
+  const activeFilters = [
+    query.trim() ? "search" : null,
+    category !== "Todas" ? "category" : null,
+    language !== "Todos" ? "language" : null,
+    status !== "Todos" ? "status" : null,
+    sortMode !== "featured" ? "sort" : null,
+  ].filter(Boolean).length;
 
   function clearFilters() {
     setQuery("");
@@ -439,6 +547,8 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
         <StatCard icon={Layers3} label={"Categor\u00edas"} value={String(categories.length - 1)} />
         <StatCard icon={Sparkles} label="Destacados" value={String(totalFeatured)} />
       </div>
+
+      <FeaturedShelf books={featuredBooks} onSelect={setSelectedBook} />
 
       <div className="mt-8 rounded-[1.5rem] border border-[#d7dedf] bg-white/85 p-4 shadow-sm backdrop-blur-xl sm:rounded-[1.75rem] sm:p-5">
         <div className="grid gap-4">
@@ -510,6 +620,12 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
           <span>{books.length} libros en cat&aacute;logo</span>
           <span>&middot;</span>
           <span>{totalAvailable} disponibles</span>
+          {activeFilters > 0 ? (
+            <>
+              <span>&middot;</span>
+              <span>{activeFilters} filtros activos</span>
+            </>
+          ) : null}
         </div>
       </div>
 
