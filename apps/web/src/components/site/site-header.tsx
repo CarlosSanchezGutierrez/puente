@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, LogIn, Menu, UserRound, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ const navItems = [
   { href: "/ongs", label: "ONG's" },
   { href: "/eventos", label: "Eventos" },
   { href: "/recursos", label: "Recursos" },
+  { href: "/cuenta", label: "Cuenta" },
 ];
 
 function isActivePath(pathname: string, href: string) {
@@ -45,7 +46,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-[#d7dedf] bg-white/55 p-1 text-sm text-[#334866] lg:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-[#d7dedf] bg-white/55 p-1 text-sm text-[#334866] xl:flex">
           {navItems.map((item) => {
             const active = isActivePath(pathname, item.href);
 
@@ -65,12 +66,13 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <Link
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#d7dedf] bg-white/70 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-            href="/contacto"
+            href="/login"
           >
-            Contacto
+            <LogIn className="mr-2 size-4" />
+            Iniciar sesi&oacute;n
           </Link>
 
           <Link
@@ -85,7 +87,7 @@ export function SiteHeader() {
         <button
           aria-expanded={isOpen}
           aria-label={isOpen ? "Cerrar menu" : "Abrir menu"}
-          className="inline-flex size-11 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 text-[#10233f] shadow-sm lg:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 text-[#10233f] shadow-sm xl:hidden"
           onClick={() => setIsOpen((current) => !current)}
           type="button"
         >
@@ -94,7 +96,7 @@ export function SiteHeader() {
       </div>
 
       {isOpen ? (
-        <div className="fixed inset-x-0 top-[69px] z-50 border-b border-[#d7dedf] bg-[#f7f4ed] px-4 pb-5 pt-2 shadow-xl lg:hidden">
+        <div className="fixed inset-x-0 top-[69px] z-50 border-b border-[#d7dedf] bg-[#f7f4ed] px-4 pb-5 pt-2 shadow-xl xl:hidden">
           <nav className="grid gap-2">
             {navItems.map((item) => {
               const active = isActivePath(pathname, item.href);
@@ -119,10 +121,11 @@ export function SiteHeader() {
           <div className="mt-4 grid gap-2">
             <Link
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f]"
-              href="/contacto"
+              href="/login"
               onClick={() => setIsOpen(false)}
             >
-              Contacto
+              <UserRound className="mr-2 size-4" />
+              Iniciar sesi&oacute;n
             </Link>
 
             <Link

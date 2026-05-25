@@ -70,7 +70,7 @@ importers:
         specifier: ^0.10.3
         version: 0.10.3(@supabase/supabase-js@2.106.1)
       '@supabase/supabase-js':
-        specifier: ^2.47.10
+        specifier: ^2.106.1
         version: 2.106.1
       class-variance-authority:
         specifier: ^0.7.1
