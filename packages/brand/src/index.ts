@@ -1,4 +1,4 @@
-﻿export const puenteBrand = {
+export const puenteBrand = {
   name: "Puente",
   description:
     "Una plataforma de tecnología cívica para software social, comunidad, aprendizaje e investigación.",
@@ -75,7 +75,7 @@ export const puentePrinciples = [
   },
   {
     title: "Impacto humano",
-    text: "Me motiva trabajar en tecnología que pueda contribuir, incluso de forma pequeña, a mejorar la salud, seguridad o bienestar de las personas.",
+    text: "Nos motiva trabajar en tecnología que pueda contribuir, incluso de forma pequeña, a mejorar la salud, seguridad o bienestar de las personas.",
   },
 ] as const;
 

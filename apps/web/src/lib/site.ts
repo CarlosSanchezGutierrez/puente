@@ -1,4 +1,4 @@
-﻿import { puenteAreas, puenteBrand, puentePrinciples } from "@puente/brand";
+import { puenteAreas, puenteBrand, puentePrinciples } from "@puente/brand";
 
 export const siteConfig = {
   name: puenteBrand.name,
