@@ -171,13 +171,13 @@ function BookCard({
             <p className="mt-5 line-clamp-4 leading-7 text-[#425875]">{book.description}</p>
           ) : (
             <p className="mt-5 leading-7 text-[#60738c]">
-              Descripci\u00f3n pendiente.
+              Descripci&oacute;n pendiente.
             </p>
           )}
 
           <div className="mt-4 grid gap-1 text-sm text-[#60738c]">
             {book.publisher ? <p>Editorial: {book.publisher}</p> : null}
-            {book.publicationYear ? <p>A\u00f1o: {book.publicationYear}</p> : null}
+            {book.publicationYear ? <p>A&ntilde;o: {book.publicationYear}</p> : null}
             {book.audience ? <p>Perfil recomendado: {book.audience}</p> : null}
           </div>
 
@@ -295,7 +295,7 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
 
   const groupedBooks = useMemo(() => {
     return filteredBooks.reduce<Record<string, PublicBook[]>>((groups, book) => {
-      const key = book.category || "Sin categor\u00eda";
+      const key = book.category || "Sin categor&iacute;a";
       groups[key] = groups[key] ?? [];
       groups[key].push(book);
       return groups;
@@ -317,7 +317,7 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
     return (
       <Card className="mt-10 border-[#d7dedf] bg-white/75 shadow-sm">
         <CardContent className="p-7 text-[#425875]">
-          Todav\u00eda no hay libros publicados en Supabase. Agrega libros desde el panel de Supabase o mediante SQL.
+          Todav&iacute;a no hay libros publicados en Supabase. Agrega libros desde el panel de Supabase o mediante SQL.
         </CardContent>
       </Card>
     );
@@ -326,9 +326,9 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
   return (
     <div className="mt-10">
       <div className="grid gap-4 md:grid-cols-4">
-        <StatCard icon={Library} label="Libros en cat\u00e1logo" value={String(books.length)} />
+        <StatCard icon={Library} label="Libros en cat&aacute;logo" value={String(books.length)} />
         <StatCard icon={BookOpenCheck} label="Disponibles" value={String(totalAvailable)} />
-        <StatCard icon={Layers3} label="Categor\u00edas" value={String(categories.length - 1)} />
+        <StatCard icon={Layers3} label="Categor&iacute;as" value={String(categories.length - 1)} />
         <StatCard icon={Sparkles} label="Destacados" value={String(totalFeatured)} />
       </div>
 
@@ -386,8 +386,8 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
             value={sortMode}
           >
             <option value="featured">Destacados primero</option>
-            <option value="title">T\u00edtulo A-Z</option>
-            <option value="category">Categor\u00eda</option>
+            <option value="title">T&iacute;tulo A-Z</option>
+            <option value="category">Categor&iacute;a</option>
             <option value="availability">Disponibles primero</option>
           </select>
 
@@ -435,7 +435,7 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
       {filteredBooks.length === 0 ? (
         <Card className="mt-10 border-[#d7dedf] bg-white/75 shadow-sm">
           <CardContent className="p-7 text-[#425875]">
-            No encontramos libros con esos filtros. Prueba otra b\u00fasqueda o limpia los filtros.
+            No encontramos libros con esos filtros. Prueba otra b&uacute;squeda o limpia los filtros.
           </CardContent>
         </Card>
       ) : (
