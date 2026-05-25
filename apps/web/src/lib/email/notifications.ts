@@ -111,8 +111,8 @@ async function sendSmsNotifications(input: AdminNotificationInput) {
 
   const message = [
     "Puente: nueva solicitud",
-    `${input.type}`,
-    `${input.title}`,
+    input.type,
+    input.title,
     input.sourcePath ? `Origen: ${input.sourcePath}` : null,
   ]
     .filter(Boolean)
