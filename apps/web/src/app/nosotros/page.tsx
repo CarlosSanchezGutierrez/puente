@@ -18,6 +18,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { SiteShell } from "@/components/site/site-shell";
+import { TeamPhoto } from "@/components/team/team-photo";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -32,6 +33,7 @@ type TeamMember = {
   role: string;
   strategicRole: string;
   initials: string;
+  photoSrc: string;
   description: string;
   education: string;
   links: Array<{
@@ -51,6 +53,7 @@ const team: TeamMember[] = [
     role: "Digital Systems & Data Lead",
     strategicRole: "Software Architecture / Forward Deployed Engineering",
     initials: "CS",
+    photoSrc: "/team/carlos-sanchez-gutierrez.jpg",
     description:
       "Dise\u00f1a, construye e integra sistemas digitales con enfoque en operacion, datos, arquitectura y automatizacion.",
     education:
@@ -84,6 +87,7 @@ const team: TeamMember[] = [
     role: "Systems Engineering & Automation Lead",
     strategicRole: "Software Architecture / Forward Deployed Engineering",
     initials: "LB",
+    photoSrc: "/team/leonel-francisco-bailon-sifuentes.jpg",
     description:
       "Desarrolla soluciones full stack, automatizacion, redes e infraestructura tecnica para convertir necesidades operativas en sistemas utilizables.",
     education:
@@ -100,7 +104,7 @@ const team: TeamMember[] = [
         external: true,
       },
     ],
-    cvHref: "/cv/leonel-francisco-bail%C3%B3n-sifuentes-cv.pdf",
+    cvHref: "/cv/leonel-francisco-bailon-sifuentes-cv.pdf",
     highlights: [
       "Profucom · IT Support / Automation & Processes Development",
       "QuoteMaster Pro · AI-powered sales quoting orchestrator",
@@ -117,6 +121,7 @@ const team: TeamMember[] = [
     role: "Business & Operations Lead",
     strategicRole: "Project Management / Business Operations",
     initials: "LS",
+    photoSrc: "/team/lehi-salvador-rangel-cardenas.jpg",
     description:
       "Aterriza soluciones conectando tecnologia, operacion, gestion, documentacion y necesidades reales del negocio.",
     education:
@@ -142,6 +147,7 @@ const team: TeamMember[] = [
     role: "Engineering & Innovation Lead",
     strategicRole: "Engineering Research / Applied Innovation",
     initials: "ML",
+    photoSrc: "/team/maximiliano-lozano-suarez.jpg",
     description:
       "Aporta profundidad tecnica, estructura de ingenieria e innovacion aplicada en proyectos de alto nivel.",
     education:
@@ -225,9 +231,9 @@ function ExternalButton({
   }
 
   return (
-    <Link className={className} href={href} target="_blank">
+    <a className={className} href={href} target="_blank">
       {children}
-    </Link>
+    </a>
   );
 }
 
@@ -237,49 +243,51 @@ function TeamCard({ member }: { member: TeamMember }) {
   return (
     <Card className="h-full overflow-hidden border-[#d7dedf] bg-white/78 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
       <CardContent className="flex h-full flex-col p-0">
-        <div className="border-b border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(16,35,63,0.10),transparent_38%),#fbfaf7] p-6">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex size-20 items-center justify-center rounded-[1.5rem] bg-[#10233f] text-xl font-semibold tracking-[0.18em] text-white shadow-sm">
-              {member.initials}
+        <div className="grid md:grid-cols-[0.86fr_1.14fr]">
+          <div className="min-h-[280px] border-b border-[#d7dedf] md:border-b-0 md:border-r">
+            <TeamPhoto alt={`Foto de ${member.name}`} initials={member.initials} src={member.photoSrc} />
+          </div>
+
+          <div className="p-6 md:p-7">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#10233f]">
+                  {member.name}
+                </h3>
+
+                <p className="mt-2 text-sm font-semibold text-[#0f7890]">
+                  {member.role}
+                </p>
+
+                <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-[#60738c]">
+                  {member.strategicRole}
+                </p>
+              </div>
+
+              <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl border border-[#d7dedf] bg-[#fbfaf7]">
+                <Icon className="size-5 text-[#10233f]" />
+              </div>
             </div>
 
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-[#d7dedf] bg-white/80">
-              <Icon className="size-5 text-[#10233f]" />
+            <p className="mt-5 leading-7 text-[#425875]">{member.description}</p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {member.links.map((link) => (
+                <ExternalButton external={link.external} href={link.href} key={link.href}>
+                  {link.label}
+                  <ExternalLink className="ml-2 size-3.5" />
+                </ExternalButton>
+              ))}
+
+              <ExternalButton external={false} href={member.cvHref}>
+                Ver CV
+                <FileText className="ml-2 size-3.5" />
+              </ExternalButton>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col p-6 md:p-7">
-          <div>
-            <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#10233f]">
-              {member.name}
-            </h3>
-
-            <p className="mt-2 text-sm font-semibold text-[#0f7890]">
-              {member.role}
-            </p>
-
-            <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-[#60738c]">
-              {member.strategicRole}
-            </p>
-
-            <p className="mt-5 leading-7 text-[#425875]">{member.description}</p>
-          </div>
-
-          <div className="mt-6 flex flex-wrap gap-2">
-            {member.links.map((link) => (
-              <ExternalButton external={link.external} href={link.href} key={link.href}>
-                {link.label}
-                <ExternalLink className="ml-2 size-3.5" />
-              </ExternalButton>
-            ))}
-
-            <ExternalButton external={false} href={member.cvHref}>
-              Ver CV
-              <FileText className="ml-2 size-3.5" />
-            </ExternalButton>
-          </div>
-
+        <div className="flex flex-1 flex-col p-6 pt-0 md:p-7 md:pt-0">
           <div className="mt-7 grid gap-3 border-t border-[#d7dedf] pt-6">
             {member.highlights.map((highlight) => (
               <div className="grid grid-cols-[22px_1fr] gap-3" key={highlight}>
@@ -423,11 +431,11 @@ export default function NosotrosPage() {
           </div>
 
           <p className="max-w-md text-sm leading-6 text-[#60738c]">
-            Perfiles publicos del equipo. Los botones de CV apuntan a archivos PDF que deben cargarse en <span className="font-mono">/public/cv</span>.
+            Perfiles publicos del equipo. Si una foto o CV aun no esta cargado, la pagina mantiene una presentacion limpia con iniciales o enlace pendiente.
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 xl:grid-cols-2">
           {team.map((member) => (
             <TeamCard key={member.name} member={member} />
           ))}
@@ -464,7 +472,9 @@ export default function NosotrosPage() {
         <div className="rounded-[2rem] bg-[#10233f] p-6 text-white shadow-sm md:p-10">
           <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <SectionLabel>Salva Systems</SectionLabel>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#b7c8dc] md:text-sm">
+                Salva Systems
+              </p>
               <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-7xl">
                 Puente se apoya en una base tecnica en crecimiento.
               </h2>
