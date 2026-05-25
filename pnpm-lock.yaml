@@ -20,6 +20,9 @@ importers:
 
   apps/mobile:
     dependencies:
+      '@puente/brand':
+        specifier: workspace:^
+        version: link:../../packages/brand
       expo:
         specifier: ~54.0.33
         version: 54.0.34(@babel/core@7.29.0)(@expo/dom-webview@56.0.5)(graphql@16.8.1)(react-native@0.81.5(@babel/core@7.29.0)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)(typescript@5.9.3)
@@ -51,6 +54,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.4.0
         version: 5.4.0(react-hook-form@7.76.1(react@19.2.4))
+      '@puente/brand':
+        specifier: workspace:^
+        version: link:../../packages/brand
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@19.2.15)(react@19.2.4)
@@ -121,6 +127,8 @@ importers:
       typescript:
         specifier: ^5
         version: 5.9.3
+
+  packages/brand: {}
 
   packages/config: {}
 

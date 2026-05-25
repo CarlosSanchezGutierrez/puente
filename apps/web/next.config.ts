@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  transpilePackages: ["@puente/brand", "@puente/database", "@puente/schemas", "@puente/config", "@puente/utils"],
 };
 
 export default nextConfig;
