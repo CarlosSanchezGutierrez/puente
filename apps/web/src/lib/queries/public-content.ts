@@ -8,6 +8,15 @@ export type PublicBook = {
   language: string | null;
   description: string | null;
   status: string;
+  coverUrl: string | null;
+  isbn: string | null;
+  publisher: string | null;
+  publicationYear: number | null;
+  condition: string | null;
+  audience: string | null;
+  tags: string[];
+  isFeatured: boolean;
+  sortOrder: number;
 };
 
 export type PublicEvent = {
@@ -48,8 +57,12 @@ export async function listPublicBooks(): Promise<PublicBook[]> {
 
   const { data, error } = await supabase
     .from("books")
-    .select("id,title,author,category,language,description,status")
-    .order("created_at", { ascending: false });
+    .select(
+      "id,title,author,category,language,description,status,cover_url,isbn,publisher,publication_year,condition,audience,tags,is_featured,sort_order",
+    )
+    .order("is_featured", { ascending: false })
+    .order("sort_order", { ascending: true })
+    .order("title", { ascending: true });
 
   if (error) {
     console.error("listPublicBooks error:", error);
@@ -64,6 +77,15 @@ export async function listPublicBooks(): Promise<PublicBook[]> {
     language: book.language,
     description: book.description,
     status: book.status,
+    coverUrl: book.cover_url,
+    isbn: book.isbn,
+    publisher: book.publisher,
+    publicationYear: book.publication_year,
+    condition: book.condition,
+    audience: book.audience,
+    tags: book.tags ?? [],
+    isFeatured: book.is_featured ?? false,
+    sortOrder: book.sort_order ?? 0,
   }));
 }
 
@@ -129,7 +151,7 @@ export async function listPublishedResources(): Promise<PublicResource[]> {
 
 export function formatEventDate(value: string | null) {
   if (!value) {
-    return "PrÃ³ximamente";
+    return "Próximamente";
   }
 
   return new Intl.DateTimeFormat("es-MX", {
