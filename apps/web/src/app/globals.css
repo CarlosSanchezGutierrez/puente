@@ -242,3 +242,59 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+/* Puente final UI audit polish */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(16, 35, 63, 0.28);
+  outline-offset: 3px;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+@media (max-width: 640px) {
+  h1,
+  h2 {
+    overflow-wrap: anywhere;
+  }
+
+  section {
+    scroll-margin-top: 88px;
+  }
+}
