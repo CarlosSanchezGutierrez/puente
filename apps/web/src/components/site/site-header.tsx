@@ -8,7 +8,8 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/browser";
 
 const navItems = [
-  { href: "/biblioteca", label: "Biblioteca" },
+  { href: "/nosotros", label: "Nosotros" },
+ { href: "/biblioteca", label: "Biblioteca" },
   { href: "/voluntariado", label: "Voluntariado" },
   { href: "/ongs", label: "ONG's" },
   { href: "/eventos", label: "Eventos" },

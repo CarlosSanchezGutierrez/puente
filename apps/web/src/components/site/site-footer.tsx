@@ -4,7 +4,8 @@ const footerGroups = [
   {
     title: "Plataforma",
     links: [
-      { href: "/biblioteca", label: "Biblioteca" },
+      { href: "/nosotros", label: "Nosotros" },
+ { href: "/biblioteca", label: "Biblioteca" },
       { href: "/voluntariado", label: "Voluntariado" },
       { href: "/ongs", label: "ONG's" },
       { href: "/eventos", label: "Eventos" },

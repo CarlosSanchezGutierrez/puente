@@ -3,6 +3,7 @@ import { getSiteUrl } from "@/lib/site-url";
 
 const routes = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
+ { path: "/nosotros", priority: 0.9, changeFrequency: "monthly" },
   { path: "/biblioteca", priority: 0.95, changeFrequency: "daily" },
   { path: "/ongs", priority: 0.9, changeFrequency: "monthly" },
   { path: "/voluntariado", priority: 0.85, changeFrequency: "monthly" },
