@@ -7,7 +7,9 @@ import {
   School,
   Users,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
+import { VocationalStatusControl } from "@/components/admin/vocational-status-control";
 import { SiteShell } from "@/components/site/site-shell";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -32,6 +34,15 @@ type Submission = {
   preferred_contact_method: string;
   status: string;
   created_at: string;
+  updated_at: string | null;
+};
+
+const statusLabels: Record<string, string> = {
+  new: "Nuevo",
+  reviewed: "Revisado",
+  contacted: "Contactado",
+  scheduled: "Agendado",
+  closed: "Cerrado",
 };
 
 function getSupabaseAdmin() {
@@ -62,7 +73,15 @@ function formatParticipantType(type: Submission["participant_type"]) {
   return "Estudiante";
 }
 
-function formatDate(value: string) {
+function formatStatus(status: string) {
+  return statusLabels[status] ?? status;
+}
+
+function formatDate(value: string | null) {
+  if (!value) {
+    return "-";
+  }
+
   return new Intl.DateTimeFormat("es-MX", {
     dateStyle: "medium",
     timeStyle: "short",
@@ -113,7 +132,7 @@ async function getSubmissions() {
   const { data, error } = await supabase
     .from("vocational_interest_submissions")
     .select(
-      "id, participant_type, full_name, email, phone, organization, city, role_or_career, interest_areas, message, preferred_contact_method, status, created_at",
+      "id, participant_type, full_name, email, phone, organization, city, role_or_career, interest_areas, message, preferred_contact_method, status, created_at, updated_at",
     )
     .order("created_at", { ascending: false })
     .limit(200);
@@ -140,7 +159,7 @@ function MetricCard({
   title: string;
   value: string;
   description: string;
-  icon: typeof ClipboardList;
+  icon: LucideIcon;
 }) {
   return (
     <Card className="border-[#d7dedf] bg-white/78 shadow-sm">
@@ -289,7 +308,9 @@ export default async function AdminVocacionalPage() {
                       <p className="text-2xl font-semibold tracking-[-0.04em] text-[#10233f]">
                         {item.count}
                       </p>
-                      <p className="mt-1 text-sm leading-6 text-[#60738c]">{item.status}</p>
+                      <p className="mt-1 text-sm leading-6 text-[#60738c]">
+                        {formatStatus(item.status)}
+                      </p>
                     </div>
                   ))
                 ) : (
@@ -319,7 +340,7 @@ export default async function AdminVocacionalPage() {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[980px] border-collapse text-left text-sm">
+              <table className="w-full min-w-[1180px] border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-b border-[#d7dedf] text-xs uppercase tracking-[0.16em] text-[#60738c]">
                     <th className="py-3 pr-4">Fecha</th>
@@ -329,6 +350,7 @@ export default async function AdminVocacionalPage() {
                     <th className="py-3 pr-4">Organizacion</th>
                     <th className="py-3 pr-4">Ciudad</th>
                     <th className="py-3 pr-4">Estado</th>
+                    <th className="py-3 pr-4">Accion</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -351,14 +373,20 @@ export default async function AdminVocacionalPage() {
                         </td>
                         <td className="py-4 pr-4">
                           <span className="rounded-full border border-[#d7dedf] bg-[#fbfaf7] px-3 py-1 text-xs font-medium text-[#425875]">
-                            {submission.status}
+                            {formatStatus(submission.status)}
                           </span>
+                        </td>
+                        <td className="py-4 pr-4">
+                          <VocationalStatusControl
+                            currentStatus={submission.status}
+                            id={submission.id}
+                          />
                         </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td className="py-6 text-[#60738c]" colSpan={7}>
+                      <td className="py-6 text-[#60738c]" colSpan={8}>
                         Aun no hay registros.
                       </td>
                     </tr>
