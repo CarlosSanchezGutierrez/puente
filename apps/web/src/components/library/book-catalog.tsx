@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowRight,
   BookOpenCheck,
   Layers3,
   Library,
@@ -9,6 +10,7 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { BookRequestForm } from "@/components/forms/book-request-form";
 import { Badge } from "@/components/ui/badge";
@@ -64,14 +66,14 @@ function getConditionLabel(condition?: string | null) {
 
 function getStatusTone(status: string) {
   if (status === "available") {
-    return "bg-emerald-50 text-emerald-800 border-emerald-200";
+    return "border-emerald-200 bg-emerald-50 text-emerald-800";
   }
 
   if (status === "borrowed" || status === "reserved") {
-    return "bg-amber-50 text-amber-800 border-amber-200";
+    return "border-amber-200 bg-amber-50 text-amber-800";
   }
 
-  return "bg-slate-100 text-slate-700 border-slate-200";
+  return "border-slate-200 bg-slate-100 text-slate-700";
 }
 
 function StatCard({
@@ -79,7 +81,7 @@ function StatCard({
   label,
   value,
 }: {
-  icon: typeof Library;
+  icon: LucideIcon;
   label: string;
   value: string;
 }) {
@@ -96,12 +98,20 @@ function StatCard({
   );
 }
 
-function BookCover({ book }: { book: PublicBook }) {
+function BookCover({
+  book,
+  compact = false,
+}: {
+  book: PublicBook;
+  compact?: boolean;
+}) {
+  const height = compact ? "h-56" : "h-72";
+
   if (book.coverUrl) {
     return (
       <div
         aria-label={`Portada de ${book.title}`}
-        className="h-72 rounded-[1.35rem] border border-[#d7dedf] bg-cover bg-center shadow-sm"
+        className={`${height} rounded-[1.35rem] border border-[#d7dedf] bg-cover bg-center shadow-sm`}
         role="img"
         style={{ backgroundImage: `url(${book.coverUrl})` }}
       />
@@ -109,7 +119,7 @@ function BookCover({ book }: { book: PublicBook }) {
   }
 
   return (
-    <div className="flex h-72 items-center justify-center rounded-[1.35rem] border border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_38%),#10233f] p-6 text-center text-white shadow-sm">
+    <div className={`flex ${height} items-center justify-center rounded-[1.35rem] border border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_38%),#10233f] p-6 text-center text-white shadow-sm`}>
       <div>
         <p className="font-[var(--font-serif)] text-6xl font-semibold">
           {book.title.slice(0, 1).toUpperCase()}
@@ -124,25 +134,19 @@ function BookCover({ book }: { book: PublicBook }) {
 
 function BookCard({
   book,
-  isRequestOpen,
-  onToggleRequest,
+  onSelect,
 }: {
   book: PublicBook;
-  isRequestOpen: boolean;
-  onToggleRequest: () => void;
+  onSelect: () => void;
 }) {
   return (
     <Card className="overflow-hidden border-[#d7dedf] bg-white/78 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
-      <CardContent className="grid gap-6 p-5">
-        <BookCover book={book} />
+      <CardContent className="grid gap-5 p-5">
+        <BookCover book={book} compact />
 
         <div>
           <div className="mb-4 flex flex-wrap gap-2">
-            <span
-              className={`rounded-full border px-3 py-1 text-xs font-medium ${getStatusTone(
-                book.status,
-              )}`}
-            >
+            <span className={`rounded-full border px-3 py-1 text-xs font-medium ${getStatusTone(book.status)}`}>
               {getStatusLabel(book.status)}
             </span>
 
@@ -153,65 +157,130 @@ function BookCard({
             ) : null}
           </div>
 
-          <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+          <h3 className="line-clamp-2 text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
             {book.title}
           </h3>
 
-          <p className="mt-1 text-sm text-[#60738c]">
+          <p className="mt-1 line-clamp-1 text-sm text-[#60738c]">
             {book.author ?? "Autor por definir"}
           </p>
 
           <div className="mt-4 flex flex-wrap gap-2">
             <Badge variant="outline">{book.category}</Badge>
             {book.language ? <Badge variant="outline">{book.language}</Badge> : null}
-            <Badge variant="outline">{getConditionLabel(book.condition)}</Badge>
           </div>
 
           {book.description ? (
-            <p className="mt-5 line-clamp-4 leading-7 text-[#425875]">{book.description}</p>
+            <p className="mt-5 line-clamp-3 leading-7 text-[#425875]">{book.description}</p>
           ) : (
-            <p className="mt-5 leading-7 text-[#60738c]">
-              Descripci&oacute;n pendiente.
-            </p>
+            <p className="mt-5 leading-7 text-[#60738c]">Descripci&oacute;n pendiente.</p>
           )}
 
-          <div className="mt-4 grid gap-1 text-sm text-[#60738c]">
-            {book.publisher ? <p>Editorial: {book.publisher}</p> : null}
-            {book.publicationYear ? <p>A&ntilde;o: {book.publicationYear}</p> : null}
-            {book.audience ? <p>Perfil recomendado: {book.audience}</p> : null}
-          </div>
-
-          {book.tags.length > 0 ? (
-            <div className="mt-4 flex flex-wrap gap-2">
-              {book.tags.slice(0, 6).map((tag) => (
-                <span
-                  className="rounded-full bg-[#f3efe6] px-3 py-1 text-xs text-[#425875]"
-                  key={tag}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          ) : null}
-
-          <div className="mt-6">
-            <Button
-              className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]"
-              onClick={onToggleRequest}
-              type="button"
-            >
-              {isRequestOpen ? "Cerrar solicitud" : "Solicitar libro"}
-            </Button>
-          </div>
-
-          {isRequestOpen ? (
-            <div className="mt-6 rounded-[1.35rem] border border-[#d7dedf] bg-[#fbfaf7] p-4">
-              <BookRequestForm bookTitle={book.title} />
-            </div>
-          ) : null}
+          <Button
+            className="mt-6 rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]"
+            onClick={onSelect}
+            type="button"
+          >
+            Ver detalles
+            <ArrowRight className="ml-2 size-4" />
+          </Button>
         </div>
       </CardContent>
     </Card>
+  );
+}
+
+function BookDetailPanel({
+  book,
+  onClose,
+}: {
+  book: PublicBook;
+  onClose: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#10233f]/35 px-4 py-6 backdrop-blur-sm">
+      <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#d7dedf] bg-[#f7f4ed] p-4 shadow-2xl md:p-6">
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#60738c]">
+            Detalle del libro
+          </p>
+
+          <button
+            className="rounded-full border border-[#d7dedf] bg-white/80 p-2 text-[#10233f]"
+            onClick={onClose}
+            type="button"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-[320px_1fr]">
+          <BookCover book={book} />
+
+          <div>
+            <div className="mb-4 flex flex-wrap gap-2">
+              <span className={`rounded-full border px-3 py-1 text-xs font-medium ${getStatusTone(book.status)}`}>
+                {getStatusLabel(book.status)}
+              </span>
+              <Badge variant="outline">{getConditionLabel(book.condition)}</Badge>
+              {book.isFeatured ? <Badge variant="outline">Destacado</Badge> : null}
+            </div>
+
+            <h2 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f]">
+              {book.title}
+            </h2>
+
+            <p className="mt-4 text-lg text-[#60738c]">
+              {book.author ?? "Autor por definir"}
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              <Badge variant="outline">{book.category}</Badge>
+              {book.language ? <Badge variant="outline">{book.language}</Badge> : null}
+              {book.publisher ? <Badge variant="outline">{book.publisher}</Badge> : null}
+              {book.publicationYear ? <Badge variant="outline">A&ntilde;o {book.publicationYear}</Badge> : null}
+            </div>
+
+            <p className="mt-8 text-lg leading-8 text-[#425875]">
+              {book.description ?? "Descripci\u00f3n pendiente."}
+            </p>
+
+            {book.audience ? (
+              <div className="mt-6 rounded-[1.35rem] border border-[#d7dedf] bg-white/70 p-5">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#60738c]">
+                  Perfil recomendado
+                </p>
+                <p className="mt-2 leading-7 text-[#425875]">{book.audience}</p>
+              </div>
+            ) : null}
+
+            {book.tags.length > 0 ? (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {book.tags.map((tag) => (
+                  <span
+                    className="rounded-full bg-[#f3efe6] px-3 py-1 text-xs text-[#425875]"
+                    key={tag}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+
+            <div className="mt-8 rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-5">
+              <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#10233f]">
+                Solicitar este libro
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-[#60738c]">
+                La solicitud no garantiza disponibilidad inmediata. Puente revisar&aacute; el estado del libro y dar&aacute; seguimiento.
+              </p>
+
+              <BookRequestForm bookTitle={book.title} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -221,7 +290,7 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
   const [language, setLanguage] = useState("Todos");
   const [status, setStatus] = useState("Todos");
   const [sortMode, setSortMode] = useState<SortMode>("featured");
-  const [openRequestBookId, setOpenRequestBookId] = useState<string | null>(null);
+  const [selectedBook, setSelectedBook] = useState<PublicBook | null>(null);
 
   const categories = useMemo(
     () => ["Todas", ...uniqueSorted(books.map((book) => book.category))],
@@ -325,14 +394,18 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
 
   return (
     <div className="mt-10">
+      {selectedBook ? (
+        <BookDetailPanel book={selectedBook} onClose={() => setSelectedBook(null)} />
+      ) : null}
+
       <div className="grid gap-4 md:grid-cols-4">
-        <StatCard icon={Library} label="Libros en cat&aacute;logo" value={String(books.length)} />
+        <StatCard icon={Library} label={"Libros en cat\u00e1logo"} value={String(books.length)} />
         <StatCard icon={BookOpenCheck} label="Disponibles" value={String(totalAvailable)} />
-        <StatCard icon={Layers3} label="Categor&iacute;as" value={String(categories.length - 1)} />
+        <StatCard icon={Layers3} label={"Categor\u00edas"} value={String(categories.length - 1)} />
         <StatCard icon={Sparkles} label="Destacados" value={String(totalFeatured)} />
       </div>
 
-      <div className="mt-8 rounded-[1.75rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm">
+      <div className="sticky top-20 z-30 mt-8 rounded-[1.75rem] border border-[#d7dedf] bg-white/85 p-5 shadow-sm backdrop-blur-xl">
         <div className="grid gap-4 xl:grid-cols-[1fr_220px_180px_180px_180px_auto]">
           <div className="flex items-center gap-3 rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3">
             <Search className="size-5 text-[#60738c]" />
@@ -386,8 +459,8 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
             value={sortMode}
           >
             <option value="featured">Destacados primero</option>
-            <option value="title">T&iacute;tulo A-Z</option>
-            <option value="category">Categor&iacute;a</option>
+            <option value="title">{"T\u00edtulo A-Z"}</option>
+            <option value="category">{"Categor\u00eda"}</option>
             <option value="availability">Disponibles primero</option>
           </select>
 
@@ -458,11 +531,8 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
                 {groupBooks.map((book) => (
                   <BookCard
                     book={book}
-                    isRequestOpen={openRequestBookId === book.id}
                     key={book.id}
-                    onToggleRequest={() =>
-                      setOpenRequestBookId((current) => (current === book.id ? null : book.id))
-                    }
+                    onSelect={() => setSelectedBook(book)}
                   />
                 ))}
               </div>
