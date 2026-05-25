@@ -86,12 +86,12 @@ function StatCard({
   value: string;
 }) {
   return (
-    <div className="rounded-[1.4rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm">
-      <div className="flex items-center justify-between gap-4">
-        <p className="text-sm leading-6 text-[#60738c]">{label}</p>
-        <Icon className="size-5 text-[#10233f]" />
+    <div className="rounded-[1.25rem] border border-[#d7dedf] bg-white/75 p-4 shadow-sm md:rounded-[1.4rem] md:p-5">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-xs leading-5 text-[#60738c] md:text-sm md:leading-6">{label}</p>
+        <Icon className="size-4 shrink-0 text-[#10233f] md:size-5" />
       </div>
-      <p className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-[#10233f]">
+      <p className="mt-2 text-2xl font-semibold tracking-[-0.045em] text-[#10233f] md:mt-3 md:text-3xl">
         {value}
       </p>
     </div>
@@ -105,13 +105,13 @@ function BookCover({
   book: PublicBook;
   compact?: boolean;
 }) {
-  const height = compact ? "h-56" : "h-72";
+  const height = compact ? "h-52 sm:h-56" : "h-72";
 
   if (book.coverUrl) {
     return (
       <div
         aria-label={`Portada de ${book.title}`}
-        className={`${height} rounded-[1.35rem] border border-[#d7dedf] bg-cover bg-center shadow-sm`}
+        className={`${height} rounded-[1.25rem] border border-[#d7dedf] bg-cover bg-center shadow-sm md:rounded-[1.35rem]`}
         role="img"
         style={{ backgroundImage: `url(${book.coverUrl})` }}
       />
@@ -119,12 +119,12 @@ function BookCover({
   }
 
   return (
-    <div className={`flex ${height} items-center justify-center rounded-[1.35rem] border border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_38%),#10233f] p-6 text-center text-white shadow-sm`}>
+    <div className={`flex ${height} items-center justify-center rounded-[1.25rem] border border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.22),transparent_38%),#10233f] p-5 text-center text-white shadow-sm md:rounded-[1.35rem] md:p-6`}>
       <div>
-        <p className="font-[var(--font-serif)] text-6xl font-semibold">
+        <p className="font-[var(--font-serif)] text-5xl font-semibold md:text-6xl">
           {book.title.slice(0, 1).toUpperCase()}
         </p>
-        <p className="mx-auto mt-5 max-w-[14rem] text-sm leading-6 text-[#c9d8e8]">
+        <p className="mx-auto mt-4 max-w-[13rem] text-xs leading-5 text-[#c9d8e8] md:mt-5 md:text-sm md:leading-6">
           {book.title}
         </p>
       </div>
@@ -141,7 +141,7 @@ function BookCard({
 }) {
   return (
     <Card className="overflow-hidden border-[#d7dedf] bg-white/78 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
-      <CardContent className="grid gap-5 p-5">
+      <CardContent className="grid gap-5 p-4 sm:p-5">
         <BookCover book={book} compact />
 
         <div>
@@ -157,7 +157,7 @@ function BookCard({
             ) : null}
           </div>
 
-          <h3 className="line-clamp-2 text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+          <h3 className="line-clamp-2 text-xl font-semibold tracking-[-0.035em] text-[#10233f] sm:text-2xl">
             {book.title}
           </h3>
 
@@ -166,18 +166,24 @@ function BookCard({
           </p>
 
           <div className="mt-4 flex flex-wrap gap-2">
-            <Badge variant="outline">{book.category}</Badge>
+            <Badge className="max-w-full whitespace-normal text-left" variant="outline">
+              {book.category}
+            </Badge>
             {book.language ? <Badge variant="outline">{book.language}</Badge> : null}
           </div>
 
           {book.description ? (
-            <p className="mt-5 line-clamp-3 leading-7 text-[#425875]">{book.description}</p>
+            <p className="mt-5 line-clamp-3 text-sm leading-7 text-[#425875] sm:text-base">
+              {book.description}
+            </p>
           ) : (
-            <p className="mt-5 leading-7 text-[#60738c]">Descripci&oacute;n pendiente.</p>
+            <p className="mt-5 text-sm leading-7 text-[#60738c] sm:text-base">
+              Descripci&oacute;n pendiente.
+            </p>
           )}
 
           <Button
-            className="mt-6 rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]"
+            className="mt-6 w-full rounded-full bg-[#10233f] text-white hover:bg-[#1b365f] sm:w-auto"
             onClick={onSelect}
             type="button"
           >
@@ -190,6 +196,33 @@ function BookCard({
   );
 }
 
+function SelectField({
+  label,
+  value,
+  onChange,
+  children,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className="grid gap-2">
+      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#60738c]">
+        {label}
+      </span>
+      <select
+        className="min-h-12 rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3 text-sm text-[#425875] outline-none"
+        onChange={(event) => onChange(event.target.value)}
+        value={value}
+      >
+        {children}
+      </select>
+    </label>
+  );
+}
+
 function BookDetailPanel({
   book,
   onClose,
@@ -198,10 +231,10 @@ function BookDetailPanel({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#10233f]/35 px-4 py-6 backdrop-blur-sm">
-      <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#d7dedf] bg-[#f7f4ed] p-4 shadow-2xl md:p-6">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#10233f]/35 px-3 py-3 backdrop-blur-sm sm:px-4 sm:py-6">
+      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-[#d7dedf] bg-[#f7f4ed] p-4 shadow-2xl sm:rounded-[2rem] md:p-6">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#60738c]">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#60738c] sm:text-sm">
             Detalle del libro
           </p>
 
@@ -214,7 +247,7 @@ function BookDetailPanel({
           </button>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-[320px_1fr]">
+        <div className="grid gap-6 md:grid-cols-[320px_1fr] md:gap-8">
           <BookCover book={book} />
 
           <div>
@@ -226,28 +259,30 @@ function BookDetailPanel({
               {book.isFeatured ? <Badge variant="outline">Destacado</Badge> : null}
             </div>
 
-            <h2 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f]">
+            <h2 className="font-[var(--font-serif)] text-4xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] sm:text-5xl">
               {book.title}
             </h2>
 
-            <p className="mt-4 text-lg text-[#60738c]">
+            <p className="mt-4 text-base text-[#60738c] sm:text-lg">
               {book.author ?? "Autor por definir"}
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              <Badge variant="outline">{book.category}</Badge>
+              <Badge className="max-w-full whitespace-normal text-left" variant="outline">
+                {book.category}
+              </Badge>
               {book.language ? <Badge variant="outline">{book.language}</Badge> : null}
               {book.publisher ? <Badge variant="outline">{book.publisher}</Badge> : null}
               {book.publicationYear ? <Badge variant="outline">A&ntilde;o {book.publicationYear}</Badge> : null}
             </div>
 
-            <p className="mt-8 text-lg leading-8 text-[#425875]">
+            <p className="mt-7 text-base leading-8 text-[#425875] sm:mt-8 sm:text-lg">
               {book.description ?? "Descripci\u00f3n pendiente."}
             </p>
 
             {book.audience ? (
-              <div className="mt-6 rounded-[1.35rem] border border-[#d7dedf] bg-white/70 p-5">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#60738c]">
+              <div className="mt-6 rounded-[1.25rem] border border-[#d7dedf] bg-white/70 p-4 sm:rounded-[1.35rem] sm:p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c] sm:text-sm">
                   Perfil recomendado
                 </p>
                 <p className="mt-2 leading-7 text-[#425875]">{book.audience}</p>
@@ -267,7 +302,7 @@ function BookDetailPanel({
               </div>
             ) : null}
 
-            <div className="mt-8 rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-5">
+            <div className="mt-8 rounded-[1.35rem] border border-[#d7dedf] bg-white/75 p-4 sm:rounded-[1.5rem] sm:p-5">
               <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#10233f]">
                 Solicitar este libro
               </h3>
@@ -364,7 +399,7 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
 
   const groupedBooks = useMemo(() => {
     return filteredBooks.reduce<Record<string, PublicBook[]>>((groups, book) => {
-      const key = book.category || "Sin categor&iacute;a";
+      const key = book.category || "Sin categor\u00eda";
       groups[key] = groups[key] ?? [];
       groups[key].push(book);
       return groups;
@@ -398,81 +433,74 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
         <BookDetailPanel book={selectedBook} onClose={() => setSelectedBook(null)} />
       ) : null}
 
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
         <StatCard icon={Library} label={"Libros en cat\u00e1logo"} value={String(books.length)} />
         <StatCard icon={BookOpenCheck} label="Disponibles" value={String(totalAvailable)} />
         <StatCard icon={Layers3} label={"Categor\u00edas"} value={String(categories.length - 1)} />
         <StatCard icon={Sparkles} label="Destacados" value={String(totalFeatured)} />
       </div>
 
-      <div className="sticky top-20 z-30 mt-8 rounded-[1.75rem] border border-[#d7dedf] bg-white/85 p-5 shadow-sm backdrop-blur-xl">
-        <div className="grid gap-4 xl:grid-cols-[1fr_220px_180px_180px_180px_auto]">
-          <div className="flex items-center gap-3 rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3">
-            <Search className="size-5 text-[#60738c]" />
-            <Input
-              className="border-0 bg-transparent shadow-none focus-visible:ring-0"
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder={"Buscar por t\u00edtulo, autor, tema, editorial o etiqueta..."}
-              value={query}
-            />
+      <div className="mt-8 rounded-[1.5rem] border border-[#d7dedf] bg-white/85 p-4 shadow-sm backdrop-blur-xl sm:rounded-[1.75rem] sm:p-5">
+        <div className="grid gap-4">
+          <label className="grid gap-2">
+            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#60738c]">
+              B&uacute;squeda
+            </span>
+            <div className="flex min-h-12 items-center gap-3 rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3">
+              <Search className="size-5 shrink-0 text-[#60738c]" />
+              <Input
+                className="border-0 bg-transparent p-0 text-sm shadow-none focus-visible:ring-0"
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder={"Buscar por t\u00edtulo, autor, tema o etiqueta..."}
+                value={query}
+              />
+            </div>
+          </label>
+
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+            <SelectField label={"Categor\u00eda"} onChange={setCategory} value={category}>
+              {categories.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </SelectField>
+
+            <SelectField label="Idioma" onChange={setLanguage} value={language}>
+              {languages.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </SelectField>
+
+            <SelectField label="Estado" onChange={setStatus} value={status}>
+              {statuses.map((item) => (
+                <option key={item} value={item}>
+                  {item === "Todos" ? item : getStatusLabel(item)}
+                </option>
+              ))}
+            </SelectField>
+
+            <SelectField label="Orden" onChange={(value) => setSortMode(value as SortMode)} value={sortMode}>
+              <option value="featured">Destacados primero</option>
+              <option value="title">{"T\u00edtulo A-Z"}</option>
+              <option value="category">{"Categor\u00eda"}</option>
+              <option value="availability">Disponibles primero</option>
+            </SelectField>
+
+            <div className="flex items-end">
+              <Button
+                className="min-h-12 w-full rounded-full border-[#d7dedf] bg-white/70 text-[#10233f] hover:bg-white"
+                onClick={clearFilters}
+                type="button"
+                variant="outline"
+              >
+                <X className="mr-2 size-4" />
+                Limpiar
+              </Button>
+            </div>
           </div>
-
-          <select
-            className="rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3 text-sm text-[#425875] outline-none"
-            onChange={(event) => setCategory(event.target.value)}
-            value={category}
-          >
-            {categories.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className="rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3 text-sm text-[#425875] outline-none"
-            onChange={(event) => setLanguage(event.target.value)}
-            value={language}
-          >
-            {languages.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className="rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3 text-sm text-[#425875] outline-none"
-            onChange={(event) => setStatus(event.target.value)}
-            value={status}
-          >
-            {statuses.map((item) => (
-              <option key={item} value={item}>
-                {item === "Todos" ? item : getStatusLabel(item)}
-              </option>
-            ))}
-          </select>
-
-          <select
-            className="rounded-2xl border border-[#d7dedf] bg-[#fbfaf7] px-4 py-3 text-sm text-[#425875] outline-none"
-            onChange={(event) => setSortMode(event.target.value as SortMode)}
-            value={sortMode}
-          >
-            <option value="featured">Destacados primero</option>
-            <option value="title">{"T\u00edtulo A-Z"}</option>
-            <option value="category">{"Categor\u00eda"}</option>
-            <option value="availability">Disponibles primero</option>
-          </select>
-
-          <Button
-            className="rounded-full border-[#d7dedf] bg-white/70 text-[#10233f] hover:bg-white"
-            onClick={clearFilters}
-            type="button"
-            variant="outline"
-          >
-            <X className="mr-2 size-4" />
-            Limpiar
-          </Button>
         </div>
 
         <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-[#60738c]">
@@ -485,7 +513,7 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
         </div>
       </div>
 
-      <div className="mt-8 flex gap-2 overflow-x-auto pb-2">
+      <div className="mt-6 flex gap-2 overflow-x-auto pb-3">
         {categories.map((item) => (
           <button
             className={`shrink-0 rounded-full border px-4 py-2 text-sm transition ${
@@ -512,22 +540,22 @@ export function BookCatalog({ books }: { books: PublicBook[] }) {
           </CardContent>
         </Card>
       ) : (
-        <div className="mt-12 grid gap-14">
+        <div className="mt-10 grid gap-12 md:mt-12 md:gap-14">
           {Object.entries(groupedBooks).map(([groupName, groupBooks]) => (
             <section key={groupName}>
-              <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div className="mb-5 flex flex-col gap-2 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#60738c]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#60738c] sm:text-sm">
                     Secci&oacute;n
                   </p>
-                  <h2 className="mt-2 text-4xl font-semibold tracking-[-0.045em] text-[#10233f]">
+                  <h2 className="mt-2 text-3xl font-semibold tracking-[-0.045em] text-[#10233f] sm:text-4xl">
                     {groupName}
                   </h2>
                 </div>
                 <p className="text-sm text-[#60738c]">{groupBooks.length} libros</p>
               </div>
 
-              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
                 {groupBooks.map((book) => (
                   <BookCard
                     book={book}
