@@ -1,10 +1,20 @@
 import { logoutAdmin } from "@/app/admin/actions/auth";
+import { updateAdminRequestStatus } from "@/app/admin/actions/requests";
 import { requireAdmin } from "@/lib/admin/auth";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const metadata = {
   title: "Dashboard Admin",
 };
+
+const statusOptions = [
+  "pending",
+  "reviewing",
+  "approved",
+  "rejected",
+  "completed",
+  "cancelled",
+];
 
 function formatDate(value: string | null | undefined) {
   if (!value) {
@@ -29,33 +39,33 @@ async function getDashboardData() {
   ] = await Promise.all([
     supabase
       .from("volunteer_applications")
-      .select("id,full_name,email,area,status,created_at")
+      .select("id,full_name,email,area,motivation,status,admin_notes,created_at")
       .order("created_at", { ascending: false })
-      .limit(10),
+      .limit(25),
 
     supabase
       .from("ngo_requests")
-      .select("id,organization_name,contact_name,contact_email,status,created_at")
+      .select("id,organization_name,contact_name,contact_email,problem_description,status,admin_notes,created_at")
       .order("created_at", { ascending: false })
-      .limit(10),
+      .limit(25),
 
     supabase
       .from("book_requests")
-      .select("id,requester_name,requester_email,status,requested_at")
+      .select("id,requester_name,requester_email,reason,status,requested_at")
       .order("requested_at", { ascending: false })
-      .limit(10),
+      .limit(25),
 
     supabase
       .from("event_registrations")
       .select("id,full_name,email,status,registered_at")
       .order("registered_at", { ascending: false })
-      .limit(10),
+      .limit(25),
 
     supabase
       .from("contact_messages")
-      .select("id,full_name,email,subject,status,created_at")
+      .select("id,full_name,email,subject,message,status,admin_notes,created_at")
       .order("created_at", { ascending: false })
-      .limit(10),
+      .limit(25),
   ]);
 
   return {
@@ -94,6 +104,66 @@ function EmptyState() {
   return <p className="text-sm text-[#60738c]">Todavía no hay registros.</p>;
 }
 
+function StatusForm({
+  table,
+  id,
+  currentStatus,
+  adminNotes,
+  showNotes = false,
+}: {
+  table:
+    | "volunteer_applications"
+    | "ngo_requests"
+    | "book_requests"
+    | "event_registrations"
+    | "contact_messages";
+  id: string;
+  currentStatus: string;
+  adminNotes?: string | null;
+  showNotes?: boolean;
+}) {
+  return (
+    <form action={updateAdminRequestStatus} className="mt-4 grid gap-3 rounded-2xl border border-[#e1e5e8] bg-white/70 p-4">
+      <input name="table" type="hidden" value={table} />
+      <input name="id" type="hidden" value={id} />
+
+      <div className="grid gap-2 md:grid-cols-[220px_1fr] md:items-center">
+        <label className="text-sm font-medium text-[#425875]">Estado</label>
+        <select
+          className="rounded-xl border border-[#d7dedf] bg-[#fbfaf7] px-3 py-2 text-sm outline-none"
+          defaultValue={currentStatus}
+          name="status"
+        >
+          {statusOptions.map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {showNotes ? (
+        <div className="grid gap-2">
+          <label className="text-sm font-medium text-[#425875]">Notas internas</label>
+          <textarea
+            className="min-h-24 rounded-xl border border-[#d7dedf] bg-[#fbfaf7] px-3 py-2 text-sm outline-none"
+            defaultValue={adminNotes ?? ""}
+            name="admin_notes"
+            placeholder="Seguimiento, prioridad, próximos pasos..."
+          />
+        </div>
+      ) : null}
+
+      <button
+        className="w-fit rounded-full bg-[#10233f] px-4 py-2 text-sm font-medium text-white hover:bg-[#1b365f]"
+        type="submit"
+      >
+        Guardar cambios
+      </button>
+    </form>
+  );
+}
+
 export default async function AdminDashboardPage() {
   await requireAdmin();
 
@@ -111,7 +181,8 @@ export default async function AdminDashboardPage() {
               Solicitudes recibidas
             </h1>
             <p className="mt-4 max-w-2xl leading-7 text-[#425875]">
-              Panel temporal para revisar registros enviados desde formularios públicos.
+              Panel temporal para revisar registros enviados desde formularios públicos,
+              cambiar estado y agregar notas internas.
             </p>
           </div>
 
@@ -126,10 +197,7 @@ export default async function AdminDashboardPage() {
         </header>
 
         <div className="grid gap-5">
-          <Section
-            title="Voluntariado"
-            count={data.volunteerApplications.length}
-          >
+          <Section title="Voluntariado" count={data.volunteerApplications.length}>
             {data.volunteerApplications.length === 0 ? (
               <EmptyState />
             ) : (
@@ -139,9 +207,17 @@ export default async function AdminDashboardPage() {
                     <p className="font-semibold">{item.full_name}</p>
                     <p className="text-sm text-[#60738c]">{item.email}</p>
                     <p className="mt-2 text-sm text-[#425875]">Área: {item.area}</p>
+                    <p className="mt-2 text-sm leading-6 text-[#425875]">{item.motivation}</p>
                     <p className="mt-1 text-xs text-[#60738c]">
                       {item.status} · {formatDate(item.created_at)}
                     </p>
+                    <StatusForm
+                      adminNotes={item.admin_notes}
+                      currentStatus={item.status}
+                      id={item.id}
+                      showNotes
+                      table="volunteer_applications"
+                    />
                   </div>
                 ))}
               </div>
@@ -159,9 +235,19 @@ export default async function AdminDashboardPage() {
                     <p className="text-sm text-[#60738c]">
                       {item.contact_name} · {item.contact_email}
                     </p>
+                    <p className="mt-2 text-sm leading-6 text-[#425875]">
+                      {item.problem_description}
+                    </p>
                     <p className="mt-1 text-xs text-[#60738c]">
                       {item.status} · {formatDate(item.created_at)}
                     </p>
+                    <StatusForm
+                      adminNotes={item.admin_notes}
+                      currentStatus={item.status}
+                      id={item.id}
+                      showNotes
+                      table="ngo_requests"
+                    />
                   </div>
                 ))}
               </div>
@@ -177,9 +263,15 @@ export default async function AdminDashboardPage() {
                   <div key={item.id} className="rounded-2xl border border-[#e1e5e8] bg-[#fbfaf7] p-4">
                     <p className="font-semibold">{item.requester_name}</p>
                     <p className="text-sm text-[#60738c]">{item.requester_email}</p>
+                    <p className="mt-2 text-sm leading-6 text-[#425875]">{item.reason}</p>
                     <p className="mt-1 text-xs text-[#60738c]">
                       {item.status} · {formatDate(item.requested_at)}
                     </p>
+                    <StatusForm
+                      currentStatus={item.status}
+                      id={item.id}
+                      table="book_requests"
+                    />
                   </div>
                 ))}
               </div>
@@ -198,6 +290,11 @@ export default async function AdminDashboardPage() {
                     <p className="mt-1 text-xs text-[#60738c]">
                       {item.status} · {formatDate(item.registered_at)}
                     </p>
+                    <StatusForm
+                      currentStatus={item.status}
+                      id={item.id}
+                      table="event_registrations"
+                    />
                   </div>
                 ))}
               </div>
@@ -214,9 +311,17 @@ export default async function AdminDashboardPage() {
                     <p className="font-semibold">{item.full_name}</p>
                     <p className="text-sm text-[#60738c]">{item.email}</p>
                     <p className="mt-2 text-sm text-[#425875]">{item.subject ?? "Sin asunto"}</p>
+                    <p className="mt-2 text-sm leading-6 text-[#425875]">{item.message}</p>
                     <p className="mt-1 text-xs text-[#60738c]">
                       {item.status} · {formatDate(item.created_at)}
                     </p>
+                    <StatusForm
+                      adminNotes={item.admin_notes}
+                      currentStatus={item.status}
+                      id={item.id}
+                      showNotes
+                      table="contact_messages"
+                    />
                   </div>
                 ))}
               </div>
