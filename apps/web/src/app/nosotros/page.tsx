@@ -32,7 +32,7 @@ type TeamMember = {
   role: string;
   strategicRole: string;
   initials: string;
-  photoSrc: string;
+  photoSrc?: string;
   description: string;
   education: string;
   links: Array<{
@@ -40,7 +40,7 @@ type TeamMember = {
     href: string;
     external?: boolean;
   }>;
-  cvHref: string;
+  cvHref?: string;
   highlights: string[];
   tags: string[];
   icon: LucideIcon;
@@ -120,7 +120,7 @@ const team: TeamMember[] = [
     role: "Business & Operations Lead",
     strategicRole: "Project Management / Business Operations",
     initials: "LS",
-    photoSrc: "/team/lehi-salvador-rangel-cardenas.jpg",
+    photoSrc: undefined,
     description:
       "Aporta criterio de operacion, gestion, documentacion y seguimiento para conectar tecnologia con necesidades reales.",
     education:
@@ -132,7 +132,7 @@ const team: TeamMember[] = [
         external: true,
       },
     ],
-    cvHref: "/cv/lehi-salvador-rangel-cardenas-cv.pdf",
+    cvHref: undefined,
     highlights: [
       "Sabor a M\u00ed - Operacion de negocio familiar",
       "Cooper / T. Smith - Experiencia empresarial",
@@ -246,7 +246,15 @@ function TeamCard({ member }: { member: TeamMember }) {
       <CardContent className="flex h-full flex-col p-0">
         <div className="grid md:grid-cols-[0.86fr_1.14fr]">
           <div className="min-h-[280px] border-b border-[#d7dedf] md:border-b-0 md:border-r">
-            <TeamPhoto alt={`Foto de ${member.name}`} initials={member.initials} src={member.photoSrc} />
+            {member.photoSrc ? (
+              <TeamPhoto alt={`Foto de ${member.name}`} initials={member.initials} src={member.photoSrc} />
+            ) : (
+              <div className="flex h-full min-h-[280px] w-full items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(16,35,63,0.12),transparent_42%),#fbfaf7]">
+                <div className="flex size-24 items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 text-2xl font-semibold tracking-[0.18em] text-[#10233f] shadow-sm">
+                  {member.initials}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="p-6 md:p-7">
@@ -280,10 +288,12 @@ function TeamCard({ member }: { member: TeamMember }) {
                 </ExternalButton>
               ))}
 
-              <ExternalButton external={false} href={member.cvHref}>
-                Ver CV
-                <FileText className="ml-2 size-3.5" />
-              </ExternalButton>
+              {member.cvHref ? (
+                <ExternalButton external={false} href={member.cvHref}>
+                  Ver CV
+                  <FileText className="ml-2 size-3.5" />
+                </ExternalButton>
+              ) : null}
             </div>
           </div>
         </div>
