@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { sendVocationalInterestNotification } from "@/lib/email/vocational-notifications";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -104,26 +105,28 @@ export async function POST(request: Request) {
 
     const supabase = getSupabaseAdmin();
 
+    const payload = {
+      participant_type: participantType,
+      full_name: fullName,
+      email,
+      phone,
+      organization,
+      city,
+      role_or_career: roleOrCareer,
+      interest_areas: interestAreas,
+      message,
+      preferred_contact_method: preferredContactMethod,
+      privacy_accepted_at: new Date().toISOString(),
+      source_path: "/eventos/puente-vocacional-2026/registro",
+      metadata: {
+        user_agent: request.headers.get("user-agent"),
+        referer: request.headers.get("referer"),
+      },
+    };
+
     const { error } = await supabase
       .from("vocational_interest_submissions")
-      .insert({
-        participant_type: participantType,
-        full_name: fullName,
-        email,
-        phone,
-        organization,
-        city,
-        role_or_career: roleOrCareer,
-        interest_areas: interestAreas,
-        message,
-        preferred_contact_method: preferredContactMethod,
-        privacy_accepted_at: new Date().toISOString(),
-        source_path: "/eventos/puente-vocacional-2026/registro",
-        metadata: {
-          user_agent: request.headers.get("user-agent"),
-          referer: request.headers.get("referer"),
-        },
-      });
+      .insert(payload);
 
     if (error) {
       console.error("vocational_interest_submissions insert error:", error);
@@ -131,6 +134,23 @@ export async function POST(request: Request) {
         { ok: false, error: "No pudimos guardar el registro. Intenta de nuevo." },
         { status: 500 },
       );
+    }
+
+    try {
+      await sendVocationalInterestNotification({
+        participantType,
+        fullName,
+        email,
+        phone,
+        organization,
+        city,
+        roleOrCareer,
+        interestAreas,
+        message,
+        preferredContactMethod,
+      });
+    } catch (notificationError) {
+      console.error("vocational interest notification exception:", notificationError);
     }
 
     return NextResponse.json({ ok: true });
