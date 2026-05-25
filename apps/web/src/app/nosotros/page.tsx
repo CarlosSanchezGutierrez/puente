@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   BadgeCheck,
+  BookOpen,
   BriefcaseBusiness,
   Building2,
   Code2,
@@ -23,7 +24,7 @@ import { Card, CardContent } from "@/components/ui/card";
 export const metadata = {
   title: "Nosotros",
   description:
-    "Equipo de Puente Impacto y Salva Systems: software, datos, arquitectura, operaciones, ingenierÃ­a, automatizaciÃ³n y proyectos sociales.",
+    "Equipo de Puente Impacto y Salva Systems: software, datos, automatizacion, operaciones, ingenieria, documentacion y proyectos sociales.",
 };
 
 type TeamMember = {
@@ -46,14 +47,14 @@ type TeamMember = {
 
 const team: TeamMember[] = [
   {
-    name: "Carlos SÃ¡nchez GutiÃ©rrez",
+    name: "Carlos S\u00e1nchez Guti\u00e9rrez",
     role: "Digital Systems & Data Lead",
-    strategicRole: "Forward Deployed Engineer / Software Architect",
+    strategicRole: "Software Architecture / Forward Deployed Engineering",
     initials: "CS",
     description:
-      "DiseÃ±a, construye e integra sistemas digitales con enfoque en operaciÃ³n, datos y automatizaciÃ³n.",
+      "Dise\u00f1a, construye e integra sistemas digitales con enfoque en operacion, datos, arquitectura y automatizacion.",
     education:
-      "IngenierÃ­a en TecnologÃ­as Computacionales Â· TecnolÃ³gico de Monterrey",
+      "Ingenier\u00eda en Tecnolog\u00edas Computacionales · Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -68,25 +69,25 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/carlos-sanchez-gutierrez-cv.pdf",
     highlights: [
-      "CEMEX Â· Data Science Intern (plataformas globales de datos)",
-      "Santander Â· Plataforma de analÃ­tica operativa",
-      "IEEE Â· Sistema con IA + IoT",
-      "Oracle Cloud Infrastructure Â· Data Platform Â· AI Foundations",
-      "Scrum Master (CSM) Â· Product Owner",
-      "English Â· C1",
+      "CEMEX · Data Science Intern (plataformas globales de datos)",
+      "Santander · Plataforma de anal\u00edtica operativa",
+      "IEEE · Sistema con IA + IoT",
+      "Oracle Cloud Infrastructure · Data Platform · AI Foundations",
+      "Scrum Master (CSM) · Product Owner",
+      "English · C1",
     ],
-    tags: ["Software", "Datos", "Arquitectura", "Cloud", "AutomatizaciÃ³n"],
+    tags: ["Software", "Datos", "Arquitectura", "Cloud", "Automatizacion"],
     icon: Database,
   },
   {
-    name: "Leonel Francisco BailÃ³n Sifuentes",
+    name: "Leonel Francisco Bail\u00f3n Sifuentes",
     role: "Systems Engineering & Automation Lead",
-    strategicRole: "Forward Deployed Engineer / Software Architect",
+    strategicRole: "Software Architecture / Forward Deployed Engineering",
     initials: "LB",
     description:
-      "Construye soluciones full stack, automatizaciÃ³n, redes e infraestructura tÃ©cnica para convertir necesidades operativas en sistemas utilizables.",
+      "Desarrolla soluciones full stack, automatizacion, redes e infraestructura tecnica para convertir necesidades operativas en sistemas utilizables.",
     education:
-      "IngenierÃ­a en TecnologÃ­as Computacionales Â· TecnolÃ³gico de Monterrey",
+      "Ingenier\u00eda en Tecnolog\u00edas Computacionales · Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -101,25 +102,25 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/leonel-francisco-bail%C3%B3n-sifuentes-cv.pdf",
     highlights: [
-      "Profucom Â· IT Support / Automation & Processes Development",
-      "QuoteMaster Pro Â· AI-powered sales quoting orchestrator",
-      "Santander Â· Backend TypeScript/Node.js + Unity training game",
-      "Velatia Â· Network Design (#1 Ranked Team)",
-      "HackMTY 2025 Â· Wallet Mobile App Flutter",
-      "Lenovo Data Sales Â· Dell Storage & Server Certifications",
+      "Profucom · IT Support / Automation & Processes Development",
+      "QuoteMaster Pro · AI-powered sales quoting orchestrator",
+      "Santander · Backend TypeScript/Node.js + Unity training game",
+      "Velatia · Network Design (#1 Ranked Team)",
+      "HackMTY 2025 · Wallet Mobile App Flutter",
+      "Lenovo Data Sales · Dell Storage & Server Certifications",
     ],
-    tags: ["Full Stack", "AutomatizaciÃ³n", "Redes", "DevOps", "Soporte tÃ©cnico"],
+    tags: ["Full Stack", "Automatizacion", "Redes", "DevOps", "Soporte tecnico"],
     icon: Code2,
   },
   {
-    name: "Lehi Salvador Rangel CÃ¡rdenas",
+    name: "Lehi Salvador Rangel C\u00e1rdenas",
     role: "Business & Operations Lead",
     strategicRole: "Project Management / Business Operations",
     initials: "LS",
     description:
-      "Aterriza soluciones conectando tecnologÃ­a con la operaciÃ³n del negocio.",
+      "Aterriza soluciones conectando tecnologia, operacion, gestion, documentacion y necesidades reales del negocio.",
     education:
-      "IngenierÃ­a Industrial Â· TecnolÃ³gico de Monterrey",
+      "Ingenier\u00eda Industrial · Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -129,22 +130,22 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/lehi-salvador-rangel-cardenas-cv.pdf",
     highlights: [
-      "Sabor a MÃ­ Â· OperaciÃ³n de negocio familiar",
-      "Cooper / T. Smith Â· Experiencia empresarial",
-      "Salva Exclusive Caps Â· Emprendimiento",
+      "Sabor a M\u00ed · Operacion de negocio familiar",
+      "Cooper / T. Smith · Experiencia empresarial",
+      "Salva Exclusive Caps · Emprendimiento",
     ],
-    tags: ["OperaciÃ³n", "Procesos", "GestiÃ³n", "DocumentaciÃ³n", "Negocio"],
+    tags: ["Operacion", "Procesos", "Gestion", "Documentacion", "Negocio"],
     icon: Network,
   },
   {
-    name: "Maximiliano Lozano SuÃ¡rez",
+    name: "Maximiliano Lozano Su\u00e1rez",
     role: "Engineering & Innovation Lead",
     strategicRole: "Engineering Research / Applied Innovation",
     initials: "ML",
     description:
-      "Aporta profundidad tÃ©cnica, estructura de ingenierÃ­a e innovaciÃ³n aplicada en proyectos de alto nivel.",
+      "Aporta profundidad tecnica, estructura de ingenieria e innovacion aplicada en proyectos de alto nivel.",
     education:
-      "IngenierÃ­a en MecatrÃ³nica Â· TecnolÃ³gico de Monterrey",
+      "Ingenier\u00eda en Mecatr\u00f3nica · Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -154,48 +155,45 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/maximiliano-lozano-suarez-cv.pdf",
     highlights: [
-      "LÃ­der del MaÃ±ana Â· Tec de Monterrey (beca de excelencia acadÃ©mica y liderazgo)",
-      "McGill University Â· Estancia de investigaciÃ³n (CanadÃ¡)",
-      "Degas CafÃ© Â· Proyecto sostenible",
-      "LARC & LARS 2025 Â· Competencias internacionales",
-      "IPECO Â· Maintenance Intern",
-      "TÃ©cnico Analista Programador Â· ICEST",
+      "L\u00edder del Ma\u00f1ana · Tec de Monterrey (beca de excelencia academica y liderazgo)",
+      "McGill University · Estancia de investigacion (Canada)",
+      "Degas Caf\u00e9 · Proyecto sostenible",
+      "LARC & LARS 2025 · Competencias internacionales",
+      "IPECO · Maintenance Intern",
+      "T\u00e9cnico Analista Programador · ICEST",
     ],
-    tags: ["MecatrÃ³nica", "InvestigaciÃ³n", "InnovaciÃ³n", "RobÃ³tica", "Sostenibilidad"],
+    tags: ["Mecatronica", "Investigacion", "Innovacion", "Robotica", "Sostenibilidad"],
     icon: Layers3,
   },
 ];
 
-const operatingRoles = [
+const capabilityAreas = [
   {
-    title: "EjecuciÃ³n tÃ©cnica diaria",
-    people: "Carlos + Leonel",
+    title: "Arquitectura y desarrollo",
     description:
-      "Discovery tÃ©cnico, arquitectura, desarrollo, automatizaciÃ³n, datos, documentaciÃ³n tÃ©cnica, soporte de implementaciÃ³n y construcciÃ³n directa de sistemas.",
+      "Dise\u00f1o de sistemas, implementacion de software, integraciones, bases de datos, automatizacion y criterios tecnicos para construir con orden.",
     icon: Code2,
   },
   {
-    title: "OperaciÃ³n y project management",
-    people: "Lehi",
+    title: "Operacion y gestion",
     description:
-      "GestiÃ³n, documentaciÃ³n, seguimiento, aterrizaje operativo, procesos, validaciÃ³n de necesidades y conexiÃ³n entre tecnologÃ­a y negocio.",
+      "Organizacion de procesos, seguimiento, documentacion, priorizacion, levantamiento de necesidades y traduccion de problemas a planes accionables.",
     icon: BriefcaseBusiness,
   },
   {
-    title: "IngenierÃ­a e innovaciÃ³n aplicada",
-    people: "Max",
+    title: "Ingenieria e investigacion",
     description:
-      "Criterio de ingenierÃ­a, investigaciÃ³n aplicada, sistemas fÃ­sicos, innovaciÃ³n tÃ©cnica, mecatrÃ³nica y validaciÃ³n de proyectos de mayor complejidad.",
+      "Criterio de ingenieria aplicada, validacion tecnica, innovacion, sistemas fisicos, investigacion y analisis de soluciones de mayor complejidad.",
     icon: GraduationCap,
   },
 ];
 
 const trustPrinciples = [
   "Todos formamos parte de Salva Systems, nuestra consultora de software.",
-  "Puente Impacto aprovecha esa capacidad tÃ©cnica para crear infraestructura social, educativa y comunitaria.",
-  "No vendemos improvisaciÃ³n: trabajamos con documentaciÃ³n, arquitectura, seguimiento y entregables claros.",
-  "Carlos y Leonel ejecutan la mayor parte del trabajo tÃ©cnico dÃ­a a dÃ­a.",
-  "Lehi y Max complementan el equipo con operaciÃ³n, gestiÃ³n, ingenierÃ­a, investigaciÃ³n y criterio multidisciplinario.",
+  "Puente Impacto se apoya en esa experiencia para construir soluciones sociales y educativas con una escala responsable.",
+  "Cada integrante aporta desde un area distinta: desarrollo, automatizacion, operacion, gestion, documentacion, ingenieria o investigacion aplicada.",
+  "Buscamos evitar la improvisacion mediante documentacion, seguimiento, claridad tecnica y entregables comprensibles.",
+  "La meta es ayudar con cuidado: escuchar primero, diagnosticar bien y construir solo lo que realmente tenga sentido.",
 ];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -215,25 +213,19 @@ function ExternalButton({
   children: React.ReactNode;
   external?: boolean;
 }) {
+  const className =
+    "inline-flex min-h-9 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-4 text-xs font-semibold text-[#10233f] transition hover:bg-white";
+
   if (external) {
     return (
-      <a
-        className="inline-flex min-h-9 items-center justify-center rounded-full border border-cyan-400/35 bg-cyan-400/10 px-4 text-xs font-semibold text-cyan-300 transition hover:bg-cyan-400/15"
-        href={href}
-        rel="noreferrer"
-        target="_blank"
-      >
+      <a className={className} href={href} rel="noreferrer" target="_blank">
         {children}
       </a>
     );
   }
 
   return (
-    <Link
-      className="inline-flex min-h-9 items-center justify-center rounded-full border border-cyan-400/35 bg-cyan-400/10 px-4 text-xs font-semibold text-cyan-300 transition hover:bg-cyan-400/15"
-      href={href}
-      target="_blank"
-    >
+    <Link className={className} href={href} target="_blank">
       {children}
     </Link>
   );
@@ -243,36 +235,36 @@ function TeamCard({ member }: { member: TeamMember }) {
   const Icon = member.icon;
 
   return (
-    <Card className="overflow-hidden border-cyan-400/20 bg-[#08111f] text-white shadow-sm">
+    <Card className="h-full overflow-hidden border-[#d7dedf] bg-white/78 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
       <CardContent className="flex h-full flex-col p-0">
-        <div className="flex aspect-[1.55] items-center justify-center border-b border-cyan-400/15 bg-[#0b1424]">
-          <div className="flex size-24 items-center justify-center rounded-full border border-cyan-400/25 bg-cyan-400/5 text-2xl font-semibold tracking-[0.18em] text-cyan-300">
-            {member.initials}
+        <div className="border-b border-[#d7dedf] bg-[radial-gradient(circle_at_top_left,rgba(16,35,63,0.10),transparent_38%),#fbfaf7] p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex size-20 items-center justify-center rounded-[1.5rem] bg-[#10233f] text-xl font-semibold tracking-[0.18em] text-white shadow-sm">
+              {member.initials}
+            </div>
+
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-[#d7dedf] bg-white/80">
+              <Icon className="size-5 text-[#10233f]" />
+            </div>
           </div>
         </div>
 
         <div className="flex flex-1 flex-col p-6 md:p-7">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white">
-                {member.name}
-              </h3>
+          <div>
+            <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#10233f]">
+              {member.name}
+            </h3>
 
-              <p className="mt-2 text-sm font-semibold text-cyan-300">
-                {member.role}
-              </p>
+            <p className="mt-2 text-sm font-semibold text-[#0f7890]">
+              {member.role}
+            </p>
 
-              <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-slate-400">
-                {member.strategicRole}
-              </p>
-            </div>
+            <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-[#60738c]">
+              {member.strategicRole}
+            </p>
 
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-400/5">
-              <Icon className="size-5 text-cyan-300" />
-            </div>
+            <p className="mt-5 leading-7 text-[#425875]">{member.description}</p>
           </div>
-
-          <p className="mt-6 leading-7 text-slate-300">{member.description}</p>
 
           <div className="mt-6 flex flex-wrap gap-2">
             {member.links.map((link) => (
@@ -288,11 +280,11 @@ function TeamCard({ member }: { member: TeamMember }) {
             </ExternalButton>
           </div>
 
-          <div className="mt-7 grid gap-3 border-t border-cyan-400/15 pt-6">
+          <div className="mt-7 grid gap-3 border-t border-[#d7dedf] pt-6">
             {member.highlights.map((highlight) => (
               <div className="grid grid-cols-[22px_1fr] gap-3" key={highlight}>
-                <BadgeCheck className="mt-1 size-4 text-cyan-300" />
-                <p className="text-sm leading-6 text-slate-300">{highlight}</p>
+                <BadgeCheck className="mt-1 size-4 text-[#0f7890]" />
+                <p className="text-sm leading-6 text-[#425875]">{highlight}</p>
               </div>
             ))}
           </div>
@@ -300,7 +292,7 @@ function TeamCard({ member }: { member: TeamMember }) {
           <div className="mt-7 flex flex-wrap gap-2">
             {member.tags.map((tag) => (
               <span
-                className="rounded-full border border-cyan-400/25 bg-cyan-400/8 px-3 py-1 text-xs font-medium text-cyan-300"
+                className="rounded-full border border-[#d7dedf] bg-[#fbfaf7] px-3 py-1 text-xs font-medium text-[#425875]"
                 key={tag}
               >
                 {tag}
@@ -308,7 +300,7 @@ function TeamCard({ member }: { member: TeamMember }) {
             ))}
           </div>
 
-          <p className="mt-8 border-t border-cyan-400/15 pt-5 text-sm font-medium leading-6 text-slate-400">
+          <p className="mt-8 border-t border-[#d7dedf] pt-5 text-sm font-medium leading-6 text-[#60738c]">
             {member.education}
           </p>
         </div>
@@ -317,14 +309,12 @@ function TeamCard({ member }: { member: TeamMember }) {
   );
 }
 
-function RoleCard({
+function CapabilityCard({
   title,
-  people,
   description,
   icon: Icon,
 }: {
   title: string;
-  people: string;
   description: string;
   icon: LucideIcon;
 }) {
@@ -338,10 +328,6 @@ function RoleCard({
         <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
           {title}
         </h3>
-
-        <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#60738c]">
-          {people}
-        </p>
 
         <p className="mt-4 leading-7 text-[#425875]">{description}</p>
       </CardContent>
@@ -362,37 +348,35 @@ export default function NosotrosPage() {
             </Badge>
 
             <h1 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.065em] text-[#10233f] sm:text-6xl md:text-8xl">
-              Un equipo tÃ©cnico construyendo impacto real.
+              Un equipo multidisciplinario construyendo con cuidado.
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875] md:text-xl md:leading-9">
-              Puente Impacto es una iniciativa social y tecnolÃ³gica impulsada por el equipo de
-              Salva Systems. Combinamos software, datos, automatizaciÃ³n, operaciÃ³n, ingenierÃ­a,
-              documentaciÃ³n y visiÃ³n comunitaria para construir soluciones con seriedad.
+              Puente Impacto es una iniciativa social y tecnologica impulsada por personas que tambien forman parte de Salva Systems. Combinamos software, datos, automatizacion, operacion, ingenieria, documentacion y vision comunitaria con una intencion clara: construir soluciones utiles y responsables.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl border border-[#d7dedf] bg-white/65 p-4">
                 <Code2 className="mb-4 size-5 text-[#10233f]" />
-                <p className="font-semibold text-[#10233f]">Software real</p>
+                <p className="font-semibold text-[#10233f]">Software</p>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
-                  Sistemas, datos, automatizaciÃ³n y arquitectura.
+                  Sistemas, datos, automatizacion y arquitectura.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-[#d7dedf] bg-white/65 p-4">
                 <Building2 className="mb-4 size-5 text-[#10233f]" />
-                <p className="font-semibold text-[#10233f]">ConsultorÃ­a</p>
+                <p className="font-semibold text-[#10233f]">Consultoria</p>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
-                  Todos somos parte de Salva Systems.
+                  Base profesional desde Salva Systems.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-[#d7dedf] bg-white/65 p-4">
-                <HeartIcon />
-                <p className="font-semibold text-[#10233f]">Impacto</p>
+                <Users className="mb-4 size-5 text-[#10233f]" />
+                <p className="font-semibold text-[#10233f]">Comunidad</p>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
-                  TecnologÃ­a aplicada a organizaciones y comunidad.
+                  Tecnologia aplicada a organizaciones y aprendizaje.
                 </p>
               </div>
             </div>
@@ -402,17 +386,17 @@ export default function NosotrosPage() {
             <div className="rounded-[1.75rem] bg-[#10233f] p-6 text-white md:p-8">
               <div className="mb-12 flex items-center justify-between">
                 <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b7c8dc]">
-                  Estructura de equipo
+                  Forma de trabajo
                 </span>
                 <ShieldCheck className="size-6 text-[#d7e7f6]" />
               </div>
 
               <p className="font-[var(--font-serif)] text-3xl font-semibold leading-10 tracking-[-0.04em] md:text-4xl md:leading-[1.08]">
-                Carlos y Leonel ejecutan la mayor parte del trabajo tÃ©cnico. Lehi y Max fortalecen operaciÃ³n, gestiÃ³n, ingenierÃ­a e innovaciÃ³n.
+                Cada integrante aporta desde una especialidad distinta. La prioridad es escuchar, ordenar y construir solo lo que realmente tenga sentido.
               </p>
 
               <div className="mt-10 grid gap-3">
-                {trustPrinciples.slice(0, 4).map((principle) => (
+                {trustPrinciples.slice(2).map((principle) => (
                   <div
                     className="grid grid-cols-[36px_1fr] gap-4 rounded-[1.25rem] border border-white/15 bg-white/10 p-4"
                     key={principle}
@@ -434,13 +418,12 @@ export default function NosotrosPage() {
           <div>
             <SectionLabel>Equipo</SectionLabel>
             <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-6xl">
-              QuiÃ©nes construyen Puente.
+              Quienes construyen Puente.
             </h2>
           </div>
 
           <p className="max-w-md text-sm leading-6 text-[#60738c]">
-            Perfiles pÃºblicos del equipo. Los botones de CV apuntan a archivos PDF que deben
-            cargarse en <span className="font-mono">/public/cv</span>.
+            Perfiles publicos del equipo. Los botones de CV apuntan a archivos PDF que deben cargarse en <span className="font-mono">/public/cv</span>.
           </p>
         </div>
 
@@ -454,27 +437,24 @@ export default function NosotrosPage() {
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
           <div>
-            <SectionLabel>Responsabilidades</SectionLabel>
+            <SectionLabel>Capacidades</SectionLabel>
             <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              Cada perfil cumple una funciÃ³n estratÃ©gica.
+              Distintas areas, una misma intencion.
             </h2>
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            No presentamos al equipo como una lista decorativa. La intenciÃ³n es que una organizaciÃ³n
-            entienda quiÃ©n ejecuta, quiÃ©n gestiona, quiÃ©n documenta y quiÃ©n aporta criterio tÃ©cnico
-            para que el trabajo sea confiable.
+            Presentamos al equipo con cuidado para que una organizacion pueda entender que tipo de criterio aporta cada integrante: desarrollo, automatizacion, operacion, documentacion, gestion, ingenieria o investigacion aplicada.
           </p>
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {operatingRoles.map((role) => (
-            <RoleCard
-              description={role.description}
-              icon={role.icon}
-              key={role.title}
-              people={role.people}
-              title={role.title}
+          {capabilityAreas.map((area) => (
+            <CapabilityCard
+              description={area.description}
+              icon={area.icon}
+              key={area.title}
+              title={area.title}
             />
           ))}
         </div>
@@ -486,13 +466,11 @@ export default function NosotrosPage() {
             <div>
               <SectionLabel>Salva Systems</SectionLabel>
               <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-7xl">
-                Puente no nace desde cero: nace desde capacidad tÃ©cnica.
+                Puente se apoya en una base tecnica en crecimiento.
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-[#c9d8e8]">
-                Salva Systems es nuestra consultora de software. Puente Impacto usa esa misma base
-                profesional para construir herramientas, documentaciÃ³n, diagnÃ³stico y soluciones
-                orientadas a organizaciones sociales, comunidad y educaciÃ³n.
+                Salva Systems es nuestra consultora de software. Puente Impacto se apoya en esa experiencia para construir herramientas, documentacion, diagnostico y soluciones orientadas a organizaciones sociales, comunidad y educacion, siempre con una escala responsable.
               </p>
             </div>
 
@@ -533,13 +511,5 @@ export default function NosotrosPage() {
         </div>
       </section>
     </SiteShell>
-  );
-}
-
-function HeartIcon() {
-  return (
-    <div className="mb-4 flex size-5 items-center justify-center text-[#10233f]">
-      <Users className="size-5" />
-    </div>
   );
 }
