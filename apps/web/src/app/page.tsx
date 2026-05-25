@@ -1,4 +1,4 @@
-﻿import { ArrowRight, BookOpen, Braces, GraduationCap, HeartHandshake, Microscope, PlayCircle } from "lucide-react";
+﻿import { ArrowRight, Braces, GraduationCap, HeartHandshake, Microscope, PlayCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -237,3 +237,4 @@ export default function Home() {
     </main>
   );
 }
+
