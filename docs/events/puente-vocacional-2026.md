@@ -19,3 +19,35 @@ Conectar estudiantes de preparatoria con carreras, universidades y profesiones m
 
 ```txt
 /eventos/puente-vocacional-2026
+## Formularios futuros
+
+Se planean tres flujos de interes:
+
+### Preparatorias
+
+- Nombre de la preparatoria
+- Ciudad o zona
+- Cantidad aproximada de alumnos
+- Grado o semestre
+- Areas vocacionales de interes
+- Contacto institucional
+
+### Mentores
+
+- Nombre completo
+- Carrera o profesion
+- Universidad o empresa
+- Area vocacional que puede orientar
+- Disponibilidad
+- LinkedIn o contacto publico
+
+### Estudiantes
+
+- Nombre
+- Preparatoria
+- Carreras de interes
+- Universidades consideradas
+- Dudas principales
+- Correo de seguimiento
+
+Estos formularios podran conectarse despues a Supabase para medir interes, asistencia, conexiones vocacionales y seguimiento.

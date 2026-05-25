@@ -1,3 +1,4 @@
+import { VocationalInterestSection } from "@/components/events/vocational-interest-section";
 import {
   ArrowRight,
   BadgeCheck,
@@ -342,6 +343,8 @@ export default function PuenteVocacionalPage() {
           </div>
         </div>
       </section>
+          <VocationalInterestSection />
+
     </SiteShell>
   );
 }
