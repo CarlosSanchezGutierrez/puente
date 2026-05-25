@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   BadgeCheck,
-  BookOpen,
   BriefcaseBusiness,
   Building2,
   Code2,
@@ -57,7 +56,7 @@ const team: TeamMember[] = [
     description:
       "Dise\u00f1a, construye e integra sistemas digitales con enfoque en operacion, datos, arquitectura y automatizacion.",
     education:
-      "Ingenier\u00eda en Tecnolog\u00edas Computacionales · Tecnol\u00f3gico de Monterrey",
+      "Ingenier\u00eda en Tecnolog\u00edas Computacionales - Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -72,12 +71,12 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/carlos-sanchez-gutierrez-cv.pdf",
     highlights: [
-      "CEMEX · Data Science Intern (plataformas globales de datos)",
-      "Santander · Plataforma de anal\u00edtica operativa",
-      "IEEE · Sistema con IA + IoT",
-      "Oracle Cloud Infrastructure · Data Platform · AI Foundations",
-      "Scrum Master (CSM) · Product Owner",
-      "English · C1",
+      "CEMEX - Data Science Intern en plataformas globales de datos",
+      "Santander - Plataforma de anal\u00edtica operativa",
+      "IEEE - Sistema con IA + IoT",
+      "Oracle Cloud Infrastructure, Data Platform y AI Foundations",
+      "Scrum Master y Product Owner",
+      "English - C1",
     ],
     tags: ["Software", "Datos", "Arquitectura", "Cloud", "Automatizacion"],
     icon: Database,
@@ -91,7 +90,7 @@ const team: TeamMember[] = [
     description:
       "Desarrolla soluciones full stack, automatizacion, redes e infraestructura tecnica para convertir necesidades operativas en sistemas utilizables.",
     education:
-      "Ingenier\u00eda en Tecnolog\u00edas Computacionales · Tecnol\u00f3gico de Monterrey",
+      "Ingenier\u00eda en Tecnolog\u00edas Computacionales - Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -106,12 +105,12 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/leonel-francisco-bailon-sifuentes-cv.pdf",
     highlights: [
-      "Profucom · IT Support / Automation & Processes Development",
-      "QuoteMaster Pro · AI-powered sales quoting orchestrator",
-      "Santander · Backend TypeScript/Node.js + Unity training game",
-      "Velatia · Network Design (#1 Ranked Team)",
-      "HackMTY 2025 · Wallet Mobile App Flutter",
-      "Lenovo Data Sales · Dell Storage & Server Certifications",
+      "Profucom - IT Support / Automation & Processes Development",
+      "QuoteMaster Pro - AI-powered sales quoting orchestrator",
+      "Santander - Backend TypeScript/Node.js + Unity training game",
+      "Velatia - Network Design (#1 Ranked Team)",
+      "HackMTY 2025 - Wallet Mobile App con Flutter",
+      "Lenovo Data Sales y Dell Storage & Server Certifications",
     ],
     tags: ["Full Stack", "Automatizacion", "Redes", "DevOps", "Soporte tecnico"],
     icon: Code2,
@@ -123,9 +122,9 @@ const team: TeamMember[] = [
     initials: "LS",
     photoSrc: "/team/lehi-salvador-rangel-cardenas.jpg",
     description:
-      "Aterriza soluciones conectando tecnologia, operacion, gestion, documentacion y necesidades reales del negocio.",
+      "Aporta criterio de operacion, gestion, documentacion y seguimiento para conectar tecnologia con necesidades reales.",
     education:
-      "Ingenier\u00eda Industrial · Tecnol\u00f3gico de Monterrey",
+      "Ingenier\u00eda Industrial - Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -135,9 +134,11 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/lehi-salvador-rangel-cardenas-cv.pdf",
     highlights: [
-      "Sabor a M\u00ed · Operacion de negocio familiar",
-      "Cooper / T. Smith · Experiencia empresarial",
-      "Salva Exclusive Caps · Emprendimiento",
+      "Sabor a M\u00ed - Operacion de negocio familiar",
+      "Cooper / T. Smith - Experiencia empresarial",
+      "Salva Exclusive Caps - Emprendimiento",
+      "Gestion, documentacion y seguimiento operativo",
+      "Apoyo en aterrizaje de procesos y necesidades de negocio",
     ],
     tags: ["Operacion", "Procesos", "Gestion", "Documentacion", "Negocio"],
     icon: Network,
@@ -149,9 +150,9 @@ const team: TeamMember[] = [
     initials: "ML",
     photoSrc: "/team/maximiliano-lozano-suarez.jpg",
     description:
-      "Aporta profundidad tecnica, estructura de ingenieria e innovacion aplicada en proyectos de alto nivel.",
+      "Aporta criterio de ingenieria, investigacion e innovacion aplicada para evaluar soluciones con mayor profundidad tecnica.",
     education:
-      "Ingenier\u00eda en Mecatr\u00f3nica · Tecnol\u00f3gico de Monterrey",
+      "Ingenier\u00eda en Mecatr\u00f3nica - Tecnol\u00f3gico de Monterrey",
     links: [
       {
         label: "LinkedIn",
@@ -161,12 +162,12 @@ const team: TeamMember[] = [
     ],
     cvHref: "/cv/maximiliano-lozano-suarez-cv.pdf",
     highlights: [
-      "L\u00edder del Ma\u00f1ana · Tec de Monterrey (beca de excelencia academica y liderazgo)",
-      "McGill University · Estancia de investigacion (Canada)",
-      "Degas Caf\u00e9 · Proyecto sostenible",
-      "LARC & LARS 2025 · Competencias internacionales",
-      "IPECO · Maintenance Intern",
-      "T\u00e9cnico Analista Programador · ICEST",
+      "L\u00edder del Ma\u00f1ana - Tec de Monterrey",
+      "McGill University - Estancia de investigacion en Canada",
+      "Degas Caf\u00e9 - Proyecto sostenible",
+      "LARC & LARS 2025 - Competencias internacionales",
+      "IPECO - Maintenance Intern",
+      "T\u00e9cnico Analista Programador - ICEST",
     ],
     tags: ["Mecatronica", "Investigacion", "Innovacion", "Robotica", "Sostenibilidad"],
     icon: Layers3,
@@ -177,7 +178,7 @@ const capabilityAreas = [
   {
     title: "Arquitectura y desarrollo",
     description:
-      "Dise\u00f1o de sistemas, implementacion de software, integraciones, bases de datos, automatizacion y criterios tecnicos para construir con orden.",
+      "Diseno de sistemas, implementacion de software, integraciones, bases de datos, automatizacion y criterios tecnicos para construir con orden.",
     icon: Code2,
   },
   {
@@ -198,7 +199,7 @@ const trustPrinciples = [
   "Todos formamos parte de Salva Systems, nuestra consultora de software.",
   "Puente Impacto se apoya en esa experiencia para construir soluciones sociales y educativas con una escala responsable.",
   "Cada integrante aporta desde un area distinta: desarrollo, automatizacion, operacion, gestion, documentacion, ingenieria o investigacion aplicada.",
-  "Buscamos evitar la improvisacion mediante documentacion, seguimiento, claridad tecnica y entregables comprensibles.",
+  "Buscamos trabajar con documentacion, seguimiento, claridad tecnica y entregables comprensibles.",
   "La meta es ayudar con cuidado: escuchar primero, diagnosticar bien y construir solo lo que realmente tenga sentido.",
 ];
 
