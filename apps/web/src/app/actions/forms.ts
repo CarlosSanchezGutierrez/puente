@@ -14,6 +14,7 @@ import {
   type NgoRequestInput,
   type VolunteerApplicationInput,
 } from "@puente/schemas";
+import { sendAdminNotification } from "@/lib/email/notifications";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export type FormActionResult = {
@@ -106,7 +107,7 @@ async function enforceRateLimit({
 
     return {
       ok: false,
-      message: "No pudimos validar el envÃƒÂ­o. Intenta de nuevo en unos minutos.",
+      message: "No pudimos validar el envío. Intenta de nuevo en unos minutos.",
     };
   }
 
@@ -129,7 +130,7 @@ async function enforceRateLimit({
 
     return {
       ok: false,
-      message: "No pudimos validar el envÃƒÂ­o. Intenta de nuevo en unos minutos.",
+      message: "No pudimos validar el envío. Intenta de nuevo en unos minutos.",
     };
   }
 
@@ -144,7 +145,7 @@ export async function submitVolunteerApplication(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La aplicaciÃƒÂ³n tiene datos incompletos o invÃƒÂ¡lidos.",
+      message: "La aplicación tiene datos incompletos o inválidos.",
     };
   }
 
@@ -186,23 +187,31 @@ export async function submitVolunteerApplication(
 
       return {
         ok: false,
-        message: "No pudimos guardar tu aplicaciÃƒÂ³n. Intenta de nuevo.",
+        message: "No pudimos guardar tu aplicación. Intenta de nuevo.",
       };
     }
+
+    await sendAdminNotification({
+      type: "volunteer_application",
+      title: parsed.data.fullName,
+      summary: `${parsed.data.email} quiere participar en ${parsed.data.area}.`,
+      recordId: data.id,
+      sourcePath: "/voluntariado",
+    });
 
     revalidatePath("/voluntariado");
 
     return {
       ok: true,
       id: data.id,
-      message: "Tu aplicaciÃƒÂ³n de voluntariado fue recibida correctamente.",
+      message: "Tu aplicación de voluntariado fue recibida correctamente.",
     };
   } catch (error) {
     console.error("submitVolunteerApplication exception:", getErrorMessage(error));
 
     return {
       ok: false,
-      message: "OcurriÃƒÂ³ un error inesperado al guardar tu aplicaciÃƒÂ³n.",
+      message: "Ocurrió un error inesperado al guardar tu aplicación.",
     };
   }
 }
@@ -213,7 +222,7 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La solicitud de la organizaciÃƒÂ³n tiene datos incompletos o invÃƒÂ¡lidos.",
+      message: "La solicitud de la organización tiene datos incompletos o inválidos.",
     };
   }
 
@@ -261,19 +270,27 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
       };
     }
 
+    await sendAdminNotification({
+      type: "ngo_request",
+      title: parsed.data.organizationName,
+      summary: `${parsed.data.contactName} (${parsed.data.contactEmail}) envió una solicitud de organización social.`,
+      recordId: data.id,
+      sourcePath: "/ongs",
+    });
+
     revalidatePath("/ongs");
 
     return {
       ok: true,
       id: data.id,
-      message: "La solicitud de la organizaciÃƒÂ³n fue recibida correctamente.",
+      message: "La solicitud de la organización fue recibida correctamente.",
     };
   } catch (error) {
     console.error("submitNgoRequest exception:", getErrorMessage(error));
 
     return {
       ok: false,
-      message: "OcurriÃƒÂ³ un error inesperado al guardar la solicitud.",
+      message: "Ocurrió un error inesperado al guardar la solicitud.",
     };
   }
 }
@@ -284,7 +301,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La solicitud del libro tiene datos incompletos o invÃƒÂ¡lidos.",
+      message: "La solicitud del libro tiene datos incompletos o inválidos.",
     };
   }
 
@@ -309,7 +326,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
     if (!book?.id) {
       return {
         ok: false,
-        message: "No encontramos ese libro en el catÃƒÂ¡logo.",
+        message: "No encontramos ese libro en el catálogo.",
       };
     }
 
@@ -335,6 +352,14 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
       };
     }
 
+    await sendAdminNotification({
+      type: "book_request",
+      title: parsed.data.bookTitle,
+      summary: `${parsed.data.requesterName} (${parsed.data.requesterEmail}) solicitó un libro.`,
+      recordId: data.id,
+      sourcePath: "/biblioteca",
+    });
+
     revalidatePath("/biblioteca");
 
     return {
@@ -347,7 +372,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
 
     return {
       ok: false,
-      message: "OcurriÃƒÂ³ un error inesperado al guardar la solicitud del libro.",
+      message: "Ocurrió un error inesperado al guardar la solicitud del libro.",
     };
   }
 }
@@ -360,7 +385,7 @@ export async function submitEventRegistration(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "El registro al evento tiene datos incompletos o invÃƒÂ¡lidos.",
+      message: "El registro al evento tiene datos incompletos o inválidos.",
     };
   }
 
@@ -385,7 +410,7 @@ export async function submitEventRegistration(
     if (!event?.id) {
       return {
         ok: false,
-        message: "No encontramos ese evento en el catÃƒÂ¡logo.",
+        message: "No encontramos ese evento en el catálogo.",
       };
     }
 
@@ -410,6 +435,14 @@ export async function submitEventRegistration(
       };
     }
 
+    await sendAdminNotification({
+      type: "event_registration",
+      title: parsed.data.eventTitle,
+      summary: `${parsed.data.fullName} (${parsed.data.email}) se registró a un evento.`,
+      recordId: data.id,
+      sourcePath: "/eventos",
+    });
+
     revalidatePath("/eventos");
 
     return {
@@ -422,7 +455,7 @@ export async function submitEventRegistration(
 
     return {
       ok: false,
-      message: "OcurriÃƒÂ³ un error inesperado al guardar tu registro.",
+      message: "Ocurrió un error inesperado al guardar tu registro.",
     };
   }
 }
@@ -435,7 +468,7 @@ export async function submitContactMessage(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "El mensaje tiene datos incompletos o invÃƒÂ¡lidos.",
+      message: "El mensaje tiene datos incompletos o inválidos.",
     };
   }
 
@@ -473,6 +506,14 @@ export async function submitContactMessage(
       };
     }
 
+    await sendAdminNotification({
+      type: "contact_message",
+      title: parsed.data.subject || "Mensaje de contacto",
+      summary: `${parsed.data.fullName} (${parsed.data.email}) envió un mensaje.`,
+      recordId: data.id,
+      sourcePath: "/contacto",
+    });
+
     revalidatePath("/contacto");
 
     return {
@@ -485,7 +526,7 @@ export async function submitContactMessage(
 
     return {
       ok: false,
-      message: "OcurriÃƒÂ³ un error inesperado al guardar tu mensaje.",
+      message: "Ocurrió un error inesperado al guardar tu mensaje.",
     };
   }
 }
