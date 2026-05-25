@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -24,8 +24,8 @@ export function SiteHeader() {
         ))}
       </nav>
 
-      <Button className="rounded-full bg-[#10233f] px-5 text-white hover:bg-[#1b365f]">
-        Contacto
+      <Button asChild className="rounded-full bg-[#10233f] px-5 text-white hover:bg-[#1b365f]">
+        <Link href="/contacto">Contacto</Link>
       </Button>
     </header>
   );

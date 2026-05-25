@@ -3,10 +3,12 @@
 import { revalidatePath } from "next/cache";
 import {
   bookRequestSchema,
+  contactMessageSchema,
   eventRegistrationSchema,
   ngoRequestSchema,
   volunteerApplicationSchema,
   type BookRequestInput,
+  type ContactMessageInput,
   type EventRegistrationInput,
   type NgoRequestInput,
   type VolunteerApplicationInput,
@@ -301,6 +303,58 @@ export async function submitEventRegistration(
     return {
       ok: false,
       message: "Ocurrió un error inesperado al guardar tu registro.",
+    };
+  }
+}
+
+export async function submitContactMessage(
+  input: ContactMessageInput,
+): Promise<FormActionResult> {
+  const parsed = contactMessageSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      ok: false,
+      message: "El mensaje tiene datos incompletos o inválidos.",
+    };
+  }
+
+  try {
+    const supabase = await createSupabaseServerClient();
+
+    const { data, error } = await supabase
+      .from("contact_messages")
+      .insert({
+        full_name: parsed.data.fullName,
+        email: parsed.data.email,
+        subject: toNullableString(parsed.data.subject),
+        message: parsed.data.message,
+      })
+      .select("id")
+      .single();
+
+    if (error) {
+      console.error("submitContactMessage error:", error);
+
+      return {
+        ok: false,
+        message: "No pudimos guardar tu mensaje. Intenta de nuevo.",
+      };
+    }
+
+    revalidatePath("/contacto");
+
+    return {
+      ok: true,
+      id: data.id,
+      message: "Tu mensaje fue recibido correctamente.",
+    };
+  } catch (error) {
+    console.error("submitContactMessage exception:", getErrorMessage(error));
+
+    return {
+      ok: false,
+      message: "Ocurrió un error inesperado al guardar tu mensaje.",
     };
   }
 }
