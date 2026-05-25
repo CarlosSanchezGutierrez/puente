@@ -2,30 +2,16 @@ import {
   ArrowRight,
   BadgeCheck,
   CalendarDays,
-  GraduationCap,
   School,
-  Users,
 } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 
-const quickMetrics = [
-  {
-    label: "Preparatorias",
-    value: "Meta 10",
-  },
-  {
-    label: "Estudiantes",
-    value: "Meta 1,000",
-  },
-  {
-    label: "Areas vocacionales",
-    value: "6+",
-  },
-  {
-    label: "Periodo",
-    value: "Ago-Dic 2026",
-  },
+const metrics = [
+  { label: "Preparatorias", value: "Meta 10" },
+  { label: "Estudiantes", value: "Meta 1,000" },
+  { label: "Familias vocacionales", value: "6+" },
+  { label: "Periodo", value: "Ago-Dic 2026" },
 ];
 
 export function VocationalEventFeature() {
@@ -33,7 +19,7 @@ export function VocationalEventFeature() {
     <section className="mx-auto max-w-7xl px-6 pb-6 pt-10 md:pt-14">
       <Card className="overflow-hidden border-[#d7dedf] bg-white/78 shadow-sm">
         <CardContent className="p-0">
-          <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
             <div className="p-6 md:p-9">
               <div className="mb-6 flex w-fit items-center gap-2 rounded-full border border-[#c7d2df] bg-[#fbfaf7] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#10233f]">
                 <CalendarDays className="size-4" />
@@ -46,7 +32,7 @@ export function VocationalEventFeature() {
 
               <p className="mt-6 max-w-2xl text-lg leading-8 text-[#425875]">
                 Un programa para acercar estudiantes de preparatoria a carreras, universidades
-                y profesiones mediante conversaciones honestas con universitarios, practicantes,
+                y profesiones mediante conversaciones con universitarios, practicantes,
                 profesionistas, profesores, directivos y orientadores vocacionales.
               </p>
 
@@ -75,14 +61,14 @@ export function VocationalEventFeature() {
                     Impacto medible
                   </p>
                   <p className="mt-2 text-sm leading-6 text-[#c9d8e8]">
-                    El programa iniciara con metas y despues reportara avances reales.
+                    El programa inicia con metas y despues reportara avances reales.
                   </p>
                 </div>
                 <School className="size-8 text-[#d7e7f6]" />
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                {quickMetrics.map((metric) => (
+                {metrics.map((metric) => (
                   <div
                     className="rounded-[1.25rem] border border-white/15 bg-white/10 p-4"
                     key={metric.label}
