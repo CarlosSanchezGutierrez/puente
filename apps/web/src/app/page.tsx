@@ -1,7 +1,9 @@
 ﻿import { ArrowRight, Braces, GraduationCap, HeartHandshake, Microscope, PlayCircle } from "lucide-react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SiteShell } from "@/components/site/site-shell";
 import { siteConfig } from "@/lib/site";
 
 const modules = [
@@ -32,34 +34,17 @@ const modules = [
 ];
 
 const actions = [
-  "Solicitar apoyo para una ONG",
-  "Aplicar como voluntario",
-  "Solicitar un libro",
-  "Unirse a talleres y eventos",
-  "Contribuir a proyectos open source",
-  "Proponer una investigación o guía",
+  { label: "Solicitar apoyo para una ONG", href: "/ongs" },
+  { label: "Aplicar como voluntario", href: "/voluntariado" },
+  { label: "Solicitar un libro", href: "/biblioteca" },
+  { label: "Unirse a talleres y eventos", href: "/eventos" },
+  { label: "Contribuir a proyectos open source", href: "/recursos" },
+  { label: "Proponer una investigación o guía", href: "/recursos" },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f7f4ed] text-[#10233f]">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-        <a className="text-xl font-semibold tracking-[0.22em]" href="#">
-          PUENTE
-        </a>
-
-        <nav className="hidden items-center gap-8 text-sm text-[#334866] md:flex">
-          <a href="#que-es">Qué es</a>
-          <a href="#areas">Áreas</a>
-          <a href="#principios">Principios</a>
-          <a href="#participar">Participar</a>
-        </nav>
-
-        <Button className="rounded-full bg-[#10233f] px-5 text-white hover:bg-[#1b365f]">
-          Contacto
-        </Button>
-      </header>
-
+    <SiteShell>
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
         <div className="flex flex-col justify-center">
           <Badge className="mb-6 w-fit rounded-full border-[#c7d2df] bg-white/70 px-4 py-1 text-[#10233f]">
@@ -77,16 +62,19 @@ export default function Home() {
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <Button className="rounded-full bg-[#10233f] px-6 py-6 text-white hover:bg-[#1b365f]">
-              Quiero participar
-              <ArrowRight className="ml-2 size-4" />
+            <Button asChild className="rounded-full bg-[#10233f] px-6 py-6 text-white hover:bg-[#1b365f]">
+              <Link href="/voluntariado">
+                Quiero participar
+                <ArrowRight className="ml-2 size-4" />
+              </Link>
             </Button>
 
             <Button
+              asChild
               variant="outline"
               className="rounded-full border-[#c7d2df] bg-white/70 px-6 py-6 text-[#10233f] hover:bg-white"
             >
-              Ver proyectos
+              <Link href="/ongs">Solicitar apoyo</Link>
             </Button>
           </div>
         </div>
@@ -108,20 +96,21 @@ export default function Home() {
 
             <div className="mt-6 grid gap-3">
               {actions.slice(0, 4).map((action) => (
-                <div
-                  key={action}
+                <Link
+                  key={action.label}
+                  href={action.href}
                   className="flex items-center justify-between rounded-2xl border border-[#e1e5e8] bg-[#fbfaf7] px-4 py-3 text-sm text-[#334866]"
                 >
-                  <span>{action}</span>
+                  <span>{action.label}</span>
                   <ArrowRight className="size-4" />
-                </div>
+                </Link>
               ))}
             </div>
           </CardContent>
         </Card>
       </section>
 
-      <section id="que-es" className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-[#60738c]">
@@ -148,16 +137,14 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="areas" className="mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-10 flex items-end justify-between gap-6">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.24em] text-[#60738c]">
-              Áreas
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
-              Cuatro formas de construir.
-            </h2>
-          </div>
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-10">
+          <p className="text-sm font-medium uppercase tracking-[0.24em] text-[#60738c]">
+            Áreas
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
+            Cuatro formas de construir.
+          </h2>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -177,7 +164,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="principios" className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-10">
           <p className="text-sm font-medium uppercase tracking-[0.24em] text-[#60738c]">
             Principios
@@ -198,43 +185,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <section id="participar" className="mx-auto max-w-7xl px-6 py-16">
-        <div className="rounded-[2rem] bg-[#10233f] p-8 text-white md:p-12">
-          <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.24em] text-[#b7c8dc]">
-                Participar
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] md:text-5xl">
-                El primer paso es conectar personas con formas concretas de ayudar.
-              </h2>
-            </div>
-
-            <div className="grid gap-3">
-              {actions.map((action) => (
-                <div
-                  key={action}
-                  className="flex items-center justify-between rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-[#edf5ff]"
-                >
-                  <span>{action}</span>
-                  <ArrowRight className="size-4" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-10 text-sm text-[#60738c] md:flex-row md:items-center md:justify-between">
-        <p>© 2026 Puente. Tecnología, comunidad e infraestructura social.</p>
-        <div className="flex gap-5">
-          <a href="#">GitHub</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Contacto</a>
-        </div>
-      </footer>
-    </main>
+    </SiteShell>
   );
 }
-
