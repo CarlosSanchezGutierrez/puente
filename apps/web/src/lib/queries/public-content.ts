@@ -62,7 +62,8 @@ export async function listPublicBooks(): Promise<PublicBook[]> {
     )
     .order("is_featured", { ascending: false })
     .order("sort_order", { ascending: true })
-    .order("title", { ascending: true });
+    .order("title", { ascending: true })
+    .limit(500);
 
   if (error) {
     console.error("listPublicBooks error:", error);
@@ -151,7 +152,7 @@ export async function listPublishedResources(): Promise<PublicResource[]> {
 
 export function formatEventDate(value: string | null) {
   if (!value) {
-    return "Próximamente";
+    return "PrÃ³ximamente";
   }
 
   return new Intl.DateTimeFormat("es-MX", {

@@ -3,7 +3,7 @@ import { SiteShell } from "@/components/site/site-shell";
 import { Badge } from "@/components/ui/badge";
 import { listPublicBooks } from "@/lib/queries/public-content";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Biblioteca",
