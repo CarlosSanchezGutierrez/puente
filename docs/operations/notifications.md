@@ -1,22 +1,49 @@
 # Admin Notifications
 
-Puente can send internal email notifications when public forms are submitted.
+Puente can send internal notifications when public forms are submitted.
 
-## Provider
+## Email notifications
 
-The current provider is Resend.
-
-## Required environment variables
+Provider:
 
 ```txt
+Resend
+
+Required variables:
+
 RESEND_API_KEY=
-ADMIN_EMAIL=
+ADMIN_EMAILS=
 NOTIFICATION_FROM_EMAIL=
+
+Example:
+
+ADMIN_EMAILS=A01412419@tec.mx,carlossg132004@gmail.com,carlos.sanchez.gtz.it@gmail.com
+
+Puente sends one separate email per recipient so internal emails are not exposed to each other.
+
+SMS notifications
+
+Provider:
+
+Twilio Programmable Messaging
+
+Required variables:
+
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_FROM_PHONE_NUMBER=
+ADMIN_PHONE_NUMBERS=
+
+Example:
+
+ADMIN_PHONE_NUMBERS=+528333674769
 Behavior
 
-If RESEND_API_KEY or ADMIN_EMAIL is missing, notifications are skipped.
+If email variables are missing, email notifications are skipped.
 
-The form submission still succeeds.
+If Twilio variables are missing, SMS notifications are skipped.
+
+The form submission still succeeds even if notifications fail.
 
 Current notifications
 volunteer applications
@@ -24,8 +51,10 @@ NGO requests
 book requests
 event registrations
 contact messages
-Recommended production setup
+Production notes
 
-Use a verified sending domain before public launch.
+Use a verified Resend domain before public launch.
 
-Until then, Resend's onboarding sender can be used for development/testing.
+Use a Twilio sender that is approved for the destination country.
+
+Keep API keys only in Vercel environment variables.
