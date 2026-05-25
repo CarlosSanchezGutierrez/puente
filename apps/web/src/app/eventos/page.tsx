@@ -1,7 +1,7 @@
-﻿import { CalendarDays } from "lucide-react";
+import { CalendarDays } from "lucide-react";
+import { EventRegistrationForm } from "@/components/forms/event-registration-form";
 import { SiteShell } from "@/components/site/site-shell";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { events } from "@/lib/mock-data";
 
@@ -48,9 +48,7 @@ export default function EventosPage() {
                 <p className="mt-2 text-sm text-[#60738c]">{event.date}</p>
                 <p className="mt-5 leading-7 text-[#425875]">{event.description}</p>
 
-                <Button className="mt-6 rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]">
-                  Registrarme
-                </Button>
+                <EventRegistrationForm eventTitle={event.title} />
               </CardContent>
             </Card>
           ))}

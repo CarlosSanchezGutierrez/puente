@@ -12,6 +12,7 @@
     "@base-ui/react": "^1.5.0",
     "@hookform/resolvers": "^5.4.0",
     "@puente/brand": "workspace:^",
+    "@puente/schemas": "workspace:^",
     "@radix-ui/react-slot": "^1.2.4",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.47.10",

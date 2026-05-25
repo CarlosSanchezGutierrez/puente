@@ -1,11 +1,8 @@
-﻿import { HandHeart } from "lucide-react";
+import { HandHeart } from "lucide-react";
+import { VolunteerApplicationForm } from "@/components/forms/volunteer-application-form";
 import { SiteShell } from "@/components/site/site-shell";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { volunteerAreas } from "@/lib/mock-data";
 
 export const metadata = {
@@ -57,32 +54,7 @@ export default function VoluntariadoPage() {
               <h2 className="text-2xl font-semibold tracking-[-0.02em]">
                 Aplicación inicial
               </h2>
-
-              <form className="mt-6 grid gap-5">
-                <div className="grid gap-2">
-                  <Label>Nombre completo</Label>
-                  <Input placeholder="Tu nombre" />
-                </div>
-
-                <div className="grid gap-2">
-                  <Label>Correo</Label>
-                  <Input placeholder="tu@email.com" type="email" />
-                </div>
-
-                <div className="grid gap-2">
-                  <Label>Área de interés</Label>
-                  <Input placeholder="Software, investigación, comunidad, media..." />
-                </div>
-
-                <div className="grid gap-2">
-                  <Label>Motivación</Label>
-                  <Textarea placeholder="Cuéntanos por qué quieres participar." />
-                </div>
-
-                <Button className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]">
-                  Enviar aplicación
-                </Button>
-              </form>
+              <VolunteerApplicationForm />
             </CardContent>
           </Card>
         </div>

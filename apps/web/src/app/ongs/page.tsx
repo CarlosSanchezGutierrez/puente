@@ -1,11 +1,8 @@
-﻿import { Building2 } from "lucide-react";
+import { Building2 } from "lucide-react";
+import { NgoRequestForm } from "@/components/forms/ngo-request-form";
 import { SiteShell } from "@/components/site/site-shell";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { ngoProgramOptions } from "@/lib/mock-data";
 
 export const metadata = {
@@ -53,32 +50,7 @@ export default function OngsPage() {
               <h2 className="text-2xl font-semibold tracking-[-0.02em]">
                 Solicitud inicial
               </h2>
-
-              <form className="mt-6 grid gap-5">
-                <div className="grid gap-2">
-                  <Label>Nombre de la organización</Label>
-                  <Input placeholder="Nombre de la ONG o proyecto social" />
-                </div>
-
-                <div className="grid gap-2">
-                  <Label>Persona de contacto</Label>
-                  <Input placeholder="Nombre completo" />
-                </div>
-
-                <div className="grid gap-2">
-                  <Label>Correo</Label>
-                  <Input placeholder="contacto@organizacion.org" type="email" />
-                </div>
-
-                <div className="grid gap-2">
-                  <Label>Problema o proceso que quieren mejorar</Label>
-                  <Textarea placeholder="Cuéntanos qué hacen hoy, qué problema tienen y qué les gustaría mejorar." />
-                </div>
-
-                <Button className="rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]">
-                  Enviar solicitud
-                </Button>
-              </form>
+              <NgoRequestForm />
             </CardContent>
           </Card>
         </div>

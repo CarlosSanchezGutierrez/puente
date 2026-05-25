@@ -1,7 +1,7 @@
-﻿import { BookOpen, Search } from "lucide-react";
+import { BookOpen, Search } from "lucide-react";
+import { BookRequestForm } from "@/components/forms/book-request-form";
 import { SiteShell } from "@/components/site/site-shell";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { books } from "@/lib/mock-data";
@@ -58,9 +58,7 @@ export default function BibliotecaPage() {
 
                 <p className="mt-5 leading-7 text-[#425875]">{book.description}</p>
 
-                <Button className="mt-6 rounded-full bg-[#10233f] text-white hover:bg-[#1b365f]">
-                  Solicitar libro
-                </Button>
+                <BookRequestForm bookTitle={book.title} />
               </CardContent>
             </Card>
           ))}
