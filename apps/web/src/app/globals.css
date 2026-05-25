@@ -151,3 +151,70 @@ body {
 ::selection {
   background: rgba(16, 35, 63, 0.16);
 }
+/* Puente form polish */
+form input,
+form textarea,
+form select {
+  min-height: 3rem;
+  border-radius: 1rem;
+  border: 1px solid var(--puente-border);
+  background: rgba(251, 250, 247, 0.92);
+  color: var(--puente-ink);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+form textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: rgba(96, 115, 140, 0.78);
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: rgba(16, 35, 63, 0.42);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 0 0 4px rgba(16, 35, 63, 0.08);
+  outline: none;
+}
+
+form label {
+  color: var(--puente-ink);
+}
+
+form button[type="submit"] {
+  min-height: 3rem;
+  border-radius: 999px;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+form button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(16, 35, 63, 0.14);
+}
+
+form button[type="submit"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  form input,
+  form textarea,
+  form select,
+  form button[type="submit"] {
+    font-size: 16px;
+  }
+}
