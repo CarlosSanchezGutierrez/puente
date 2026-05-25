@@ -1,3 +1,4 @@
+import { VocationalEventFeature } from "@/components/events/vocational-event-feature";
 import {
   CalendarDays,
   Clock,
@@ -87,6 +88,7 @@ export default async function EventosPage() {
 
   return (
     <SiteShell>
+      <VocationalEventFeature />
       <section className="relative overflow-hidden">
         <div className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(circle_at_top_left,rgba(65,105,150,0.22),transparent_38%),linear-gradient(180deg,#f7f4ed_0%,#f3efe6_100%)]" />
 

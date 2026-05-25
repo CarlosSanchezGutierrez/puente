@@ -8,6 +8,7 @@ const routes = [
   { path: "/ongs", priority: 0.9, changeFrequency: "monthly" },
   { path: "/voluntariado", priority: 0.85, changeFrequency: "monthly" },
   { path: "/eventos", priority: 0.8, changeFrequency: "daily" },
+  { path: "/eventos/puente-vocacional-2026", priority: 0.82, changeFrequency: "monthly" },
   { path: "/recursos", priority: 0.8, changeFrequency: "weekly" },
   { path: "/contacto", priority: 0.7, changeFrequency: "monthly" },
   { path: "/login", priority: 0.45, changeFrequency: "yearly" },
