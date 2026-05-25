@@ -54,13 +54,21 @@ export default async function CuentaPage() {
     redirect("/login?next=/cuenta");
   }
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name,email,avatar_url,provider,role")
+    .eq("id", user.id)
+    .maybeSingle();
+
   const displayName =
+    profile?.full_name ??
     user.user_metadata?.full_name ??
     user.user_metadata?.name ??
     user.email ??
     "Usuario Puente";
 
-  const provider = user.app_metadata?.provider ?? "auth";
+  const provider = profile?.provider ?? user.app_metadata?.provider ?? "auth";
+  const email = profile?.email ?? user.email ?? "Correo no disponible";
 
   return (
     <SiteShell>
@@ -83,8 +91,8 @@ export default async function CuentaPage() {
               </h1>
 
               <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875] md:text-xl md:leading-9">
-                Este panel ser&aacute; la base para dar seguimiento a tus solicitudes, eventos,
-                libros y participaci&oacute;n dentro de Puente.
+                Este panel sera la base para dar seguimiento a tus solicitudes, eventos,
+                libros y participacion dentro de Puente.
               </p>
 
               <div className="mt-8">
@@ -97,17 +105,21 @@ export default async function CuentaPage() {
                 <ShieldCheck className="mb-10 size-8 text-[#d7e7f6]" />
 
                 <p className="font-[var(--font-serif)] text-3xl font-semibold leading-10 tracking-[-0.04em] md:text-4xl md:leading-[1.08]">
-                  La cuenta ya existe. Ahora falta conectar cada accion publica con tu historial.
+                  Tu cuenta ya esta lista. El siguiente paso sera conectar formularios y solicitudes con tu historial.
                 </p>
 
                 <div className="mt-8 grid gap-3 text-sm text-[#c9d8e8]">
                   <div className="flex gap-3">
                     <Mail className="mt-0.5 size-4 shrink-0 text-[#d7e7f6]" />
-                    <span>{user.email ?? "Correo no disponible"}</span>
+                    <span>{email}</span>
                   </div>
                   <div className="flex gap-3">
                     <UserRound className="mt-0.5 size-4 shrink-0 text-[#d7e7f6]" />
                     <span>Proveedor: {provider}</span>
+                  </div>
+                  <div className="flex gap-3">
+                    <ShieldCheck className="mt-0.5 size-4 shrink-0 text-[#d7e7f6]" />
+                    <span>Rol: {profile?.role ?? "member"}</span>
                   </div>
                 </div>
               </div>
@@ -128,7 +140,7 @@ export default async function CuentaPage() {
 
                   <p className="mt-3 leading-7 text-[#425875]">{section.description}</p>
 
-                  <p className="mt-5 text-sm font-medium text-[#60738c]">Pr&oacute;ximamente</p>
+                  <p className="mt-5 text-sm font-medium text-[#60738c]">Proximamente</p>
                 </CardContent>
               </Card>
             ))}

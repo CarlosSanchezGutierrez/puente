@@ -1,9 +1,11 @@
 "use client";
 
 import { ArrowRight, LogIn, Menu, UserRound, X } from "lucide-react";
+import type { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/browser";
 
 const navItems = [
   { href: "/biblioteca", label: "Biblioteca" },
@@ -11,7 +13,6 @@ const navItems = [
   { href: "/ongs", label: "ONG's" },
   { href: "/eventos", label: "Eventos" },
   { href: "/recursos", label: "Recursos" },
-  { href: "/cuenta", label: "Cuenta" },
 ];
 
 function isActivePath(pathname: string, href: string) {
@@ -21,6 +22,7 @@ function isActivePath(pathname: string, href: string) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -33,6 +35,31 @@ export function SiteHeader() {
       document.body.style.overflow = previousOverflow;
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    let isMounted = true;
+    const supabase = createClient();
+
+    supabase.auth.getUser().then(({ data }) => {
+      if (isMounted) {
+        setUser(data.user);
+      }
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  const accountHref = user ? "/cuenta" : "/login";
+  const accountLabel = user ? "Mi cuenta" : "Iniciar sesi&oacute;n";
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#d7dedf]/80 bg-[#f7f4ed]/88 backdrop-blur-xl">
@@ -69,10 +96,10 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 xl:flex">
           <Link
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#d7dedf] bg-white/70 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-            href="/login"
+            href={accountHref}
           >
-            <LogIn className="mr-2 size-4" />
-            Iniciar sesi&oacute;n
+            {user ? <UserRound className="mr-2 size-4" /> : <LogIn className="mr-2 size-4" />}
+            <span dangerouslySetInnerHTML={{ __html: accountLabel }} />
           </Link>
 
           <Link
@@ -121,11 +148,11 @@ export function SiteHeader() {
           <div className="mt-4 grid gap-2">
             <Link
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f]"
-              href="/login"
+              href={accountHref}
               onClick={() => setIsOpen(false)}
             >
-              <UserRound className="mr-2 size-4" />
-              Iniciar sesi&oacute;n
+              {user ? <UserRound className="mr-2 size-4" /> : <LogIn className="mr-2 size-4" />}
+              <span dangerouslySetInnerHTML={{ __html: accountLabel }} />
             </Link>
 
             <Link

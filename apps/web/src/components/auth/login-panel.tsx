@@ -16,8 +16,10 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/browser";
 
+type OAuthProvider = "google" | "azure" | "github" | "apple" | "linkedin_oidc" | "facebook";
+
 const providers: Array<{
-  id: Provider;
+  id: OAuthProvider;
   label: string;
   description: string;
   icon: LucideIcon;
@@ -69,14 +71,14 @@ const providers: Array<{
 
 export function LoginPanel() {
   const searchParams = useSearchParams();
-  const [loadingProvider, setLoadingProvider] = useState<Provider | null>(null);
+  const [loadingProvider, setLoadingProvider] = useState<OAuthProvider | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(
     searchParams.get("error"),
   );
 
   const nextPath = searchParams.get("next") ?? "/cuenta";
 
-  async function signIn(provider: Provider) {
+  async function signIn(provider: OAuthProvider) {
     setErrorMessage(null);
     setLoadingProvider(provider);
 
@@ -86,7 +88,7 @@ export function LoginPanel() {
     )}`;
 
     const { error } = await supabase.auth.signInWithOAuth({
-      provider,
+      provider: provider as Provider,
       options: {
         redirectTo,
       },
