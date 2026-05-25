@@ -22,10 +22,6 @@ export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     const previousOverflow = document.body.style.overflow;
 
     if (isOpen) {
@@ -40,7 +36,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#d7dedf]/80 bg-[#f7f4ed]/88 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
-        <Link className="group flex min-w-0 items-center gap-3" href="/">
+        <Link className="group flex min-w-0 items-center gap-3" href="/" onClick={() => setIsOpen(false)}>
           <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#10233f]/20 bg-white/75 text-sm font-semibold text-[#10233f] shadow-sm">
             P
           </span>
@@ -112,6 +108,7 @@ export function SiteHeader() {
                   }`}
                   href={item.href}
                   key={item.href}
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
@@ -123,6 +120,7 @@ export function SiteHeader() {
             <Link
               className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f]"
               href="/contacto"
+              onClick={() => setIsOpen(false)}
             >
               Contacto
             </Link>
@@ -130,6 +128,7 @@ export function SiteHeader() {
             <Link
               className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white"
               href="/ongs"
+              onClick={() => setIsOpen(false)}
             >
               Solicitar apoyo
               <ArrowRight className="ml-2 size-4" />
