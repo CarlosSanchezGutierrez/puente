@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+const privacyAcceptedSchema = z.boolean().refine((value) => value === true, {
+  message: "Debes aceptar el aviso de privacidad para continuar.",
+});
+
 export const volunteerApplicationSchema = z.object({
   fullName: z.string().min(2, "Escribe tu nombre completo.").max(120),
   email: z.string().email("Escribe un correo válido."),
@@ -17,6 +21,7 @@ export const volunteerApplicationSchema = z.object({
     .max(40, "Máximo 40 horas por semana."),
   linkedinUrl: z.string().url("Escribe una URL válida.").optional().or(z.literal("")),
   githubUrl: z.string().url("Escribe una URL válida.").optional().or(z.literal("")),
+  privacyAccepted: privacyAcceptedSchema,
 });
 
 export const ngoRequestSchema = z.object({
@@ -37,6 +42,7 @@ export const ngoRequestSchema = z.object({
   approximateBudgetMxn: z.coerce.number().int().min(0).optional().or(z.literal("")),
   wantsAnnualFreeProgram: z.boolean(),
   wantsSocialDiscountQuote: z.boolean(),
+  privacyAccepted: privacyAcceptedSchema,
 });
 
 export const bookRequestSchema = z.object({
@@ -44,6 +50,7 @@ export const bookRequestSchema = z.object({
   requesterName: z.string().min(2, "Escribe tu nombre.").max(120),
   requesterEmail: z.string().email("Escribe un correo válido."),
   reason: z.string().min(10, "Cuéntanos brevemente por qué lo quieres solicitar.").max(500),
+  privacyAccepted: privacyAcceptedSchema,
 });
 
 export const eventRegistrationSchema = z.object({
@@ -51,6 +58,7 @@ export const eventRegistrationSchema = z.object({
   fullName: z.string().min(2, "Escribe tu nombre.").max(120),
   email: z.string().email("Escribe un correo válido."),
   note: z.string().max(500).optional().or(z.literal("")),
+  privacyAccepted: privacyAcceptedSchema,
 });
 
 export const contactMessageSchema = z.object({
@@ -58,6 +66,7 @@ export const contactMessageSchema = z.object({
   email: z.string().email("Escribe un correo válido."),
   subject: z.string().max(160).optional().or(z.literal("")),
   message: z.string().min(10, "Escribe un mensaje más completo.").max(1500),
+  privacyAccepted: privacyAcceptedSchema,
 });
 
 export type VolunteerApplicationInput = z.infer<typeof volunteerApplicationSchema>;
