@@ -65,3 +65,6 @@ Thumbs.db
 
 # misc
 *.local
+
+# Local book cover assets
+assets/book-covers/
