@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { listPublicBooks } from "@/lib/queries/public-content";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Biblioteca",
 };
@@ -28,8 +30,8 @@ export default async function BibliotecaPage() {
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Un catálogo de libros para aprender, compartir conocimiento y formar círculos
-            de lectura alrededor de tecnología, idiomas, ciencia, historia y desarrollo personal.
+            Un catÃ¡logo de libros para aprender, compartir conocimiento y formar cÃ­rculos
+            de lectura alrededor de tecnologÃ­a, idiomas, ciencia, historia y desarrollo personal.
           </p>
         </div>
 
@@ -37,14 +39,14 @@ export default async function BibliotecaPage() {
           <Search className="size-5 text-[#60738c]" />
           <Input
             className="border-0 bg-transparent shadow-none focus-visible:ring-0"
-            placeholder="Buscar por título, autor o categoría..."
+            placeholder="Buscar por tÃ­tulo, autor o categorÃ­a..."
           />
         </div>
 
         {books.length === 0 ? (
           <Card className="mt-10 border-[#d7dedf] bg-white/75 shadow-sm">
             <CardContent className="p-7 text-[#425875]">
-              Todavía no hay libros publicados en Supabase. Agrega libros desde el seed o desde el panel de Supabase.
+              TodavÃ­a no hay libros publicados en Supabase. Agrega libros desde el seed o desde el panel de Supabase.
             </CardContent>
           </Card>
         ) : (
@@ -66,7 +68,7 @@ export default async function BibliotecaPage() {
                   </div>
 
                   <p className="mt-5 leading-7 text-[#425875]">
-                    {book.description ?? "Descripción pendiente."}
+                    {book.description ?? "DescripciÃ³n pendiente."}
                   </p>
 
                   <BookRequestForm bookTitle={book.title} />

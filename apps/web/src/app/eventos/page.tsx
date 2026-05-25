@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatEventDate, listPublishedEvents } from "@/lib/queries/public-content";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Eventos",
 };
@@ -28,14 +30,14 @@ export default async function EventosPage() {
 
           <p className="text-lg leading-8 text-[#425875]">
             Actividades gratuitas o comunitarias para compartir conocimiento, orientar
-            estudiantes, preparar oportunidades y fortalecer redes técnicas y humanas.
+            estudiantes, preparar oportunidades y fortalecer redes tÃ©cnicas y humanas.
           </p>
         </div>
 
         {events.length === 0 ? (
           <Card className="mt-12 border-[#d7dedf] bg-white/75 shadow-sm">
             <CardContent className="p-7 text-[#425875]">
-              Todavía no hay eventos publicados en Supabase.
+              TodavÃ­a no hay eventos publicados en Supabase.
             </CardContent>
           </Card>
         ) : (
@@ -58,7 +60,7 @@ export default async function EventosPage() {
 
                   <p className="mt-2 text-sm text-[#60738c]">{formatEventDate(event.startsAt)}</p>
                   <p className="mt-5 leading-7 text-[#425875]">
-                    {event.description ?? "Descripción pendiente."}
+                    {event.description ?? "DescripciÃ³n pendiente."}
                   </p>
 
                   <EventRegistrationForm eventTitle={event.title} />

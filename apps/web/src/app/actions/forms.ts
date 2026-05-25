@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import {
   bookRequestSchema,
   contactMessageSchema,
@@ -60,6 +61,81 @@ function getErrorMessage(error: unknown): string {
   return "Error desconocido.";
 }
 
+async function getRequestMetadata() {
+  const headerStore = await headers();
+
+  const forwardedFor = headerStore.get("x-forwarded-for");
+  const realIp = headerStore.get("x-real-ip");
+  const userAgent = headerStore.get("user-agent");
+
+  const ipAddress = forwardedFor?.split(",")[0]?.trim() || realIp || "unknown";
+
+  return {
+    ipAddress,
+    userAgent,
+  };
+}
+
+async function enforceRateLimit({
+  action,
+  identifier,
+  maxRequests = 5,
+  windowMinutes = 10,
+}: {
+  action: string;
+  identifier: string;
+  maxRequests?: number;
+  windowMinutes?: number;
+}): Promise<FormActionResult | null> {
+  const supabase = createSupabaseAdminClient();
+  const metadata = await getRequestMetadata();
+
+  const normalizedIdentifier = identifier.trim().toLowerCase() || "anonymous";
+  const combinedIdentifier = `${normalizedIdentifier}:${metadata.ipAddress}`;
+  const since = new Date(Date.now() - windowMinutes * 60 * 1000).toISOString();
+
+  const { count, error: countError } = await supabase
+    .from("rate_limit_events")
+    .select("id", { count: "exact", head: true })
+    .eq("action", action)
+    .eq("identifier", combinedIdentifier)
+    .gte("created_at", since);
+
+  if (countError) {
+    console.error("rate limit count error:", countError);
+
+    return {
+      ok: false,
+      message: "No pudimos validar el envío. Intenta de nuevo en unos minutos.",
+    };
+  }
+
+  if ((count ?? 0) >= maxRequests) {
+    return {
+      ok: false,
+      message: "Demasiados intentos recientes. Intenta de nuevo en unos minutos.",
+    };
+  }
+
+  const { error: insertError } = await supabase.from("rate_limit_events").insert({
+    action,
+    identifier: combinedIdentifier,
+    ip_address: metadata.ipAddress,
+    user_agent: metadata.userAgent,
+  });
+
+  if (insertError) {
+    console.error("rate limit insert error:", insertError);
+
+    return {
+      ok: false,
+      message: "No pudimos validar el envío. Intenta de nuevo en unos minutos.",
+    };
+  }
+
+  return null;
+}
+
 export async function submitVolunteerApplication(
   input: VolunteerApplicationInput,
 ): Promise<FormActionResult> {
@@ -68,8 +144,17 @@ export async function submitVolunteerApplication(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La aplicaciÃ³n tiene datos incompletos o invÃ¡lidos.",
+      message: "La aplicación tiene datos incompletos o inválidos.",
     };
+  }
+
+  const rateLimitResult = await enforceRateLimit({
+    action: "volunteer_application",
+    identifier: parsed.data.email,
+  });
+
+  if (rateLimitResult) {
+    return rateLimitResult;
   }
 
   try {
@@ -99,7 +184,7 @@ export async function submitVolunteerApplication(
 
       return {
         ok: false,
-        message: "No pudimos guardar tu aplicaciÃ³n. Intenta de nuevo.",
+        message: "No pudimos guardar tu aplicación. Intenta de nuevo.",
       };
     }
 
@@ -108,14 +193,14 @@ export async function submitVolunteerApplication(
     return {
       ok: true,
       id: data.id,
-      message: "Tu aplicaciÃ³n de voluntariado fue recibida correctamente.",
+      message: "Tu aplicación de voluntariado fue recibida correctamente.",
     };
   } catch (error) {
     console.error("submitVolunteerApplication exception:", getErrorMessage(error));
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar tu aplicaciÃ³n.",
+      message: "Ocurrió un error inesperado al guardar tu aplicación.",
     };
   }
 }
@@ -126,8 +211,17 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La solicitud de la organizaciÃ³n tiene datos incompletos o invÃ¡lidos.",
+      message: "La solicitud de la organización tiene datos incompletos o inválidos.",
     };
+  }
+
+  const rateLimitResult = await enforceRateLimit({
+    action: "ngo_request",
+    identifier: parsed.data.contactEmail,
+  });
+
+  if (rateLimitResult) {
+    return rateLimitResult;
   }
 
   try {
@@ -168,14 +262,14 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
     return {
       ok: true,
       id: data.id,
-      message: "La solicitud de la organizaciÃ³n fue recibida correctamente.",
+      message: "La solicitud de la organización fue recibida correctamente.",
     };
   } catch (error) {
     console.error("submitNgoRequest exception:", getErrorMessage(error));
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar la solicitud.",
+      message: "Ocurrió un error inesperado al guardar la solicitud.",
     };
   }
 }
@@ -186,8 +280,17 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
   if (!parsed.success) {
     return {
       ok: false,
-      message: "La solicitud del libro tiene datos incompletos o invÃ¡lidos.",
+      message: "La solicitud del libro tiene datos incompletos o inválidos.",
     };
+  }
+
+  const rateLimitResult = await enforceRateLimit({
+    action: "book_request",
+    identifier: parsed.data.requesterEmail,
+  });
+
+  if (rateLimitResult) {
+    return rateLimitResult;
   }
 
   try {
@@ -202,7 +305,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
     if (!book?.id) {
       return {
         ok: false,
-        message: "No encontramos ese libro en el catÃ¡logo.",
+        message: "No encontramos ese libro en el catálogo.",
       };
     }
 
@@ -238,7 +341,7 @@ export async function submitBookRequest(input: BookRequestInput): Promise<FormAc
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar la solicitud del libro.",
+      message: "Ocurrió un error inesperado al guardar la solicitud del libro.",
     };
   }
 }
@@ -251,8 +354,17 @@ export async function submitEventRegistration(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "El registro al evento tiene datos incompletos o invÃ¡lidos.",
+      message: "El registro al evento tiene datos incompletos o inválidos.",
     };
+  }
+
+  const rateLimitResult = await enforceRateLimit({
+    action: "event_registration",
+    identifier: parsed.data.email,
+  });
+
+  if (rateLimitResult) {
+    return rateLimitResult;
   }
 
   try {
@@ -267,7 +379,7 @@ export async function submitEventRegistration(
     if (!event?.id) {
       return {
         ok: false,
-        message: "No encontramos ese evento en el catÃ¡logo.",
+        message: "No encontramos ese evento en el catálogo.",
       };
     }
 
@@ -302,7 +414,7 @@ export async function submitEventRegistration(
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar tu registro.",
+      message: "Ocurrió un error inesperado al guardar tu registro.",
     };
   }
 }
@@ -315,8 +427,17 @@ export async function submitContactMessage(
   if (!parsed.success) {
     return {
       ok: false,
-      message: "El mensaje tiene datos incompletos o invÃ¡lidos.",
+      message: "El mensaje tiene datos incompletos o inválidos.",
     };
+  }
+
+  const rateLimitResult = await enforceRateLimit({
+    action: "contact_message",
+    identifier: parsed.data.email,
+  });
+
+  if (rateLimitResult) {
+    return rateLimitResult;
   }
 
   try {
@@ -354,7 +475,7 @@ export async function submitContactMessage(
 
     return {
       ok: false,
-      message: "OcurriÃ³ un error inesperado al guardar tu mensaje.",
+      message: "Ocurrió un error inesperado al guardar tu mensaje.",
     };
   }
 }
