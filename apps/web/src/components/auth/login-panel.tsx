@@ -1,14 +1,14 @@
 "use client";
 
 import {
-  Apple,
   Building2,
-  Chrome,
-  Facebook,
-  Github,
-  Linkedin,
+  BriefcaseBusiness,
+  Code2,
+  Globe2,
   Loader2,
   ShieldCheck,
+  Smartphone,
+  Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Provider } from "@supabase/supabase-js";
@@ -27,7 +27,7 @@ const providers: Array<{
     id: "google",
     label: "Continuar con Google",
     description: "Recomendado para estudiantes, comunidad y usuarios generales.",
-    icon: Chrome,
+    icon: Globe2,
     priority: "primary",
   },
   {
@@ -41,28 +41,28 @@ const providers: Array<{
     id: "github",
     label: "Continuar con GitHub",
     description: "Alineado con perfiles tecnicos, software y voluntariado.",
-    icon: Github,
+    icon: Code2,
     priority: "primary",
   },
   {
     id: "apple",
     label: "Continuar con Apple",
     description: "Opcion util para usuarios iOS y ecosistema Apple.",
-    icon: Apple,
+    icon: Smartphone,
     priority: "secondary",
   },
   {
     id: "linkedin_oidc",
     label: "Continuar con LinkedIn",
     description: "Pensado para perfil profesional, mentores y networking.",
-    icon: Linkedin,
+    icon: BriefcaseBusiness,
     priority: "secondary",
   },
   {
     id: "facebook",
     label: "Continuar con Facebook",
     description: "Opcion para comunidad general y participacion social.",
-    icon: Facebook,
+    icon: Users,
     priority: "secondary",
   },
 ];
