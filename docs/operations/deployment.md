@@ -2,30 +2,29 @@
 
 Puente Web is deployed with Vercel.
 
-## Recommended Vercel settings
+## Correct Vercel configuration
 
-Import the GitHub repository:
+Use this configuration:
 
 ```txt
-CarlosSanchezGutierrez/puente
-
-Use these settings:
-
 Framework Preset: Next.js
 Root Directory: apps/web
 Install Command: pnpm install
 Build Command: pnpm build
-Output Directory: .next
+Output Directory: leave empty
+Important
 
-If Vercel fails to resolve workspace packages such as @puente/brand, enable:
+Do not set:
 
-Include source files outside of the Root Directory
-
-or use the repository root as the project root with:
-
-Install Command: pnpm install
-Build Command: pnpm --filter web build
 Output Directory: apps/web/.next
+
+If Root Directory is already apps/web, setting Output Directory to apps/web/.next makes Vercel look for:
+
+apps/web/apps/web/.next
+
+That causes:
+
+Routes Manifest Could Not Be Found
 Required environment variables
 
 Set these in Vercel Project Settings → Environment Variables:
@@ -35,16 +34,30 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 PUENTE_ADMIN_TOKEN=
-Production values
-NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-publishable-or-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-PUENTE_ADMIN_TOKEN=temporary-admin-token
-Important
+Security rules
 
 Never commit .env.local.
 
 Never expose SUPABASE_SERVICE_ROLE_KEY to the client.
 
-The service role key is only used in server-side admin routes.
+Only variables prefixed with NEXT_PUBLIC_ can be exposed to the browser.
+
+Deployment checklist
+
+Before deploying:
+
+pnpm --filter web build
+pnpm --filter mobile typecheck
+git status
+
+After deploying, test:
+
+/
+ /biblioteca
+ /eventos
+ /recursos
+ /voluntariado
+ /ongs
+ /contacto
+ /admin
+ /admin/dashboard
