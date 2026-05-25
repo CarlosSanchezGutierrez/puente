@@ -1,4 +1,4 @@
-﻿-- Puente seed data
+-- Puente seed data
 -- Safe sample content for local/dev environments.
 
 insert into public.books (title, author, category, language, description, status, location_label)

@@ -1,4 +1,4 @@
-﻿-- Puente initial database schema
+-- Puente initial database schema
 -- Purpose: community, books, events, volunteers, NGOs and social software requests.
 
 create extension if not exists "pgcrypto";
