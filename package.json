@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "A civic technology platform for social software, open-source tools, community learning, and research projects.",
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@10.3.0",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
