@@ -51,3 +51,11 @@ Se planean tres flujos de interes:
 - Correo de seguimiento
 
 Estos formularios podran conectarse despues a Supabase para medir interes, asistencia, conexiones vocacionales y seguimiento.
+## Registro publico
+
+```txt
+/eventos/puente-vocacional-2026/registro
+Tabla Supabase
+public.vocational_interest_submissions
+
+Esta tabla registra preparatorias, mentores y estudiantes interesados en el programa.

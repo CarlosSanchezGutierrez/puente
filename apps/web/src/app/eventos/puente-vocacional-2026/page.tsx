@@ -159,17 +159,17 @@ export default function PuenteVocacionalPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
-                href="/contacto"
+                href="/eventos/puente-vocacional-2026/registro"
               >
-                Proponer preparatoria
+                Registrar interes
                 <ArrowRight className="ml-2 size-4" />
               </Link>
 
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-                href="/voluntariado"
+                href="/eventos/puente-vocacional-2026/registro"
               >
-                Participar como mentor
+                Registrar interes
               </Link>
             </div>
           </div>
@@ -327,17 +327,17 @@ export default function PuenteVocacionalPage() {
             <div className="grid gap-3">
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
-                href="/voluntariado"
+                href="/eventos/puente-vocacional-2026/registro"
               >
-                Quiero participar
+                Registrar interes
                 <ArrowRight className="ml-2 size-4" />
               </Link>
 
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-                href="/contacto"
+                href="/eventos/puente-vocacional-2026/registro"
               >
-                Contactar a Puente
+                Registrar interes
               </Link>
             </div>
           </div>

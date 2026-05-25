@@ -47,9 +47,9 @@ export function VocationalEventFeature() {
 
                 <Link
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-                  href="/contacto"
+                  href="/eventos/puente-vocacional-2026/registro"
                 >
-                  Proponer preparatoria
+                  Registrar interes
                 </Link>
               </div>
             </div>
