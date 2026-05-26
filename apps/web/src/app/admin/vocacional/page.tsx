@@ -1,3 +1,4 @@
+import { requireAdminAccess } from "@/lib/admin/access";
 import {
   BadgeCheck,
   BriefcaseBusiness,
@@ -181,6 +182,7 @@ function MetricCard({
 }
 
 export default async function AdminVocacionalPage() {
+  await requireAdminAccess("/admin/vocacional");
   const { submissions, error } = await getSubmissions();
 
   const areas = countAreas(submissions);
@@ -190,6 +192,11 @@ export default async function AdminVocacionalPage() {
   return (
     <SiteShell>
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+        <form method="post" action="/api/admin/logout" className="mb-6 flex justify-end">
+          <button className="rounded-full border border-[#d7dedf] bg-white/75 px-4 py-2 text-sm font-medium text-[#10233f] transition hover:bg-white" type="submit">
+            Cerrar sesion
+          </button>
+        </form>
         <div className="mb-10 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#60738c] md:text-sm">
