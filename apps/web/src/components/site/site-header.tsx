@@ -11,6 +11,7 @@ const navItems = [
   { href: "/servicios", label: "Servicios" },
   { href: "/investigacion", label: "Investigaci\u00f3n" },
   { href: "/biblioteca", label: "Biblioteca" },
+  { href: "/descargar", label: "App" },
   { href: "/nosotros", label: "Equipo" },
 ];
 
