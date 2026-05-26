@@ -17,7 +17,13 @@ export default function manifest(): MetadataRoute.Manifest {
         src: "/brand/puente_impacto_face.png",
         sizes: "512x512",
         type: "image/png",
-        purpose: "any maskable",
+        purpose: "any",
+      },
+      {
+        src: "/brand/puente_impacto_face.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
       },
     ],
   };
