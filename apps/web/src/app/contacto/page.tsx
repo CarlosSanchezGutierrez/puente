@@ -1,3 +1,4 @@
+import { ContactLinks } from "@/components/site/contact-links";
 import {
   ArrowRight,
   BookOpenCheck,
@@ -154,6 +155,7 @@ export default function ContactoPage() {
           </div>
         </div>
       </section>
+          <section className="mx-auto max-w-7xl px-6 pb-16"><ContactLinks variant="card" /></section>
     </SiteShell>
   );
 }

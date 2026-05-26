@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactLinks } from "@/components/site/contact-links";
 
 const mainLinks = [
   { href: "/ongs", label: "ONGs" },
@@ -6,6 +7,7 @@ const mainLinks = [
   { href: "/servicios", label: "Servicios" },
   { href: "/investigacion", label: "Investigacion" },
   { href: "/biblioteca", label: "Biblioteca" },
+  { href: "/descargar", label: "App" },
   { href: "/nosotros", label: "Equipo" },
 ];
 
@@ -24,9 +26,9 @@ export function SiteFooter() {
             Puente Impacto
           </p>
           <p className="mt-3 max-w-md text-sm leading-7 text-[#526981]">
-            Tecnologia, educacion e investigacion aplicada para organizaciones,
-            comunidades y proyectos con impacto social.
+            Tecnologia, educacion e investigacion aplicada para organizaciones, comunidades y proyectos con impacto social.
           </p>
+          <ContactLinks />
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2">
@@ -68,7 +70,7 @@ export function SiteFooter() {
 
       <div className="border-t border-[#d7dedf]">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs leading-6 text-[#526981] sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Puente Impacto.</p>
+          <p>{"\u00a9"} {new Date().getFullYear()} Puente Impacto.</p>
           <p>Proyecto en construccion y mejora continua.</p>
         </div>
       </div>
