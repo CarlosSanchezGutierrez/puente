@@ -1,79 +1,76 @@
 import Link from "next/link";
 
-const footerGroups = [
-  {
-    title: "Plataforma",
-    links: [
-      { href: "/nosotros", label: "Nosotros" },
- { href: "/biblioteca", label: "Biblioteca" },
-      { href: "/voluntariado", label: "Voluntariado" },
-      { href: "/ongs", label: "ONG's" },
-      { href: "/servicios", label: "Servicios" },
-      { href: "/investigacion", label: "Investigación" },
-      { href: "/eventos", label: "Eventos" },
-      { href: "/recursos", label: "Recursos" },
-    ],
-  },
-  {
-    title: "Proyecto",
-    links: [
-      { href: "/contacto", label: "Contacto" },
-      { href: "/admin", label: "Administracion" },
-      { href: "https://github.com/CarlosSanchezGutierrez/puente", label: "GitHub" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { href: "/privacidad", label: "Privacidad" },
-      { href: "/terminos", label: "Terminos" },
-    ],
-  },
+const mainLinks = [
+  { href: "/ongs", label: "ONGs" },
+  { href: "/eventos", label: "Programas" },
+  { href: "/servicios", label: "Servicios" },
+  { href: "/investigacion", label: "Investigación" },
+  { href: "/biblioteca", label: "Biblioteca" },
+  { href: "/nosotros", label: "Equipo" },
+];
+
+const legalLinks = [
+  { href: "/privacidad", label: "Privacidad" },
+  { href: "/terminos", label: "Términos" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 export function SiteFooter() {
   return (
-    <footer className="mt-10 border-t border-[#d7dedf] bg-[#f3efe6]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-[1.3fr_1fr_1fr_1fr] md:py-16">
+    <footer className="border-t border-[#d7dedf] bg-[#f7f4ed]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-[1fr_1.2fr]">
         <div>
-          <Link className="text-lg font-semibold tracking-[0.22em] text-[#10233f]" href="/">
-            PUENTE
-          </Link>
-
-          <p className="mt-5 max-w-sm leading-7 text-[#425875]">
-            Tecnolog&iacute;a, comunidad e infraestructura social para conectar conocimiento,
-            colaboraci&oacute;n y proyectos con utilidad p&uacute;blica.
+          <p className="text-lg font-semibold tracking-[-0.03em] text-[#10233f]">
+            Puente Impacto
           </p>
-
-          <div className="mt-6 rounded-[1.25rem] border border-[#d7dedf] bg-white/55 p-4">
-            <p className="text-sm font-semibold text-[#10233f]">Proyecto en desarrollo</p>
-            <p className="mt-2 text-sm leading-6 text-[#60738c]">
-              Uso comunitario, educativo y social. Algunas funciones pueden cambiar conforme
-              avance la plataforma.
-            </p>
-          </div>
+          <p className="mt-3 max-w-md text-sm leading-7 text-[#60738c]">
+            Tecnología, educación e investigación aplicada para organizaciones,
+            comunidades y proyectos con impacto social.
+          </p>
         </div>
 
-        {footerGroups.map((group) => (
-          <div key={group.title}>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#60738c]">
-              {group.title}
+        <div className="grid gap-8 sm:grid-cols-2">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#60738c]">
+              Secciones
             </p>
-
-            <div className="mt-4 grid gap-3 text-sm text-[#425875]">
-              {group.links.map((link) => (
-                <Link className="transition hover:text-[#10233f]" href={link.href} key={link.href}>
-                  {link.label}
+            <div className="mt-4 grid gap-2">
+              {mainLinks.map((item) => (
+                <Link
+                  className="text-sm font-medium text-[#425875] transition hover:text-[#10233f]"
+                  href={item.href}
+                  key={item.href}
+                >
+                  {item.label}
                 </Link>
               ))}
             </div>
           </div>
-        ))}
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#60738c]">
+              Legal
+            </p>
+            <div className="mt-4 grid gap-2">
+              {legalLinks.map((item) => (
+                <Link
+                  className="text-sm font-medium text-[#425875] transition hover:text-[#10233f]"
+                  href={item.href}
+                  key={item.href}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 border-t border-[#d7dedf] px-6 py-5 text-sm text-[#60738c] md:flex-row md:items-center md:justify-between">
-        <p>&copy; 2026 Puente.</p>
-        <p>Software, lectura, aprendizaje e impacto social.</p>
+      <div className="border-t border-[#d7dedf]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs leading-6 text-[#60738c] sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Puente Impacto.</p>
+          <p>Proyecto en construcción y mejora continua.</p>
+        </div>
       </div>
     </footer>
   );
