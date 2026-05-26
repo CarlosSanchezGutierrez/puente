@@ -2,7 +2,9 @@ import {
   ArrowRight,
   BadgeCheck,
   BookOpenCheck,
+  BrainCircuit,
   HeartPulse,
+  Layers3,
   Microscope,
   Network,
   School,
@@ -11,10 +13,28 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 
 const points = [
-  "Proyectos academicos con impacto social.",
-  "Publicaciones, prototipos y documentacion tecnica.",
-  "Conexion entre estudiantes, profesores y organizaciones.",
-  "Alineacion con salud, educacion, innovacion e infraestructura social.",
+  "Proyectos academicos con problemas reales.",
+  "Evidencia, documentacion, datos y prototipos.",
+  "Posibles salidas: reportes, posters, articulos, demos o guias.",
+  "Alineacion con salud, educacion, innovacion e impacto social.",
+];
+
+const miniAreas = [
+  {
+    title: "Salud",
+    detail: "ODS 3",
+    icon: HeartPulse,
+  },
+  {
+    title: "Innovacion",
+    detail: "ODS 9",
+    icon: Network,
+  },
+  {
+    title: "Educacion",
+    detail: "Aprendizaje aplicado",
+    icon: School,
+  },
 ];
 
 export function ResearchCompactSection() {
@@ -27,15 +47,15 @@ export function ResearchCompactSection() {
               Investigaci&oacute;n
             </p>
             <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
-              Investigaci&oacute;n aplicada y ODS.
+              De proyectos reales a conocimiento aplicable.
             </h2>
           </div>
 
           <div>
             <p className="leading-8 text-[#425875]">
-              Conectamos tecnolog&iacute;a, educaci&oacute;n, salud e impacto social mediante
-              proyectos acad&eacute;micos, documentaci&oacute;n t&eacute;cnica y publicaciones
-              cient&iacute;ficas desarrolladas con estudiantes, profesores y aliados.
+              Puente busca documentar proyectos, ordenar evidencia y convertir iniciativas
+              sociales, educativas o tecnol&oacute;gicas en aprendizajes, reportes y posibles
+              publicaciones acad&eacute;micas.
             </p>
 
             <Link
@@ -68,12 +88,12 @@ export function ResearchFeatureSection() {
               </div>
 
               <h2 className="font-[var(--font-serif)] text-4xl font-semibold leading-[0.98] tracking-[-0.055em] text-white md:text-6xl">
-                Convertir proyectos en conocimiento aplicable.
+                Documentar, medir y aprender de lo que se construye.
               </h2>
 
               <p className="mt-5 text-base leading-8 text-[#c9d8e8] md:text-lg">
-                Puente busca documentar, medir y comunicar proyectos que conectan tecnolog&iacute;a,
-                educaci&oacute;n, salud, infraestructura e impacto social.
+                La investigaci&oacute;n en Puente no se presenta como algo aislado: nace de proyectos,
+                prototipos, datos, comunidades y problemas concretos.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -81,7 +101,7 @@ export function ResearchFeatureSection() {
                   className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-[#10233f] transition hover:bg-[#f3efe6]"
                   href="/investigacion"
                 >
-                  Ver l&iacute;neas de investigaci&oacute;n
+                  Ver l&iacute;neas de trabajo
                   <ArrowRight className="ml-2 size-4" />
                 </Link>
               </div>
@@ -101,23 +121,37 @@ export function ResearchFeatureSection() {
               ))}
 
               <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-[#d7dedf] bg-white/75 p-4">
-                  <HeartPulse className="mb-4 size-5 text-[#10233f]" />
-                  <p className="font-semibold text-[#10233f]">Salud</p>
-                  <p className="mt-1 text-sm leading-6 text-[#60738c]">ODS 3</p>
-                </div>
+                {miniAreas.map((area) => (
+                  <div
+                    className="rounded-2xl border border-[#d7dedf] bg-white/75 p-4"
+                    key={area.title}
+                  >
+                    <area.icon className="mb-4 size-5 text-[#10233f]" />
+                    <p className="font-semibold text-[#10233f]">{area.title}</p>
+                    <p className="mt-1 text-sm leading-6 text-[#60738c]">{area.detail}</p>
+                  </div>
+                ))}
+              </div>
 
-                <div className="rounded-2xl border border-[#d7dedf] bg-white/75 p-4">
-                  <Network className="mb-4 size-5 text-[#10233f]" />
-                  <p className="font-semibold text-[#10233f]">Innovaci&oacute;n</p>
-                  <p className="mt-1 text-sm leading-6 text-[#60738c]">ODS 9</p>
+              <div className="rounded-[1.25rem] border border-[#d7dedf] bg-white/75 p-4">
+                <div className="mb-3 flex items-center gap-2 text-[#10233f]">
+                  <Layers3 className="size-5" />
+                  <p className="font-semibold">Salida flexible</p>
                 </div>
+                <p className="text-sm leading-6 text-[#60738c]">
+                  No todo proyecto necesita terminar en paper. Tambi&eacute;n puede producir reportes,
+                  gu&iacute;as, datasets, posters, tableros o documentaci&oacute;n t&eacute;cnica.
+                </p>
+              </div>
 
-                <div className="rounded-2xl border border-[#d7dedf] bg-white/75 p-4">
-                  <School className="mb-4 size-5 text-[#10233f]" />
-                  <p className="font-semibold text-[#10233f]">Educaci&oacute;n</p>
-                  <p className="mt-1 text-sm leading-6 text-[#60738c]">Formaci&oacute;n aplicada</p>
+              <div className="rounded-[1.25rem] border border-[#d7dedf] bg-white/75 p-4">
+                <div className="mb-3 flex items-center gap-2 text-[#10233f]">
+                  <BrainCircuit className="size-5" />
+                  <p className="font-semibold">Primera referencia formal</p>
                 </div>
+                <p className="text-sm leading-6 text-[#60738c]">
+                  NeoGuard: IA, IoT, educaci&oacute;n en ingenier&iacute;a y monitoreo neonatal.
+                </p>
               </div>
             </div>
           </div>

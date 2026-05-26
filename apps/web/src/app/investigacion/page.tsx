@@ -3,14 +3,18 @@ import {
   BadgeCheck,
   BookOpenCheck,
   BrainCircuit,
+  ClipboardList,
   ExternalLink,
+  FileText,
   GraduationCap,
   HeartPulse,
+  Layers3,
   Microscope,
   Network,
   School,
   ShieldCheck,
   Stethoscope,
+  Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
@@ -22,7 +26,7 @@ import { Card, CardContent } from "@/components/ui/card";
 export const metadata = {
   title: "Investigacion",
   description:
-    "Investigacion aplicada y ODS en Puente Impacto: tecnologia, salud, educacion, IoT, inteligencia artificial y proyectos sociales documentados.",
+    "Investigacion aplicada y ODS en Puente Impacto: tecnologia, salud, educacion, IoT, inteligencia artificial, documentacion y proyectos sociales.",
 };
 
 const researchLines = [
@@ -62,6 +66,82 @@ const researchLines = [
       "Exploracion de sistemas donde la tecnologia debe apoyar decisiones, monitoreo y procesos con consecuencias humanas.",
     icon: Stethoscope,
   },
+];
+
+const researchProcess = [
+  {
+    title: "Problema real",
+    description:
+      "Identificamos una necesidad concreta con una organizacion, escuela, grupo estudiantil o comunidad.",
+  },
+  {
+    title: "Evidencia y datos",
+    description:
+      "Ordenamos contexto, registros, observaciones, indicadores, prototipos, entrevistas o documentacion tecnica.",
+  },
+  {
+    title: "Analisis y validacion",
+    description:
+      "Revisamos alcance, limitaciones, fuentes, etica, privacidad y posibilidad de convertir el trabajo en conocimiento.",
+  },
+  {
+    title: "Salida publicable",
+    description:
+      "El resultado puede ser reporte, poster, guia, demo, articulo academico, paper o material institucional.",
+  },
+];
+
+const outputs = [
+  {
+    title: "Reporte tecnico",
+    description: "Documento claro para explicar hallazgos, metodologia, resultados y recomendaciones.",
+    icon: FileText,
+  },
+  {
+    title: "Poster o presentacion",
+    description: "Material sintetico para congresos, ferias, eventos academicos o aliados institucionales.",
+    icon: ClipboardList,
+  },
+  {
+    title: "Articulo o paper",
+    description: "Cuando el proyecto tenga suficiente rigor, evidencia, novedad y acompanamiento academico.",
+    icon: BookOpenCheck,
+  },
+  {
+    title: "Demo o prototipo",
+    description: "Sistema, maqueta, dashboard o prueba funcional que muestre una solucion concreta.",
+    icon: Layers3,
+  },
+];
+
+const collaborationPaths = [
+  {
+    title: "Organizaciones",
+    description:
+      "Pueden proponer problemas reales, datos, necesidades operativas o proyectos que requieran medicion y documentacion.",
+    icon: HeartPulse,
+  },
+  {
+    title: "Profesores y grupos de investigacion",
+    description:
+      "Pueden ayudar a convertir proyectos en metodologias, revisiones, articulos, posters o publicaciones con mayor rigor.",
+    icon: School,
+  },
+  {
+    title: "Estudiantes",
+    description:
+      "Pueden integrarse a proyectos formativos, levantamiento de informacion, prototipos, documentacion o investigacion aplicada.",
+    icon: Users,
+  },
+];
+
+const selectionCriteria = [
+  "Problema real y bien delimitado.",
+  "Posibilidad de recopilar evidencia o datos de forma responsable.",
+  "Utilidad para una comunidad, organizacion o proceso formativo.",
+  "Alcance viable para el equipo y aliados disponibles.",
+  "Cuidado con privacidad, datos sensibles y consentimiento.",
+  "Potencial de producir una salida clara: reporte, prototipo, guia, poster o publicacion.",
 ];
 
 const publicationKeywords = [
@@ -111,7 +191,7 @@ function InfoCard({
   icon: LucideIcon;
 }) {
   return (
-    <Card className="h-full border-[#d7dedf] bg-white/80 shadow-sm">
+    <Card className="h-full border-[#d7dedf] bg-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
       <CardContent className="p-6">
         <div className="mb-8 flex size-12 items-center justify-center rounded-2xl border border-[#d7dedf] bg-[#fbfaf7]">
           <Icon className="size-6 text-[#10233f]" />
@@ -127,11 +207,54 @@ function InfoCard({
   );
 }
 
+function StepCard({
+  index,
+  title,
+  description,
+}: {
+  index: number;
+  title: string;
+  description: string;
+}) {
+  return (
+    <Card className="h-full border-[#d7dedf] bg-white/80 shadow-sm">
+      <CardContent className="p-6">
+        <div className="mb-8 flex size-12 items-center justify-center rounded-2xl bg-[#10233f] text-lg font-semibold text-white">
+          {index}
+        </div>
+        <h3 className="text-xl font-semibold tracking-[-0.035em] text-[#10233f]">
+          {title}
+        </h3>
+        <p className="mt-4 text-sm leading-7 text-[#425875]">{description}</p>
+      </CardContent>
+    </Card>
+  );
+}
+
+function DetailPill({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c]">
+        {label}
+      </p>
+      <p className="mt-2 break-words text-sm font-medium leading-6 text-[#10233f]">
+        {value}
+      </p>
+    </div>
+  );
+}
+
 export default function InvestigacionPage() {
   return (
     <SiteShell>
       <section className="relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[700px] bg-[radial-gradient(circle_at_top_left,rgba(65,105,150,0.22),transparent_38%),linear-gradient(180deg,#f7f4ed_0%,#f3efe6_100%)]" />
+        <div className="absolute inset-x-0 top-0 -z-10 h-[760px] bg-[radial-gradient(circle_at_top_left,rgba(65,105,150,0.22),transparent_38%),linear-gradient(180deg,#f7f4ed_0%,#f3efe6_100%)]" />
 
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1fr_0.88fr] md:py-24">
           <div>
@@ -140,13 +263,13 @@ export default function InvestigacionPage() {
             </Badge>
 
             <h1 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.065em] text-[#10233f] sm:text-6xl md:text-8xl">
-              Proyectos que tambi&eacute;n generan conocimiento.
+              De proyectos reales a conocimiento aplicable.
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875] md:text-xl md:leading-9">
               Conectamos tecnolog&iacute;a, educaci&oacute;n, salud e impacto social mediante
-              proyectos acad&eacute;micos, prototipos, publicaciones cient&iacute;ficas y colaboraci&oacute;n
-              con estudiantes, profesores, organizaciones y grupos de investigaci&oacute;n.
+              proyectos acad&eacute;micos, prototipos, documentaci&oacute;n, datos, reportes y posibles
+              publicaciones cient&iacute;ficas.
             </p>
 
             <p className="mt-5 max-w-2xl leading-8 text-[#60738c]">
@@ -184,14 +307,14 @@ export default function InvestigacionPage() {
               </div>
 
               <p className="font-[var(--font-serif)] text-3xl font-semibold leading-10 tracking-[-0.04em] md:text-4xl md:leading-[1.08]">
-                No solo ejecutar proyectos: documentarlos, medirlos y convertirlos en aprendizaje aplicable.
+                No todo proyecto tiene que ser paper. Pero todo proyecto serio puede dejar evidencia, aprendizaje y trazabilidad.
               </p>
 
               <div className="mt-10 grid gap-3">
                 {[
-                  "Investigacion aplicada vinculada con necesidades reales.",
-                  "Prototipos, sistemas y evidencia tecnica documentada.",
-                  "Colaboracion con estudiantes, profesores y organizaciones.",
+                  "Problemas reales antes que temas inventados.",
+                  "Evidencia y documentacion antes que discurso.",
+                  "Rigor proporcional al alcance y acompanamiento disponible.",
                 ].map((item) => (
                   <div
                     className="grid grid-cols-[36px_1fr] gap-4 rounded-[1.25rem] border border-white/15 bg-white/10 p-4"
@@ -212,6 +335,34 @@ export default function InvestigacionPage() {
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
           <div>
+            <SectionLabel>Ruta de trabajo</SectionLabel>
+            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
+              Como convertimos una iniciativa en conocimiento.
+            </h2>
+          </div>
+
+          <p className="text-lg leading-8 text-[#425875]">
+            La investigaci&oacute;n aplicada debe partir de problemas reales, evidencia verificable,
+            colaboraci&oacute;n y una salida clara. El resultado puede ser acad&eacute;mico,
+            t&eacute;cnico o institucional.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-4">
+          {researchProcess.map((step, index) => (
+            <StepCard
+              description={step.description}
+              index={index + 1}
+              key={step.title}
+              title={step.title}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+        <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+          <div>
             <SectionLabel>Publicaci&oacute;n destacada</SectionLabel>
             <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
               NeoGuard
@@ -219,8 +370,8 @@ export default function InvestigacionPage() {
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Nuestra primera publicaci&oacute;n formal se relaciona con IA, IoT, educaci&oacute;n
-            en ingenier&iacute;a, salud neonatal y Objetivos de Desarrollo Sostenible.
+            Primera publicaci&oacute;n formal relacionada con IA, IoT, educaci&oacute;n en ingenier&iacute;a,
+            salud neonatal y Objetivos de Desarrollo Sostenible.
           </p>
         </div>
 
@@ -245,41 +396,10 @@ export default function InvestigacionPage() {
                 </p>
 
                 <div className="mt-7 grid gap-3 md:grid-cols-2">
-                  <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c]">
-                      DOI
-                    </p>
-                    <p className="mt-2 break-words text-sm font-medium leading-6 text-[#10233f]">
-                      10.1109/LARS69345.2025.11273018
-                    </p>
-                  </div>
-
-                  <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c]">
-                      Conferencia
-                    </p>
-                    <p className="mt-2 text-sm font-medium leading-6 text-[#10233f]">
-                      2025 Latin American Robotics Symposium
-                    </p>
-                  </div>
-
-                  <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c]">
-                      Ubicaci&oacute;n
-                    </p>
-                    <p className="mt-2 text-sm font-medium leading-6 text-[#10233f]">
-                      Monterrey, M&eacute;xico
-                    </p>
-                  </div>
-
-                  <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c]">
-                      Fecha en IEEE Xplore
-                    </p>
-                    <p className="mt-2 text-sm font-medium leading-6 text-[#10233f]">
-                      05 de diciembre de 2025
-                    </p>
-                  </div>
+                  <DetailPill label="DOI" value="10.1109/LARS69345.2025.11273018" />
+                  <DetailPill label="Conferencia" value="2025 Latin American Robotics Symposium" />
+                  <DetailPill label="Ubicacion" value="Monterrey, Mexico" />
+                  <DetailPill label="IEEE Xplore" value="05 de diciembre de 2025" />
                 </div>
 
                 <a
@@ -357,6 +477,85 @@ export default function InvestigacionPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+        <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+          <div>
+            <SectionLabel>Salidas posibles</SectionLabel>
+            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
+              No todo tiene que terminar igual.
+            </h2>
+          </div>
+
+          <p className="text-lg leading-8 text-[#425875]">
+            Dependiendo del alcance, datos y acompanamiento, una iniciativa puede producir
+            diferentes tipos de entregables utiles para la organizaci&oacute;n, el equipo o la comunidad.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {outputs.map((output) => (
+            <InfoCard
+              description={output.description}
+              icon={output.icon}
+              key={output.title}
+              title={output.title}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+        <div className="rounded-[2rem] border border-[#d7dedf] bg-white/80 p-6 shadow-sm md:p-8">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+            <div>
+              <SectionLabel>Criterios de selecci&oacute;n</SectionLabel>
+              <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
+                Antes de investigar, hay que cuidar el alcance.
+              </h2>
+
+              <p className="mt-6 leading-8 text-[#425875]">
+                Esta secci&oacute;n ayuda a que la investigaci&oacute;n no se vea improvisada.
+                Un proyecto debe tener sentido, evidencia, responsables y l&iacute;mites claros.
+              </p>
+            </div>
+
+            <div className="grid gap-3">
+              {selectionCriteria.map((criterion) => (
+                <div
+                  className="grid grid-cols-[34px_1fr] gap-3 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4"
+                  key={criterion}
+                >
+                  <div className="flex size-8 items-center justify-center rounded-full bg-white">
+                    <BadgeCheck className="size-4 text-[#0f7890]" />
+                  </div>
+                  <p className="text-sm leading-6 text-[#425875]">{criterion}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+        <div className="mb-10">
+          <SectionLabel>Colaboraci&oacute;n</SectionLabel>
+          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-6xl">
+            Qui&eacute;nes pueden participar.
+          </h2>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {collaborationPaths.map((path) => (
+            <InfoCard
+              description={path.description}
+              icon={path.icon}
+              key={path.title}
+              title={path.title}
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="rounded-[2rem] bg-[#10233f] p-6 text-white shadow-sm md:p-10">
           <div className="grid gap-8 md:grid-cols-[1fr_0.75fr] md:items-center">
             <div>
@@ -367,13 +566,13 @@ export default function InvestigacionPage() {
               </div>
 
               <h2 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-7xl">
-                Colaborar en investigaci&oacute;n aplicada.
+                Proponer una colaboraci&oacute;n de investigaci&oacute;n aplicada.
               </h2>
 
               <p className="mt-6 text-lg leading-8 text-[#c9d8e8]">
-                Buscamos conectar estudiantes, profesores, grupos de investigaci&oacute;n,
-                organizaciones y proyectos con problemas reales que puedan documentarse,
-                medirse y convertirse en conocimiento aplicable.
+                Si una organizaci&oacute;n, profesor, grupo estudiantil o estudiante tiene un problema
+                real que pueda documentarse, medirse o prototiparse, podemos revisar si tiene sentido
+                convertirlo en una salida t&eacute;cnica o acad&eacute;mica.
               </p>
             </div>
 

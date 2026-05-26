@@ -4,10 +4,17 @@ Ruta publica:
 
 ```txt
 /investigacion
-Enfoque
+Enfoque editorial
 
-La seccion presenta investigacion aplicada, publicaciones, prototipos y colaboraciones vinculadas con tecnologia, salud, educacion, organizaciones sociales y ODS.
+La seccion presenta investigacion aplicada de forma sobria:
 
+Proyectos reales
+Evidencia y datos
+Documentacion tecnica
+Prototipos
+Reportes
+Posters
+Articulos o papers cuando el alcance lo justifique
 Publicacion inicial
 AI in Education: NeoGuard Advanced IoT and AI enabled Incubator for Neonatal Health Monitoring
 
@@ -21,6 +28,6 @@ ODS relacionados
 ODS 3
 ODS 9
 ODS 10
-Nota editorial
+Criterio importante
 
-En el header se usa "Investigacion". Dentro de la pagina se usa "Investigacion aplicada y ODS" para mantener un tono profesional, claro y no sobredimensionado.
+No todo proyecto debe presentarse como paper. Tambien puede terminar en reporte tecnico, guia, poster, dashboard, dataset, demo o documentacion institucional.
