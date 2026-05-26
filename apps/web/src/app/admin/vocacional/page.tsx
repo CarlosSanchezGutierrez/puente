@@ -1,4 +1,3 @@
-import { requireAdminAccess } from "@/lib/admin/access";
 import {
   BadgeCheck,
   BriefcaseBusiness,
@@ -6,11 +5,14 @@ import {
   ClipboardList,
   GraduationCap,
   School,
+  Search,
   Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import { VocationalStatusControl } from "@/components/admin/vocational-status-control";
+import { requireAdminAccess } from "@/lib/admin/access";
 import { SiteShell } from "@/components/site/site-shell";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -38,13 +40,42 @@ type Submission = {
   updated_at: string | null;
 };
 
+type PageSearchParams = {
+  type?: string;
+  status?: string;
+};
+
+type Filters = {
+  type: string;
+  status: string;
+};
+
+const participantLabels: Record<string, string> = {
+  all: "Todos",
+  school: "Preparatorias",
+  mentor: "Mentores",
+  student: "Estudiantes",
+};
+
 const statusLabels: Record<string, string> = {
+  all: "Todos",
   new: "Nuevo",
   reviewed: "Revisado",
   contacted: "Contactado",
   scheduled: "Agendado",
   closed: "Cerrado",
 };
+
+const allowedTypes = new Set(["all", "school", "mentor", "student"]);
+const allowedStatuses = new Set(["all", "new", "reviewed", "contacted", "scheduled", "closed"]);
+
+function normalizeFilter(value: string | undefined, allowed: Set<string>) {
+  if (!value) {
+    return "all";
+  }
+
+  return allowed.has(value) ? value : "all";
+}
 
 function getSupabaseAdmin() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -63,15 +94,7 @@ function getSupabaseAdmin() {
 }
 
 function formatParticipantType(type: Submission["participant_type"]) {
-  if (type === "school") {
-    return "Preparatoria";
-  }
-
-  if (type === "mentor") {
-    return "Mentor";
-  }
-
-  return "Estudiante";
+  return participantLabels[type] ?? type;
 }
 
 function formatStatus(status: string) {
@@ -120,7 +143,7 @@ function countStatuses(submissions: Submission[]) {
     .sort((a, b) => b.count - a.count);
 }
 
-async function getSubmissions() {
+async function getSubmissions(filters: Filters) {
   const supabase = getSupabaseAdmin();
 
   if (!supabase) {
@@ -130,13 +153,23 @@ async function getSubmissions() {
     };
   }
 
-  const { data, error } = await supabase
+  let query = supabase
     .from("vocational_interest_submissions")
     .select(
       "id, participant_type, full_name, email, phone, organization, city, role_or_career, interest_areas, message, preferred_contact_method, status, created_at, updated_at",
     )
     .order("created_at", { ascending: false })
     .limit(200);
+
+  if (filters.type !== "all") {
+    query = query.eq("participant_type", filters.type);
+  }
+
+  if (filters.status !== "all") {
+    query = query.eq("status", filters.status);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     return {
@@ -181,9 +214,75 @@ function MetricCard({
   );
 }
 
-export default async function AdminVocacionalPage() {
+function FilterPanel({ filters }: { filters: Filters }) {
+  return (
+    <Card className="mb-8 border-[#d7dedf] bg-white/78 shadow-sm">
+      <CardContent className="p-5">
+        <form className="grid gap-4 md:grid-cols-[1fr_1fr_auto_auto]" method="get">
+          <label className="grid gap-2">
+            <span className="text-sm font-semibold text-[#10233f]">Tipo</span>
+            <select
+              className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+              defaultValue={filters.type}
+              name="type"
+            >
+              {Object.entries(participantLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="grid gap-2">
+            <span className="text-sm font-semibold text-[#10233f]">Estado</span>
+            <select
+              className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+              defaultValue={filters.status}
+              name="status"
+            >
+              {Object.entries(statusLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <button
+            className="inline-flex min-h-11 items-center justify-center self-end rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
+            type="submit"
+          >
+            Filtrar
+            <Search className="ml-2 size-4" />
+          </button>
+
+          <Link
+            className="inline-flex min-h-11 items-center justify-center self-end rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
+            href="/admin/vocacional"
+          >
+            Limpiar
+          </Link>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
+
+export default async function AdminVocacionalPage({
+  searchParams,
+}: {
+  searchParams: Promise<PageSearchParams>;
+}) {
   await requireAdminAccess("/admin/vocacional");
-  const { submissions, error } = await getSubmissions();
+
+  const params = await searchParams;
+  const filters = {
+    type: normalizeFilter(params.type, allowedTypes),
+    status: normalizeFilter(params.status, allowedStatuses),
+  };
+
+  const { submissions, error } = await getSubmissions(filters);
 
   const areas = countAreas(submissions);
   const statuses = countStatuses(submissions);
@@ -192,11 +291,6 @@ export default async function AdminVocacionalPage() {
   return (
     <SiteShell>
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <form method="post" action="/api/admin/logout" className="mb-6 flex justify-end">
-          <button className="rounded-full border border-[#d7dedf] bg-white/75 px-4 py-2 text-sm font-medium text-[#10233f] transition hover:bg-white" type="submit">
-            Cerrar sesion
-          </button>
-        </form>
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
           <a
             className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#10233f] px-4 text-sm font-medium text-white transition hover:bg-[#1b365f]"
@@ -204,7 +298,17 @@ export default async function AdminVocacionalPage() {
           >
             Exportar CSV
           </a>
+
+          <form action="/api/admin/logout" method="post">
+            <button
+              className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-4 text-sm font-medium text-[#10233f] transition hover:bg-white"
+              type="submit"
+            >
+              Cerrar sesion
+            </button>
+          </form>
         </div>
+
         <div className="mb-10 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#60738c] md:text-sm">
@@ -217,10 +321,12 @@ export default async function AdminVocacionalPage() {
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Seguimiento operativo de registros recibidos: preparatorias, mentores,
-            estudiantes, areas vocacionales, estados y contactos recientes.
+            Seguimiento operativo de registros recibidos. Los filtros permiten revisar
+            registros por tipo de participante y estado de seguimiento.
           </p>
         </div>
+
+        <FilterPanel filters={filters} />
 
         {error ? (
           <Card className="mb-8 border-red-200 bg-red-50">
@@ -231,9 +337,13 @@ export default async function AdminVocacionalPage() {
           </Card>
         ) : null}
 
+        <div className="mb-5 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
+          Mostrando {submissions.length} registros con tipo "{participantLabels[filters.type]}" y estado "{statusLabels[filters.status]}".
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <MetricCard
-            description="Registros cargados en este tablero."
+            description="Registros cargados con los filtros actuales."
             icon={ClipboardList}
             title="Total"
             value={submissions.length.toString()}
@@ -290,7 +400,7 @@ export default async function AdminVocacionalPage() {
                   ))
                 ) : (
                   <p className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
-                    Aun no hay areas registradas.
+                    Aun no hay areas registradas con estos filtros.
                   </p>
                 )}
               </div>
@@ -330,7 +440,7 @@ export default async function AdminVocacionalPage() {
                   ))
                 ) : (
                   <p className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
-                    Aun no hay estados registrados.
+                    Aun no hay estados registrados con estos filtros.
                   </p>
                 )}
               </div>
@@ -349,7 +459,7 @@ export default async function AdminVocacionalPage() {
                   Registros recientes
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
-                  Ultimos registros recibidos desde el formulario.
+                  Ultimos registros recibidos con los filtros actuales.
                 </p>
               </div>
             </div>
@@ -402,7 +512,7 @@ export default async function AdminVocacionalPage() {
                   ) : (
                     <tr>
                       <td className="py-6 text-[#60738c]" colSpan={8}>
-                        Aun no hay registros.
+                        No hay registros con estos filtros.
                       </td>
                     </tr>
                   )}

@@ -6,10 +6,12 @@ import {
   Network,
   RadioTower,
   Router,
+  Search,
   Video,
   Wifi,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import { FieldServiceStatusControl } from "@/components/admin/field-service-status-control";
 import { requireAdminAccess } from "@/lib/admin/access";
@@ -43,13 +45,51 @@ type FieldServiceRequest = {
   updated_at: string | null;
 };
 
+type PageSearchParams = {
+  type?: string;
+  status?: string;
+  drone?: string;
+};
+
+type Filters = {
+  type: string;
+  status: string;
+  drone: string;
+};
+
+const requestTypeLabels: Record<string, string> = {
+  all: "Todos",
+  audiovisual: "Audiovisual",
+  technical: "Clinica tecnica",
+  both: "Ambas",
+};
+
 const statusLabels: Record<string, string> = {
+  all: "Todos",
   new: "Nuevo",
   reviewed: "Revisado",
   contacted: "Contactado",
   scheduled: "Agendado",
   closed: "Cerrado",
 };
+
+const droneLabels: Record<string, string> = {
+  all: "Todos",
+  yes: "Con dron",
+  no: "Sin dron",
+};
+
+const allowedTypes = new Set(["all", "audiovisual", "technical", "both"]);
+const allowedStatuses = new Set(["all", "new", "reviewed", "contacted", "scheduled", "closed"]);
+const allowedDrone = new Set(["all", "yes", "no"]);
+
+function normalizeFilter(value: string | undefined, allowed: Set<string>) {
+  if (!value) {
+    return "all";
+  }
+
+  return allowed.has(value) ? value : "all";
+}
 
 function getSupabaseAdmin() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -68,15 +108,7 @@ function getSupabaseAdmin() {
 }
 
 function formatRequestType(type: FieldServiceRequest["request_type"]) {
-  if (type === "audiovisual") {
-    return "Audiovisual";
-  }
-
-  if (type === "technical") {
-    return "Clinica tecnica";
-  }
-
-  return "Ambas";
+  return requestTypeLabels[type] ?? type;
 }
 
 function formatStatus(status: string) {
@@ -129,7 +161,7 @@ function countServices(requests: FieldServiceRequest[]) {
     .slice(0, 10);
 }
 
-async function getRequests() {
+async function getRequests(filters: Filters) {
   const supabase = getSupabaseAdmin();
 
   if (!supabase) {
@@ -139,13 +171,31 @@ async function getRequests() {
     };
   }
 
-  const { data, error } = await supabase
+  let query = supabase
     .from("field_service_requests")
     .select(
       "id, request_type, organization_name, contact_name, email, phone, city, location, event_date, audience_size, needs_drone, requested_services, context, preferred_contact_method, status, created_at, updated_at",
     )
     .order("created_at", { ascending: false })
     .limit(200);
+
+  if (filters.type !== "all") {
+    query = query.eq("request_type", filters.type);
+  }
+
+  if (filters.status !== "all") {
+    query = query.eq("status", filters.status);
+  }
+
+  if (filters.drone === "yes") {
+    query = query.eq("needs_drone", true);
+  }
+
+  if (filters.drone === "no") {
+    query = query.eq("needs_drone", false);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     return {
@@ -190,10 +240,91 @@ function MetricCard({
   );
 }
 
-export default async function AdminServiciosPage() {
+function FilterPanel({ filters }: { filters: Filters }) {
+  return (
+    <Card className="mb-8 border-[#d7dedf] bg-white/78 shadow-sm">
+      <CardContent className="p-5">
+        <form className="grid gap-4 md:grid-cols-[1fr_1fr_1fr_auto_auto]" method="get">
+          <label className="grid gap-2">
+            <span className="text-sm font-semibold text-[#10233f]">Tipo</span>
+            <select
+              className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+              defaultValue={filters.type}
+              name="type"
+            >
+              {Object.entries(requestTypeLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="grid gap-2">
+            <span className="text-sm font-semibold text-[#10233f]">Estado</span>
+            <select
+              className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+              defaultValue={filters.status}
+              name="status"
+            >
+              {Object.entries(statusLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="grid gap-2">
+            <span className="text-sm font-semibold text-[#10233f]">Dron</span>
+            <select
+              className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+              defaultValue={filters.drone}
+              name="drone"
+            >
+              {Object.entries(droneLabels).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <button
+            className="inline-flex min-h-11 items-center justify-center self-end rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
+            type="submit"
+          >
+            Filtrar
+            <Search className="ml-2 size-4" />
+          </button>
+
+          <Link
+            className="inline-flex min-h-11 items-center justify-center self-end rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
+            href="/admin/servicios"
+          >
+            Limpiar
+          </Link>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
+
+export default async function AdminServiciosPage({
+  searchParams,
+}: {
+  searchParams: Promise<PageSearchParams>;
+}) {
   await requireAdminAccess("/admin/servicios");
 
-  const { requests, error } = await getRequests();
+  const params = await searchParams;
+  const filters = {
+    type: normalizeFilter(params.type, allowedTypes),
+    status: normalizeFilter(params.status, allowedStatuses),
+    drone: normalizeFilter(params.drone, allowedDrone),
+  };
+
+  const { requests, error } = await getRequests(filters);
   const services = countServices(requests);
   const statuses = countStatuses(requests);
   const recent = requests.slice(0, 20);
@@ -232,10 +363,12 @@ export default async function AdminServiciosPage() {
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Seguimiento operativo de solicitudes para cobertura audiovisual,
-            clinica tecnica, dron, red, WiFi, camaras, cableado y documentacion.
+            Seguimiento operativo de solicitudes. Los filtros permiten revisar por
+            tipo de solicitud, estado y uso potencial de dron.
           </p>
         </div>
+
+        <FilterPanel filters={filters} />
 
         {error ? (
           <Card className="mb-8 border-red-200 bg-red-50">
@@ -246,9 +379,13 @@ export default async function AdminServiciosPage() {
           </Card>
         ) : null}
 
+        <div className="mb-5 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
+          Mostrando {requests.length} solicitudes con tipo "{requestTypeLabels[filters.type]}", estado "{statusLabels[filters.status]}" y dron "{droneLabels[filters.drone]}".
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           <MetricCard
-            description="Solicitudes cargadas en este tablero."
+            description="Solicitudes cargadas con los filtros actuales."
             icon={ClipboardList}
             title="Total"
             value={requests.length.toString()}
@@ -311,7 +448,7 @@ export default async function AdminServiciosPage() {
                   ))
                 ) : (
                   <p className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
-                    Aun no hay servicios registrados.
+                    Aun no hay servicios registrados con estos filtros.
                   </p>
                 )}
               </div>
@@ -351,7 +488,7 @@ export default async function AdminServiciosPage() {
                   ))
                 ) : (
                   <p className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
-                    Aun no hay estados registrados.
+                    Aun no hay estados registrados con estos filtros.
                   </p>
                 )}
               </div>
@@ -370,7 +507,7 @@ export default async function AdminServiciosPage() {
                   Solicitudes recientes
                 </h2>
                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
-                  Ultimas solicitudes recibidas desde el formulario.
+                  Ultimas solicitudes recibidas con los filtros actuales.
                 </p>
               </div>
             </div>
@@ -433,7 +570,7 @@ export default async function AdminServiciosPage() {
                   ) : (
                     <tr>
                       <td className="py-6 text-[#60738c]" colSpan={10}>
-                        Aun no hay solicitudes.
+                        No hay solicitudes con estos filtros.
                       </td>
                     </tr>
                   )}
