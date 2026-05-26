@@ -488,7 +488,11 @@ export default async function AdminVocacionalPage({
                         <td className="py-4 pr-4 font-medium text-[#10233f]">
                           {formatParticipantType(submission.participant_type)}
                         </td>
-                        <td className="py-4 pr-4 text-[#10233f]">{submission.full_name}</td>
+                        <td className="py-4 pr-4 text-[#10233f]">
+                          <Link className="font-semibold underline-offset-4 hover:underline" href={`/admin/vocacional/${submission.id}`}>
+                            {submission.full_name}
+                          </Link>
+                        </td>
                         <td className="py-4 pr-4 text-[#425875]">{submission.email}</td>
                         <td className="py-4 pr-4 text-[#425875]">
                           {submission.organization ?? "-"}

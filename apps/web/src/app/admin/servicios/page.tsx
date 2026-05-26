@@ -539,7 +539,9 @@ export default async function AdminServiciosPage({
                           {formatRequestType(request.request_type)}
                         </td>
                         <td className="py-4 pr-4 text-[#10233f]">
-                          {request.organization_name}
+                          <Link className="font-semibold underline-offset-4 hover:underline" href={`/admin/servicios/${request.id}`}>
+                            {request.organization_name}
+                          </Link>
                         </td>
                         <td className="py-4 pr-4 text-[#425875]">
                           {request.contact_name}
