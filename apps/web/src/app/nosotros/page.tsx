@@ -1,3 +1,4 @@
+import { ExternalAdvisorySection } from "@/components/team/external-advisory-section";
 import {
   ArrowRight,
   BadgeCheck,
@@ -531,6 +532,7 @@ export default function NosotrosPage() {
           </div>
         </div>
       </section>
+          <ExternalAdvisorySection />
     </SiteShell>
   );
 }
