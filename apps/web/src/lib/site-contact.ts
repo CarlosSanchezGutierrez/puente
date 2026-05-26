@@ -1,4 +1,5 @@
 export const siteContact = {
+  siteUrl: "https://puenteimpacto.org",
   email: "contacto@puenteimpacto.org",
   phoneDisplay: "+52 833 367 4769",
   phoneE164: "528333674769",
@@ -15,6 +16,7 @@ const emailBody = encodeURIComponent(
 export const contactLinks = {
   email: `mailto:${siteContact.email}?subject=${emailSubject}&body=${emailBody}`,
   whatsapp: `https://wa.me/${siteContact.phoneE164}?text=${whatsappText}`,
+  share: "/compartir",
 };
 
 export const socialLinks = [

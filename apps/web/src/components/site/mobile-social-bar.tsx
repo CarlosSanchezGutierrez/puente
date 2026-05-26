@@ -1,4 +1,5 @@
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle, QrCode } from "lucide-react";
+import Link from "next/link";
 import { contactLinks, socialLinks } from "@/lib/site-contact";
 
 type IconProps = {
@@ -51,6 +52,15 @@ export function MobileSocialBar() {
   return (
     <div className="border-b border-[#d7dedf] bg-[#f7f4ed]/92 px-4 py-2 backdrop-blur lg:hidden">
       <div className="mx-auto flex max-w-7xl items-center justify-center gap-2">
+        <Link
+          aria-label="Compartir Puente Impacto"
+          className="inline-flex size-9 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 text-[#10233f] shadow-sm transition active:scale-95"
+          href={contactLinks.share}
+          title="Compartir"
+        >
+          <QrCode className="size-4" />
+        </Link>
+
         {socialLinks.map((item) => (
           <a
             aria-label={item.label}
