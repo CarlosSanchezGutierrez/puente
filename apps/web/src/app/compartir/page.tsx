@@ -80,6 +80,7 @@ export default async function CompartirPage() {
             <Card className="overflow-hidden border-[#d7dedf] bg-white/80 shadow-sm">
               <CardContent className="p-4 sm:p-6 md:p-8">
                 <div className="rounded-[2rem] border border-[#d7dedf] bg-[#f7f4ed] p-4 sm:p-6">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- QR generated as data URL on the server. */}
                   <img
                     alt="Codigo QR para abrir puenteimpacto.org"
                     className="mx-auto aspect-square w-full max-w-[460px] rounded-[1.5rem]"
