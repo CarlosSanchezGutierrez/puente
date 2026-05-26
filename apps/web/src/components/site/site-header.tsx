@@ -9,7 +9,7 @@ const navItems = [
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos", label: "Programas" },
   { href: "/servicios", label: "Servicios" },
-  { href: "/investigacion", label: "InvestigaciÃ³n" },
+  { href: "/investigacion", label: "Investigaci\u00f3n" },
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/nosotros", label: "Equipo" },
 ];
@@ -38,7 +38,7 @@ export function SiteHeader() {
             Puente Impacto
           </span>
           <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#60738c]">
-            TecnologÃ­a social
+            {"Tecnolog\u00eda social"}
           </span>
         </Link>
 
@@ -73,7 +73,7 @@ export function SiteHeader() {
 
         <button
           aria-expanded={menuOpen}
-          aria-label="Abrir menÃº"
+          aria-label="Abrir menu"
           className="inline-flex size-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 text-[#10233f] lg:hidden"
           onClick={() => setMenuOpen((current) => !current)}
           type="button"
