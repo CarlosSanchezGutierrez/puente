@@ -54,11 +54,11 @@ type SocialIconLinksProps = {
 
 export function SocialIconLinks({ className = "" }: SocialIconLinksProps) {
   return (
-    <div className={`hidden items-center gap-1.5 lg:flex ${className}`}>
+    <div className={`flex items-center gap-1 sm:gap-1.5 ${className}`}>
       {socialLinks.map((item) => (
         <a
           aria-label={item.label}
-          className="inline-flex size-9 items-center justify-center rounded-full border border-[#d7dedf] bg-white/65 opacity-80 transition hover:-translate-y-0.5 hover:bg-white hover:opacity-100"
+          className="inline-flex size-8 items-center justify-center rounded-full border border-[#d7dedf] bg-white/70 opacity-85 transition hover:-translate-y-0.5 hover:bg-white hover:opacity-100 sm:size-9"
           href={item.href}
           key={item.href}
           rel="noreferrer"
@@ -66,28 +66,28 @@ export function SocialIconLinks({ className = "" }: SocialIconLinksProps) {
           target="_blank"
           title={item.label}
         >
-          <BrandIcon className="size-4" label={item.label} />
+          <BrandIcon className="size-3.5 sm:size-4" label={item.label} />
         </a>
       ))}
 
       <a
         aria-label="Correo"
-        className="inline-flex size-9 items-center justify-center rounded-full border border-[#d7dedf] bg-white/65 text-[#10233f] opacity-80 transition hover:-translate-y-0.5 hover:bg-white hover:opacity-100"
+        className="inline-flex size-8 items-center justify-center rounded-full border border-[#d7dedf] bg-white/70 text-[#10233f] opacity-85 transition hover:-translate-y-0.5 hover:bg-white hover:opacity-100 sm:size-9"
         href={contactLinks.email}
         title="Correo"
       >
-        <Mail className="size-4" />
+        <Mail className="size-3.5 sm:size-4" />
       </a>
 
       <a
         aria-label="WhatsApp"
-        className="inline-flex size-9 items-center justify-center rounded-full border border-[#d7dedf] bg-white/65 text-[#25D366] opacity-80 transition hover:-translate-y-0.5 hover:bg-white hover:opacity-100"
+        className="inline-flex size-8 items-center justify-center rounded-full border border-[#d7dedf] bg-white/70 text-[#25D366] opacity-85 transition hover:-translate-y-0.5 hover:bg-white hover:opacity-100 sm:size-9"
         href={contactLinks.whatsapp}
         rel="noreferrer"
         target="_blank"
         title="WhatsApp"
       >
-        <MessageCircle className="size-4" />
+        <MessageCircle className="size-3.5 sm:size-4" />
       </a>
     </div>
   );
