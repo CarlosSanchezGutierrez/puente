@@ -68,3 +68,6 @@ Thumbs.db
 
 # Local book cover assets
 assets/book-covers/
+# Android signing
+apps/mobile/keystores/
+*.keystore

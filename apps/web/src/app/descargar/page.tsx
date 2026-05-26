@@ -18,8 +18,8 @@ export default function DescargarPage() {
             <h1 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">Descargar Puente Impacto.</h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[#425875]">Esta version beta abre la misma plataforma web de Puente Impacto dentro de una app Android.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]" download href="/downloads/puente-impacto-beta.apk">
-                Descargar APK
+              <a className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]" download href="/downloads/puente-impacto-0.1.0.apk">
+                Descargar APK 0.1.0
                 <Download className="ml-2 size-4" />
               </a>
               <Link className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white" href="/">

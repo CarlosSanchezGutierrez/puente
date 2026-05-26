@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "android:add": "cap add android",
     "android:sync": "cap sync android",
     "android:open": "cap open android",
-    "apk:debug": "powershell -ExecutionPolicy Bypass -File scripts/build-beta-apk.ps1"
+    "apk:debug": "powershell -ExecutionPolicy Bypass -File scripts/build-beta-apk.ps1",
+    "apk:release": "powershell -ExecutionPolicy Bypass -File scripts/build-release-apk.ps1"
   },
   "dependencies": {
     "@capacitor/android": "^8.3.4",
-    "@capacitor/core": "^8.3.4"
+    "@capacitor/core": "^8.3.4",
+    "@capacitor/splash-screen": "^8.3.4"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.3.4",

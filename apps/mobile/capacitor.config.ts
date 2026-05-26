@@ -8,6 +8,14 @@ const config: CapacitorConfig = {
     url: "https://puenteimpacto.org",
     cleartext: false,
   },
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 900,
+      backgroundColor: "#F7F4ED",
+      androidScaleType: "CENTER_INSIDE",
+      showSpinner: false
+    }
+  }
 };
 
 export default config;
