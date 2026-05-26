@@ -4,7 +4,8 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Puente Impacto",
     short_name: "Puente",
-    description: "Tecnologia social, programas, servicios de campo e investigacion aplicada.",
+    description:
+      "Tecnologia social, educacion e investigacion aplicada para organizaciones, estudiantes y comunidades.",
     start_url: "/",
     scope: "/",
     display: "standalone",
@@ -13,17 +14,11 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: "portrait",
     icons: [
       {
-        src: "/pwa/icon.svg",
-        sizes: "any",
-        type: "image/svg+xml",
-        purpose: "any"
+        src: "/brand/puente_impacto_face.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any maskable",
       },
-      {
-        src: "/pwa/maskable-icon.svg",
-        sizes: "any",
-        type: "image/svg+xml",
-        purpose: "maskable"
-      }
-    ]
+    ],
   };
 }
