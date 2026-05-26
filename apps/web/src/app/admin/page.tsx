@@ -5,7 +5,6 @@ import {
   GraduationCap,
   Mail,
   RadioTower,
-  School,
   ShieldCheck,
   Users,
   Wifi,

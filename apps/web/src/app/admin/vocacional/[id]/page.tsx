@@ -2,10 +2,8 @@ import {
   ArrowLeft,
   BadgeCheck,
   Building2,
-  CalendarDays,
   GraduationCap,
   Mail,
-  MapPin,
   Phone,
   User,
 } from "lucide-react";

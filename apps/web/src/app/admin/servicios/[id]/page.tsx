@@ -1,15 +1,11 @@
 import {
   ArrowLeft,
   BadgeCheck,
-  CalendarDays,
-  Camera,
   Mail,
-  MapPin,
   Network,
   Phone,
   RadioTower,
   Router,
-  User,
 } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
