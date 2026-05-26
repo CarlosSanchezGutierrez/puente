@@ -1,4 +1,4 @@
-import { HomePrinciplesSection } from "@/components/home/home-principles-section";
+﻿import { HomePrinciplesSection } from "@/components/home/home-principles-section";
 import { WhatWeDoSection } from "@/components/home/what-we-do-section";
 import { ResearchCompactSection } from "@/components/research/research-sections";
 import { VocationalHomeSection } from "@/components/home/vocational-home-section";
@@ -98,7 +98,7 @@ const principles = [
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#60738c] md:text-sm">
+    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#526981] md:text-sm">
       {children}
     </p>
   );
@@ -224,7 +224,7 @@ export default function Home() {
               <ArrowLink href="/biblioteca" variant="light">Ver biblioteca</ArrowLink>
             </div>
 
-            <div className="mt-8 grid gap-3 text-sm text-[#60738c] sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 text-sm text-[#526981] sm:grid-cols-3">
               <div className="rounded-2xl border border-[#d7dedf] bg-white/60 p-4">
                 <p className="font-semibold text-[#10233f]">Software</p>
                 <p className="mt-1">Herramientas para procesos sociales.</p>
@@ -271,13 +271,13 @@ export default function Home() {
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-5">
                 <p className="text-3xl font-semibold tracking-[-0.04em] text-[#10233f]">110</p>
-                <p className="mt-2 text-sm leading-6 text-[#60738c]">
+                <p className="mt-2 text-sm leading-6 text-[#526981]">
                   libros iniciales en biblioteca comunitaria
                 </p>
               </div>
               <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-5">
                 <p className="text-3xl font-semibold tracking-[-0.04em] text-[#10233f]">4</p>
-                <p className="mt-2 text-sm leading-6 text-[#60738c]">
+                <p className="mt-2 text-sm leading-6 text-[#526981]">
                   l&iacute;neas de trabajo para crecer sin mezclar todo
                 </p>
               </div>
@@ -412,3 +412,4 @@ export default function Home() {
     </SiteShell>
   );
 }
+

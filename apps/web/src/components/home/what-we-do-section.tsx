@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+﻿import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const areas = [
@@ -37,7 +37,7 @@ export function WhatWeDoSection() {
     <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
       <div className="grid gap-8 border-y border-[#d7dedf] py-10 md:grid-cols-[0.72fr_1.28fr] md:py-14">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#60738c]">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#526981]">
             Que hacemos
           </p>
           <h2 className="mt-4 max-w-xl font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
@@ -52,7 +52,7 @@ export function WhatWeDoSection() {
               href={area.href}
               key={area.title}
             >
-              <span className="text-sm font-semibold text-[#60738c]">
+              <span className="text-sm font-semibold text-[#526981]">
                 {area.number}
               </span>
 

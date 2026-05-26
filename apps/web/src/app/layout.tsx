@@ -1,3 +1,4 @@
+import { ServiceWorkerRegistration } from "@/components/pwa/service-worker-registration";
 import { getSiteUrl } from "@/lib/site-url";
 import type { Metadata } from "next";
 import { Instrument_Sans, Source_Serif_4 } from "next/font/google";
@@ -78,6 +79,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${instrumentSans.variable} ${sourceSerif.variable} antialiased`}>
+        <ServiceWorkerRegistration />
         {children}
       </body>
     </html>

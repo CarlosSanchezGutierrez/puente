@@ -71,3 +71,10 @@ assets/book-covers/
 # Android signing
 apps/mobile/keystores/
 *.keystore
+
+# Android Studio incremental signing
+*.idsig
+
+# Lighthouse generated reports
+docs/performance/*.html
+docs/performance/*.json

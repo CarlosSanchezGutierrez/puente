@@ -1,4 +1,4 @@
-const principles = [
+﻿const principles = [
   "Alcance claro antes de construir.",
   "Herramientas simples de explicar.",
   "Documentacion suficiente para continuar.",
@@ -10,7 +10,7 @@ export function HomePrinciplesSection() {
     <section className="mx-auto max-w-7xl px-6 py-10 md:py-14">
       <div className="grid gap-8 rounded-[1.5rem] border border-[#d7dedf] bg-white/70 p-6 md:grid-cols-[0.75fr_1.25fr] md:p-8">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#60738c]">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#526981]">
             Criterio
           </p>
           <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-[-0.05em] text-[#10233f] md:text-5xl">

@@ -4,27 +4,26 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Puente Impacto",
     short_name: "Puente",
-    description:
-      "Tecnologia civica, biblioteca comunitaria, voluntariado y software para impacto social.",
+    description: "Tecnologia social, programas, servicios de campo e investigacion aplicada.",
     start_url: "/",
     scope: "/",
     display: "standalone",
-    background_color: "#f7f4ed",
-    theme_color: "#10233f",
-    categories: ["education", "productivity", "social"],
+    background_color: "#F7F4ED",
+    theme_color: "#10233F",
+    orientation: "portrait",
     icons: [
       {
-        src: "/icon.svg",
+        src: "/pwa/icon.svg",
         sizes: "any",
         type: "image/svg+xml",
-        purpose: "any",
+        purpose: "any"
       },
       {
-        src: "/apple-icon.svg",
-        sizes: "180x180",
+        src: "/pwa/maskable-icon.svg",
+        sizes: "any",
         type: "image/svg+xml",
-        purpose: "any",
-      },
-    ],
+        purpose: "maskable"
+      }
+    ]
   };
 }
