@@ -343,34 +343,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <SectionLabel>Principios</SectionLabel>
-            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              Menos discurso. M&aacute;s criterio.
-            </h2>
-          </div>
-
-          <div className="grid gap-4">
-            {principles.map((principle) => (
-              <Card className="border-[#d7dedf] bg-white/75 shadow-sm" key={principle.title}>
-                <CardContent className="grid gap-4 p-6 md:grid-cols-[220px_1fr] md:items-center">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="size-5 text-[#10233f]" />
-                    <h3 className="font-semibold tracking-[-0.02em] text-[#10233f]">
-                      {principle.title}
-                    </h3>
-                  </div>
-                  <p className="leading-7 text-[#425875]">{principle.text}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+<section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="rounded-[2rem] border border-[#d7dedf] bg-white/78 p-6 shadow-sm md:p-10">
           <div className="grid gap-8 md:grid-cols-[1fr_0.8fr] md:items-center">
             <div>
