@@ -2,10 +2,12 @@ import { ArrowRight, Download, ShieldAlert, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { SiteShell } from "@/components/site/site-shell";
 import { Card, CardContent } from "@/components/ui/card";
+
 export const metadata = {
   title: "Descargar",
   description: "Descarga beta de la APK de Puente Impacto para Android.",
 };
+
 export default function DescargarPage() {
   return (
     <SiteShell>
