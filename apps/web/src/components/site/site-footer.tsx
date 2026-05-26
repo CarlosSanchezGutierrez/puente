@@ -15,6 +15,7 @@ const legalLinks = [
   { href: "/privacidad", label: "Privacidad" },
   { href: "/terminos", label: "Terminos" },
   { href: "/contacto", label: "Contacto" },
+  { href: "/faq", label: "FAQ" },
   { href: "/colabora", label: "Colabora" },
 ];
 

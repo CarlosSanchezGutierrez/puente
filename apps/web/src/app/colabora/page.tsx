@@ -1,3 +1,4 @@
+import { FAQLinkSection } from "@/components/site/faq-link-section";
 import { ArrowRight, Building2, GraduationCap, Handshake, School, UserRoundCheck } from "lucide-react";
 import Link from "next/link";
 import { BookingLink } from "@/components/site/booking-link";
@@ -146,6 +147,7 @@ export default function ColaboraPage() {
           </div>
         </div>
       </section>
+          <FAQLinkSection />
     </SiteShell>
   );
 }
