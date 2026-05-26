@@ -380,7 +380,7 @@ export default async function AdminServiciosPage({
         ) : null}
 
         <div className="mb-5 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
-          Mostrando {requests.length} solicitudes con tipo "{requestTypeLabels[filters.type]}", estado "{statusLabels[filters.status]}" y dron "{droneLabels[filters.drone]}".
+          Mostrando {requests.length} solicitudes con tipo &quot;{requestTypeLabels[filters.type]}&quot;, estado &quot;{statusLabels[filters.status]}&quot; y dron &quot;{droneLabels[filters.drone]}&quot;.
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">

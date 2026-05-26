@@ -338,7 +338,7 @@ export default async function AdminVocacionalPage({
         ) : null}
 
         <div className="mb-5 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4 text-sm leading-6 text-[#60738c]">
-          Mostrando {submissions.length} registros con tipo "{participantLabels[filters.type]}" y estado "{statusLabels[filters.status]}".
+          Mostrando {submissions.length} registros con tipo &quot;{participantLabels[filters.type]}&quot; y estado &quot;{statusLabels[filters.status]}&quot;.
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">

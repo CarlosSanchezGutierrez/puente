@@ -5,7 +5,6 @@ import {
   GraduationCap,
   Mail,
   School,
-  Users,
 } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";

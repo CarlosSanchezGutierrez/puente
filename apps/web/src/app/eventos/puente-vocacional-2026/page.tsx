@@ -6,7 +6,6 @@ import {
   BriefcaseBusiness,
   Building2,
   CalendarDays,
-  GraduationCap,
   Handshake,
   HeartHandshake,
   LineChart,

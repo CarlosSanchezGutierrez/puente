@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  BadgeCheck,
   Camera,
   Network,
   RadioTower,
