@@ -18,6 +18,7 @@ const paths = [
     href: "/ongs",
     action: "Ver apoyo para ONGs",
     icon: Building2,
+    external: false,
   },
   {
     title: "Soy preparatoria",
@@ -26,6 +27,7 @@ const paths = [
     href: "/eventos/puente-vocacional-2026",
     action: "Ver Puente Vocacional",
     icon: School,
+    external: false,
   },
   {
     title: "Quiero ser mentor",
@@ -43,6 +45,7 @@ const paths = [
     href: "/contacto",
     action: "Contactar",
     icon: GraduationCap,
+    external: false,
   },
 ] as const;
 
