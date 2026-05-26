@@ -3,6 +3,7 @@ import {
   ClipboardList,
   Download,
   GraduationCap,
+  Mail,
   RadioTower,
   School,
   ShieldCheck,
@@ -33,6 +34,11 @@ type AdminCounts = {
   fieldServicesTechnical: number;
   fieldServicesBoth: number;
   fieldServicesDrone: number;
+  contactTotal: number;
+  contactNgos: number;
+  contactPrograms: number;
+  contactServices: number;
+  contactResearch: number;
   error: string | null;
 };
 
@@ -97,37 +103,26 @@ async function getCounts(): Promise<AdminCounts> {
       fieldServicesTechnical,
       fieldServicesBoth,
       fieldServicesDrone,
+      contactTotal,
+      contactNgos,
+      contactPrograms,
+      contactServices,
+      contactResearch,
     ] = await Promise.all([
       countRows("vocational_interest_submissions"),
-      countRows("vocational_interest_submissions", {
-        column: "participant_type",
-        value: "school",
-      }),
-      countRows("vocational_interest_submissions", {
-        column: "participant_type",
-        value: "mentor",
-      }),
-      countRows("vocational_interest_submissions", {
-        column: "participant_type",
-        value: "student",
-      }),
+      countRows("vocational_interest_submissions", { column: "participant_type", value: "school" }),
+      countRows("vocational_interest_submissions", { column: "participant_type", value: "mentor" }),
+      countRows("vocational_interest_submissions", { column: "participant_type", value: "student" }),
       countRows("field_service_requests"),
-      countRows("field_service_requests", {
-        column: "request_type",
-        value: "audiovisual",
-      }),
-      countRows("field_service_requests", {
-        column: "request_type",
-        value: "technical",
-      }),
-      countRows("field_service_requests", {
-        column: "request_type",
-        value: "both",
-      }),
-      countRows("field_service_requests", {
-        column: "needs_drone",
-        value: true,
-      }),
+      countRows("field_service_requests", { column: "request_type", value: "audiovisual" }),
+      countRows("field_service_requests", { column: "request_type", value: "technical" }),
+      countRows("field_service_requests", { column: "request_type", value: "both" }),
+      countRows("field_service_requests", { column: "needs_drone", value: true }),
+      countRows("contact_submissions"),
+      countRows("contact_submissions", { column: "interest_type", value: "ngo" }),
+      countRows("contact_submissions", { column: "interest_type", value: "program" }),
+      countRows("contact_submissions", { column: "interest_type", value: "service" }),
+      countRows("contact_submissions", { column: "interest_type", value: "research" }),
     ]);
 
     return {
@@ -140,6 +135,11 @@ async function getCounts(): Promise<AdminCounts> {
       fieldServicesTechnical,
       fieldServicesBoth,
       fieldServicesDrone,
+      contactTotal,
+      contactNgos,
+      contactPrograms,
+      contactServices,
+      contactResearch,
       error: null,
     };
   } catch (error) {
@@ -153,6 +153,11 @@ async function getCounts(): Promise<AdminCounts> {
       fieldServicesTechnical: 0,
       fieldServicesBoth: 0,
       fieldServicesDrone: 0,
+      contactTotal: 0,
+      contactNgos: 0,
+      contactPrograms: 0,
+      contactServices: 0,
+      contactResearch: 0,
       error: error instanceof Error ? error.message : "No se pudieron cargar metricas.",
     };
   }
@@ -292,8 +297,7 @@ export default async function AdminPage() {
           </div>
 
           <p className="text-lg leading-8 text-[#425875]">
-            Acceso rapido a tableros, registros, seguimiento y exportaciones del programa
-            vocacional y servicios de campo.
+            Acceso rapido a tableros, registros, seguimiento y exportaciones.
           </p>
         </div>
 
@@ -320,10 +324,10 @@ export default async function AdminPage() {
             value={counts.fieldServicesTotal.toString()}
           />
           <MetricCard
-            description="Escuelas interesadas en orientacion."
-            icon={School}
-            title="Preparatorias"
-            value={counts.vocationalSchools.toString()}
+            description="Mensajes generales de contacto."
+            icon={Mail}
+            title="Contacto"
+            value={counts.contactTotal.toString()}
           />
           <MetricCard
             description="Solicitudes que piden evaluar dron."
@@ -333,7 +337,7 @@ export default async function AdminPage() {
           />
         </div>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid gap-6 lg:grid-cols-3">
           <AdminAreaCard
             description="Seguimiento de preparatorias, mentores, estudiantes, areas vocacionales, estados y conexiones."
             exportHref="/api/admin/vocational/export"
@@ -345,7 +349,7 @@ export default async function AdminPage() {
               { label: "Estudiantes", value: counts.vocationalStudents },
               { label: "Total", value: counts.vocationalTotal },
             ]}
-            title="Puente Vocacional"
+            title="Vocacional"
           />
 
           <AdminAreaCard
@@ -359,7 +363,21 @@ export default async function AdminPage() {
               { label: "Ambas", value: counts.fieldServicesBoth },
               { label: "Dron", value: counts.fieldServicesDrone },
             ]}
-            title="Servicios de campo"
+            title="Servicios"
+          />
+
+          <AdminAreaCard
+            description="Seguimiento de mensajes generales enviados desde la pagina de contacto."
+            exportHref="/api/admin/contact/export"
+            href="/admin/contacto"
+            icon={Mail}
+            metrics={[
+              { label: "ONGs", value: counts.contactNgos },
+              { label: "Programas", value: counts.contactPrograms },
+              { label: "Servicios", value: counts.contactServices },
+              { label: "Investigacion", value: counts.contactResearch },
+            ]}
+            title="Contacto"
           />
         </div>
 
@@ -383,14 +401,21 @@ export default async function AdminPage() {
                   className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-4 text-sm font-medium text-[#10233f] transition hover:bg-white"
                   href="/eventos/puente-vocacional-2026/registro"
                 >
-                  Ver registro vocacional
+                  Registro vocacional
                 </Link>
 
                 <Link
                   className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-4 text-sm font-medium text-[#10233f] transition hover:bg-white"
                   href="/servicios/solicitud"
                 >
-                  Ver solicitud de servicios
+                  Solicitud de servicios
+                </Link>
+
+                <Link
+                  className="inline-flex min-h-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-4 text-sm font-medium text-[#10233f] transition hover:bg-white"
+                  href="/contacto"
+                >
+                  Contacto publico
                 </Link>
               </div>
             </div>
