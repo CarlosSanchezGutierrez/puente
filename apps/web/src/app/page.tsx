@@ -1,3 +1,4 @@
+import { HomePrinciplesSection } from "@/components/home/home-principles-section";
 import { WhatWeDoSection } from "@/components/home/what-we-do-section";
 import { ResearchCompactSection } from "@/components/research/research-sections";
 import { VocationalHomeSection } from "@/components/home/vocational-home-section";
@@ -401,6 +402,8 @@ export default function Home() {
     
       <TeamTrustSection />
       <WhatWeDoSection />
+
+      <HomePrinciplesSection />
 
       <VocationalHomeSection />
 
