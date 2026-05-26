@@ -1,0 +1,2 @@
+import { ExternalAdvisorySection } from "@/components/team/external-advisory-section";
+apps\web\src\app\ongs\page.tsx
