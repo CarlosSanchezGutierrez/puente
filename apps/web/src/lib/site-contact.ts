@@ -3,6 +3,7 @@ export const siteContact = {
   email: "contacto@puenteimpacto.org",
   phoneDisplay: "+52 833 367 4769",
   phoneE164: "528333674769",
+  bookingUrl: "https://calendly.com/contacto-puenteimpacto/30min",
   whatsappMessage:
     "Hola, Puente Impacto. Me gustaria conocer mas sobre sus servicios o proyectos.",
 };
@@ -17,6 +18,7 @@ export const contactLinks = {
   email: `mailto:${siteContact.email}?subject=${emailSubject}&body=${emailBody}`,
   whatsapp: `https://wa.me/${siteContact.phoneE164}?text=${whatsappText}`,
   share: "/compartir",
+  booking: siteContact.bookingUrl,
 };
 
 export const socialLinks = [

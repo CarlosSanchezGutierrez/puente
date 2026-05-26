@@ -1,3 +1,4 @@
+import { BookingSection } from "@/components/site/booking-section";
 import { ContactLinks } from "@/components/site/contact-links";
 import {
   ArrowRight,
@@ -156,6 +157,7 @@ export default function ContactoPage() {
         </div>
       </section>
           <section className="mx-auto max-w-7xl px-6 pb-16"><ContactLinks variant="card" /></section>
+          <BookingSection title="Agenda una reunion breve." description="Podemos revisar tu proyecto, organizacion, escuela o posible colaboracion en una reunion general de 30 minutos." />
     </SiteShell>
   );
 }

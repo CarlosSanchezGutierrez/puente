@@ -1,3 +1,4 @@
+import { BookingSection } from "@/components/site/booking-section";
 import {
   ArrowRight,
   BadgeCheck,
@@ -340,6 +341,7 @@ export default function OngsPage() {
           </div>
         </div>
       </section>
+          <BookingSection title="Revisemos si podemos apoyar a tu organizacion." description="Agenda una reunion general de 30 minutos para entender la necesidad, el alcance y el siguiente paso razonable." />
     </SiteShell>
   );
 }

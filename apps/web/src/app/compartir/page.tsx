@@ -1,3 +1,4 @@
+import { BookingLink } from "@/components/site/booking-link";
 import { ExternalLink, Globe2, Mail, MessageCircle, QrCode } from "lucide-react";
 import QRCode from "qrcode";
 import { ShareActions } from "@/components/share/share-actions";
@@ -41,6 +42,7 @@ export default async function CompartirPage() {
 
             <div className="mt-8 flex flex-col gap-4">
               <ShareActions url={siteContact.siteUrl} />
+              <BookingLink />
 
               <div className="flex flex-wrap gap-2">
                 <a
