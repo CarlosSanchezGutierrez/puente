@@ -1,3 +1,4 @@
+import { FieldSupportCompact } from "@/components/services/field-support-teaser";
 import {
   ArrowRight,
   ClipboardCheck,
@@ -311,6 +312,8 @@ export default function OngsPage() {
           </div>
         </div>
       </section>
+          <FieldSupportCompact />
+
     </SiteShell>
   );
 }

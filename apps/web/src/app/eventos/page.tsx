@@ -1,3 +1,4 @@
+import { FieldSupportCompact } from "@/components/services/field-support-teaser";
 import { VocationalEventFeature } from "@/components/events/vocational-event-feature";
 import {
   CalendarDays,
@@ -235,6 +236,8 @@ export default async function EventosPage() {
           </div>
         )}
       </section>
+          <FieldSupportCompact />
+
     </SiteShell>
   );
 }
