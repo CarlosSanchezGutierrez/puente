@@ -9,7 +9,7 @@ const navItems = [
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos", label: "Programas" },
   { href: "/servicios", label: "Servicios" },
-  { href: "/investigacion", label: "Investigación" },
+  { href: "/investigacion", label: "InvestigaciÃ³n" },
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/nosotros", label: "Equipo" },
 ];
@@ -38,7 +38,7 @@ export function SiteHeader() {
             Puente Impacto
           </span>
           <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#60738c]">
-            Tecnología social
+            TecnologÃ­a social
           </span>
         </Link>
 
@@ -65,7 +65,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#10233f] px-4 text-sm font-medium text-white transition hover:bg-[#1b365f]"
-            href="/servicios/solicitud"
+            href="/contacto"
           >
             Solicitar
           </Link>
@@ -73,7 +73,7 @@ export function SiteHeader() {
 
         <button
           aria-expanded={menuOpen}
-          aria-label="Abrir menú"
+          aria-label="Abrir menÃº"
           className="inline-flex size-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 text-[#10233f] lg:hidden"
           onClick={() => setMenuOpen((current) => !current)}
           type="button"
@@ -106,7 +106,7 @@ export function SiteHeader() {
 
             <Link
               className="mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-[#10233f] px-4 text-sm font-medium text-white transition hover:bg-[#1b365f]"
-              href="/servicios/solicitud"
+              href="/contacto"
               onClick={() => setMenuOpen(false)}
             >
               Solicitar
