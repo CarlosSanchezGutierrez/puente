@@ -1,3 +1,4 @@
+import { ResearchCompactSection } from "@/components/research/research-sections";
 import { VocationalHomeSection } from "@/components/home/vocational-home-section";
 import { TeamTrustSection } from "@/components/home/team-trust-section";
 import {
@@ -399,6 +400,8 @@ export default function Home() {
     
       <TeamTrustSection />
       <VocationalHomeSection />
+
+          <ResearchCompactSection />
 
     </SiteShell>
   );

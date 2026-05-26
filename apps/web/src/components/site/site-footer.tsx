@@ -9,6 +9,7 @@ const footerGroups = [
       { href: "/voluntariado", label: "Voluntariado" },
       { href: "/ongs", label: "ONG's" },
       { href: "/servicios", label: "Servicios" },
+      { href: "/investigacion", label: "Investigación" },
       { href: "/eventos", label: "Eventos" },
       { href: "/recursos", label: "Recursos" },
     ],

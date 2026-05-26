@@ -1,3 +1,4 @@
+import { ResearchCompactSection } from "@/components/research/research-sections";
 import { FieldSupportCompact } from "@/components/services/field-support-teaser";
 import {
   ArrowRight,
@@ -313,6 +314,8 @@ export default function OngsPage() {
         </div>
       </section>
           <FieldSupportCompact />
+
+          <ResearchCompactSection />
 
     </SiteShell>
   );
