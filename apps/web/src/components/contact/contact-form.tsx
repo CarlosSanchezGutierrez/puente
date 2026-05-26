@@ -91,9 +91,7 @@ export function ContactForm() {
         throw new Error(data?.error ?? "No pudimos guardar el mensaje.");
       }
 
-      setStatus("success");
-      setFeedback("Mensaje enviado. Revisaremos el contexto para dar seguimiento.");
-      setForm(initialState);
+      window.location.assign("/gracias?tipo=contacto");
     } catch (error) {
       setStatus("error");
       setFeedback(error instanceof Error ? error.message : "Ocurrio un error al enviar el mensaje.");

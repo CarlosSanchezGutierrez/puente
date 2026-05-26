@@ -109,9 +109,7 @@ export function FieldServiceRequestForm() {
         throw new Error(data?.error ?? "No pudimos guardar la solicitud.");
       }
 
-      setStatus("success");
-      setFeedback("Solicitud enviada. Revisaremos el contexto para proponer un alcance viable.");
-      setForm(initialState);
+      window.location.assign("/gracias?tipo=servicios");
     } catch (error) {
       setStatus("error");
       setFeedback(error instanceof Error ? error.message : "Ocurrio un error al enviar la solicitud.");
@@ -272,7 +270,7 @@ export function FieldServiceRequestForm() {
         <textarea
           className="min-h-36 rounded-2xl border border-[#d7dedf] bg-white/80 px-4 py-3 text-[#10233f] outline-none transition focus:border-[#10233f]"
           onChange={(event) => updateField("context", event.target.value)}
-          placeholder="Cuéntanos qué evento, sede o proyecto quieres apoyar, qué problema buscas resolver y qué resultado esperas."
+          placeholder="CuÃ©ntanos quÃ© evento, sede o proyecto quieres apoyar, quÃ© problema buscas resolver y quÃ© resultado esperas."
           value={form.context}
         />
       </label>
