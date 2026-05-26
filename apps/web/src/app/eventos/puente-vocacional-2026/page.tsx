@@ -1,3 +1,4 @@
+import { ContextDocSection } from "@/components/docs/context-doc-section";
 import { FAQLinkSection } from "@/components/site/faq-link-section";
 import { BookingSection } from "@/components/site/booking-section";
 import { VocationalInterestSection } from "@/components/events/vocational-interest-section";

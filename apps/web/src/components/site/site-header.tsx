@@ -16,6 +16,7 @@ const navItems = [
   { href: "/descargar", label: "App" },
   { href: "/nosotros", label: "Equipo" },
   { href: "/colabora", label: "Colabora" },
+  { href: "/kit", label: "Kit" },
   { href: "/faq", label: "FAQ" },
 ];
 
