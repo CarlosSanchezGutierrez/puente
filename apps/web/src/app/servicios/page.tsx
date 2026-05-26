@@ -158,7 +158,7 @@ export default function ServiciosPage() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
-                href="/contacto"
+                href="/servicios/solicitud"
               >
                 Solicitar apoyo
                 <ArrowRight className="ml-2 size-4" />
@@ -346,7 +346,7 @@ export default function ServiciosPage() {
             <div className="grid gap-3">
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-[#10233f] transition hover:bg-[#f3efe6]"
-                href="/contacto"
+                href="/servicios/solicitud"
               >
                 Solicitar apoyo
                 <ArrowRight className="ml-2 size-4" />
