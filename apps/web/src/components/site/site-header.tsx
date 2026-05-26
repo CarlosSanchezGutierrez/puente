@@ -15,6 +15,7 @@ const navItems = [
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/descargar", label: "App" },
   { href: "/nosotros", label: "Equipo" },
+  { href: "/colabora", label: "Colabora" },
 ];
 
 function isActivePath(pathname: string, href: string) {
