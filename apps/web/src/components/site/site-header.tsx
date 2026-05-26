@@ -1,4 +1,5 @@
 "use client";
+import { SocialIconLinks } from "@/components/site/social-icon-links";
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -55,7 +56,8 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:block">
-          <Link
+                    <SocialIconLinks />
+<Link
             className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#10233f] px-4 text-sm font-medium text-white transition hover:bg-[#1b365f]"
             href="/contacto"
           >

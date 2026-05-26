@@ -21,17 +21,21 @@ export const socialLinks = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/puenteimpacto/",
+    color: "#E4405F",
   },
   {
     label: "Facebook",
     href: "https://www.facebook.com/share/18cFjnZfPg/",
+    color: "#1877F2",
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/puente-impacto/",
+    color: "#0A66C2",
   },
   {
     label: "YouTube",
     href: "https://www.youtube.com/@PuenteImpacto",
+    color: "#FF0000",
   },
 ] as const;
