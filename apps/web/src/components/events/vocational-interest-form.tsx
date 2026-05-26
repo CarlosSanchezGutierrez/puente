@@ -251,8 +251,8 @@ export function VocationalInterestForm() {
           onChange={(event) => updateField("message", event.target.value)}
           placeholder={
             selectedOption
-              ? `CuÃ©ntanos brevemente tu caso como ${selectedOption.label.toLowerCase()}.`
-              : "CuÃ©ntanos brevemente tu caso."
+              ? `Cuentanos brevemente tu caso como ${selectedOption.label.toLowerCase()}.`
+              : "Cuentanos brevemente tu caso."
           }
           value={form.message}
         />
