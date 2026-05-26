@@ -197,6 +197,14 @@ export default async function AdminVocacionalPage() {
             Cerrar sesion
           </button>
         </form>
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+          <a
+            className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#10233f] px-4 text-sm font-medium text-white transition hover:bg-[#1b365f]"
+            href="/api/admin/vocational/export"
+          >
+            Exportar CSV
+          </a>
+        </div>
         <div className="mb-10 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#60738c] md:text-sm">
