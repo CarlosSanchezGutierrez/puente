@@ -39,14 +39,23 @@ export async function POST(request: Request) {
 
   const response = NextResponse.redirect(new URL(nextPath, request.url));
 
-  response.cookies.set({
+  const cookieOptions = {
     name: ADMIN_COOKIE_NAME,
     value: sessionValue,
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/admin",
+    sameSite: "lax" as const,
     maxAge: 60 * 60 * 8,
+  };
+
+  response.cookies.set({
+    ...cookieOptions,
+    path: "/",
+  });
+
+  response.cookies.set({
+    ...cookieOptions,
+    path: "/admin",
   });
 
   return response;

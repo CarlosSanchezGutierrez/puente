@@ -7,15 +7,17 @@ export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
   const response = NextResponse.redirect(new URL("/admin/login", request.url));
 
-  response.cookies.set({
-    name: ADMIN_COOKIE_NAME,
-    value: "",
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/admin",
-    maxAge: 0,
-  });
+  for (const path of ["/", "/admin"]) {
+    response.cookies.set({
+      name: ADMIN_COOKIE_NAME,
+      value: "",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path,
+      maxAge: 0,
+    });
+  }
 
   return response;
 }
