@@ -1,3 +1,4 @@
+import { MobileSocialBar } from "@/components/site/mobile-social-bar";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -13,6 +14,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </a>
 
       <SiteHeader />
+      <MobileSocialBar />
 
       <main id="main-content" tabIndex={-1}>
         {children}
