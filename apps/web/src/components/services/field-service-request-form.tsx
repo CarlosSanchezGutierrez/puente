@@ -270,7 +270,7 @@ export function FieldServiceRequestForm() {
         <textarea
           className="min-h-36 rounded-2xl border border-[#d7dedf] bg-white/80 px-4 py-3 text-[#10233f] outline-none transition focus:border-[#10233f]"
           onChange={(event) => updateField("context", event.target.value)}
-          placeholder="CuÃ©ntanos quÃ© evento, sede o proyecto quieres apoyar, quÃ© problema buscas resolver y quÃ© resultado esperas."
+          placeholder="Cuentanos que evento, sede o proyecto quieres apoyar, que problema buscas resolver y que resultado esperas."
           value={form.context}
         />
       </label>

@@ -100,9 +100,7 @@ export function VocationalInterestForm() {
         throw new Error(data?.error ?? "No pudimos guardar el registro.");
       }
 
-      setStatus("success");
-      setFeedback("Registro enviado. Revisaremos la informacion para dar seguimiento.");
-      setForm(initialState);
+      window.location.assign("/gracias?tipo=vocacional");
     } catch (error) {
       setStatus("error");
       setFeedback(error instanceof Error ? error.message : "Ocurrio un error al enviar el registro.");
@@ -253,8 +251,8 @@ export function VocationalInterestForm() {
           onChange={(event) => updateField("message", event.target.value)}
           placeholder={
             selectedOption
-              ? `Cuéntanos brevemente tu caso como ${selectedOption.label.toLowerCase()}.`
-              : "Cuéntanos brevemente tu caso."
+              ? `CuÃ©ntanos brevemente tu caso como ${selectedOption.label.toLowerCase()}.`
+              : "CuÃ©ntanos brevemente tu caso."
           }
           value={form.message}
         />
