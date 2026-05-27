@@ -6,7 +6,9 @@ import { SocialIconLinks } from "@/components/site/social-icon-links";
 const navItems = [
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
+  { href: "/eventos", label: "Programas" },
   { href: "/recursos", label: "Recursos" },
+  { href: "/biblioteca", label: "Biblioteca" },
   { href: "/colabora", label: "Colabora" },
   { href: "/kit", label: "Kit" },
   { href: "/faq", label: "FAQ" },
