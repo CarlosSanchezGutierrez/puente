@@ -1,3 +1,4 @@
+import { StructuredData } from "@/components/seo/structured-data";
 import { ServiceWorkerRegistration } from "@/components/pwa/service-worker-registration";
 import { getSiteUrl } from "@/lib/site-url";
 import type { Metadata } from "next";
@@ -79,6 +80,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${instrumentSans.variable} ${sourceSerif.variable} antialiased`}>
+        <StructuredData />
         <ServiceWorkerRegistration />
         {children}
       </body>

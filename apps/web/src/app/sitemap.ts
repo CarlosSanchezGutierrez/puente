@@ -1,33 +1,34 @@
 import type { MetadataRoute } from "next";
-import { getSiteUrl } from "@/lib/site-url";
+
+const baseUrl = "https://puenteimpacto.org";
 
 const routes = [
-  { path: "/", priority: 1.0, changeFrequency: "weekly" },
- { path: "/nosotros", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/biblioteca", priority: 0.95, changeFrequency: "daily" },
-  { path: "/ongs", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/voluntariado", priority: 0.85, changeFrequency: "monthly" },
-  { path: "/eventos", priority: 0.8, changeFrequency: "daily" },
-  { path: "/eventos/puente-vocacional-2026", priority: 0.82, changeFrequency: "monthly" },
-  { path: "/eventos/puente-vocacional-2026/registro", priority: 0.78, changeFrequency: "monthly" },
-  { path: "/recursos", priority: 0.8, changeFrequency: "weekly" },
-  { path: "/contacto", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/login", priority: 0.45, changeFrequency: "yearly" },
-  { path: "/cuenta", priority: 0.35, changeFrequency: "monthly" },
-  { path: "/privacidad", priority: 0.3, changeFrequency: "yearly" },
-  { path: "/terminos", priority: 0.3, changeFrequency: "yearly" },
-  { path: "/investigacion", priority: 0.76, changeFrequency: "monthly" },
-  { path: "/descargar", priority: 0.54, changeFrequency: "monthly" },
-] as const;
+  "",
+  "/ongs",
+  "/eventos",
+  "/eventos/puente-vocacional-2026",
+  "/recursos",
+  "/biblioteca",
+  "/servicios",
+  "/colabora",
+  "/kit",
+  "/faq",
+  "/contacto",
+  "/compartir",
+  "/descargar",
+  "/nosotros",
+  "/investigacion",
+  "/privacidad",
+  "/terminos",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = getSiteUrl();
   const now = new Date();
 
   return routes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
+    url: `${baseUrl}${route}`,
     lastModified: now,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
+    changeFrequency: route === "" ? "weekly" : "monthly",
+    priority: route === "" ? 1 : route === "/ongs" || route === "/eventos/puente-vocacional-2026" ? 0.9 : 0.7,
   }));
 }
