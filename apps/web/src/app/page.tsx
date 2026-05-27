@@ -6,7 +6,6 @@ import {
   ArrowRight,
   BookOpen,
   Braces,
-  CheckCircle2,
   GraduationCap,
   HeartHandshake,
   Library,
@@ -80,20 +79,6 @@ const publicActions = [
   },
 ];
 
-const principles = [
-  {
-    title: "Utilidad real",
-    text: "No construir por apariencia. Construir porque resuelve, ordena o facilita algo concreto.",
-  },
-  {
-    title: "Claridad operativa",
-    text: "Cada proyecto necesita procesos, responsables, datos y reglas comprensibles.",
-  },
-  {
-    title: "Acceso al conocimiento",
-    text: "La tecnologia y la educacion deben estar al servicio de mas personas, no solo de perfiles privilegiados.",
-  },
-];
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
