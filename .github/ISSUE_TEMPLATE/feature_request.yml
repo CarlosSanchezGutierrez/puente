@@ -1,0 +1,24 @@
+name: Feature request
+description: Proponer una mejora o nueva funcionalidad
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+      description: Describe el contexto o necesidad.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Explica la soluci&oacute;n o mejora sugerida.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto esperado
+      description: Explica a qui&eacute;n ayuda y c&oacute;mo.

@@ -1,0 +1,29 @@
+name: Bug report
+description: Reportar un error
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripci&oacute;n
+      description: Explica qu&eacute; ocurri&oacute;.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      description: Lista los pasos para reproducir el problema.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+      description: Explica qu&eacute; deber&iacute;a pasar.
+  - type: input
+    id: environment
+    attributes:
+      label: Entorno
+      description: Navegador, dispositivo o ruta afectada.

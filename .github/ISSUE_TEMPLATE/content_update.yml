@@ -1,0 +1,30 @@
+name: Content update
+description: Solicitar un ajuste de texto, documento o contenido institucional
+title: "[Content]: "
+labels: ["content"]
+body:
+  - type: textarea
+    id: current
+    attributes:
+      label: Contenido actual
+      description: Pega o describe el contenido actual.
+  - type: textarea
+    id: change
+    attributes:
+      label: Cambio solicitado
+      description: Describe el ajuste propuesto.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: &Aacute;rea
+      options:
+        - Home
+        - ONGs
+        - Puente Vocacional
+        - Recursos
+        - Kit
+        - FAQ
+        - Contacto
+        - Otro
