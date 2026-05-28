@@ -1,5 +1,4 @@
 import { ArrowRight, HelpCircle } from "lucide-react";
-import Link from "next/link";
 import { BookingLink } from "@/components/site/booking-link";
 import { SiteShell } from "@/components/site/site-shell";
 

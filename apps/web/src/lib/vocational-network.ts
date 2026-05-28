@@ -75,14 +75,16 @@ export const vocationalProfiles: VocationalProfile[] = [
     city: "Monterrey",
     role: "Mentor universitario",
     photo: "/mentores/carlos-sanchez-gutierrez.jpg",
-    linkedin: "https://www.linkedinname: "Carlos Sánchez Gutiérrez",
+    linkedin: "https://www.linkedin.com/in/carlos-sanchez-gutierrez-tec/",
+  },
+  {
+    name: "Carlos Sánchez Gutiérrez",
     credential: "Ingeniería en Tecnologías Computacionales (ITC)",
     institution: itesm,
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
-    photo: "/mentores/carlos-sanchez-gutierrez.jpg",   city: "Tampico",
-    role: "Mentor universitario",
+    photo: "/mentores/carlos-sanchez-gutierrez.jpg",
     linkedin: "https://www.linkedin.com/in/carlos-sanchez-gutierrez-tec/",
   },
   {
@@ -93,15 +95,16 @@ export const vocationalProfiles: VocationalProfile[] = [
     city: "Monterrey",
     role: "Mentor universitario",
     photo: "/mentores/leonel-francisco-bailon-sifuentes.jpg",
-    linkedin: "httpname: "Leonel Francisco Bailón Sifuentes",
+    linkedin: "https://www.linkedin.com/in/leonelbailonsifuentes/",
+  },
+  {
+    name: "Leonel Francisco Bailón Sifuentes",
     credential: "Ingeniería en Tecnologías Computacionales (ITC)",
     institution: itesm,
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
-    photo: "/mentores/leonel-francisco-bailon-sifuentes.jpg",ncias",
-    city: "Tampico",
-    role: "Mentor universitario",
+    photo: "/mentores/leonel-francisco-bailon-sifuentes.jpg",
     linkedin: "https://www.linkedin.com/in/leonelbailonsifuentes/",
   },
   {
@@ -111,6 +114,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Monterrey",
     role: "Mentor universitario",
+    photo: "/mentores/sofia-sanchez-garza.jpg",
     linkedin: "https://www.linkedin.com/in/sofiasanchezg/",
   },
   {
@@ -120,6 +124,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
+    photo: "/mentores/sofia-sanchez-garza.jpg",
     linkedin: "https://www.linkedin.com/in/sofiasanchezg/",
   },
   {
@@ -129,6 +134,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Monterrey",
     role: "Directiva académica",
+    photo: "/mentores/elvia-itzamna-rosas-herrera.jpg",
     linkedin: "https://www.linkedin.com/in/elviarosasherrera/",
   },
   {
@@ -138,6 +144,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
+    photo: "/mentores/lehi-salvador-rangel-cardenas.jpg",
     linkedin: "https://www.linkedin.com/in/lehi-salvador/",
   },
   {
@@ -158,6 +165,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
+    photo: "/mentores/mireidi-jaqueline-castelan-mendoza.jpg",
     linkedin: "https://www.linkedin.com/in/mireidicastelan/",
     badges: ["Líder del Mañana"],
   },
@@ -190,7 +198,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
-    photo: "/mentores/elvia-itzamna-rosas-herrera.jpg",
+    photo: "/mentores/esau-oviedo-gonzalez.jpg",
     badges: ["Líder del Mañana"],
   },
   {
@@ -208,6 +216,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Medicina y Ciencias de la Salud",
     city: "Tampico",
     role: "Mentor universitario",
+    photo: "/mentores/daphne-eunice-ramirez-garcia.jpg",
     linkedin: "https://www.linkedin.com/in/daphne-eunice-ram%C3%ADrez-garc%C3%ADa-a5884a384/",
   },
   {
