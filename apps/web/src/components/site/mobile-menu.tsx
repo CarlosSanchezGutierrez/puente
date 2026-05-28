@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -44,10 +44,11 @@ export function MobileMenu({ navItems, secondaryItems = [] }: MobileMenuProps) {
             ))}
 
             {secondaryItems.length ? (
-              <div className="mt-2 border-t border-[#d7dedf] pt-2">
-                <p className="px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#526981]">
-                  Más
-                </p>
+              <div className="mt-3 rounded-[1rem] border border-[#d7dedf] bg-white/45 p-2">
+                <div className="flex items-center justify-between px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#526981]">
+                  <span>Más opciones</span>
+                  <ChevronDown className="size-4" />
+                </div>
                 <div className="grid gap-1">
                   {secondaryItems.map((item) => (
                     <Link

@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { BookingLink } from "@/components/site/booking-link";
 import { MobileMenu } from "@/components/site/mobile-menu";
@@ -8,7 +9,6 @@ const navItems = [
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
   { href: "/eventos", label: "Programas" },
-  { href: "/recursos", label: "Recursos" },
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/colabora", label: "Colabora" },
@@ -17,6 +17,7 @@ const navItems = [
 ];
 
 const secondaryNavItems = [
+  { href: "/recursos", label: "Recursos" },
   { href: "/kit", label: "Kit" },
   { href: "/descargar", label: "App" },
 ];
@@ -29,10 +30,10 @@ export function SiteHeader() {
           Puente Impacto
         </Link>
 
-        <nav className="hidden items-center gap-4 lg:flex">
+        <nav className="hidden items-center gap-3 lg:flex">
           {navItems.map((item) => (
             <Link
-              className="text-sm font-medium text-[#425875] transition hover:text-[#10233f]"
+              className="rounded-full px-2.5 py-2 text-sm font-medium text-[#425875] transition hover:bg-white/70 hover:text-[#10233f]"
               href={item.href}
               key={item.href}
             >
@@ -41,10 +42,14 @@ export function SiteHeader() {
           ))}
 
           <details className="group relative">
-            <summary className="list-none cursor-pointer text-sm font-medium text-[#425875] transition hover:text-[#10233f]">
+            <summary className="inline-flex list-none cursor-pointer items-center gap-1.5 rounded-full border border-[#d7dedf] bg-white/65 px-3 py-2 text-sm font-semibold text-[#10233f] transition hover:bg-white">
               Más
+              <ChevronDown className="size-4 transition group-open:rotate-180" />
             </summary>
-            <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 min-w-40 rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-2 shadow-xl">
+            <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 min-w-44 rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-2 shadow-xl">
+              <p className="px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#526981]">
+                Opciones
+              </p>
               {secondaryNavItems.map((item) => (
                 <Link
                   className="block rounded-xl px-4 py-3 text-sm font-medium text-[#425875] transition hover:bg-white hover:text-[#10233f]"
