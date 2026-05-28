@@ -1,365 +1,239 @@
-import { VocationalNetworkHeroCta } from "@/components/events/vocational-network-hero-cta";
-import { VocationalNetworkTeaser } from "@/components/events/vocational-network-teaser";
-import { FAQLinkSection } from "@/components/site/faq-link-section";
-import { BookingSection } from "@/components/site/booking-section";
-import { VocationalInterestSection } from "@/components/events/vocational-interest-section";
-import {
-  ArrowRight,
-  BadgeCheck,
-  BookOpen,
-  BriefcaseBusiness,
-  Building2,
-  CalendarDays,
-  Handshake,
-  HeartHandshake,
-  LineChart,
-  School,
-  Stethoscope,
-  Users,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { SiteShell } from "@/components/site/site-shell";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
-  title: "Puente Vocacional 2026",
+  title: "Puente Vocacional | Orientación para estudiantes de preparatoria",
   description:
-    "Programa de orientacion vocacional para conectar estudiantes de preparatoria con carreras, universidades, profesionistas en formacion y mentores.",
+    "Pláticas, sesiones y red de orientadores vocacionales para ayudar a estudiantes de preparatoria a conocer carreras, universidades y rutas profesionales.",
+  alternates: {
+    canonical: "/eventos/puente-vocacional-2026",
+  },
+  openGraph: {
+    title: "Puente Vocacional | Orientación para estudiantes de preparatoria",
+    description:
+      "Pláticas, sesiones y red de orientadores vocacionales para estudiantes de preparatoria, familias, escuelas y profesionistas.",
+    url: "https://puenteimpacto.org/eventos/puente-vocacional-2026",
+    images: [
+      {
+        url: "/og/puente-impacto-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Puente Vocacional: orientación vocacional con experiencias reales",
+      },
+    ],
+  },
 };
 
-const areas = [
+const audiences = [
   {
-    title: "Salud y bienestar",
+    title: "Preparatorias",
     description:
-      "Medicina, odontologia, nutricion, psicologia, fisioterapia, enfermeria, salud publica e investigacion biomedica.",
-    icon: Stethoscope,
+      "Actividad vocacional para acercar a sus estudiantes con universitarios, profesionistas y perfiles académicos.",
   },
   {
-    title: "Ingenieria y tecnologia",
+    title: "Estudiantes",
     description:
-      "Computacion, ciencia de datos, software, mecatronica, industrial, civil, electronica, robotica, infraestructura y ciberseguridad.",
-    icon: Building2,
+      "Espacios para escuchar experiencias reales, hacer preguntas y conocer opciones antes de elegir carrera.",
   },
   {
-    title: "Arquitectura, diseno y ciudad",
+    title: "Padres de familia",
     description:
-      "Arquitectura, urbanismo, diseno industrial, diseno grafico, interiores, construccion y sostenibilidad.",
-    icon: School,
+      "Información más clara para acompañar mejor a sus hijos en la decisión de carrera, universidad o área profesional.",
   },
   {
-    title: "Negocios y organizaciones",
+    title: "Profesionistas y profesores",
     description:
-      "Negocios internacionales, contabilidad, administracion, finanzas, emprendimiento, logistica, recursos humanos y consultoria.",
-    icon: BriefcaseBusiness,
+      "Participación como ponentes, orientadores o perfiles invitados para compartir experiencia de forma práctica.",
   },
-  {
-    title: "Humanidades, comunicacion y artes",
-    description:
-      "Derecho, educacion, comunicacion, teatro, musica, literatura, arte, produccion audiovisual y relaciones internacionales.",
-    icon: BookOpen,
-  },
-  {
-    title: "Impacto social e interdisciplinario",
-    description:
-      "ONGs, voluntariado, tecnologia social, investigacion aplicada, proyectos comunitarios y consultoria con enfoque formativo.",
-    icon: HeartHandshake,
-  },
+];
+
+const includes = [
+  "Pláticas vocacionales por carrera o área profesional",
+  "Sesiones con universitarios, profesionistas, profesores y mentores",
+  "Preguntas y respuestas con estudiantes de preparatoria",
+  "Red de orientadores vocacionales por ciudad y familia vocacional",
+  "Registro de interés para escuelas, ponentes y alumnos",
+  "Documentación del evento para redes, página web y seguimiento",
+];
+
+const families = [
+  "Salud y bienestar",
+  "Ingeniería y tecnología",
+  "Negocios y organizaciones",
+  "Arquitectura, diseño y ciudad",
+  "Humanidades, comunicación y artes",
+  "Impacto social e interdisciplinario",
 ];
 
 const steps = [
   {
-    title: "Visitamos preparatorias",
+    title: "Escuela o preparatoria",
     description:
-      "Coordinamos sesiones con escuelas interesadas en fortalecer la orientacion vocacional de sus estudiantes.",
+      "Puede registrar interés para organizar una sesión, plática o actividad vocacional con sus estudiantes.",
   },
   {
-    title: "Reunimos perfiles diversos",
+    title: "Ponente u orientador",
     description:
-      "Invitamos estudiantes universitarios, practicantes, profesionistas, docentes, directivos y orientadores.",
+      "Puede compartir su experiencia académica o profesional con estudiantes que están por elegir carrera.",
   },
   {
-    title: "Conectamos intereses con carreras",
+    title: "Alumno o familia",
     description:
-      "Los alumnos exploran areas profesionales desde conversaciones cercanas, realistas y utiles.",
-  },
-  {
-    title: "Damos seguimiento",
-    description:
-      "Compartimos materiales, contactos y recursos para que la orientacion continue despues de la sesion.",
+      "Puede registrar interés para recibir información sobre próximas sesiones, áreas vocacionales o perfiles participantes.",
   },
 ];
-
-const metrics = [
-  { label: "Preparatorias visitadas", value: "0", note: "Meta inicial: 10 durante Ago-Dic 2026." },
-  { label: "Estudiantes alcanzados", value: "0", note: "Meta inicial: 1,000 estudiantes." },
-  { label: "Areas vocacionales", value: "6+", note: "Salud, ingenieria, diseno, negocios, humanidades e impacto social." },
-  { label: "Perfiles participantes", value: "0", note: "Universitarios, practicantes, profesionistas, docentes y orientadores." },
-  { label: "Conexiones vocacionales", value: "0", note: "Alumnos conectados con perfiles cercanos a su carrera de interes." },
-  { label: "Recursos compartidos", value: "0", note: "Materiales, guias, contactos y rutas de exploracion." },
-];
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#60738c] md:text-sm">
-      {children}
-    </p>
-  );
-}
-
-function AreaCard({
-  title,
-  description,
-  icon: Icon,
-}: {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}) {
-  return (
-    <Card className="h-full border-[#d7dedf] bg-white/78 shadow-sm">
-      <CardContent className="p-6">
-        <div className="mb-8 flex size-12 items-center justify-center rounded-2xl border border-[#d7dedf] bg-[#fbfaf7]">
-          <Icon className="size-6 text-[#10233f]" />
-        </div>
-        <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
-          {title}
-        </h3>
-        <p className="mt-4 leading-7 text-[#425875]">{description}</p>
-      </CardContent>
-    </Card>
-  );
-}
 
 export default function PuenteVocacionalPage() {
   return (
     <SiteShell>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[680px] bg-[radial-gradient(circle_at_top_left,rgba(65,105,150,0.22),transparent_38%),linear-gradient(180deg,#f7f4ed_0%,#f3efe6_100%)]" />
-
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1fr_0.88fr] md:py-24">
-          <div>
-            <Badge className="mb-6 w-fit rounded-full border-[#c7d2df] bg-white/75 px-4 py-1.5 text-[#10233f] shadow-sm">
-              Programa Agosto-Diciembre 2026
-            </Badge>
-
-            <h1 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.065em] text-[#10233f] sm:text-6xl md:text-8xl">
-              Puente Vocacional 2026
-            </h1>
-
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875] md:text-xl md:leading-9">
-              Visitaremos preparatorias para conectar estudiantes con carreras, universidades
-              y profesiones mediante conversaciones con personas que ya estan recorriendo
-              distintas rutas academicas y profesionales.
+      <main className="bg-[#f7f4ed] text-[#10233f]">
+        <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
+              Puente Vocacional
             </p>
 
-            <p className="mt-5 max-w-2xl text-base leading-8 text-[#60738c]">
-              El programa busca facilitar informacion, contactos y recursos para que los alumnos
-              puedan explorar mejor sus intereses vocacionales.
+            <h1 className="mt-6 text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#10233f] md:text-7xl">
+              Orientación vocacional para estudiantes de preparatoria.
+            </h1>
+
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-[#425875]">
+              Organizamos pláticas y sesiones con universitarios, profesionistas, profesores y mentores para que los estudiantes conozcan carreras, universidades y rutas profesionales antes de decidir qué estudiar.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
-                href="/eventos/puente-vocacional-2026/registro"
+                className="inline-flex items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f]"
+                href="/contacto"
               >
-                Registrar interes
-                <ArrowRight className="ml-2 size-4" />
+                Registrar interés
               </Link>
-
-              <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-                href="/eventos/puente-vocacional-2026/registro"
+              <a
+                className="inline-flex items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white"
+                href="#red-orientadores"
               >
-                Registrar interes
-              </Link>
+                Red de orientadores vocacionales
+              </a>
             </div>
+
+            <p className="mt-5 max-w-3xl text-sm leading-6 text-[#526981]">
+              No se trata de decirle a un estudiante qué carrera elegir. La idea es darle más información, ejemplos reales y preguntas útiles para tomar una mejor decisión.
+            </p>
+          </div>
+        </section>
+
+        <section className="border-y border-[#d7dedf] bg-white/45">
+          <div className="mx-auto grid max-w-7xl gap-4 px-6 py-10 md:grid-cols-4">
+            {audiences.map((item) => (
+              <article
+                className="rounded-[1.5rem] border border-[#d7dedf] bg-[#f7f4ed]/80 p-5 shadow-sm"
+                key={item.title}
+              >
+                <h2 className="text-xl font-semibold tracking-[-0.03em] text-[#10233f]">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[#425875]">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
+              Qué incluye
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
+              Actividades vocacionales claras y fáciles de organizar.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-[#425875]">
+              El formato puede ajustarse según la escuela, el número de estudiantes, las áreas de interés y la disponibilidad de los ponentes.
+            </p>
           </div>
 
-          <div className="rounded-[2rem] border border-[#d7dedf] bg-white/78 p-5 shadow-sm">
-            <div className="rounded-[1.75rem] bg-[#10233f] p-6 text-white md:p-8">
-              <div className="mb-12 flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b7c8dc]">
-                  En preparacion
-                </span>
-                <CalendarDays className="size-6 text-[#d7e7f6]" />
+          <div className="grid gap-3">
+            {includes.map((item) => (
+              <div
+                className="rounded-2xl border border-[#d7dedf] bg-white/75 px-4 py-3 text-sm font-medium text-[#10233f] shadow-sm"
+                key={item}
+              >
+                {item}
               </div>
+            ))}
+          </div>
+        </section>
 
-              <p className="font-[var(--font-serif)] text-3xl font-semibold leading-10 tracking-[-0.04em] md:text-4xl md:leading-[1.08]">
-                Una red de orientacion vocacional basada en experiencia real, contacto humano y seguimiento medible.
+        <section className="bg-[#10233f] px-6 py-16 text-white" id="red-orientadores">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/65">
+                Red de orientadores vocacionales
               </p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] md:text-5xl">
+                Perfiles de Monterrey y Tampico organizados por área.
+              </h2>
+            </div>
 
-              <div className="mt-10 grid gap-3">
-                {[
-                  "Estudiantes de preparatoria con dudas sobre carrera y universidad.",
-                  "Universitarios, practicantes y profesionistas compartiendo experiencia.",
-                  "Profesores, directivos y orientadores ayudando a estructurar el proceso.",
-                ].map((item) => (
+            <div className="rounded-[1.5rem] border border-white/15 bg-white/10 p-5">
+              <p className="text-base leading-7 text-white/80">
+                La red reúne estudiantes universitarios, profesionistas, profesores y perfiles académicos que pueden participar en sesiones vocacionales. Los perfiles se organizan por ciudad, institución y familia vocacional para que cada escuela pueda encontrar invitados relacionados con los intereses de sus estudiantes.
+              </p>
+              <div className="mt-6 grid gap-2 sm:grid-cols-2">
+                {families.map((family) => (
                   <div
-                    className="grid grid-cols-[36px_1fr] gap-4 rounded-[1.25rem] border border-white/15 bg-white/10 p-4"
-                    key={item}
+                    className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-medium text-white"
+                    key={family}
                   >
-                    <div className="flex size-9 items-center justify-center rounded-full bg-white/10">
-                      <BadgeCheck className="size-5 text-[#d7e7f6]" />
-                    </div>
-                    <p className="leading-7 text-[#c9d8e8]">{item}</p>
+                    {family}
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <VocationalNetworkHeroCta />
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
-          <div>
-            <SectionLabel>Como funciona</SectionLabel>
-            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              Orientacion clara, cercana y medible.
+        <section className="mx-auto max-w-7xl px-6 py-16">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
+              Cómo participar
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
+              Registro simple para escuelas, ponentes y familias.
             </h2>
           </div>
 
-          <p className="text-lg leading-8 text-[#425875]">
-            La idea es crear espacios de conversacion, recursos y seguimiento para que cada estudiante
-            pueda explorar posibilidades con mayor claridad.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-4">
-          {steps.map((step, index) => (
-            <Card className="border-[#d7dedf] bg-white/78 shadow-sm" key={step.title}>
-              <CardContent className="p-6">
-                <div className="mb-8 flex size-12 items-center justify-center rounded-2xl bg-[#10233f] text-lg font-semibold text-white">
-                  {index + 1}
-                </div>
-                <h3 className="text-xl font-semibold tracking-[-0.035em] text-[#10233f]">
-                  {step.title}
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {steps.map((item) => (
+              <article
+                className="rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm"
+                key={item.title}
+              >
+                <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#10233f]">
+                  {item.title}
                 </h3>
-                <p className="mt-4 text-sm leading-7 text-[#425875]">{step.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <VocationalNetworkHeroCta />
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <SectionLabel>Familias vocacionales</SectionLabel>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-6xl">
-              Carreras agrupadas por intereses.
-            </h2>
+                <p className="mt-3 text-sm leading-6 text-[#425875]">{item.description}</p>
+              </article>
+            ))}
           </div>
 
-          <p className="max-w-md text-sm leading-6 text-[#60738c]">
-            La lista puede crecer conforme se sumen estudiantes, profesionistas, profesores y escuelas participantes.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {areas.map((area) => (
-            <AreaCard
-              description={area.description}
-              icon={area.icon}
-              key={area.title}
-              title={area.title}
-            />
-          ))}
-        </div>
-      </section>
-
-      <VocationalNetworkHeroCta />
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="rounded-[2rem] bg-[#10233f] p-6 text-white shadow-sm md:p-10">
-          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr]">
+          <div className="mt-10 rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm md:flex md:items-center md:justify-between md:gap-6">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#b7c8dc] md:text-sm">
-                Medicion de impacto
-              </p>
-
-              <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-7xl">
-                Seguimiento desde el primer semestre del programa.
+              <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+                ¿Quieres participar o registrar una escuela?
               </h2>
-
-              <p className="mt-6 text-lg leading-8 text-[#c9d8e8]">
-                El programa iniciara con metas y despues reportara avances reales: escuelas visitadas,
-                estudiantes alcanzados, areas representadas, conexiones vocacionales y recursos compartidos.
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#425875]">
+                Comparte el tipo de participación, ciudad, escuela o área vocacional de interés para revisar el siguiente paso.
               </p>
             </div>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              {metrics.map((metric) => (
-                <div
-                  className="rounded-[1.25rem] border border-white/15 bg-white/10 p-4"
-                  key={metric.label}
-                >
-                  <p className="text-3xl font-semibold tracking-[-0.04em] text-white">
-                    {metric.value}
-                  </p>
-                  <p className="mt-2 font-semibold text-[#d7e7f6]">{metric.label}</p>
-                  <p className="mt-2 text-sm leading-6 text-[#c9d8e8]">{metric.note}</p>
-                </div>
-              ))}
-            </div>
+            <Link
+              className="mt-5 inline-flex shrink-0 items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f] md:mt-0"
+              href="/contacto"
+            >
+              Registrar interés
+            </Link>
           </div>
-        </div>
-      </section>
-
-      <VocationalNetworkHeroCta />
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="rounded-[2rem] border border-[#d7dedf] bg-white/78 p-6 shadow-sm md:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_0.75fr] md:items-center">
-            <div>
-              <div className="mb-5 flex gap-3 text-[#10233f]">
-                <Handshake className="size-6" />
-                <LineChart className="size-6" />
-                <Users className="size-6" />
-              </div>
-
-              <h2 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-                Una puerta de entrada a comunidad y proyectos.
-              </h2>
-
-              <p className="mt-6 text-lg leading-8 text-[#425875]">
-                Alumnos universitarios de primeros semestres tambien podran acercarse a Puente
-                o a iniciativas formativas relacionadas con Salva Systems, especialmente si buscan
-                aprender haciendo en proyectos sociales, documentacion, tecnologia, eventos o investigacion aplicada.
-              </p>
-            </div>
-
-            <div className="grid gap-3">
-              <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
-                href="/eventos/puente-vocacional-2026/registro"
-              >
-                Registrar interes
-                <ArrowRight className="ml-2 size-4" />
-              </Link>
-
-              <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-                href="/eventos/puente-vocacional-2026/registro"
-              >
-                Registrar interes
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <VocationalNetworkHeroCta />
-          <VocationalInterestSection />
-
-          <BookingSection title="Agenda una reunion sobre Puente Vocacional 2026." description="Para preparatorias, mentores, profesores, orientadores o aliados interesados en participar o conocer el programa." />
-          <FAQLinkSection />
+        </section>
+      </main>
     </SiteShell>
   );
 }
