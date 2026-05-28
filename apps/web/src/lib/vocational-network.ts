@@ -249,7 +249,7 @@ export const vocationalProfiles: VocationalProfile[] = [
   {
     name: "Juan Pablo Méndez Lomelí",
     city: "Monterrey",
-    family: "Arquitectura, Arte y Diseño",
+    family: "Escuela de Arquitectura, Arte y Diseño",
     role: "Mentor universitario",
     credential: "Licenciatura en Arquitectura",
     institution: "Tecnológico de Monterrey",
