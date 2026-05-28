@@ -13,6 +13,7 @@ const mainLinks = [
 
 const legalLinks = [
   { href: "/privacidad", label: "Privacidad" },
+  { href: "/accessibilidad", label: "Accesibilidad" },
   { href: "/terminos", label: "Terminos" },
   { href: "/contacto", label: "Contacto" },
   { href: "/kit", label: "Kit" },
