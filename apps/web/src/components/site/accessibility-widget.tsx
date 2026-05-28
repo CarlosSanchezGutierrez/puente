@@ -218,7 +218,9 @@ export function AccessibilityWidget() {
           filter: contrast(1.14);
         }
 
-        html[data-pi-grayscale="true"] body {
+        html[data-pi-grayscale="true"] header,
+        html[data-pi-grayscale="true"] main,
+        html[data-pi-grayscale="true"] footer {
           filter: grayscale(1);
         }
 
