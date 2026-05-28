@@ -66,7 +66,29 @@ const iest = "Instituto de Estudios Superiores de Tamaulipas Anáhuac (IEST Aná
 const une = "Universidad del Noreste (UNE)";
 const uat = "Universidad Autónoma de Tamaulipas (UAT)";
 
-export const vocationalProfiles: VocationalProfile[] = [
+export const vocationalProfiles: VocationalProfile[
+  {
+    name: "Jorge Iván Hidalgo Reyes",
+    city: "Monterrey",
+    role: "Directiva académica",
+    credential: "Director de Ingeniería Electrónica y Semiconductores",
+    institution: "Tecnológico de Monterrey",
+    photo: "/vocacional/orientadores/jorge-ivan-hidalgo-reyes.jpg",
+    linkedin: "https://www.linkedin.com/in/jihidalgormx/",
+    badges: ["Ingenierías y Ciencias", "Electrónica y Semiconductores"],
+  },
+
+  {
+    name: "Juan Pablo Méndez Lomelí",
+    city: "Monterrey",
+    role: "Mentor universitario",
+    credential: "Licenciatura en Arquitectura",
+    institution: "Tecnológico de Monterrey",
+    photo: "/vocacional/orientadores/juan-pablo-mendez-lomeli.jpg",
+    linkedin: "https://www.linkedin.com/in/juan-pablo-m%C3%A9ndez-lomel%C3%AD/",
+    badges: ["Arquitectura, Arte y Diseño", "Arquitectura"],
+  },
+] = [
   {
     name: "Carlos Sánchez Gutiérrez",
     credential: "Ingeniería en Tecnologías Computacionales (ITC)",
