@@ -1,3 +1,4 @@
+import { VocationalNetworkTeaser } from "@/components/events/vocational-network-teaser";
 import { ContextDocSection } from "@/components/docs/context-doc-section";
 import { FAQLinkSection } from "@/components/site/faq-link-section";
 import { BookingSection } from "@/components/site/booking-section";
@@ -349,6 +350,7 @@ export default function PuenteVocacionalPage() {
 
           <BookingSection title="Agenda una reunion sobre Puente Vocacional 2026." description="Para preparatorias, mentores, profesores, orientadores o aliados interesados en participar o conocer el programa." />
           <FAQLinkSection />
+          <VocationalNetworkTeaser />
     </SiteShell>
   );
 }
