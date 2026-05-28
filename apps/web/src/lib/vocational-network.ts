@@ -114,8 +114,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Monterrey",
     role: "Mentor universitario",
-    photo: "/mentores/sofia-sanchez-garza.jpg",
-    linkedin: "https://www.linkedin.com/in/sofiasanchezg/",
+        linkedin: "https://www.linkedin.com/in/sofiasanchezg/",
   },
   {
     name: "Sofía Sánchez Garza",
@@ -124,8 +123,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
-    photo: "/mentores/sofia-sanchez-garza.jpg",
-    linkedin: "https://www.linkedin.com/in/sofiasanchezg/",
+        linkedin: "https://www.linkedin.com/in/sofiasanchezg/",
   },
   {
     name: "Elvia Itzamná Rosas Herrera",
@@ -144,8 +142,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Ingenierías y Ciencias",
     city: "Tampico",
     role: "Mentor universitario",
-    photo: "/mentores/lehi-salvador-rangel-cardenas.jpg",
-    linkedin: "https://www.linkedin.com/in/lehi-salvador/",
+        linkedin: "https://www.linkedin.com/in/lehi-salvador/",
   },
   {
     name: "Maximiliano Lozano Suárez",
@@ -216,8 +213,7 @@ export const vocationalProfiles: VocationalProfile[] = [
     family: "Medicina y Ciencias de la Salud",
     city: "Tampico",
     role: "Mentor universitario",
-    photo: "/mentores/daphne-eunice-ramirez-garcia.jpg",
-    linkedin: "https://www.linkedin.com/in/daphne-eunice-ram%C3%ADrez-garc%C3%ADa-a5884a384/",
+        linkedin: "https://www.linkedin.com/in/daphne-eunice-ram%C3%ADrez-garc%C3%ADa-a5884a384/",
   },
   {
     name: "Jimena Luna Carcini",

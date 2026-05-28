@@ -1,3 +1,4 @@
+import { VocationalNetworkHeroCta } from "@/components/events/vocational-network-hero-cta";
 import { VocationalNetworkTeaser } from "@/components/events/vocational-network-teaser";
 import { FAQLinkSection } from "@/components/site/faq-link-section";
 import { BookingSection } from "@/components/site/booking-section";
@@ -211,6 +212,8 @@ export default function PuenteVocacionalPage() {
         </div>
       </section>
 
+      <VocationalNetworkHeroCta />
+
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
@@ -243,6 +246,8 @@ export default function PuenteVocacionalPage() {
         </div>
       </section>
 
+      <VocationalNetworkHeroCta />
+
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
@@ -268,6 +273,8 @@ export default function PuenteVocacionalPage() {
           ))}
         </div>
       </section>
+
+      <VocationalNetworkHeroCta />
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="rounded-[2rem] bg-[#10233f] p-6 text-white shadow-sm md:p-10">
@@ -304,6 +311,8 @@ export default function PuenteVocacionalPage() {
           </div>
         </div>
       </section>
+
+      <VocationalNetworkHeroCta />
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="rounded-[2rem] border border-[#d7dedf] bg-white/78 p-6 shadow-sm md:p-10">
@@ -345,11 +354,12 @@ export default function PuenteVocacionalPage() {
           </div>
         </div>
       </section>
+
+      <VocationalNetworkHeroCta />
           <VocationalInterestSection />
 
           <BookingSection title="Agenda una reunion sobre Puente Vocacional 2026." description="Para preparatorias, mentores, profesores, orientadores o aliados interesados en participar o conocer el programa." />
           <FAQLinkSection />
-          <VocationalNetworkTeaser />
     </SiteShell>
   );
 }

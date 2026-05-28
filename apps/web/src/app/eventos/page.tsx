@@ -1,3 +1,4 @@
+import { VocationalNetworkHeroCta } from "@/components/events/vocational-network-hero-cta";
 import { FieldSupportCompact } from "@/components/services/field-support-teaser";
 import { VocationalEventFeature } from "@/components/events/vocational-event-feature";
 import {
@@ -137,6 +138,8 @@ export default async function EventosPage() {
         </div>
       </section>
 
+      <VocationalNetworkHeroCta eyebrow="Puente Vocacional 2026" title="Ver Red de Orientadores Vocacionales." description="Consulta las ediciones Monterrey y Tampico, las instituciones participantes y los perfiles universitarios, académicos y profesionales que integran la red." />
+
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
           <div>
@@ -163,6 +166,8 @@ export default async function EventosPage() {
           ))}
         </div>
       </section>
+
+      <VocationalNetworkHeroCta eyebrow="Puente Vocacional 2026" title="Ver Red de Orientadores Vocacionales." description="Consulta las ediciones Monterrey y Tampico, las instituciones participantes y los perfiles universitarios, académicos y profesionales que integran la red." />
 
       <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -236,6 +241,8 @@ export default async function EventosPage() {
           </div>
         )}
       </section>
+
+      <VocationalNetworkHeroCta eyebrow="Puente Vocacional 2026" title="Ver Red de Orientadores Vocacionales." description="Consulta las ediciones Monterrey y Tampico, las instituciones participantes y los perfiles universitarios, académicos y profesionales que integran la red." />
           <FieldSupportCompact />
 
     </SiteShell>

@@ -38,7 +38,9 @@ function ProfileCard({ profile }: { profile: VocationalProfile }) {
           {profile.photo ? (
             <Image alt={profile.name} className="size-full object-cover" fill sizes="64px" src={profile.photo} />
           ) : (
-            initials(profile.name)
+            <span className="flex size-full items-center justify-center bg-[#10233f] text-sm font-semibold tracking-[-0.02em] text-white">
+              {initials(profile.name)}
+            </span>
           )}
         </div>
 
