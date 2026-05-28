@@ -525,3 +525,69 @@ iframe {
     display: none;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/* Puente Impacto - Mobile menu scroll + More closed v3                       */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .pi-mobile-menu-panel {
+    display: block;
+    position: fixed;
+    left: max(1rem, env(safe-area-inset-left));
+    right: max(1rem, env(safe-area-inset-right));
+    top: calc(4.75rem + env(safe-area-inset-top));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    width: auto !important;
+    max-width: calc(100vw - 2rem) !important;
+    height: auto;
+    max-height: calc(100dvh - 5.75rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  @supports not (height: 100dvh) {
+    .pi-mobile-menu-panel {
+      max-height: calc(100vh - 5.75rem);
+    }
+  }
+
+  .pi-mobile-menu-scroll {
+    display: block;
+    max-height: none !important;
+    overflow-y: visible !important;
+    overflow-x: hidden !important;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  .pi-mobile-menu-panel::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .pi-mobile-menu-panel::-webkit-scrollbar-track {
+    background: rgba(215, 222, 223, 0.55);
+    border-radius: 999px;
+  }
+
+  .pi-mobile-menu-panel::-webkit-scrollbar-thumb {
+    background: rgba(16, 35, 63, 0.35);
+    border-radius: 999px;
+  }
+
+  .pi-mobile-menu-panel * {
+    min-width: 0;
+  }
+
+  .pi-mobile-menu-link,
+  .pi-mobile-menu-button {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
