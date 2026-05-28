@@ -6,13 +6,13 @@ export const metadata = {
   description:
     "Software gratuito para ONG, proyectos sociales y sustentables: páginas web, apps móviles para Android y iOS, formularios, bases de datos, dashboards y herramientas internas.",
   alternates: {
-    canonical: "/ONG",
+    canonical: "/ongs",
   },
   openGraph: {
     title: "ONG | Software gratuito para organizaciones sociales",
     description:
       "Apoyo gratuito para ONG, proyectos sociales y sustentables con páginas web, apps móviles, formularios, bases de datos y herramientas digitales concretas.",
-    url: "https://puenteimpacto.org/ONG",
+    url: "https://puenteimpacto.org/ongs",
     images: [
       {
         url: "/og/puente-impacto-card.png",

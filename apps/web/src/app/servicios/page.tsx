@@ -354,7 +354,7 @@ export default function ServiciosPage() {
 
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 text-sm font-medium text-white transition hover:bg-white/15"
-                href="/ONG"
+                href="/ongs"
               >
                 Ver apoyo a ONG
               </Link>
