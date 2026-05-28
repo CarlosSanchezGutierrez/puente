@@ -35,7 +35,6 @@ function ProfileCard({ profile }: { profile: VocationalProfile }) {
       <div className="flex items-start gap-4">
         <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#d7dedf] bg-[#f7f4ed] text-base font-semibold text-[#10233f]">
           {profile.photo ? (
-            {/* eslint-disable-next-line @next/next/no-img-element -- Profile photos are small public assets. */}
             <img alt={profile.name} className="size-full object-cover" src={profile.photo} />
           ) : (
             initials(profile.name)
