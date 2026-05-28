@@ -105,13 +105,14 @@ export function SiteHeader() {
       </div>
 
       <nav aria-label="Accesos rápidos móviles" className="border-t border-[#d7dedf]/70 px-4 pb-3 xl:hidden">
-        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto pt-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-4 gap-2 pt-2">
           {mobileQuickItems.map((item) => (
             <ActiveNavLink
               activeClassName="bg-white text-[#10233f] shadow-sm"
-              className="shrink-0 rounded-full border border-[#d7dedf] bg-white/75 px-3.5 py-2 text-xs font-semibold text-[#10233f] shadow-sm transition hover:bg-white"
+              className="min-h-10 rounded-full border border-[#d7dedf] bg-white/75 px-2 pb-3 pt-2 text-center text-[0.7rem] font-semibold leading-none text-[#10233f] shadow-sm transition hover:bg-white"
               exact={item.exact}
               href={item.href}
+              indicator="inside"
               key={item.href}
             >
               {item.label}
@@ -119,7 +120,7 @@ export function SiteHeader() {
           ))}
 
           <a
-            className="shrink-0 rounded-full bg-[#10233f] px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#1b365f]"
+            className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#10233f] px-2 py-2 text-center text-[0.7rem] font-semibold leading-none text-white shadow-sm transition hover:bg-[#1b365f]"
             href="https://calendly.com/contacto-puenteimpacto/30min"
             rel="noreferrer"
             target="_blank"
