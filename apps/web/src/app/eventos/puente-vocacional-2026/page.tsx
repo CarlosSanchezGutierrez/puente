@@ -57,12 +57,11 @@ const includes = [
 ];
 
 const families = [
-  "Salud y bienestar",
-  "Ingeniería y tecnología",
-  "Negocios y organizaciones",
-  "Arquitectura, diseño y ciudad",
-  "Humanidades, comunicación y artes",
-  "Impacto social e interdisciplinario",
+  "Ingenierías y Ciencias",
+  "Medicina y Ciencias de la Salud",
+  "Negocios",
+  "Arquitectura, Arte y Diseño",
+  "Humanidades",
 ];
 
 const steps = [
@@ -87,7 +86,7 @@ export default function PuenteVocacionalPage() {
   return (
     <SiteShell>
       <main className="bg-[#f7f4ed] text-[#10233f]">
-        <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
               Puente Vocacional
@@ -118,6 +117,22 @@ export default function PuenteVocacionalPage() {
 
             <p className="mt-5 max-w-3xl text-sm leading-6 text-[#526981]">
               No se trata de decirle a un estudiante qué carrera elegir. La idea es darle más información, ejemplos reales y preguntas útiles para tomar una mejor decisión.
+            </p>
+          </div>
+
+          <div className="rounded-[1.75rem] border border-[#d7dedf] bg-white/70 p-3 shadow-sm">
+            <div className="aspect-video overflow-hidden rounded-[1.35rem] border border-[#d7dedf] bg-[#10233f]">
+              <iframe
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="h-full w-full"
+                referrerPolicy="strict-origin-when-cross-origin"
+                src="https://www.youtube-nocookie.com/embed/CMnnIaB_f7I?rel=0&modestbranding=1"
+                title="Video de Puente Vocacional"
+              />
+            </div>
+            <p className="mt-3 px-1 text-sm leading-6 text-[#425875]">
+              Video breve de presentación para escuelas, estudiantes, familias y personas interesadas en participar.
             </p>
           </div>
         </section>
