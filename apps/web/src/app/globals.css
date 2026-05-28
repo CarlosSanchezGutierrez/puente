@@ -591,3 +591,45 @@ iframe {
     touch-action: manipulation;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/* Puente Impacto - Runtime mobile menu override                              */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  [data-pi-menu-runtime-scroll="true"] {
+    max-height: calc(100dvh - 5.75rem) !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+  }
+
+  [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar-track {
+    background: rgba(215, 222, 223, 0.7);
+    border-radius: 999px;
+  }
+
+  [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar-thumb {
+    background: rgba(16, 35, 63, 0.45);
+    border-radius: 999px;
+  }
+
+  [data-pi-more-content="closed"] {
+    display: none !important;
+  }
+
+  [data-pi-more-content="open"] {
+    display: block;
+  }
+
+  [data-pi-more-open="false"] + * {
+    display: none;
+  }
+}
