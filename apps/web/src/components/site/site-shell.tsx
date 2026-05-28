@@ -1,3 +1,4 @@
+import { AccessibilityWidget } from "@/components/site/accessibility-widget";
 import { QuickHelpChat } from "@/components/site/quick-help-chat";
 import { MobileSocialBar } from "@/components/site/mobile-social-bar";
 import type { ReactNode } from "react";
@@ -22,6 +23,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </main>
 
       <SiteFooter />
+      <AccessibilityWidget />
       <QuickHelpChat />
     </div>
   );
