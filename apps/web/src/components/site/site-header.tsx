@@ -8,7 +8,6 @@ const navItems = [
   { href: "/servicios", label: "Servicios" },
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
-  { href: "/eventos", label: "Programas" },
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/colabora", label: "Colabora" },
@@ -18,6 +17,7 @@ const navItems = [
 
 const secondaryNavItems = [
   { href: "/recursos", label: "Recursos" },
+  { href: "/eventos", label: "Programas" },
   { href: "/kit", label: "Kit" },
   { href: "/descargar", label: "App" },
 ];
