@@ -122,45 +122,6 @@ function ProfileCard({ profile }: { profile: VocationalProfile }) {
     </article>
   );
 }
-
-: { city: VocationalCity }) {
-  const profiles = vocationalProfiles.filter((profile) => profile.city === city);
-  const academicCount = profiles.filter((profile) => profile.role === "Directiva académica").length;
-  const mentorCount = profiles.filter((profile) => profile.role === "Mentor universitario").length;
-
-  return (
-    <a
-      className="rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
-      href={`#${cityId(city)}`}
-    >
-      <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#526981]">Ciudad</p>
-          <h2 className="mt-1 text-3xl font-semibold tracking-[-0.05em] text-[#10233f]">{city}</h2>
-        </div>
-        <span className="inline-flex size-10 items-center justify-center rounded-full bg-[#10233f] text-white">
-          <MapPin className="size-5" />
-        </span>
-      </div>
-
-      <div className="mt-6 grid grid-cols-3 gap-2 text-sm">
-        <div className="rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-4">
-          <p className="text-2xl font-semibold tracking-[-0.05em] text-[#10233f]">{profiles.length}</p>
-          <p className="mt-1 text-xs text-[#526981]">perfiles</p>
-        </div>
-        <div className="rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-4">
-          <p className="text-2xl font-semibold tracking-[-0.05em] text-[#10233f]">{mentorCount}</p>
-          <p className="mt-1 text-xs text-[#526981]">mentores</p>
-        </div>
-        <div className="rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-4">
-          <p className="text-2xl font-semibold tracking-[-0.05em] text-[#10233f]">{academicCount}</p>
-          <p className="mt-1 text-xs text-[#526981]">académicos</p>
-        </div>
-      </div>
-    </a>
-  );
-}
-
 function CitySection({ city }: { city: VocationalCity }) {
   const profiles = vocationalProfiles.filter((profile) => profile.city === city);
   const mentorProfiles = profiles.filter((profile) => profile.role === "Mentor universitario");

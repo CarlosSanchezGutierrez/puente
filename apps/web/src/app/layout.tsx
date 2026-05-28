@@ -1,6 +1,5 @@
 import { StructuredData } from "@/components/seo/structured-data";
 import { ServiceWorkerRegistration } from "@/components/pwa/service-worker-registration";
-import { getSiteUrl } from "@/lib/site-url";
 import { Instrument_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
