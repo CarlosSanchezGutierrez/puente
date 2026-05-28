@@ -82,3 +82,4 @@ dist-apk/
 .vercel
 .env*
 repair-backups/
+repair-backups/
