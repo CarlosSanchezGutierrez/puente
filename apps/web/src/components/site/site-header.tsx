@@ -10,7 +10,6 @@ const navItems = [
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
   { href: "/nosotros", label: "Equipo" },
   { href: "/investigacion", label: "Investigación" },
-  { href: "/colabora", label: "Colabora" },
   { href: "/contacto", label: "Contacto" },
 ];
 
@@ -23,9 +22,30 @@ const secondaryNavItems = [
   { href: "/descargar", label: "App" },
 ];
 
+const mobileQuickItems = [
+  { href: "/ongs", label: "ONGs" },
+  { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
+  { href: "/recursos", label: "Recursos" },
+  { href: "/contacto", label: "Contacto" },
+];
+
+const mobileMenuItems = [
+  { href: "/servicios", label: "Servicios" },
+  { href: "/nosotros", label: "Equipo" },
+  { href: "/investigacion", label: "Investigación" },
+];
+
+const mobileMoreItems = [
+  { href: "/eventos", label: "Programas" },
+  { href: "/biblioteca", label: "Biblioteca" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/kit", label: "Kit" },
+  { href: "/descargar", label: "App" },
+];
+
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[#d7dedf] bg-[#f7f4ed]/92 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-[#d7dedf] bg-[#f7f4ed]/96">
       <div className="relative mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-6">
         <Link className="min-w-0 text-sm font-semibold tracking-[-0.02em] text-[#10233f]" href="/">
           Puente Impacto
@@ -34,7 +54,7 @@ export function SiteHeader() {
         <nav className="hidden items-center gap-2 xl:flex">
           {navItems.map((item) => (
             <Link
-              className="rounded-full px-3 py-2 text-sm font-medium text-[#425875] transition hover:bg-white/70 hover:text-[#10233f]"
+              className="rounded-full px-3.5 py-2 text-sm font-medium text-[#425875] transition hover:bg-white hover:text-[#10233f]"
               href={item.href}
               key={item.href}
             >
@@ -69,8 +89,22 @@ export function SiteHeader() {
           <SocialIconLinks />
         </div>
 
-        <MobileMenu navItems={navItems} secondaryItems={secondaryNavItems} />
+        <MobileMenu navItems={mobileMenuItems} secondaryItems={mobileMoreItems} />
       </div>
+
+      <nav aria-label="Accesos rápidos móviles" className="border-t border-[#d7dedf]/70 px-4 pb-3 xl:hidden">
+        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto pt-2">
+          {mobileQuickItems.map((item) => (
+            <Link
+              className="shrink-0 rounded-full border border-[#d7dedf] bg-white/75 px-3.5 py-2 text-xs font-semibold text-[#10233f] shadow-sm transition hover:bg-white"
+              href={item.href}
+              key={item.href}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
     </header>
   );
 }
