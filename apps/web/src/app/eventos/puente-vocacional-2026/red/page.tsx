@@ -294,66 +294,59 @@ export default function VocationalNetworkPage() {
             </p>
           </aside>
         </section>
-
-        <section className="border-y border-[#d7dedf] bg-white/45">
-          <div className="mx-auto grid max-w-7xl gap-6 px-6 py-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
-                Organización
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#10233f]">
-                Perfiles agrupados para encontrar invitados más rápido.
-              </h2>
-            </div>
-
-            <div className="grid gap-5">
+        <section className="border-y border-[#d7dedf] bg-white/45" id="catalogo">
+          <div className="mx-auto max-w-7xl px-6 py-7">
+            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#526981]">Ciudades</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {cities.map((city) => (
-                    <a
-                      className="rounded-full border border-[#d7dedf] bg-white/80 px-3.5 py-2 text-xs font-semibold text-[#10233f] transition hover:bg-white"
-                      href={`#${cityId(city)}`}
-                      key={city}
-                    >
-                      {city}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#526981]">
-                  Familias vocacionales
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#526981]">
+                  Catálogo
                 </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {vocationalFamilies.map((family) => (
-                    <span
-                      className="rounded-full border border-[#d7dedf] bg-[#f7f4ed] px-3.5 py-2 text-xs font-semibold text-[#425875]"
-                      key={family.title}
-                    >
-                      {family.title}
-                    </span>
-                  ))}
+                <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#10233f] md:text-3xl">
+                  Perfiles por ciudad y área.
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-[#425875]">
+                  Usa estas referencias para ubicar perfiles por ciudad, institución y familia vocacional antes de revisar el catálogo.
+                </p>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-[0.8fr_1.2fr]">
+                <div>
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#526981]">
+                    Ciudades
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {cities.map((city) => (
+                      <a
+                        className="rounded-full border border-[#d7dedf] bg-white/80 px-3.5 py-2 text-xs font-semibold text-[#10233f] transition hover:bg-white"
+                        href={`#${cityId(city)}`}
+                        key={city}
+                      >
+                        {city}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#526981]">
+                    Familias vocacionales
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {vocationalFamilies.map((family) => (
+                      <span
+                        className="rounded-full border border-[#d7dedf] bg-[#f7f4ed] px-3.5 py-2 text-xs font-semibold text-[#425875]"
+                        key={family.title}
+                      >
+                        {family.title}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-16" id="catalogo">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">Perfiles</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
-              Catálogo por ciudad.
-            </h2>
-            <p className="mt-5 text-base leading-7 text-[#425875]">
-              Cada perfil puede servir para una plática, panel, sesión de preguntas o actividad vocacional con estudiantes de preparatoria.
-            </p>
-          </div>
-        </section>
-
-        {cities.map((city) => (
+{cities.map((city) => (
           <CitySection city={city} key={city} />
         ))}
 
