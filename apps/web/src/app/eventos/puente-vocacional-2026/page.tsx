@@ -18,7 +18,7 @@ export const metadata = {
         url: "/og/puente-impacto-card.png",
         width: 1200,
         height: 630,
-        alt: "Puente Vocacional: orientación vocacional con experiencias reales",
+        alt: "Puente Vocacional: orientación vocacional para estudiantes de preparatoria",
       },
     ],
   },
@@ -28,22 +28,22 @@ const audiences = [
   {
     title: "Preparatorias",
     description:
-      "Actividad vocacional para acercar a sus estudiantes con universitarios, profesionistas y perfiles académicos.",
+      "Sesiones vocacionales para complementar la orientación que ya reciben los estudiantes.",
   },
   {
     title: "Estudiantes",
     description:
-      "Espacios para escuchar experiencias reales, hacer preguntas y conocer opciones antes de elegir carrera.",
+      "Conversaciones con personas que ya estudian o trabajan en distintas áreas.",
   },
   {
-    title: "Padres de familia",
+    title: "Familias",
     description:
-      "Información más clara para acompañar mejor a sus hijos en la decisión de carrera, universidad o área profesional.",
+      "Información práctica para acompañar mejor la decisión de carrera o universidad.",
   },
   {
-    title: "Profesionistas y profesores",
+    title: "Ponentes",
     description:
-      "Participación como ponentes, orientadores o perfiles invitados para compartir experiencia de forma práctica.",
+      "Participación de universitarios, profesores y profesionistas con experiencia real.",
   },
 ];
 
@@ -66,19 +66,19 @@ const families = [
 
 const steps = [
   {
-    title: "Escuela o preparatoria",
+    title: "Escuela",
     description:
-      "Puede registrar interés para organizar una sesión, plática o actividad vocacional con sus estudiantes.",
+      "Registra interés para organizar una sesión con estudiantes de preparatoria.",
   },
   {
-    title: "Ponente u orientador",
+    title: "Ponente",
     description:
-      "Puede compartir su experiencia académica o profesional con estudiantes que están por elegir carrera.",
+      "Comparte tu experiencia académica o profesional con estudiantes que están por elegir carrera.",
   },
   {
     title: "Alumno o familia",
     description:
-      "Puede registrar interés para recibir información sobre próximas sesiones, áreas vocacionales o perfiles participantes.",
+      "Recibe información sobre próximas sesiones, áreas vocacionales y perfiles participantes.",
   },
 ];
 
@@ -86,8 +86,8 @@ export default function PuenteVocacionalPage() {
   return (
     <SiteShell>
       <main className="bg-[#f7f4ed] text-[#10233f]">
-        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="max-w-4xl">
+        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:py-20 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+          <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
               Puente Vocacional
             </p>
@@ -102,46 +102,58 @@ export default function PuenteVocacionalPage() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                className="inline-flex items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f]"
+                className="inline-flex items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f] focus:outline-none focus:ring-2 focus:ring-[#10233f]/30"
                 href="/contacto"
               >
                 Registrar interés
               </Link>
-              <a
-                className="inline-flex items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white"
+              <Link
+                className="inline-flex items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#10233f]/20"
                 href="/eventos/puente-vocacional-2026/red"
               >
                 Red de orientadores vocacionales
-              </a>
+              </Link>
             </div>
 
             <p className="mt-5 max-w-3xl text-sm leading-6 text-[#526981]">
-              No se trata de decirle a un estudiante qué carrera elegir. La idea es darle más información, ejemplos reales y preguntas útiles para tomar una mejor decisión.
+              El objetivo no es decidir por el estudiante. Es darle más información, ejemplos reales y mejores preguntas para comparar opciones.
             </p>
           </div>
 
-          <div className="rounded-[1.75rem] border border-[#d7dedf] bg-white/70 p-3 shadow-sm">
+          <aside className="rounded-[1.75rem] border border-[#d7dedf] bg-white/70 p-3 shadow-sm">
+            <div className="mb-3 flex items-center justify-between gap-3 px-1">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#526981]">
+                  Video breve
+                </p>
+                <p className="mt-1 text-sm text-[#425875]">Presentación de 1 minuto.</p>
+              </div>
+              <span className="shrink-0 rounded-full border border-[#d7dedf] bg-[#f7f4ed] px-3 py-1 text-xs font-semibold text-[#10233f]">
+                1 min
+              </span>
+            </div>
             <div className="aspect-video overflow-hidden rounded-[1.35rem] border border-[#d7dedf] bg-[#10233f]">
               <iframe
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="h-full w-full"
+                loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
                 src="https://www.youtube-nocookie.com/embed/CMnnIaB_f7I?rel=0&modestbranding=1"
                 title="Video de Puente Vocacional"
               />
             </div>
             <p className="mt-3 px-1 text-sm leading-6 text-[#425875]">
-              Video breve de presentación para escuelas, estudiantes, familias y personas interesadas en participar.
+              Para escuelas, estudiantes, familias y personas interesadas en participar como orientadores.
             </p>
-          </div>
+          </aside>
         </section>
 
         <section className="border-y border-[#d7dedf] bg-white/45">
           <div className="mx-auto grid max-w-7xl gap-4 px-6 py-10 md:grid-cols-4">
             {audiences.map((item) => (
               <article
-                className="rounded-[1.5rem] border border-[#d7dedf] bg-[#f7f4ed]/80 p-5 shadow-sm"
+                className="rounded-[1.35rem] border border-[#d7dedf] bg-[#f7f4ed]/80 p-5 shadow-sm"
                 key={item.title}
               >
                 <h2 className="text-xl font-semibold tracking-[-0.03em] text-[#10233f]">
@@ -162,7 +174,7 @@ export default function PuenteVocacionalPage() {
               Actividades vocacionales claras y fáciles de organizar.
             </h2>
             <p className="mt-5 text-base leading-7 text-[#425875]">
-              El formato puede ajustarse según la escuela, el número de estudiantes, las áreas de interés y la disponibilidad de los ponentes.
+              El formato se ajusta según la escuela, el número de estudiantes, las áreas de interés y la disponibilidad de los ponentes.
             </p>
           </div>
 
@@ -178,7 +190,7 @@ export default function PuenteVocacionalPage() {
           </div>
         </section>
 
-        <section className="bg-[#10233f] px-6 py-16 text-white" id="red-orientadores">
+        <section className="scroll-mt-8 bg-[#10233f] px-6 py-16 text-white" id="red-orientadores">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/65">
@@ -187,18 +199,18 @@ export default function PuenteVocacionalPage() {
               <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] md:text-5xl">
                 Perfiles de Monterrey y Tampico organizados por área.
               </h2>
+              <Link
+                className="mt-6 inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white/35"
+                href="/eventos/puente-vocacional-2026/red"
+              >
+                Ver red de orientadores vocacionales
+              </Link>
             </div>
 
             <div className="rounded-[1.5rem] border border-white/15 bg-white/10 p-5">
               <p className="text-base leading-7 text-white/80">
                 La red reúne estudiantes universitarios, profesionistas, profesores y perfiles académicos que pueden participar en sesiones vocacionales. Los perfiles se organizan por ciudad, institución y familia vocacional para que cada escuela pueda encontrar invitados relacionados con los intereses de sus estudiantes.
               </p>
-              <Link
-                className="mt-6 inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white/90"
-                href="/eventos/puente-vocacional-2026/red"
-              >
-                Ver red de orientadores vocacionales
-              </Link>
               <div className="mt-6 grid gap-2 sm:grid-cols-2">
                 {families.map((family) => (
                   <div
@@ -226,7 +238,7 @@ export default function PuenteVocacionalPage() {
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {steps.map((item) => (
               <article
-                className="rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm"
+                className="rounded-[1.35rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm"
                 key={item.title}
               >
                 <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#10233f]">
@@ -247,7 +259,7 @@ export default function PuenteVocacionalPage() {
               </p>
             </div>
             <Link
-              className="mt-5 inline-flex shrink-0 items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f] md:mt-0"
+              className="mt-5 inline-flex shrink-0 items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f] focus:outline-none focus:ring-2 focus:ring-[#10233f]/30 md:mt-0"
               href="/contacto"
             >
               Registrar interés
