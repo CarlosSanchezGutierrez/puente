@@ -32,9 +32,9 @@ function initials(name: string) {
 
 function ProfileCard({ profile }: { profile: VocationalProfile }) {
   return (
-    <article className="group rounded-[1.35rem] border border-[#d7dedf] bg-white/72 p-4 transition hover:-translate-y-0.5 hover:bg-white md:p-5">
+    <article className="rounded-[1.25rem] border border-[#d7dedf] bg-white/72 p-4 shadow-[0_1px_0_rgba(16,35,63,0.04)] transition hover:bg-white md:p-5">
       <div className="flex gap-4">
-        <div className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-[#d7dedf] bg-[#10233f] text-sm font-semibold text-white">
+        <div className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-[1rem] border border-[#d7dedf] bg-[#10233f] text-sm font-semibold text-white">
           {profile.photo ? (
             <Image
               alt={profile.name}
@@ -101,26 +101,31 @@ function ProfileCard({ profile }: { profile: VocationalProfile }) {
 function EditionSummary({ city }: { city: VocationalCity }) {
   const profiles = vocationalProfiles.filter((profile) => profile.city === city);
   const academicCount = profiles.filter((profile) => profile.role === "Directiva académica").length;
+  const mentorCount = profiles.filter((profile) => profile.role === "Mentor universitario").length;
 
   return (
     <a
-      className="rounded-[1.5rem] border border-[#d7dedf] bg-white/70 p-5 transition hover:-translate-y-0.5 hover:bg-white"
+      className="rounded-[1.5rem] border border-[#d7dedf] bg-white/70 p-5 transition hover:bg-white"
       href={`#${city.toLowerCase()}`}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#526981]">Edición</p>
+          <h2 className="mt-1 text-3xl font-semibold tracking-[-0.05em] text-[#10233f]">{city}</h2>
+        </div>
         <span className="inline-flex size-10 items-center justify-center rounded-full bg-[#10233f] text-white">
           <MapPin className="size-5" />
         </span>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#526981]">Edición</p>
-          <h2 className="text-2xl font-semibold tracking-[-0.04em] text-[#10233f]">{city}</h2>
-        </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
+      <div className="mt-6 grid grid-cols-3 gap-2 text-sm">
         <div className="rounded-2xl bg-[#f7f4ed] p-4">
           <p className="text-2xl font-semibold tracking-[-0.05em] text-[#10233f]">{profiles.length}</p>
-          <p className="mt-1 text-xs text-[#526981]">perfiles</p>
+          <p className="mt-1 text-xs text-[#526981]">total</p>
+        </div>
+        <div className="rounded-2xl bg-[#f7f4ed] p-4">
+          <p className="text-2xl font-semibold tracking-[-0.05em] text-[#10233f]">{mentorCount}</p>
+          <p className="mt-1 text-xs text-[#526981]">mentores</p>
         </div>
         <div className="rounded-2xl bg-[#f7f4ed] p-4">
           <p className="text-2xl font-semibold tracking-[-0.05em] text-[#10233f]">{academicCount}</p>
@@ -147,7 +152,7 @@ function CitySection({ city }: { city: VocationalCity }) {
         </div>
         <p className="max-w-xl text-sm leading-7 text-[#425875]">
           {city === "Monterrey"
-            ? "Base inicial en el ITESM, con integración de perfiles académicos, universitarios y profesionales de la ciudad."
+            ? "Base inicial en el ITESM, con integración progresiva de perfiles académicos, universitarios y profesionales de la ciudad."
             : "Red regional con perfiles de ITESM, IEST Anáhuac, UNE y UAT."}
         </p>
       </div>
@@ -167,7 +172,7 @@ function CitySection({ city }: { city: VocationalCity }) {
         <div>
           <div className="mb-4 flex items-center justify-between gap-4">
             <h3 className="text-xl font-semibold tracking-[-0.035em] text-[#10233f]">Mentores universitarios</h3>
-            <span className="text-sm text-[#526981]">{mentorProfiles.length} perfiles</span>
+            <span className="text-sm text-[#526981]">{mentorProfiles.length}</span>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {mentorProfiles.map((profile) => (
@@ -181,7 +186,7 @@ function CitySection({ city }: { city: VocationalCity }) {
         <div className="mt-10">
           <div className="mb-4 flex items-center justify-between gap-4">
             <h3 className="text-xl font-semibold tracking-[-0.035em] text-[#10233f]">Profesores y directivos académicos</h3>
-            <span className="text-sm text-[#526981]">{academicProfiles.length} perfil</span>
+            <span className="text-sm text-[#526981]">{academicProfiles.length}</span>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {academicProfiles.map((profile) => (
@@ -252,22 +257,16 @@ export default function VocationalNetworkPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-12">
-        <div className="rounded-[1.5rem] border border-[#d7dedf] bg-white/64 p-5 md:p-6">
-          <div className="mb-5 flex flex-col justify-between gap-3 md:flex-row md:items-end">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#526981]">Familias vocacionales</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#10233f]">Cinco áreas de conversación.</h2>
-            </div>
-          </div>
-          <div className="grid gap-3 md:grid-cols-5">
-            {vocationalFamilies.map((family) => (
-              <div className="rounded-[1rem] border border-[#d7dedf] bg-[#f7f4ed]/72 p-4" key={family.title}>
-                <h3 className="text-sm font-semibold leading-5 tracking-[-0.02em] text-[#10233f]">{family.title}</h3>
-                <p className="mt-3 text-xs leading-5 text-[#526981]">{family.description}</p>
-              </div>
-            ))}
-          </div>
+      <section className="mx-auto max-w-7xl px-6 pb-8">
+        <div className="flex flex-wrap gap-2 border-y border-[#d7dedf] py-5">
+          {vocationalFamilies.map((family) => (
+            <span
+              className="rounded-full border border-[#d7dedf] bg-white/70 px-4 py-2 text-xs font-semibold text-[#10233f]"
+              key={family.title}
+            >
+              {family.title}
+            </span>
+          ))}
         </div>
       </section>
 
@@ -281,11 +280,11 @@ export default function VocationalNetworkPage() {
           <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white">
             Experiencia profesional por familia vocacional.
           </h2>
-          <div className="mt-6 grid gap-3 md:grid-cols-5">
+          <div className="mt-6 flex flex-wrap gap-2">
             {professionalInviteeFamilies.map((family) => (
-              <div className="rounded-[1rem] border border-white/15 bg-white/8 p-4 text-sm font-medium leading-6 text-white" key={family}>
+              <span className="rounded-full border border-white/15 bg-white/8 px-4 py-2 text-xs font-semibold text-white" key={family}>
                 {family}
-              </div>
+              </span>
             ))}
           </div>
         </div>
