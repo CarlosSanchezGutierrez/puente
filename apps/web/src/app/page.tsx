@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteShell } from "@/components/site/site-shell";
 
 export const metadata = {
   title: "Puente Impacto | Software gratuito para ONGs y eventos educativos",
@@ -83,7 +84,8 @@ const process = [
 
 export default function HomePage() {
   return (
-    <main className="bg-[#f7f4ed] text-[#10233f]">
+    <SiteShell>
+      <main className="bg-[#f7f4ed] text-[#10233f]">
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
@@ -225,5 +227,6 @@ export default function HomePage() {
         </div>
       </section>
     </main>
+    </SiteShell>
   );
 }
