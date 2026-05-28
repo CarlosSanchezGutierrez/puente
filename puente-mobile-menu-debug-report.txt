@@ -1,0 +1,1889 @@
+=== PUENTE IMPACTO | MOBILE MENU DEBUG REPORT ===
+Fecha: 2026-05-28 00:18:35
+WebRoot: apps\web
+
+=== Git ===
+Branch: main
+Último commit: 8fecdfe fix: force mobile menu scroll and control more section
+Status:
+  ?? apps/web/src/app/globals.css.bak-mobile-20260527-235047
+  ?? apps/web/src/app/globals.css.bak-mobile-runtime-20260528-001319
+  ?? apps/web/src/app/globals.css.bak-mobile-v2-20260528-000134
+  ?? apps/web/src/app/globals.css.bak-mobile-v3-20260528-000624
+  ?? apps/web/src/app/layout.tsx.bak-mobile-runtime-20260528-001318
+  ?? apps/web/src/app/layout.tsx.bak-mobile-v2-20260528-000134
+  ?? apps/web/src/components/site/site-header.tsx.bak-mobile-20260527-235053
+  ?? apps/web/src/components/site/site-shell.tsx.bak-mobile-v2-20260528-000138
+
+=== Archivos layout.tsx ===
+LAYOUT: C:\dev\puente\apps\web\src\app\layout.tsx
+  contiene MobileMenuRuntimeFix: SI
+  contiene viewport: SI
+
+=== Buscando componentes candidatos ===
+SCORE 14: C:\dev\puente\apps\web\src\app\MobileMenuRuntimeFix.tsx
+SCORE 11: C:\dev\puente\apps\web\src\components\site\site-header.tsx
+SCORE 8: C:\dev\puente\apps\web\src\components\site\mobile-menu.tsx
+SCORE 5: C:\dev\puente\apps\web\src\app\globals.css
+SCORE 5: C:\dev\puente\apps\web\src\components\site\mobile-social-bar.tsx
+SCORE 3: C:\dev\puente\apps\web\src\app\admin\dashboard\page.tsx
+SCORE 3: C:\dev\puente\apps\web\src\lib\mock-data.ts
+SCORE 2: C:\dev\puente\apps\web\src\app\admin\servicios\page.tsx
+SCORE 2: C:\dev\puente\apps\web\src\components\forms\ngo-request-form.tsx
+SCORE 2: C:\dev\puente\apps\web\src\lib\admin\auth.ts
+SCORE 2: C:\dev\puente\apps\web\src\components\admin\contact-status-control.tsx
+SCORE 2: C:\dev\puente\apps\web\src\components\services\field-service-request-form.tsx
+SCORE 2: C:\dev\puente\apps\web\src\app\admin\vocacional\page.tsx
+SCORE 2: C:\dev\puente\apps\web\src\app\admin\contacto\page.tsx
+SCORE 2: C:\dev\puente\apps\web\src\app\actions\forms.ts
+SCORE 2: C:\dev\puente\apps\web\src\components\forms\event-registration-form.tsx
+SCORE 2: C:\dev\puente\apps\web\src\components\forms\volunteer-application-form.tsx
+SCORE 2: C:\dev\puente\apps\web\src\components\contact\contact-form.tsx
+SCORE 2: C:\dev\puente\apps\web\src\lib\admin\access.ts
+SCORE 2: C:\dev\puente\apps\web\src\app\admin\contacto\[id]\page.tsx
+
+=== Snippets relevantes ===
+
+---- FILE: C:\dev\puente\apps\web\src\app\MobileMenuRuntimeFix.tsx ----
+  21: 
+  22:   return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
+  23: }
+  24: 
+  25: function isMoreTrigger(element: HTMLElement) {
+  26:   const label = normalizeText(element.innerText || element.textContent);
+  27: 
+  28:   return label === "mas" || label === "mas opciones" || label === "ver mas" || label === "más" || label === "más opciones";
+  29: }
+  30: 
+  31: function findMenuPanel(from: HTMLElement) {
+  32:   let current: HTMLElement | null = from;
+  33:   let best: HTMLElement | null = null;
+    ...
+  34: 
+  35:   while (current && current !== document.body) {
+  36:     const text = normalizeText(current.textContent);
+    ...
+ 114: 
+ 115:   return null;
+ 116: }
+ 117: 
+ 118: function setMoreContentOpen(trigger: HTMLElement, content: HTMLElement, open: boolean) {
+ 119:   trigger.setAttribute("aria-expanded", open ? "true" : "false");
+ 120:   trigger.setAttribute("data-pi-more-open", open ? "true" : "false");
+ 121: 
+ 122:   content.hidden = !open;
+ 123:   content.setAttribute("aria-hidden", open ? "false" : "true");
+ 124:   content.setAttribute("data-pi-more-content", open ? "open" : "closed");
+ 125:   content.style.display = open ? "" : "none";
+ 126: }
+    ...
+ 127: 
+    ...
+ 128: function patchDetailsElement(details: HTMLDetailsElement) {
+    ...
+ 129:   const summary = details.querySelector("summary");
+ 130: 
+ 131:   if (!(summary instanceof HTMLElement)) {
+ 132:     return;
+    ...
+ 133:   }
+ 134: 
+ 135:   if (!isMoreTrigger(summary)) {
+ 136:     return;
+ 137:   }
+ 138: 
+ 139:   const panel = findMenuPanel(summary);
+ 140: 
+ 141:   if (panel) {
+ 142:     forceScrollablePanel(panel);
+ 143:   }
+    ...
+ 144: 
+ 145:   details.open = false;
+ 146: 
+ 147:   if (summary.dataset.piMoreRuntimePatched === "true") {
+ 148:     return;
+ 149:   }
+ 150: 
+ 151:   summary.dataset.piMoreRuntimePatched = "true";
+ 152:   summary.setAttribute("aria-expanded", "false");
+ 153: 
+ 154:   summary.addEventListener(
+ 155:     "click",
+    ...
+ 156:     (event) => {
+ 157:       if (!isMobileViewport()) {
+ 158:         return;
+ 159:       }
+    ...
+ 160: 
+    ...
+ 161:       event.preventDefault();
+ 162:       event.stopPropagation();
+ 163: 
+ 164:       details.open = !details.open;
+ 165:       summary.setAttribute("aria-expanded", details.open ? "true" : "false");
+ 166: 
+ 167:       const activePanel = findMenuPanel(summary);
+ 168: 
+ 169:       if (activePanel) {
+ 170:         forceScrollablePanel(activePanel);
+ 171:       }
+ 172:     },
+ 173:     true,
+    ...
+ 174:   );
+ 175: }
+ 176: 
+ 177: function patchMoreTrigger(trigger: HTMLElement) {
+ 178:   if (trigger.dataset.piMoreRuntimePatched === "true") {
+ 179:     const panel = findMenuPanel(trigger);
+ 180: 
+ 181:     if (panel) {
+ 182:       forceScrollablePanel(panel);
+ 183:     }
+ 184: 
+ 185:     return;
+    ...
+ 186:   }
+    ...
+ 203:   if (panel) {
+ 204:     forceScrollablePanel(panel);
+ 205:   }
+ 206: 
+ 207:   trigger.dataset.piMoreRuntimePatched = "true";
+ 208:   setMoreContentOpen(trigger, content, false);
+ 209: 
+ 210:   trigger.addEventListener(
+ 211:     "click",
+ 212:     (event) => {
+ 213:       if (!isMobileViewport()) {
+ 214:         return;
+ 215:       }
+    ...
+ 216: 
+    ...
+ 217:       event.preventDefault();
+ 218:       event.stopPropagation();
+ 219:       event.stopImmediatePropagation();
+ 220: 
+ 221:       const currentlyOpen = trigger.getAttribute("data-pi-more-open") === "true";
+ 222:       setMoreContentOpen(trigger, content, !currentlyOpen);
+ 223: 
+ 224:       const activePanel = findMenuPanel(trigger);
+ 225: 
+ 226:       if (activePanel) {
+ 227:         forceScrollablePanel(activePanel);
+ 228:       }
+ 229:     },
+    ...
+ 230:     true,
+    ...
+ 231:   );
+ 232: }
+ 233: 
+ 234: function patchVisibleMenuPanels() {
+ 235:   const possiblePanels = document.querySelectorAll<HTMLElement>("nav, aside, section, div, [role=\"dialog\"], [role=\"navigation\"]");
+ 236: 
+ 237:   possiblePanels.forEach((panel) => {
+ 238:     if (!isMobileViewport() || !isVisible(panel)) {
+ 239:       return;
+ 240:     }
+ 241: 
+ 242:     const text = normalizeText(panel.textContent);
+ 243: 
+    ...
+ 244:     const looksLikeMenu =
+ 245:       text.includes("inicio") &&
+ 246:       (text.includes("ongs") || text.includes("puente vocacional") || text.includes("colabora")) &&
+ 247:       (text.includes("mas") || text.includes("más"));
+ 248: 
+ 249:     if (looksLikeMenu) {
+ 250:       forceScrollablePanel(panel);
+ 251:     }
+ 252:   });
+ 253: }
+ 254: 
+ 255: function patchMobileMenu() {
+    ...
+ 256:   if (!isMobileViewport()) {
+ 257:     return;
+ 258:   }
+ 259: 
+ 260:   document.querySelectorAll("details").forEach((details) => {
+ 261:     if (details instanceof HTMLDetailsElement) {
+ 262:       patchDetailsElement(details);
+ 263:     }
+    ...
+ 265: 
+ 266:   const possibleTriggers = document.querySelectorAll<HTMLElement>("button, a, summary, [role=\"button\"], [aria-controls]");
+ 267: 
+ 268:   possibleTriggers.forEach((trigger) => {
+ 269:     if (isMoreTrigger(trigger)) {
+ 270:       patchMoreTrigger(trigger);
+ 271:     }
+ 272:   });
+ 273: 
+ 274:   patchVisibleMenuPanels();
+ 275: }
+ 276: 
+ 277: export default function MobileMenuRuntimeFix() {
+    ...
+ 278:   useEffect(() => {
+    ...
+ 279:     let frame = 0;
+ 280: 
+ 281:     const schedulePatch = () => {
+ 282:       window.cancelAnimationFrame(frame);
+ 283:       frame = window.requestAnimationFrame(() => {
+ 284:         patchMobileMenu();
+ 285:       });
+    ...
+ 286:     };
+ 287: 
+ 288:     schedulePatch();
+ 289: 
+ 290:     const observer = new MutationObserver(() => {
+ 291:       schedulePatch();
+ 292:     });
+    ...
+ 294:     observer.observe(document.body, {
+ 295:       childList: true,
+ 296:       subtree: true,
+ 297:       attributes: true,
+ 298:       attributeFilter: ["class", "style", "hidden", "aria-expanded", "data-state", "open"],
+ 299:     });
+ 300: 
+ 301:     window.addEventListener("resize", schedulePatch);
+ 302:     window.addEventListener("orientationchange", schedulePatch);
+ 303:     window.addEventListener("click", schedulePatch, true);
+ 304: 
+ 305:     return () => {
+ 306:       window.cancelAnimationFrame(frame);
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\site\site-header.tsx ----
+   1: import { ChevronDown } from "lucide-react";
+   2: import Link from "next/link";
+   3: import { BookingLink } from "@/components/site/booking-link";
+   4: import { MobileMenu } from "@/components/site/mobile-menu";
+   5: import { SocialIconLinks } from "@/components/site/social-icon-links";
+   6: 
+   7: const navItems = [
+   8:   { href: "/servicios", label: "Servicios" },
+   9:   { href: "/ongs", label: "ONGs" },
+  10:   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
+  11:   { href: "/nosotros", label: "Equipo" },
+  12:   { href: "/investigacion", label: "Investigación" },
+    ...
+  14:   { href: "/contacto", label: "Contacto" },
+  15: ];
+  16: 
+  17: const secondaryNavItems = [
+  18:   { href: "/eventos", label: "Programas" },
+  19:   { href: "/recursos", label: "Recursos" },
+  20:   { href: "/biblioteca", label: "Biblioteca" },
+  21:   { href: "/faq", label: "FAQ" },
+  22:   { href: "/kit", label: "Kit" },
+  23:   { href: "/descargar", label: "App" },
+  24: ];
+  25: 
+  26: export function SiteHeader() {
+    ...
+  27:   return (
+  28:     <header className="sticky top-0 z-40 border-b border-[#d7dedf] bg-[#f7f4ed]/92 backdrop-blur">
+  29:       <div className="relative mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-6">
+  30:         <Link className="min-w-0 text-sm font-semibold tracking-[-0.02em] text-[#10233f]" href="/">
+  31:           Puente Impacto
+  32:         </Link>
+  33: 
+  34:         <nav className="hidden items-center gap-2 xl:flex">
+    ...
+  35:           {navItems.map((item) => (
+  36:             <Link
+    ...
+  43:           ))}
+  44: 
+  45:           <details className="group relative">
+  46:             <summary className="inline-flex list-none cursor-pointer items-center gap-1.5 rounded-full border border-[#d7dedf] bg-white/70 px-3.5 py-2 text-sm font-semibold text-[#10233f] transition hover:bg-white">
+  47:               Más
+  48:               <ChevronDown className="size-4 transition group-open:rotate-180" />
+  49:             </summary>
+  50:             <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 min-w-48 rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-2 shadow-xl">
+  51:               <p className="px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#526981]">
+  52:                 Más opciones
+  53:               </p>
+  54:               {secondaryNavItems.map((item) => (
+  55:                 <Link
+    ...
+  56:                   className="block rounded-xl px-4 py-3 text-sm font-medium text-[#425875] transition hover:bg-white hover:text-[#10233f]"
+  57:                   href={item.href}
+  58:                   key={item.href}
+  59:                 >
+  60:                   {item.label}
+    ...
+  64:           </details>
+  65:         </nav>
+  66: 
+  67:         <div className="hidden items-center gap-2 xl:flex">
+  68:           <BookingLink variant="header" />
+  69:           <SocialIconLinks />
+  70:         </div>
+  71: 
+  72:         <MobileMenu navItems={navItems} secondaryItems={secondaryNavItems} />
+  73:       </div>
+  74:     </header>
+  75:   );
+  76: }
+    ...
+  77: 
+    ...
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\site\mobile-menu.tsx ----
+   8:   href: string;
+   9:   label: string;
+  10: };
+  11: 
+  12: type MobileMenuProps = {
+  13:   navItems: NavItem[];
+  14:   secondaryItems?: NavItem[];
+  15: };
+  16: 
+  17: export function MobileMenu({ navItems, secondaryItems = [] }: MobileMenuProps) {
+  18:   const [open, setOpen] = useState(false);
+  19:   const close = () => setOpen(false);
+  20: 
+    ...
+  21:   return (
+  22:     <div className="xl:hidden">
+  23:       <button
+  24:         aria-label={open ? "Cerrar menú" : "Abrir menú"}
+  25:         className="inline-flex size-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 text-[#10233f]"
+    ...
+  45: 
+  46:             {secondaryItems.length ? (
+  47:               <div className="mt-3 rounded-[1rem] border border-[#d7dedf] bg-white/45 p-2">
+  48:                 <div className="flex items-center justify-between px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#526981]">
+  49:                   <span>Más opciones</span>
+  50:                   <ChevronDown className="size-4" />
+  51:                 </div>
+  52:                 <div className="grid gap-1">
+  53:                   {secondaryItems.map((item) => (
+  54:                     <Link
+  55:                       className="rounded-xl px-4 py-3 text-sm font-medium text-[#425875] transition hover:bg-white hover:text-[#10233f]"
+  56:                       href={item.href}
+  57:                       key={item.href}
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\app\globals.css ----
+  34:   --color-secondary-foreground: var(--secondary-foreground);
+  35:   --color-secondary: var(--secondary);
+  36:   --color-primary-foreground: var(--primary-foreground);
+  37:   --color-primary: var(--primary);
+  38:   --color-popover-foreground: var(--popover-foreground);
+  39:   --color-popover: var(--popover);
+  40:   --color-card-foreground: var(--card-foreground);
+  41:   --color-card: var(--card);
+  42:   --radius-sm: calc(var(--radius) * 0.6);
+  43:   --radius-md: calc(var(--radius) * 0.8);
+  44:   --radius-lg: var(--radius);
+  45:   --radius-xl: calc(var(--radius) * 1.4);
+  46:   --radius-2xl: calc(var(--radius) * 1.8);
+    ...
+  47:   --radius-3xl: calc(var(--radius) * 2.2);
+    ...
+  52:   --background: oklch(1 0 0);
+  53:   --foreground: oklch(0.145 0 0);
+  54:   --card: oklch(1 0 0);
+  55:   --card-foreground: oklch(0.145 0 0);
+  56:   --popover: oklch(1 0 0);
+  57:   --popover-foreground: oklch(0.145 0 0);
+  58:   --primary: oklch(0.205 0 0);
+  59:   --primary-foreground: oklch(0.985 0 0);
+  60:   --secondary: oklch(0.97 0 0);
+  61:   --secondary-foreground: oklch(0.205 0 0);
+  62:   --muted: oklch(0.97 0 0);
+  63:   --muted-foreground: oklch(0.556 0 0);
+  64:   --accent: oklch(0.97 0 0);
+    ...
+  65:   --accent-foreground: oklch(0.205 0 0);
+    ...
+  87:   --background: oklch(0.145 0 0);
+  88:   --foreground: oklch(0.985 0 0);
+  89:   --card: oklch(0.205 0 0);
+  90:   --card-foreground: oklch(0.985 0 0);
+  91:   --popover: oklch(0.205 0 0);
+  92:   --popover-foreground: oklch(0.985 0 0);
+  93:   --primary: oklch(0.922 0 0);
+  94:   --primary-foreground: oklch(0.205 0 0);
+  95:   --secondary: oklch(0.269 0 0);
+  96:   --secondary-foreground: oklch(0.985 0 0);
+  97:   --muted: oklch(0.269 0 0);
+  98:   --muted-foreground: oklch(0.708 0 0);
+  99:   --accent: oklch(0.269 0 0);
+    ...
+ 100:   --accent-foreground: oklch(0.985 0 0);
+    ...
+ 315: }
+ 316: 
+ 317: #__next,
+ 318: main,
+ 319: header,
+ 320: footer,
+ 321: section {
+ 322:   max-width: 100%;
+ 323: }
+ 324: 
+ 325: img,
+ 326: video,
+ 327: canvas,
+    ...
+ 343:   right: 1rem;
+ 344:   top: 5rem;
+ 345:   z-index: 50;
+ 346:   max-height: calc(100dvh - 6rem);
+ 347:   overflow-y: auto;
+ 348:   overscroll-behavior: contain;
+ 349:   touch-action: pan-y;
+ 350:   -webkit-overflow-scrolling: touch;
+ 351:   border: 1px solid #d7dedf;
+ 352:   border-radius: 1.5rem;
+ 353:   background: rgba(247, 244, 237, 0.97);
+ 354:   box-shadow: 0 24px 80px rgba(16, 35, 63, 0.18);
+ 355:   backdrop-filter: blur(16px);
+    ...
+ 362: }
+ 363: 
+ 364: .pi-mobile-menu-scroll {
+ 365:   max-height: inherit;
+ 366:   overflow-y: auto;
+ 367:   overscroll-behavior: contain;
+ 368:   touch-action: pan-y;
+ 369:   -webkit-overflow-scrolling: touch;
+ 370: }
+ 371: 
+ 372: .pi-mobile-menu-link {
+ 373:   min-height: 44px;
+ 374:   width: 100%;
+    ...
+ 420: 
+ 421: #__next,
+ 422: body > div,
+ 423: main,
+ 424: header,
+ 425: footer,
+ 426: section {
+ 427:   max-width: 100%;
+ 428:   min-width: 0;
+ 429: }
+ 430: 
+ 431: *,
+ 432: *::before,
+    ...
+ 444: 
+ 445: @media (max-width: 767px) {
+ 446:   body,
+ 447:   main,
+ 448:   header,
+ 449:   footer,
+ 450:   section,
+ 451:   article,
+ 452:   aside,
+ 453:   nav,
+ 454:   div {
+ 455:     min-width: 0;
+ 456:   }
+    ...
+ 473:     z-index: 50;
+ 474:     width: auto;
+ 475:     max-width: calc(100vw - 2rem);
+ 476:     max-height: none;
+ 477:     overflow-y: auto;
+ 478:     overflow-x: hidden;
+ 479:     overscroll-behavior: contain;
+ 480:     touch-action: pan-y;
+ 481:     -webkit-overflow-scrolling: touch;
+ 482:     border: 1px solid #d7dedf;
+ 483:     border-radius: 1.5rem;
+ 484:     background: rgba(247, 244, 237, 0.98);
+ 485:     box-shadow: 0 24px 80px rgba(16, 35, 63, 0.18);
+    ...
+ 500:   }
+ 501: 
+ 502:   .pi-mobile-menu-scroll {
+ 503:     max-height: 100%;
+ 504:     overflow-y: auto;
+ 505:     overflow-x: hidden;
+ 506:     overscroll-behavior: contain;
+ 507:     touch-action: pan-y;
+ 508:     -webkit-overflow-scrolling: touch;
+ 509:   }
+ 510: 
+ 511:   .pi-mobile-menu-link,
+ 512:   .pi-mobile-menu-button {
+    ...
+ 526:   }
+ 527: }
+ 528: 
+ 529: /* -------------------------------------------------------------------------- */
+ 530: /* Puente Impacto - Mobile menu scroll + More closed v3                       */
+ 531: /* -------------------------------------------------------------------------- */
+ 532: 
+ 533: @media (max-width: 767px) {
+ 534:   .pi-mobile-menu-panel {
+ 535:     display: block;
+ 536:     position: fixed;
+ 537:     left: max(1rem, env(safe-area-inset-left));
+ 538:     right: max(1rem, env(safe-area-inset-right));
+    ...
+ 541:     width: auto !important;
+ 542:     max-width: calc(100vw - 2rem) !important;
+ 543:     height: auto;
+ 544:     max-height: calc(100dvh - 5.75rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+ 545:     overflow-y: scroll !important;
+ 546:     overflow-x: hidden !important;
+ 547:     overscroll-behavior-y: contain;
+ 548:     touch-action: pan-y;
+ 549:     -webkit-overflow-scrolling: touch;
+ 550:     scrollbar-width: thin;
+ 551:   }
+ 552: 
+ 553:   @supports not (height: 100dvh) {
+    ...
+ 558: 
+ 559:   .pi-mobile-menu-scroll {
+ 560:     display: block;
+ 561:     max-height: none !important;
+ 562:     overflow-y: visible !important;
+ 563:     overflow-x: hidden !important;
+ 564:     overscroll-behavior-y: contain;
+ 565:     touch-action: pan-y;
+ 566:     -webkit-overflow-scrolling: touch;
+ 567:     padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+ 568:   }
+ 569: 
+ 570:   .pi-mobile-menu-panel::-webkit-scrollbar {
+    ...
+ 598: 
+ 599: @media (max-width: 767px) {
+ 600:   [data-pi-menu-runtime-scroll="true"] {
+ 601:     max-height: calc(100dvh - 5.75rem) !important;
+ 602:     overflow-y: scroll !important;
+ 603:     overflow-x: hidden !important;
+ 604:     overscroll-behavior-y: contain !important;
+ 605:     touch-action: pan-y !important;
+ 606:     -webkit-overflow-scrolling: touch !important;
+ 607:     scrollbar-width: thin !important;
+ 608:   }
+ 609: 
+ 610:   [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar {
+    ...
+ 620:     background: rgba(16, 35, 63, 0.45);
+ 621:     border-radius: 999px;
+ 622:   }
+ 623: 
+ 624:   [data-pi-more-content="closed"] {
+ 625:     display: none !important;
+ 626:   }
+ 627: 
+ 628:   [data-pi-more-content="open"] {
+ 629:     display: block;
+ 630:   }
+ 631: 
+ 632:   [data-pi-more-open="false"] + * {
+    ...
+ 633:     display: none;
+ 634:   }
+ 635: }
+ 636: 
+    ...
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\app\admin\dashboard\page.tsx ----
+ 130:       <div className="grid gap-2 md:grid-cols-[220px_1fr] md:items-center">
+ 131:         <label className="text-sm font-medium text-[#425875]">Estado</label>
+ 132:         <select
+ 133:           className="rounded-xl border border-[#d7dedf] bg-[#fbfaf7] px-3 py-2 text-sm outline-none"
+ 134:           defaultValue={currentStatus}
+ 135:           name="status"
+ 136:         >
+ 137:           {statusOptions.map((status) => (
+ 138:             <option key={status} value={status}>
+ 139:               {status}
+ 140:             </option>
+ 141:           ))}
+ 142:         </select>
+    ...
+ 146:         <div className="grid gap-2">
+ 147:           <label className="text-sm font-medium text-[#425875]">Notas internas</label>
+ 148:           <textarea
+ 149:             className="min-h-24 rounded-xl border border-[#d7dedf] bg-[#fbfaf7] px-3 py-2 text-sm outline-none"
+ 150:             defaultValue={adminNotes ?? ""}
+ 151:             name="admin_notes"
+ 152:             placeholder="Seguimiento, prioridad, próximos pasos..."
+ 153:           />
+ 154:         </div>
+ 155:       ) : null}
+ 156: 
+ 157:       <button
+ 158:         className="w-fit rounded-full bg-[#10233f] px-4 py-2 text-sm font-medium text-white hover:bg-[#1b365f]"
+    ...
+ 169: 
+ 170:   const data = await getDashboardData();
+ 171: 
+ 172:   return (
+ 173:     <main className="min-h-screen bg-[#f7f4ed] px-6 py-10 text-[#10233f]">
+ 174:       <div className="mx-auto max-w-7xl">
+ 175:         <header className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+ 176:           <div>
+ 177:             <p className="text-sm font-medium uppercase tracking-[0.24em] text-[#60738c]">
+ 178:               Puente Admin
+ 179:             </p>
+ 180:             <h1 className="mt-3 text-5xl font-semibold tracking-[-0.04em]">
+ 181:               Solicitudes recibidas
+    ...
+ 182:             </h1>
+ 183:             <p className="mt-4 max-w-2xl leading-7 text-[#425875]">
+    ...
+ 193:             >
+ 194:               Cerrar sesión
+ 195:             </button>
+ 196:           </form>
+ 197:         </header>
+ 198: 
+ 199:         <div className="grid gap-5">
+ 200:           <Section title="Voluntariado" count={data.volunteerApplications.length}>
+ 201:             {data.volunteerApplications.length === 0 ? (
+ 202:               <EmptyState />
+ 203:             ) : (
+ 204:               <div className="grid gap-3">
+ 205:                 {data.volunteerApplications.map((item) => (
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\lib\mock-data.ts ----
+  14:     category: "Tecnología, software y datos",
+  15:     language: "Inglés",
+  16:     status: "Disponible",
+  17:     description:
+  18:       "Sistemas distribuidos, datos, consistencia, escalabilidad y arquitectura de datos.",
+  19:   },
+  20:   {
+  21:     title: "Atomic Habits",
+  22:     author: "James Clear",
+  23:     category: "Desarrollo personal y finanzas",
+  24:     language: "Inglés",
+  25:     status: "Disponible",
+  26:     description:
+    ...
+  27:       "Hábitos, mejora incremental y sistemas personales aplicados a la vida diaria.",
+  28:   },
+  29:   {
+  30:     title: "Sapiens",
+  31:     author: "Yuval Noah Harari",
+  32:     category: "Ciencia, historia y exploración",
+  33:     language: "Español",
+  34:     status: "Disponible",
+  35:     description:
+    ...
+  37:   },
+  38:   {
+  39:     title: "English Grammar in Use",
+  40:     author: "Raymond Murphy",
+  41:     category: "Idiomas",
+  42:     language: "Inglés",
+  43:     status: "Disponible",
+  44:     description:
+  45:       "Libro de apoyo para estudiar gramática inglesa de forma estructurada.",
+  46:   },
+  47: ];
+  48: 
+  49: export const events = [
+    ...
+  63:     description:
+  64:       "Guía inicial para construir un perfil profesional, conectar con personas y buscar oportunidades.",
+  65:   },
+  66:   {
+  67:     title: "Círculo de lectura: software y sistemas",
+  68:     type: "Comunidad",
+  69:     date: "Próximamente",
+  70:     location: "Zona Tec",
+  71:     description:
+  72:       "Grupo de lectura para estudiantes interesados en software, datos, arquitectura y tecnología responsable.",
+  73:   },
+  74:   {
+  75:     title: "Grupo de estudio: entrevistas técnicas",
+    ...
+ 115:   "Investigación",
+ 116:   "Media",
+ 117:   "Comunidad",
+ 118:   "Eventos",
+ 119:   "Idiomas",
+ 120:   "Tutorías",
+ 121:   "Documentación",
+ 122:   "Outreach con ONG's",
+ 123: ];
+ 124: 
+ 125: export const ngoProgramOptions = [
+ 126:   {
+ 127:     title: "Programa gratuito anual",
+    ...
+ 135:   },
+ 136:   {
+ 137:     title: "Open source framework",
+ 138:     description:
+ 139:       "Construiremos herramientas reutilizables para que más equipos puedan desplegar soluciones para organizaciones sociales.",
+ 140:   },
+ 141: ];
+ 142: 
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\app\admin\servicios\page.tsx ----
+ 248:           <label className="grid gap-2">
+ 249:             <span className="text-sm font-semibold text-[#10233f]">Tipo</span>
+ 250:             <select
+ 251:               className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+ 252:               defaultValue={filters.type}
+ 253:               name="type"
+ 254:             >
+ 255:               {Object.entries(requestTypeLabels).map(([value, label]) => (
+ 256:                 <option key={value} value={value}>
+ 257:                   {label}
+ 258:                 </option>
+ 259:               ))}
+ 260:             </select>
+    ...
+ 263:           <label className="grid gap-2">
+ 264:             <span className="text-sm font-semibold text-[#10233f]">Estado</span>
+ 265:             <select
+ 266:               className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+ 267:               defaultValue={filters.status}
+ 268:               name="status"
+ 269:             >
+ 270:               {Object.entries(statusLabels).map(([value, label]) => (
+ 271:                 <option key={value} value={value}>
+ 272:                   {label}
+ 273:                 </option>
+ 274:               ))}
+ 275:             </select>
+    ...
+ 278:           <label className="grid gap-2">
+ 279:             <span className="text-sm font-semibold text-[#10233f]">Dron</span>
+ 280:             <select
+ 281:               className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+ 282:               defaultValue={filters.drone}
+ 283:               name="drone"
+ 284:             >
+ 285:               {Object.entries(droneLabels).map(([value, label]) => (
+ 286:                 <option key={value} value={value}>
+ 287:                   {label}
+ 288:                 </option>
+ 289:               ))}
+ 290:             </select>
+    ...
+ 408:             title="Ambas"
+ 409:             value={countByType(requests, "both").toString()}
+ 410:           />
+ 411:           <MetricCard
+ 412:             description="Solicitudes que piden evaluar tomas aereas."
+ 413:             icon={Camera}
+ 414:             title="Dron"
+ 415:             value={countDrone(requests).toString()}
+ 416:           />
+ 417:         </div>
+ 418: 
+ 419:         <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+ 420:           <Card className="border-[#d7dedf] bg-white/78 shadow-sm">
+    ...
+ 424:                   <BadgeCheck className="size-5 text-[#10233f]" />
+ 425:                 </div>
+ 426:                 <div>
+ 427:                   <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+ 428:                     Servicios mas pedidos
+ 429:                   </h2>
+ 430:                   <p className="mt-1 text-sm leading-6 text-[#60738c]">
+ 431:                     Intereses seleccionados en las solicitudes.
+ 432:                   </p>
+ 433:                 </div>
+ 434:               </div>
+ 435: 
+ 436:               <div className="grid gap-3">
+    ...
+ 506:                 <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+ 507:                   Solicitudes recientes
+ 508:                 </h2>
+ 509:                 <p className="mt-1 text-sm leading-6 text-[#60738c]">
+ 510:                   Ultimas solicitudes recibidas con los filtros actuales.
+ 511:                 </p>
+ 512:               </div>
+ 513:             </div>
+ 514: 
+ 515:             <div className="overflow-x-auto">
+ 516:               <table className="w-full min-w-[1260px] border-collapse text-left text-sm">
+ 517:                 <thead>
+ 518:                   <tr className="border-b border-[#d7dedf] text-xs uppercase tracking-[0.16em] text-[#60738c]">
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\forms\ngo-request-form.tsx ----
+   1: "use client";
+   2: 
+   3: import { submitNgoRequest, type FormActionResult } from "@/app/actions/forms";
+   4: import { zodResolver } from "@hookform/resolvers/zod";
+   5: import { ngoRequestSchema, type NgoRequestInput } from "@puente/schemas";
+   6: import { useState } from "react";
+   7: import { useForm } from "react-hook-form";
+   8: import { FormError } from "@/components/forms/form-error";
+   9: import { FormStatusMessage } from "@/components/forms/form-status-message";
+  10: import { PrivacyConsentField } from "@/components/forms/privacy-consent-field";
+  11: import { Button } from "@/components/ui/button";
+  12: import { Input } from "@/components/ui/input";
+  13: import { Label } from "@/components/ui/label";
+    ...
+  18:   const [isSubmitting, setIsSubmitting] = useState(false);
+  19: 
+  20:   const form = useForm<NgoRequestInput>({
+  21:     resolver: zodResolver(ngoRequestSchema),
+  22:     defaultValues: {
+  23:       organizationName: "",
+  24:       organizationType: "",
+  25:       contactName: "",
+  26:       contactEmail: "",
+  27:       contactPhone: "",
+  28:       city: "",
+  29:       peopleServedEstimate: "",
+  30:       problemDescription: "",
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\lib\admin\auth.ts ----
+   1: import { cookies } from "next/headers";
+   2: import { redirect } from "next/navigation";
+   3: 
+   4: const ADMIN_COOKIE_NAME = "puente_admin_session";
+   5: 
+   6: export async function isAdminAuthenticated() {
+   7:   const cookieStore = await cookies();
+   8:   return cookieStore.get(ADMIN_COOKIE_NAME)?.value === "authenticated";
+   9: }
+    ...
+  10: 
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\admin\contact-status-control.tsx ----
+   1: "use client";
+   2: 
+   3: import { Check, Loader2 } from "lucide-react";
+   4: import { useRouter } from "next/navigation";
+   5: import { useState } from "react";
+   6: 
+   7: const statusOptions = [
+   8:   { value: "new", label: "Nuevo" },
+   9:   { value: "reviewed", label: "Revisado" },
+  10:   { value: "contacted", label: "Contactado" },
+  11:   { value: "scheduled", label: "Agendado" },
+  12:   { value: "closed", label: "Cerrado" },
+    ...
+  32: 
+  33:     try {
+  34:       const response = await fetch(`/api/contact/${id}/status`, {
+  35:         method: "PATCH",
+  36:         headers: {
+  37:           "Content-Type": "application/json",
+  38:         },
+  39:         body: JSON.stringify({ status }),
+  40:       });
+  41: 
+  42:       const data = (await response.json().catch(() => null)) as {
+  43:         ok?: boolean;
+  44:         error?: string;
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\services\field-service-request-form.tsx ----
+  30: const serviceOptions = [
+  31:   "Cobertura de evento",
+  32:   "Entrevistas o testimonios",
+  33:   "Video para redes o reporte",
+  34:   "Tomas aereas con dron",
+  35:   "Revision de internet",
+  36:   "Optimizacion de WiFi",
+  37:   "Diagnostico de cableado Ethernet",
+  38:   "Revision de camaras IP",
+  39:   "Inventario de dispositivos",
+  40:   "Documentacion tecnica",
+  41:   "Recomendaciones de compra",
+  42:   "Monitoreo basico",
+    ...
+  93: 
+  94:     try {
+  95:       const response = await fetch("/api/field-service-requests", {
+  96:         method: "POST",
+  97:         headers: {
+  98:           "Content-Type": "application/json",
+  99:         },
+ 100:         body: JSON.stringify(form),
+ 101:       });
+ 102: 
+ 103:       const data = (await response.json().catch(() => null)) as {
+ 104:         ok?: boolean;
+ 105:         error?: string;
+    ...
+ 259:           onChange={(event) => updateField("needsDrone", event.target.checked)}
+ 260:           type="checkbox"
+ 261:         />
+ 262:         <span className="text-sm leading-6 text-[#425875]">
+ 263:           Me interesa evaluar tomas con dron. Entiendo que depende de permisos,
+ 264:           condiciones del espacio, clima y seguridad.
+ 265:         </span>
+ 266:       </label>
+ 267: 
+ 268:       <label className="grid gap-2">
+ 269:         <span className="text-sm font-semibold text-[#10233f]">Contexto de la solicitud</span>
+ 270:         <textarea
+ 271:           className="min-h-36 rounded-2xl border border-[#d7dedf] bg-white/80 px-4 py-3 text-[#10233f] outline-none transition focus:border-[#10233f]"
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\app\admin\vocacional\page.tsx ----
+ 222:           <label className="grid gap-2">
+ 223:             <span className="text-sm font-semibold text-[#10233f]">Tipo</span>
+ 224:             <select
+ 225:               className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+ 226:               defaultValue={filters.type}
+ 227:               name="type"
+ 228:             >
+ 229:               {Object.entries(participantLabels).map(([value, label]) => (
+ 230:                 <option key={value} value={value}>
+ 231:                   {label}
+ 232:                 </option>
+ 233:               ))}
+ 234:             </select>
+    ...
+ 237:           <label className="grid gap-2">
+ 238:             <span className="text-sm font-semibold text-[#10233f]">Estado</span>
+ 239:             <select
+ 240:               className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+ 241:               defaultValue={filters.status}
+ 242:               name="status"
+ 243:             >
+ 244:               {Object.entries(statusLabels).map(([value, label]) => (
+ 245:                 <option key={value} value={value}>
+ 246:                   {label}
+ 247:                 </option>
+ 248:               ))}
+ 249:             </select>
+    ...
+ 379:                   <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+ 380:                     Areas vocacionales
+ 381:                   </h2>
+ 382:                   <p className="mt-1 text-sm leading-6 text-[#60738c]">
+ 383:                     Intereses mas seleccionados.
+ 384:                   </p>
+ 385:                 </div>
+ 386:               </div>
+ 387: 
+ 388:               <div className="grid gap-3">
+ 389:                 {areas.length > 0 ? (
+ 390:                   areas.map((item) => (
+ 391:                     <div
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\app\admin\contacto\page.tsx ----
+  50: const interestLabels: Record<string, string> = {
+  51:   all: "Todos",
+  52:   general: "General",
+  53:   ngo: "ONGs",
+  54:   program: "Programas",
+  55:   service: "Servicios",
+  56:   research: "Investigacion",
+  57:   team: "Equipo",
+  58: };
+  59: 
+  60: const statusLabels: Record<string, string> = {
+  61:   all: "Todos",
+  62:   new: "Nuevo",
+    ...
+ 207:           <label className="grid gap-2">
+ 208:             <span className="text-sm font-semibold text-[#10233f]">Tema</span>
+ 209:             <select
+ 210:               className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+ 211:               defaultValue={filters.type}
+ 212:               name="type"
+ 213:             >
+ 214:               {Object.entries(interestLabels).map(([value, label]) => (
+ 215:                 <option key={value} value={value}>
+ 216:                   {label}
+ 217:                 </option>
+ 218:               ))}
+ 219:             </select>
+    ...
+ 222:           <label className="grid gap-2">
+ 223:             <span className="text-sm font-semibold text-[#10233f]">Estado</span>
+ 224:             <select
+ 225:               className="min-h-11 rounded-2xl border border-[#d7dedf] bg-white px-4 text-sm text-[#10233f]"
+ 226:               defaultValue={filters.status}
+ 227:               name="status"
+ 228:             >
+ 229:               {Object.entries(statusLabels).map(([value, label]) => (
+ 230:                 <option key={value} value={value}>
+ 231:                   {label}
+ 232:                 </option>
+ 233:               ))}
+ 234:             </select>
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\app\actions\forms.ts ----
+   1: "use server";
+   2: 
+   3: import { revalidatePath } from "next/cache";
+   4: import { headers } from "next/headers";
+   5: import {
+   6:   bookRequestSchema,
+   7:   contactMessageSchema,
+   8:   eventRegistrationSchema,
+   9:   ngoRequestSchema,
+  10:   volunteerApplicationSchema,
+  11:   type BookRequestInput,
+  12:   type ContactMessageInput,
+    ...
+  13:   type EventRegistrationInput,
+  14:   type NgoRequestInput,
+  15:   type VolunteerApplicationInput,
+  16: } from "@puente/schemas";
+  17: import { sendAdminNotification } from "@/lib/email/notifications";
+  18: import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+  19: 
+  20: export type FormActionResult = {
+  21:   ok: boolean;
+  22:   message: string;
+  23:   id?: string;
+  24: };
+    ...
+  62:   return "Error desconocido.";
+  63: }
+  64: 
+  65: async function getRequestMetadata() {
+  66:   const headerStore = await headers();
+  67: 
+  68:   const forwardedFor = headerStore.get("x-forwarded-for");
+  69:   const realIp = headerStore.get("x-real-ip");
+  70:   const userAgent = headerStore.get("user-agent");
+  71: 
+  72:   const ipAddress = forwardedFor?.split(",")[0]?.trim() || realIp || "unknown";
+  73: 
+  74:   return {
+    ...
+  75:     ipAddress,
+  76:     userAgent,
+    ...
+  77:   };
+    ...
+  78: }
+    ...
+ 113: 
+ 114:   if ((count ?? 0) >= maxRequests) {
+ 115:     return {
+ 116:       ok: false,
+ 117:       message: "Demasiados intentos recientes. Intenta de nuevo en unos minutos.",
+ 118:     };
+ 119:   }
+ 120: 
+ 121:   const { error: insertError } = await supabase.from("rate_limit_events").insert({
+ 122:     action,
+ 123:     identifier: combinedIdentifier,
+ 124:     ip_address: metadata.ipAddress,
+ 125:     user_agent: metadata.userAgent,
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\forms\event-registration-form.tsx ----
+   1: "use client";
+   2: 
+   3: import { submitEventRegistration, type FormActionResult } from "@/app/actions/forms";
+   4: import { zodResolver } from "@hookform/resolvers/zod";
+   5: import { eventRegistrationSchema, type EventRegistrationInput } from "@puente/schemas";
+   6: import { useState } from "react";
+   7: import { useForm } from "react-hook-form";
+   8: import { FormError } from "@/components/forms/form-error";
+   9: import { FormStatusMessage } from "@/components/forms/form-status-message";
+  10: import { PrivacyConsentField } from "@/components/forms/privacy-consent-field";
+  11: import { Button } from "@/components/ui/button";
+  12: import { Input } from "@/components/ui/input";
+  13: import { Label } from "@/components/ui/label";
+    ...
+  17:   const [isSubmitting, setIsSubmitting] = useState(false);
+  18: 
+  19:   const form = useForm<EventRegistrationInput>({
+  20:     resolver: zodResolver(eventRegistrationSchema),
+  21:     defaultValues: {
+  22:       eventTitle: eventTitle ?? "",
+  23:       fullName: "",
+  24:       email: "",
+  25:       note: "",
+  26:       privacyAccepted: false,
+  27:     },
+  28:   });
+  29: 
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\forms\volunteer-application-form.tsx ----
+   1: "use client";
+   2: 
+   3: import { submitVolunteerApplication, type FormActionResult } from "@/app/actions/forms";
+   4: import { zodResolver } from "@hookform/resolvers/zod";
+   5: import { volunteerApplicationSchema, type VolunteerApplicationInput } from "@puente/schemas";
+   6: import { useState } from "react";
+   7: import { useForm } from "react-hook-form";
+   8: import { FormError } from "@/components/forms/form-error";
+   9: import { FormStatusMessage } from "@/components/forms/form-status-message";
+  10: import { PrivacyConsentField } from "@/components/forms/privacy-consent-field";
+  11: import { Button } from "@/components/ui/button";
+  12: import { Input } from "@/components/ui/input";
+  13: import { Label } from "@/components/ui/label";
+    ...
+  18:   const [isSubmitting, setIsSubmitting] = useState(false);
+  19: 
+  20:   const form = useForm<VolunteerApplicationInput>({
+  21:     resolver: zodResolver(volunteerApplicationSchema),
+  22:     defaultValues: {
+  23:       fullName: "",
+  24:       email: "",
+  25:       phone: "",
+  26:       city: "",
+  27:       university: "",
+  28:       career: "",
+  29:       area: "",
+  30:       skills: "",
+    ...
+  81:       </div>
+  82: 
+  83:       <div className="grid gap-2">
+  84:         <Label>Habilidades</Label>
+  85:         <Input placeholder="React, diseño, SQL, investigación, idiomas..." {...form.register("skills")} />
+  86:         <FormError message={form.formState.errors.skills?.message} />
+  87:       </div>
+  88: 
+  89:       <div className="grid gap-2">
+  90:         <Label>Motivación</Label>
+  91:         <Textarea placeholder="Cuéntanos por qué quieres participar." {...form.register("motivation")} />
+  92:         <FormError message={form.formState.errors.motivation?.message} />
+  93:       </div>
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\components\contact\contact-form.tsx ----
+  17:   },
+  18:   {
+  19:     value: "ngo",
+  20:     label: "ONGs",
+  21:     description: "Organizaciones, procesos, datos o sistemas.",
+  22:   },
+  23:   {
+  24:     value: "program",
+  25:     label: "Programas",
+  26:     description: "Eventos, orientacion vocacional o talleres.",
+  27:   },
+  28:   {
+  29:     value: "service",
+    ...
+  30:     label: "Servicios",
+  31:     description: "Audiovisual, red, WiFi, camaras o soporte de campo.",
+  32:   },
+  33:   {
+    ...
+  75: 
+  76:     try {
+  77:       const response = await fetch("/api/contact", {
+  78:         method: "POST",
+  79:         headers: {
+  80:           "Content-Type": "application/json",
+  81:         },
+  82:         body: JSON.stringify(form),
+  83:       });
+  84: 
+  85:       const data = (await response.json().catch(() => null)) as {
+  86:         ok?: boolean;
+  87:         error?: string;
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\lib\admin\access.ts ----
+   1: import "server-only";
+   2: 
+   3: import { createHash, timingSafeEqual } from "crypto";
+   4: import { cookies } from "next/headers";
+   5: import { redirect } from "next/navigation";
+   6: 
+   7: export const ADMIN_COOKIE_NAME = "puente_admin_session";
+   8: 
+   9: function getAdminPassword() {
+  10:   return process.env.ADMIN_ACCESS_PASSWORD?.trim() ?? "";
+  11: }
+  12: 
+    ...
+  13: export function getAdminSessionValue() {
+    ...
+
+---- FILE: C:\dev\puente\apps\web\src\app\admin\contacto\[id]\page.tsx ----
+   7:   Phone,
+   8:   User,
+   9: } from "lucide-react";
+  10: import Link from "next/link";
+  11: import { notFound } from "next/navigation";
+  12: import { createClient } from "@supabase/supabase-js";
+  13: import { ContactStatusControl } from "@/components/admin/contact-status-control";
+  14: import { requireAdminAccess } from "@/lib/admin/access";
+  15: import { SiteShell } from "@/components/site/site-shell";
+  16: import { Card, CardContent } from "@/components/ui/card";
+  17: 
+  18: export const metadata = {
+  19:   title: "Detalle de contacto",
+    ...
+  39: 
+  40: const interestLabels: Record<string, string> = {
+  41:   general: "General",
+  42:   ngo: "ONGs",
+  43:   program: "Programas",
+  44:   service: "Servicios",
+  45:   research: "Investigacion",
+  46:   team: "Equipo",
+  47: };
+  48: 
+  49: const statusLabels: Record<string, string> = {
+  50:   new: "Nuevo",
+  51:   reviewed: "Revisado",
+    ...
+
+=== CSS global relacionado ===
+
+---- CSS FILE: C:\dev\puente\apps\web\src\app\globals.css ----
+ 250: html,
+ 251: body {
+ 252:   max-width: 100%;
+ 253:   overflow-x: clip;
+ 254:   text-rendering: optimizeLegibility;
+ 255: }
+ 256: 
+ 257: body {
+ 258:   -webkit-font-smoothing: antialiased;
+ 259:   -moz-osx-font-smoothing: grayscale;
+    ...
+ 306: html,
+ 307: body {
+ 308:   max-width: 100%;
+ 309:   overflow-x: hidden;
+ 310: }
+ 311: 
+ 312: body[data-pi-mobile-menu-open="true"] {
+ 313:   overflow: hidden;
+ 314:   touch-action: none;
+ 315: }
+    ...
+ 309:   overflow-x: hidden;
+ 310: }
+ 311: 
+ 312: body[data-pi-mobile-menu-open="true"] {
+ 313:   overflow: hidden;
+ 314:   touch-action: none;
+ 315: }
+ 316: 
+ 317: #__next,
+ 318: main,
+    ...
+ 329:   max-width: 100%;
+ 330: }
+ 331: 
+ 332: .pi-mobile-menu-backdrop {
+ 333:   position: fixed;
+ 334:   inset: 0;
+ 335:   z-index: 40;
+ 336:   background: rgba(16, 35, 63, 0.22);
+ 337:   backdrop-filter: blur(6px);
+ 338: }
+    ...
+ 337:   backdrop-filter: blur(6px);
+ 338: }
+ 339: 
+ 340: .pi-mobile-menu-panel {
+ 341:   position: fixed;
+ 342:   left: 1rem;
+ 343:   right: 1rem;
+ 344:   top: 5rem;
+ 345:   z-index: 50;
+ 346:   max-height: calc(100dvh - 6rem);
+    ...
+ 344:   top: 5rem;
+ 345:   z-index: 50;
+ 346:   max-height: calc(100dvh - 6rem);
+ 347:   overflow-y: auto;
+ 348:   overscroll-behavior: contain;
+ 349:   touch-action: pan-y;
+ 350:   -webkit-overflow-scrolling: touch;
+ 351:   border: 1px solid #d7dedf;
+ 352:   border-radius: 1.5rem;
+ 353:   background: rgba(247, 244, 237, 0.97);
+    ...
+ 356: }
+ 357: 
+ 358: @supports not (height: 100dvh) {
+ 359:   .pi-mobile-menu-panel {
+ 360:     max-height: calc(100vh - 6rem);
+ 361:   }
+ 362: }
+ 363: 
+ 364: .pi-mobile-menu-scroll {
+ 365:   max-height: inherit;
+    ...
+ 361:   }
+ 362: }
+ 363: 
+ 364: .pi-mobile-menu-scroll {
+ 365:   max-height: inherit;
+ 366:   overflow-y: auto;
+ 367:   overscroll-behavior: contain;
+ 368:   touch-action: pan-y;
+ 369:   -webkit-overflow-scrolling: touch;
+ 370: }
+    ...
+ 363: 
+ 364: .pi-mobile-menu-scroll {
+ 365:   max-height: inherit;
+ 366:   overflow-y: auto;
+ 367:   overscroll-behavior: contain;
+ 368:   touch-action: pan-y;
+ 369:   -webkit-overflow-scrolling: touch;
+ 370: }
+ 371: 
+ 372: .pi-mobile-menu-link {
+    ...
+ 369:   -webkit-overflow-scrolling: touch;
+ 370: }
+ 371: 
+ 372: .pi-mobile-menu-link {
+ 373:   min-height: 44px;
+ 374:   width: 100%;
+ 375:   touch-action: manipulation;
+ 376: }
+ 377: 
+ 378: .pi-mobile-menu-button {
+    ...
+ 375:   touch-action: manipulation;
+ 376: }
+ 377: 
+ 378: .pi-mobile-menu-button {
+ 379:   min-height: 44px;
+ 380:   min-width: 44px;
+ 381:   touch-action: manipulation;
+ 382: }
+ 383: 
+ 384: @media (min-width: 768px) {
+    ...
+ 382: }
+ 383: 
+ 384: @media (min-width: 768px) {
+ 385:   .pi-mobile-menu-backdrop,
+ 386:   .pi-mobile-menu-panel {
+ 387:     display: none;
+ 388:   }
+ 389: }
+ 390: 
+ 391: /* -------------------------------------------------------------------------- */
+    ...
+ 383: 
+ 384: @media (min-width: 768px) {
+ 385:   .pi-mobile-menu-backdrop,
+ 386:   .pi-mobile-menu-panel {
+ 387:     display: none;
+ 388:   }
+ 389: }
+ 390: 
+ 391: /* -------------------------------------------------------------------------- */
+ 392: /* Puente Impacto - Mobile viewport/menu fixes v2                             */
+    ...
+ 395: html {
+ 396:   width: 100%;
+ 397:   max-width: 100%;
+ 398:   overflow-x: hidden;
+ 399:   -webkit-text-size-adjust: 100%;
+ 400: }
+ 401: 
+ 402: body {
+ 403:   width: 100%;
+ 404:   max-width: 100%;
+    ...
+ 403:   width: 100%;
+ 404:   max-width: 100%;
+ 405:   min-width: 0;
+ 406:   overflow-x: hidden;
+ 407: }
+ 408: 
+ 409: @supports (overflow: clip) {
+ 410:   html,
+ 411:   body {
+ 412:     overflow-x: clip;
+    ...
+ 409: @supports (overflow: clip) {
+ 410:   html,
+ 411:   body {
+ 412:     overflow-x: clip;
+ 413:   }
+ 414: }
+ 415: 
+ 416: body[data-pi-mobile-menu-open="true"] {
+ 417:   overflow: hidden;
+ 418:   touch-action: none;
+    ...
+ 413:   }
+ 414: }
+ 415: 
+ 416: body[data-pi-mobile-menu-open="true"] {
+ 417:   overflow: hidden;
+ 418:   touch-action: none;
+ 419: }
+ 420: 
+ 421: #__next,
+ 422: body > div,
+    ...
+ 455:     min-width: 0;
+ 456:   }
+ 457: 
+ 458:   .pi-mobile-menu-backdrop {
+ 459:     position: fixed;
+ 460:     inset: 0;
+ 461:     z-index: 40;
+ 462:     background: rgba(16, 35, 63, 0.22);
+ 463:     backdrop-filter: blur(6px);
+ 464:     touch-action: none;
+    ...
+ 464:     touch-action: none;
+ 465:   }
+ 466: 
+ 467:   .pi-mobile-menu-panel {
+ 468:     position: fixed;
+ 469:     left: max(1rem, env(safe-area-inset-left));
+ 470:     right: max(1rem, env(safe-area-inset-right));
+ 471:     top: calc(4.75rem + env(safe-area-inset-top));
+ 472:     bottom: max(1rem, env(safe-area-inset-bottom));
+ 473:     z-index: 50;
+    ...
+ 474:     width: auto;
+ 475:     max-width: calc(100vw - 2rem);
+ 476:     max-height: none;
+ 477:     overflow-y: auto;
+ 478:     overflow-x: hidden;
+ 479:     overscroll-behavior: contain;
+ 480:     touch-action: pan-y;
+ 481:     -webkit-overflow-scrolling: touch;
+ 482:     border: 1px solid #d7dedf;
+ 483:     border-radius: 1.5rem;
+    ...
+ 475:     max-width: calc(100vw - 2rem);
+ 476:     max-height: none;
+ 477:     overflow-y: auto;
+ 478:     overflow-x: hidden;
+ 479:     overscroll-behavior: contain;
+ 480:     touch-action: pan-y;
+ 481:     -webkit-overflow-scrolling: touch;
+ 482:     border: 1px solid #d7dedf;
+ 483:     border-radius: 1.5rem;
+ 484:     background: rgba(247, 244, 237, 0.98);
+    ...
+ 489:   }
+ 490: 
+ 491:   @supports (width: 100dvw) {
+ 492:     .pi-mobile-menu-panel {
+ 493:       max-width: calc(100dvw - 2rem);
+ 494:     }
+ 495:   }
+ 496: 
+ 497:   .pi-mobile-menu-panel *,
+ 498:   .pi-mobile-menu-scroll * {
+    ...
+ 494:     }
+ 495:   }
+ 496: 
+ 497:   .pi-mobile-menu-panel *,
+ 498:   .pi-mobile-menu-scroll * {
+ 499:     min-width: 0;
+ 500:   }
+ 501: 
+ 502:   .pi-mobile-menu-scroll {
+ 503:     max-height: 100%;
+    ...
+ 495:   }
+ 496: 
+ 497:   .pi-mobile-menu-panel *,
+ 498:   .pi-mobile-menu-scroll * {
+ 499:     min-width: 0;
+ 500:   }
+ 501: 
+ 502:   .pi-mobile-menu-scroll {
+ 503:     max-height: 100%;
+ 504:     overflow-y: auto;
+    ...
+ 499:     min-width: 0;
+ 500:   }
+ 501: 
+ 502:   .pi-mobile-menu-scroll {
+ 503:     max-height: 100%;
+ 504:     overflow-y: auto;
+ 505:     overflow-x: hidden;
+ 506:     overscroll-behavior: contain;
+ 507:     touch-action: pan-y;
+ 508:     -webkit-overflow-scrolling: touch;
+    ...
+ 501: 
+ 502:   .pi-mobile-menu-scroll {
+ 503:     max-height: 100%;
+ 504:     overflow-y: auto;
+ 505:     overflow-x: hidden;
+ 506:     overscroll-behavior: contain;
+ 507:     touch-action: pan-y;
+ 508:     -webkit-overflow-scrolling: touch;
+ 509:   }
+ 510: 
+    ...
+ 502:   .pi-mobile-menu-scroll {
+ 503:     max-height: 100%;
+ 504:     overflow-y: auto;
+ 505:     overflow-x: hidden;
+ 506:     overscroll-behavior: contain;
+ 507:     touch-action: pan-y;
+ 508:     -webkit-overflow-scrolling: touch;
+ 509:   }
+ 510: 
+ 511:   .pi-mobile-menu-link,
+    ...
+ 508:     -webkit-overflow-scrolling: touch;
+ 509:   }
+ 510: 
+ 511:   .pi-mobile-menu-link,
+ 512:   .pi-mobile-menu-button {
+ 513:     min-height: 44px;
+ 514:     touch-action: manipulation;
+ 515:   }
+ 516: 
+ 517:   .pi-mobile-menu-link {
+    ...
+ 509:   }
+ 510: 
+ 511:   .pi-mobile-menu-link,
+ 512:   .pi-mobile-menu-button {
+ 513:     min-height: 44px;
+ 514:     touch-action: manipulation;
+ 515:   }
+ 516: 
+ 517:   .pi-mobile-menu-link {
+ 518:     width: 100%;
+    ...
+ 514:     touch-action: manipulation;
+ 515:   }
+ 516: 
+ 517:   .pi-mobile-menu-link {
+ 518:     width: 100%;
+ 519:   }
+ 520: }
+ 521: 
+ 522: @media (min-width: 768px) {
+ 523:   .pi-mobile-menu-backdrop,
+    ...
+ 520: }
+ 521: 
+ 522: @media (min-width: 768px) {
+ 523:   .pi-mobile-menu-backdrop,
+ 524:   .pi-mobile-menu-panel {
+ 525:     display: none;
+ 526:   }
+ 527: }
+ 528: 
+ 529: /* -------------------------------------------------------------------------- */
+    ...
+ 521: 
+ 522: @media (min-width: 768px) {
+ 523:   .pi-mobile-menu-backdrop,
+ 524:   .pi-mobile-menu-panel {
+ 525:     display: none;
+ 526:   }
+ 527: }
+ 528: 
+ 529: /* -------------------------------------------------------------------------- */
+ 530: /* Puente Impacto - Mobile menu scroll + More closed v3                       */
+    ...
+ 527: }
+ 528: 
+ 529: /* -------------------------------------------------------------------------- */
+ 530: /* Puente Impacto - Mobile menu scroll + More closed v3                       */
+ 531: /* -------------------------------------------------------------------------- */
+ 532: 
+ 533: @media (max-width: 767px) {
+ 534:   .pi-mobile-menu-panel {
+ 535:     display: block;
+ 536:     position: fixed;
+    ...
+ 531: /* -------------------------------------------------------------------------- */
+ 532: 
+ 533: @media (max-width: 767px) {
+ 534:   .pi-mobile-menu-panel {
+ 535:     display: block;
+ 536:     position: fixed;
+ 537:     left: max(1rem, env(safe-area-inset-left));
+ 538:     right: max(1rem, env(safe-area-inset-right));
+ 539:     top: calc(4.75rem + env(safe-area-inset-top));
+ 540:     bottom: max(1rem, env(safe-area-inset-bottom));
+    ...
+ 542:     max-width: calc(100vw - 2rem) !important;
+ 543:     height: auto;
+ 544:     max-height: calc(100dvh - 5.75rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+ 545:     overflow-y: scroll !important;
+ 546:     overflow-x: hidden !important;
+ 547:     overscroll-behavior-y: contain;
+ 548:     touch-action: pan-y;
+ 549:     -webkit-overflow-scrolling: touch;
+ 550:     scrollbar-width: thin;
+ 551:   }
+    ...
+ 543:     height: auto;
+ 544:     max-height: calc(100dvh - 5.75rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+ 545:     overflow-y: scroll !important;
+ 546:     overflow-x: hidden !important;
+ 547:     overscroll-behavior-y: contain;
+ 548:     touch-action: pan-y;
+ 549:     -webkit-overflow-scrolling: touch;
+ 550:     scrollbar-width: thin;
+ 551:   }
+ 552: 
+    ...
+ 547:     overscroll-behavior-y: contain;
+ 548:     touch-action: pan-y;
+ 549:     -webkit-overflow-scrolling: touch;
+ 550:     scrollbar-width: thin;
+ 551:   }
+ 552: 
+ 553:   @supports not (height: 100dvh) {
+ 554:     .pi-mobile-menu-panel {
+ 555:       max-height: calc(100vh - 5.75rem);
+ 556:     }
+    ...
+ 551:   }
+ 552: 
+ 553:   @supports not (height: 100dvh) {
+ 554:     .pi-mobile-menu-panel {
+ 555:       max-height: calc(100vh - 5.75rem);
+ 556:     }
+ 557:   }
+ 558: 
+ 559:   .pi-mobile-menu-scroll {
+ 560:     display: block;
+    ...
+ 556:     }
+ 557:   }
+ 558: 
+ 559:   .pi-mobile-menu-scroll {
+ 560:     display: block;
+ 561:     max-height: none !important;
+ 562:     overflow-y: visible !important;
+ 563:     overflow-x: hidden !important;
+ 564:     overscroll-behavior-y: contain;
+ 565:     touch-action: pan-y;
+    ...
+ 559:   .pi-mobile-menu-scroll {
+ 560:     display: block;
+ 561:     max-height: none !important;
+ 562:     overflow-y: visible !important;
+ 563:     overflow-x: hidden !important;
+ 564:     overscroll-behavior-y: contain;
+ 565:     touch-action: pan-y;
+ 566:     -webkit-overflow-scrolling: touch;
+ 567:     padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+ 568:   }
+    ...
+ 560:     display: block;
+ 561:     max-height: none !important;
+ 562:     overflow-y: visible !important;
+ 563:     overflow-x: hidden !important;
+ 564:     overscroll-behavior-y: contain;
+ 565:     touch-action: pan-y;
+ 566:     -webkit-overflow-scrolling: touch;
+ 567:     padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+ 568:   }
+ 569: 
+    ...
+ 567:     padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+ 568:   }
+ 569: 
+ 570:   .pi-mobile-menu-panel::-webkit-scrollbar {
+ 571:     width: 8px;
+ 572:   }
+ 573: 
+ 574:   .pi-mobile-menu-panel::-webkit-scrollbar-track {
+ 575:     background: rgba(215, 222, 223, 0.55);
+ 576:     border-radius: 999px;
+    ...
+ 571:     width: 8px;
+ 572:   }
+ 573: 
+ 574:   .pi-mobile-menu-panel::-webkit-scrollbar-track {
+ 575:     background: rgba(215, 222, 223, 0.55);
+ 576:     border-radius: 999px;
+ 577:   }
+ 578: 
+ 579:   .pi-mobile-menu-panel::-webkit-scrollbar-thumb {
+ 580:     background: rgba(16, 35, 63, 0.35);
+    ...
+ 576:     border-radius: 999px;
+ 577:   }
+ 578: 
+ 579:   .pi-mobile-menu-panel::-webkit-scrollbar-thumb {
+ 580:     background: rgba(16, 35, 63, 0.35);
+ 581:     border-radius: 999px;
+ 582:   }
+ 583: 
+ 584:   .pi-mobile-menu-panel * {
+ 585:     min-width: 0;
+    ...
+ 581:     border-radius: 999px;
+ 582:   }
+ 583: 
+ 584:   .pi-mobile-menu-panel * {
+ 585:     min-width: 0;
+ 586:   }
+ 587: 
+ 588:   .pi-mobile-menu-link,
+ 589:   .pi-mobile-menu-button {
+ 590:     min-height: 44px;
+    ...
+ 585:     min-width: 0;
+ 586:   }
+ 587: 
+ 588:   .pi-mobile-menu-link,
+ 589:   .pi-mobile-menu-button {
+ 590:     min-height: 44px;
+ 591:     touch-action: manipulation;
+ 592:   }
+ 593: }
+ 594: 
+    ...
+ 586:   }
+ 587: 
+ 588:   .pi-mobile-menu-link,
+ 589:   .pi-mobile-menu-button {
+ 590:     min-height: 44px;
+ 591:     touch-action: manipulation;
+ 592:   }
+ 593: }
+ 594: 
+ 595: /* -------------------------------------------------------------------------- */
+    ...
+ 593: }
+ 594: 
+ 595: /* -------------------------------------------------------------------------- */
+ 596: /* Puente Impacto - Runtime mobile menu override                              */
+ 597: /* -------------------------------------------------------------------------- */
+ 598: 
+ 599: @media (max-width: 767px) {
+ 600:   [data-pi-menu-runtime-scroll="true"] {
+ 601:     max-height: calc(100dvh - 5.75rem) !important;
+ 602:     overflow-y: scroll !important;
+    ...
+ 597: /* -------------------------------------------------------------------------- */
+ 598: 
+ 599: @media (max-width: 767px) {
+ 600:   [data-pi-menu-runtime-scroll="true"] {
+ 601:     max-height: calc(100dvh - 5.75rem) !important;
+ 602:     overflow-y: scroll !important;
+ 603:     overflow-x: hidden !important;
+ 604:     overscroll-behavior-y: contain !important;
+ 605:     touch-action: pan-y !important;
+ 606:     -webkit-overflow-scrolling: touch !important;
+    ...
+ 599: @media (max-width: 767px) {
+ 600:   [data-pi-menu-runtime-scroll="true"] {
+ 601:     max-height: calc(100dvh - 5.75rem) !important;
+ 602:     overflow-y: scroll !important;
+ 603:     overflow-x: hidden !important;
+ 604:     overscroll-behavior-y: contain !important;
+ 605:     touch-action: pan-y !important;
+ 606:     -webkit-overflow-scrolling: touch !important;
+ 607:     scrollbar-width: thin !important;
+ 608:   }
+    ...
+ 600:   [data-pi-menu-runtime-scroll="true"] {
+ 601:     max-height: calc(100dvh - 5.75rem) !important;
+ 602:     overflow-y: scroll !important;
+ 603:     overflow-x: hidden !important;
+ 604:     overscroll-behavior-y: contain !important;
+ 605:     touch-action: pan-y !important;
+ 606:     -webkit-overflow-scrolling: touch !important;
+ 607:     scrollbar-width: thin !important;
+ 608:   }
+ 609: 
+    ...
+ 604:     overscroll-behavior-y: contain !important;
+ 605:     touch-action: pan-y !important;
+ 606:     -webkit-overflow-scrolling: touch !important;
+ 607:     scrollbar-width: thin !important;
+ 608:   }
+ 609: 
+ 610:   [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar {
+ 611:     width: 8px;
+ 612:   }
+ 613: 
+    ...
+ 607:     scrollbar-width: thin !important;
+ 608:   }
+ 609: 
+ 610:   [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar {
+ 611:     width: 8px;
+ 612:   }
+ 613: 
+ 614:   [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar-track {
+ 615:     background: rgba(215, 222, 223, 0.7);
+ 616:     border-radius: 999px;
+    ...
+ 611:     width: 8px;
+ 612:   }
+ 613: 
+ 614:   [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar-track {
+ 615:     background: rgba(215, 222, 223, 0.7);
+ 616:     border-radius: 999px;
+ 617:   }
+ 618: 
+ 619:   [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar-thumb {
+ 620:     background: rgba(16, 35, 63, 0.45);
+    ...
+ 616:     border-radius: 999px;
+ 617:   }
+ 618: 
+ 619:   [data-pi-menu-runtime-scroll="true"]::-webkit-scrollbar-thumb {
+ 620:     background: rgba(16, 35, 63, 0.45);
+ 621:     border-radius: 999px;
+ 622:   }
+ 623: 
+ 624:   [data-pi-more-content="closed"] {
+ 625:     display: none !important;
+    ...
+ 621:     border-radius: 999px;
+ 622:   }
+ 623: 
+ 624:   [data-pi-more-content="closed"] {
+ 625:     display: none !important;
+ 626:   }
+ 627: 
+ 628:   [data-pi-more-content="open"] {
+ 629:     display: block;
+ 630:   }
+    ...
+ 625:     display: none !important;
+ 626:   }
+ 627: 
+ 628:   [data-pi-more-content="open"] {
+ 629:     display: block;
+ 630:   }
+ 631: 
+ 632:   [data-pi-more-open="false"] + * {
+ 633:     display: none;
+ 634:   }
+    ...
+ 629:     display: block;
+ 630:   }
+ 631: 
+ 632:   [data-pi-more-open="false"] + * {
+ 633:     display: none;
+ 634:   }
+ 635: }
+ 636: 
+    ...
