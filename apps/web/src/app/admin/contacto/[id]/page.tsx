@@ -39,7 +39,7 @@ type ContactSubmission = {
 
 const interestLabels: Record<string, string> = {
   general: "General",
-  ngo: "ONGs",
+  ngo: "ONG",
   program: "Programas",
   service: "Servicios",
   research: "Investigacion",

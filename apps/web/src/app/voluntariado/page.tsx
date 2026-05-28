@@ -89,7 +89,7 @@ const expectations = [
   {
     title: "Cuidado",
     description:
-      "Al trabajar con comunidad, ONG's o estudiantes, la responsabilidad y la comunicacion importan.",
+      "Al trabajar con comunidad, ONG o estudiantes, la responsabilidad y la comunicacion importan.",
   },
 ];
 

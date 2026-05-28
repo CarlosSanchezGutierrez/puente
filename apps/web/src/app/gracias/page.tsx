@@ -91,7 +91,7 @@ const contentByType: Record<
       "Recibimos la informacion. Revisaremos el contexto y daremos seguimiento si corresponde.",
     nextSteps: [
       "Revisaremos el mensaje recibido.",
-      "Identificaremos si corresponde a ONGs, programas, servicios o investigacion.",
+      "Identificaremos si corresponde a ONG, programas, servicios o investigacion.",
       "Daremos seguimiento si hay una ruta clara de colaboracion.",
     ],
     primaryHref: "/",

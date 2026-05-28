@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ContactLinks } from "@/components/site/contact-links";
 
 const mainLinks = [
-  { href: "/ongs", label: "ONGs" },
+  { href: "/ONG", label: "ONG" },
   { href: "/eventos", label: "Programas" },
   { href: "/servicios", label: "Servicios" },
   { href: "/investigacion", label: "Investigacion" },

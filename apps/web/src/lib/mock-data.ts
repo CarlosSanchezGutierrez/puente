@@ -119,7 +119,7 @@ export const volunteerAreas = [
   "Idiomas",
   "Tutorías",
   "Documentación",
-  "Outreach con ONG's",
+  "Outreach con ONG",
 ];
 
 export const ngoProgramOptions = [

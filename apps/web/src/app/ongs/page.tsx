@@ -2,23 +2,23 @@ import Link from "next/link";
 import { SiteShell } from "@/components/site/site-shell";
 
 export const metadata = {
-  title: "ONGs | Software gratuito para organizaciones sociales",
+  title: "ONG | Software gratuito para organizaciones sociales",
   description:
-    "Software gratuito para ONGs, proyectos sociales y sustentables: páginas web, apps móviles para Android y iOS, formularios, bases de datos, dashboards y herramientas internas.",
+    "Software gratuito para ONG, proyectos sociales y sustentables: páginas web, apps móviles para Android y iOS, formularios, bases de datos, dashboards y herramientas internas.",
   alternates: {
-    canonical: "/ongs",
+    canonical: "/ONG",
   },
   openGraph: {
-    title: "ONGs | Software gratuito para organizaciones sociales",
+    title: "ONG | Software gratuito para organizaciones sociales",
     description:
-      "Apoyo gratuito para ONGs, proyectos sociales y sustentables con páginas web, apps móviles, formularios, bases de datos y herramientas digitales concretas.",
-    url: "https://puenteimpacto.org/ongs",
+      "Apoyo gratuito para ONG, proyectos sociales y sustentables con páginas web, apps móviles, formularios, bases de datos y herramientas digitales concretas.",
+    url: "https://puenteimpacto.org/ONG",
     images: [
       {
         url: "/og/puente-impacto-card.png",
         width: 1200,
         height: 630,
-        alt: "Puente Impacto: software gratuito para ONGs",
+        alt: "Puente Impacto: software gratuito para ONG",
       },
     ],
   },
@@ -94,18 +94,18 @@ const boundaries = [
   "No buscamos hacer la página, app o sistema más complicado de lo necesario.",
 ];
 
-export default function OngsPage() {
+export default function ONGPage() {
   return (
     <SiteShell>
       <main className="bg-[#f7f4ed] text-[#10233f]">
         <section className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
-              ONGs
+              ONG
             </p>
 
             <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#10233f] md:text-7xl">
-              Software gratuito para ONGs, proyectos sociales y sustentables.
+              Software gratuito para ONG, proyectos sociales y sustentables.
             </h1>
 
             <p className="mt-7 max-w-3xl text-lg leading-8 text-[#425875]">

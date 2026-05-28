@@ -6,7 +6,7 @@ import { SiteShell } from "@/components/site/site-shell";
 export const metadata = {
   title: "Kit institucional",
   description:
-    "Documentos institucionales de Puente Impacto para ONGs, escuelas, programas, recursos y presentacion inicial.",
+    "Documentos institucionales de Puente Impacto para ONG, escuelas, programas, recursos y presentacion inicial.",
 };
 
 export default function KitPage() {

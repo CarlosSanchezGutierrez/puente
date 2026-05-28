@@ -27,11 +27,11 @@ const siteUrl = getSiteUrl();
 export const metadata = {
   metadataBase: new URL("https://puenteimpacto.org"),
   title: {
-    default: "Puente Impacto | Software para ONGs y proyectos educativos",
+    default: "Puente Impacto | Software para ONG y proyectos educativos",
     template: "%s | Puente Impacto",
   },
   description:
-    "Apoyo gratuito o preferencial para ONGs, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
+    "Apoyo gratuito o preferencial para ONG, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
   applicationName: "Puente Impacto",
   alternates: {
     canonical: "/",
@@ -41,23 +41,23 @@ export const metadata = {
     locale: "es_MX",
     url: "https://puenteimpacto.org",
     siteName: "Puente Impacto",
-    title: "Puente Impacto | Software para ONGs y proyectos educativos",
+    title: "Puente Impacto | Software para ONG y proyectos educativos",
     description:
-      "Apoyo gratuito o preferencial para ONGs, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
+      "Apoyo gratuito o preferencial para ONG, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
     images: [
       {
         url: "/og/puente-impacto-card.png",
         width: 1200,
         height: 630,
-        alt: "Puente Impacto: software para ONGs y proyectos educativos",
+        alt: "Puente Impacto: software para ONG y proyectos educativos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Puente Impacto | Software para ONGs y proyectos educativos",
+    title: "Puente Impacto | Software para ONG y proyectos educativos",
     description:
-      "Apoyo gratuito o preferencial para ONGs, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
+      "Apoyo gratuito o preferencial para ONG, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
     images: ["/og/puente-impacto-card.png"],
   },
   robots: {

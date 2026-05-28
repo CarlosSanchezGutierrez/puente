@@ -4,7 +4,7 @@ const baseUrl = "https://puenteimpacto.org";
 
 const routes = [
   "",
-  "/ongs",
+  "/ONG",
   "/eventos",
   "/eventos/puente-vocacional-2026",
   "/recursos",
@@ -29,6 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: now,
     changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/ongs" || route === "/eventos/puente-vocacional-2026" ? 0.9 : 0.7,
+    priority: route === "" ? 1 : route === "/ONG" || route === "/eventos/puente-vocacional-2026" ? 0.9 : 0.7,
   }));
 }

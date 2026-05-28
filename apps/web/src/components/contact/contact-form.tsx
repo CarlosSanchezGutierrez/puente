@@ -17,7 +17,7 @@ const interestOptions: Array<{
   },
   {
     value: "ngo",
-    label: "ONGs",
+    label: "ONG",
     description: "Organizaciones, procesos, datos o sistemas.",
   },
   {

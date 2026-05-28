@@ -5,7 +5,7 @@ import { SiteShell } from "@/components/site/site-shell";
 export const metadata = {
   title: "Preguntas frecuentes",
   description:
-    "Preguntas frecuentes sobre Puente Impacto, ONGs, escuelas, mentores, estudiantes, servicios y formas de colaboracion.",
+    "Preguntas frecuentes sobre Puente Impacto, ONG, escuelas, mentores, estudiantes, servicios y formas de colaboracion.",
 };
 
 const faqGroups = [
@@ -38,8 +38,8 @@ const faqGroups = [
     ],
   },
   {
-    id: "ongs",
-    title: "ONGs",
+    id: "ONG",
+    title: "ONG",
     description: "Apoyo para organizaciones sociales y proyectos de impacto.",
     defaultOpen: false,
     questions: [
@@ -49,7 +49,7 @@ const faqGroups = [
           "Podemos apoyar con p\u00e1ginas web, aplicaciones m\u00f3viles, formularios, bases de datos, dashboards, gesti\u00f3n de donantes y voluntarios, documentaci\u00f3n, video documental, automatizaci\u00f3n, IA responsable y diagn\u00f3stico t\u00e9cnico b\u00e1sico.",
       },
       {
-        question: "\u00bfTrabajan con ONGs peque\u00f1as?",
+        question: "\u00bfTrabajan con ONG peque\u00f1as?",
         answer:
           "S\u00ed. Nos interesa apoyar organizaciones con necesidades claras, aunque sean peque\u00f1as o est\u00e9n empezando. El alcance se define seg\u00fan prioridad, tiempo, recursos disponibles y capacidad de seguimiento.",
       },
@@ -162,12 +162,12 @@ const faqGroups = [
           "S\u00ed. Cuando el proyecto se formaliza como servicio, se puede emitir factura.",
       },
       {
-        question: "\u00bfTienen descuentos para ONGs?",
+        question: "\u00bfTienen descuentos para ONG?",
         answer:
-          "En proyectos seleccionados pueden existir esquemas preferenciales para ONGs, planes de pago o formas de colaboraci\u00f3n que reduzcan la fricci\u00f3n econ\u00f3mica. Cada caso se revisa seg\u00fan alcance, disponibilidad y naturaleza del proyecto.",
+          "En proyectos seleccionados pueden existir esquemas preferenciales para ONG, planes de pago o formas de colaboraci\u00f3n que reduzcan la fricci\u00f3n econ\u00f3mica. Cada caso se revisa seg\u00fan alcance, disponibilidad y naturaleza del proyecto.",
       },
       {
-        question: "\u00bfQu\u00e9 significa hasta 85% de apoyo para ONGs?",
+        question: "\u00bfQu\u00e9 significa hasta 85% de apoyo para ONG?",
         answer:
           "Significa que algunos proyectos sociales seleccionados pueden recibir un esquema preferencial sobre la cotizaci\u00f3n inicial. No es autom\u00e1tico ni aplica igual para todos los casos; depende del alcance, tiempo, complejidad, disponibilidad y valor social del proyecto.",
       },

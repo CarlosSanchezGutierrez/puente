@@ -50,7 +50,7 @@ type Filters = {
 const interestLabels: Record<string, string> = {
   all: "Todos",
   general: "General",
-  ngo: "ONGs",
+  ngo: "ONG",
   program: "Programas",
   service: "Servicios",
   research: "Investigacion",
@@ -334,7 +334,7 @@ export default async function AdminContactoPage({
           <MetricCard
             description="Mensajes de organizaciones sociales."
             icon={Users}
-            title="ONGs"
+            title="ONG"
             value={countByType(submissions, "ngo").toString()}
           />
           <MetricCard

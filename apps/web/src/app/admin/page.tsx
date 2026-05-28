@@ -371,7 +371,7 @@ export default async function AdminPage() {
             href="/admin/contacto"
             icon={Mail}
             metrics={[
-              { label: "ONGs", value: counts.contactNgos },
+              { label: "ONG", value: counts.contactNgos },
               { label: "Programas", value: counts.contactPrograms },
               { label: "Servicios", value: counts.contactServices },
               { label: "Investigacion", value: counts.contactResearch },

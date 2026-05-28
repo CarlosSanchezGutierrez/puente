@@ -45,7 +45,7 @@ const researchLines = [
   {
     title: "Tecnologia para organizaciones sociales",
     description:
-      "Sistemas, datos, documentacion, trazabilidad y herramientas digitales para ONGs e iniciativas comunitarias.",
+      "Sistemas, datos, documentacion, trazabilidad y herramientas digitales para ONG e iniciativas comunitarias.",
     icon: Network,
   },
   {

@@ -6,7 +6,7 @@ type FAQLinkSectionProps = {
 };
 
 export function FAQLinkSection({
-  text = "Antes de escribirnos, tambien puedes revisar preguntas frecuentes sobre servicios, ONGs, escuelas, mentores y formas de colaboracion.",
+  text = "Antes de escribirnos, tambien puedes revisar preguntas frecuentes sobre servicios, ONG, escuelas, mentores y formas de colaboracion.",
 }: FAQLinkSectionProps) {
   return (
     <section className="mx-auto max-w-7xl px-6 py-8">

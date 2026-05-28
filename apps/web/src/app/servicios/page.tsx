@@ -67,7 +67,7 @@ const tools = [
 
 const useCases = [
   {
-    title: "ONGs y brigadas",
+    title: "ONG y brigadas",
     description:
       "Documentar actividades, ordenar evidencia visual, registrar testimonios y revisar infraestructura basica de la sede.",
     icon: ShieldCheck,
@@ -354,9 +354,9 @@ export default function ServiciosPage() {
 
               <Link
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 text-sm font-medium text-white transition hover:bg-white/15"
-                href="/ongs"
+                href="/ONG"
               >
-                Ver apoyo a ONGs
+                Ver apoyo a ONG
               </Link>
             </div>
           </div>

@@ -6,16 +6,16 @@ export const institutionalDocs = [
     description:
       "Una introduccion breve a Puente Impacto, sus lineas de trabajo y formas de contacto.",
     href: "/docs/presentacion-inicio-puente-impacto.pdf",
-    audience: "Aliados, escuelas, ONGs, mentores y contactos generales.",
+    audience: "Aliados, escuelas, ONG, mentores y contactos generales.",
   },
   {
-    key: "ongs",
-    title: "Kit para ONGs",
-    label: "ONGs",
+    key: "ONG",
+    title: "Kit para ONG",
+    label: "ONG",
     description:
       "Servicios, capacidades y esquemas de colaboracion para organizaciones sociales.",
-    href: "/docs/ongs-puente-impacto.pdf",
-    audience: "ONGs, asociaciones civiles, fundaciones y proyectos sociales.",
+    href: "/docs/ONG-puente-impacto.pdf",
+    audience: "ONG, asociaciones civiles, fundaciones y proyectos sociales.",
   },
   {
     key: "vocacional",

@@ -109,7 +109,7 @@ export default function Image() {
         >
           <span>Biblioteca</span>
           <span>Voluntariado</span>
-          <span>ONGs</span>
+          <span>ONG</span>
           <span>Recursos</span>
         </div>
       </div>

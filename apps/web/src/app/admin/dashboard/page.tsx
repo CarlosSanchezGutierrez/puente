@@ -224,7 +224,7 @@ export default async function AdminDashboardPage() {
             )}
           </Section>
 
-          <Section title="ONG's y proyectos sociales" count={data.ngoRequests.length}>
+          <Section title="ONG y proyectos sociales" count={data.ngoRequests.length}>
             {data.ngoRequests.length === 0 ? (
               <EmptyState />
             ) : (

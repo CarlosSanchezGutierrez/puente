@@ -6,7 +6,7 @@ import { SocialIconLinks } from "@/components/site/social-icon-links";
 
 const navItems = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/ongs", label: "ONGs" },
+  { href: "/ONG", label: "ONG" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
   { href: "/nosotros", label: "Equipo" },
   { href: "/investigacion", label: "Investigación" },
@@ -23,7 +23,7 @@ const secondaryNavItems = [
 ];
 
 const mobileQuickItems = [
-  { href: "/ongs", label: "ONGs" },
+  { href: "/ONG", label: "ONG" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
   { href: "/nosotros", label: "Equipo" },
 ];

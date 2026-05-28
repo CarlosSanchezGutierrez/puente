@@ -2,23 +2,23 @@ import Link from "next/link";
 import { SiteShell } from "@/components/site/site-shell";
 
 export const metadata = {
-  title: "Puente Impacto | Software gratuito para ONGs y eventos educativos",
+  title: "Puente Impacto | Software gratuito para ONG y eventos educativos",
   description:
-    "Software gratuito para ONGs, proyectos sociales y sustentables, eventos educativos, orientación vocacional y documentación de proyectos.",
+    "Software gratuito para ONG, proyectos sociales y sustentables, eventos educativos, orientación vocacional y documentación de proyectos.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     url: "https://puenteimpacto.org",
-    title: "Puente Impacto | Software gratuito para ONGs y eventos educativos",
+    title: "Puente Impacto | Software gratuito para ONG y eventos educativos",
     description:
-      "Software gratuito para ONGs, proyectos sociales y sustentables, eventos educativos, orientación vocacional y documentación de proyectos.",
+      "Software gratuito para ONG, proyectos sociales y sustentables, eventos educativos, orientación vocacional y documentación de proyectos.",
     images: [
       {
         url: "/og/puente-impacto-card.png",
         width: 1200,
         height: 630,
-        alt: "Puente Impacto: software gratuito para ONGs y eventos educativos",
+        alt: "Puente Impacto: software gratuito para ONG y eventos educativos",
       },
     ],
   },
@@ -26,11 +26,11 @@ export const metadata = {
 
 const mainAreas = [
   {
-    title: "ONGs",
+    title: "ONG",
     description:
       "Páginas web, formularios, bases de datos, dashboards, registro de beneficiarios, gestión de voluntarios y documentación operativa.",
-    href: "/ongs",
-    cta: "Ver apoyo para ONGs",
+    href: "/ONG",
+    cta: "Ver apoyo para ONG",
   },
   {
     title: "Proyectos sociales y sustentables",
@@ -52,7 +52,7 @@ const deliverables = [
   "Páginas web institucionales",
   "Formularios y bases de datos",
   "Dashboards y reportes",
-  "Apps o herramientas internas sencillas",
+  "Apps móviles completas para Android y iOS",
   "Sistemas de registro para eventos",
   "Documentación operativa",
   "Material audiovisual y evidencia",
@@ -93,7 +93,7 @@ export default function HomePage() {
           </p>
 
           <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#10233f] md:text-7xl">
-            Software gratuito para ONGs, proyectos sociales y sustentables, y eventos educativos.
+            Software gratuito para ONG, proyectos sociales, sustentables y eventos educativos.
           </h1>
 
           <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875]">

@@ -24,10 +24,10 @@ export const metadata = {
 
 const contactPaths = [
   {
-    title: "ONGs",
+    title: "ONG",
     description:
       "Organizaciones, procesos, datos, aplicaciones web, Android, iOS o dashboards.",
-    href: "/ongs",
+    href: "/ONG",
     cta: "Ver enfoque",
     icon: HeartHandshake,
   },

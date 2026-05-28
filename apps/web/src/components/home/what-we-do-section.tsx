@@ -1,13 +1,13 @@
-﻿import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const areas = [
   {
     number: "01",
-    title: "ONGs",
+    title: "ONG",
     description:
       "Sistemas, registros, reportes, aplicaciones web, Android, iOS y documentacion para organizaciones sociales.",
-    href: "/ongs",
+    href: "/ONG",
   },
   {
     number: "02",

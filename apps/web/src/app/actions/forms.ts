@@ -256,7 +256,7 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
         wants_annual_free_program: parsed.data.wantsAnnualFreeProgram,
         wants_social_discount_quote: parsed.data.wantsSocialDiscountQuote,
         privacy_accepted_at: new Date().toISOString(),
-        source_path: "/ongs",
+        source_path: "/ONG",
       })
       .select("id")
       .single();
@@ -275,10 +275,10 @@ export async function submitNgoRequest(input: NgoRequestInput): Promise<FormActi
       title: parsed.data.organizationName,
       summary: `${parsed.data.contactName} (${parsed.data.contactEmail}) envió una solicitud de organización social.`,
       recordId: data.id,
-      sourcePath: "/ongs",
+      sourcePath: "/ONG",
     });
 
-    revalidatePath("/ongs");
+    revalidatePath("/ONG");
 
     return {
       ok: true,
