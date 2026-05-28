@@ -179,8 +179,33 @@ function ActionCard({
 }
 
 export const metadata = {
-  title: { absolute: "Puente Impacto" },
-  description: "Tecnologia civica, biblioteca comunitaria, voluntariado, recursos abiertos y software para impacto social.",
+  title: "Puente Impacto | Software para ONGs y proyectos educativos",
+  description:
+    "Apoyo gratuito o preferencial para ONGs, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: "https://puenteimpacto.org",
+    title: "Puente Impacto | Software para ONGs y proyectos educativos",
+    description:
+      "Apoyo gratuito o preferencial para ONGs, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
+    images: [
+      {
+        url: "/og/puente-impacto-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Puente Impacto: software para ONGs y proyectos educativos",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Puente Impacto | Software para ONGs y proyectos educativos",
+    description:
+      "Apoyo gratuito o preferencial para ONGs, eventos educativos, orientación vocacional y documentación de proyectos sociales.",
+    images: ["/og/puente-impacto-card.png"],
+  },
 };
 export default function Home() {
   return (
