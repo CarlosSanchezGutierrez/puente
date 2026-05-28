@@ -1,3 +1,4 @@
+import { QuickHelpChat } from "@/components/site/quick-help-chat";
 import { MobileSocialBar } from "@/components/site/mobile-social-bar";
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -21,6 +22,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       </main>
 
       <SiteFooter />
+      <QuickHelpChat />
     </div>
   );
 }
