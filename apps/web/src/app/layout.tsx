@@ -5,6 +5,13 @@ import type { Metadata } from "next";
 import { Instrument_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
+
 const instrumentSans = Instrument_Sans({
   variable: "--font-sans",
   subsets: ["latin"],

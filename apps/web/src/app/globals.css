@@ -387,3 +387,141 @@ svg {
     display: none;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/* Puente Impacto - Mobile viewport/menu fixes v2                             */
+/* -------------------------------------------------------------------------- */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+body[data-pi-mobile-menu-open="true"] {
+  overflow: hidden;
+  touch-action: none;
+}
+
+#__next,
+body > div,
+main,
+header,
+footer,
+section {
+  max-width: 100%;
+  min-width: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  body,
+  main,
+  header,
+  footer,
+  section,
+  article,
+  aside,
+  nav,
+  div {
+    min-width: 0;
+  }
+
+  .pi-mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(16, 35, 63, 0.22);
+    backdrop-filter: blur(6px);
+    touch-action: none;
+  }
+
+  .pi-mobile-menu-panel {
+    position: fixed;
+    left: max(1rem, env(safe-area-inset-left));
+    right: max(1rem, env(safe-area-inset-right));
+    top: calc(4.75rem + env(safe-area-inset-top));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 50;
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    max-height: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #d7dedf;
+    border-radius: 1.5rem;
+    background: rgba(247, 244, 237, 0.98);
+    box-shadow: 0 24px 80px rgba(16, 35, 63, 0.18);
+    backdrop-filter: blur(16px);
+    transform: translateZ(0);
+    contain: layout paint;
+  }
+
+  @supports (width: 100dvw) {
+    .pi-mobile-menu-panel {
+      max-width: calc(100dvw - 2rem);
+    }
+  }
+
+  .pi-mobile-menu-panel *,
+  .pi-mobile-menu-scroll * {
+    min-width: 0;
+  }
+
+  .pi-mobile-menu-scroll {
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pi-mobile-menu-link,
+  .pi-mobile-menu-button {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .pi-mobile-menu-link {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .pi-mobile-menu-backdrop,
+  .pi-mobile-menu-panel {
+    display: none;
+  }
+}
