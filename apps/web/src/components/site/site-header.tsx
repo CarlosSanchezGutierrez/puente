@@ -4,13 +4,16 @@ import { MobileMenu } from "@/components/site/mobile-menu";
 import { SocialIconLinks } from "@/components/site/social-icon-links";
 
 const navItems = [
+  { href: "/servicios", label: "Servicios" },
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
   { href: "/eventos", label: "Programas" },
   { href: "/recursos", label: "Recursos" },
+  { href: "/investigacion", label: "Investigación" },
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/colabora", label: "Colabora" },
   { href: "/kit", label: "Kit" },
+  { href: "/descargar", label: "App" },
   { href: "/faq", label: "FAQ" },
   { href: "/contacto", label: "Contacto" },
 ];
