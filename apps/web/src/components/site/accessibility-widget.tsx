@@ -7,7 +7,6 @@ import {
   Pause,
   Plus,
   RotateCcw,
-  Type,
   Underline,
   X,
 } from "lucide-react";
@@ -99,19 +98,16 @@ function isDefaultState(state: AccessibilityState) {
 
 export function AccessibilityWidget() {
   const [open, setOpen] = useState(false);
-  const [state, setState] = useState<AccessibilityState>(defaultState);
+  const [state, setState] = useState<AccessibilityState>(() => getStoredState());
   const active = !isDefaultState(state);
 
   useEffect(() => {
-    const storedState = getStoredState();
-    setState(storedState);
-    applyAccessibility(storedState);
-  }, []);
+    applyAccessibility(state);
+    saveState(state);
+  }, [state]);
 
   const updateState = (nextState: AccessibilityState) => {
     setState(nextState);
-    applyAccessibility(nextState);
-    saveState(nextState);
   };
 
   const increaseText = () => {

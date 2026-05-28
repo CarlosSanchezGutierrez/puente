@@ -123,7 +123,7 @@ function ProfileCard({ profile }: { profile: VocationalProfile }) {
   );
 }
 
-function EditionSummary({ city }: { city: VocationalCity }) {
+: { city: VocationalCity }) {
   const profiles = vocationalProfiles.filter((profile) => profile.city === city);
   const academicCount = profiles.filter((profile) => profile.role === "Directiva académica").length;
   const mentorCount = profiles.filter((profile) => profile.role === "Mentor universitario").length;

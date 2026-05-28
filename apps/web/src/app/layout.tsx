@@ -1,7 +1,6 @@
 import { StructuredData } from "@/components/seo/structured-data";
 import { ServiceWorkerRegistration } from "@/components/pwa/service-worker-registration";
 import { getSiteUrl } from "@/lib/site-url";
-import type { Metadata } from "next";
 import { Instrument_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
@@ -21,9 +20,6 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
   subsets: ["latin"],
 });
-
-const siteUrl = getSiteUrl();
-
 export const metadata = {
   metadataBase: new URL("https://puenteimpacto.org"),
   title: {
