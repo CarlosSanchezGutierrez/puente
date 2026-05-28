@@ -7,7 +7,7 @@ const areas = [
     title: "ONG",
     description:
       "Sistemas, registros, reportes, aplicaciones web, Android, iOS y documentacion para organizaciones sociales.",
-    href: "/ONG",
+    href: "/ongs",
   },
   {
     number: "02",

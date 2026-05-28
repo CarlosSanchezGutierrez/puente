@@ -27,7 +27,7 @@ const contactPaths = [
     title: "ONG",
     description:
       "Organizaciones, procesos, datos, aplicaciones web, Android, iOS o dashboards.",
-    href: "/ONG",
+    href: "/ongs",
     cta: "Ver enfoque",
     icon: HeartHandshake,
   },

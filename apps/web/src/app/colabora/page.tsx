@@ -16,7 +16,7 @@ const paths = [
     title: "Soy ONG",
     description:
       "Para organizaciones sociales que buscan apoyo con herramientas digitales, documentacion, datos, comunicacion, video, automatizacion o servicios de campo.",
-    href: "/ONG",
+    href: "/ongs",
     action: "Ver apoyo para ONG",
     icon: Building2,
     external: false,

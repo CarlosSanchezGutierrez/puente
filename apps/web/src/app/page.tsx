@@ -29,7 +29,7 @@ const mainAreas = [
     title: "ONG",
     description:
       "Páginas web, formularios, bases de datos, dashboards, registro de beneficiarios, gestión de voluntarios y documentación operativa.",
-    href: "/ONG",
+    href: "/ongs",
     cta: "Ver apoyo para ONG",
   },
   {
