@@ -79,3 +79,5 @@ apps/mobile/keystores/
 docs/performance/*.html
 docs/performance/*.json
 dist-apk/
+.vercel
+.env*
