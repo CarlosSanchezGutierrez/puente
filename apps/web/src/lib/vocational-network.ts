@@ -237,6 +237,7 @@ export const vocationalProfiles: VocationalProfile[] = [
 {
     name: "Jorge Iván Hidalgo Reyes",
     city: "Monterrey",
+    family: "Ingenierías y Ciencias",
     role: "Directiva académica",
     credential: "Director de Ingeniería Electrónica y Semiconductores",
     institution: "Tecnológico de Monterrey",
@@ -248,6 +249,7 @@ export const vocationalProfiles: VocationalProfile[] = [
   {
     name: "Juan Pablo Méndez Lomelí",
     city: "Monterrey",
+    family: "Arquitectura, Arte y Diseño",
     role: "Mentor universitario",
     credential: "Licenciatura en Arquitectura",
     institution: "Tecnológico de Monterrey",
