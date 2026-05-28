@@ -1,349 +1,275 @@
-import { FAQLinkSection } from "@/components/site/faq-link-section";
-import { BookingSection } from "@/components/site/booking-section";
-import {
-  ArrowRight,
-  BadgeCheck,
-  BarChart3,
-  ClipboardList,
-  Database,
-  FileText,
-  HeartHandshake,
-  Laptop,
-  MonitorSmartphone,
-  ShieldCheck,
-  Smartphone,
-  Users,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { FieldSupportCompact } from "@/components/services/field-support-teaser";
-import { ResearchCompactSection } from "@/components/research/research-sections";
 import { SiteShell } from "@/components/site/site-shell";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
-  title: "ONGs",
+  title: "ONGs | Software gratuito para organizaciones sociales",
   description:
-    "Apoyo tecnológico, documentación, aplicaciones web, Android, iOS, datos y procesos para organizaciones sociales.",
+    "Software gratuito para ONGs, proyectos sociales y sustentables: páginas web, formularios, bases de datos, dashboards y herramientas internas sencillas.",
+  alternates: {
+    canonical: "/ongs",
+  },
+  openGraph: {
+    title: "ONGs | Software gratuito para organizaciones sociales",
+    description:
+      "Apoyo gratuito para ONGs, proyectos sociales y sustentables con herramientas digitales concretas.",
+    url: "https://puenteimpacto.org/ongs",
+    images: [
+      {
+        url: "/og/puente-impacto-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Puente Impacto: software gratuito para ONGs",
+      },
+    ],
+  },
 };
 
-const supportAreas = [
+const deliverables = [
+  "Páginas web para explicar servicios, programas y formas de contacto",
+  "Formularios para beneficiarios, voluntarios, donantes o asistentes",
+  "Bases de datos sencillas para ordenar información operativa",
+  "Dashboards para revisar registros, actividades y resultados",
+  "Sistemas de registro para brigadas, campañas, talleres o eventos",
+  "Documentación básica para que el equipo pueda usar la herramienta",
+];
+
+const useCases = [
   {
-    title: "Procesos",
+    title: "Operación diaria",
     description:
-      "Ordenar formularios, registros, responsables, pasos, tiempos y seguimiento operativo.",
-    icon: ClipboardList,
+      "Registrar beneficiarios, actividades, servicios, voluntarios o solicitudes sin depender de mensajes sueltos o archivos desordenados.",
   },
   {
-    title: "Datos",
+    title: "Eventos y campañas",
     description:
-      "Estructurar información para reportes, indicadores, consultas, tableros y trazabilidad.",
-    icon: Database,
+      "Crear formularios, páginas de registro, listas de asistencia, reportes simples y evidencia ordenada.",
   },
   {
-    title: "Documentación",
+    title: "Transparencia y seguimiento",
     description:
-      "Crear guías, mapas de proceso, criterios de captura, políticas básicas y evidencia organizada.",
-    icon: FileText,
-  },
-  {
-    title: "Continuidad",
-    description:
-      "Diseñar herramientas que puedan mantenerse, explicarse y transferirse a nuevos equipos.",
-    icon: ShieldCheck,
+      "Mostrar información clara sobre programas, resultados, contacto, necesidades y próximos pasos.",
   },
 ];
 
-const tools = [
+const process = [
   {
-    title: "Aplicaciones web",
+    step: "1",
+    title: "Entendemos la necesidad",
     description:
-      "Portales, paneles internos, formularios, dashboards y sistemas accesibles desde navegador.",
-    icon: Laptop,
+      "Revisamos qué problema quieren resolver, quién usará la herramienta y qué información ya tienen.",
   },
   {
-    title: "Android",
+    step: "2",
+    title: "Definimos un alcance pequeño",
     description:
-      "Apps móviles para captura en campo, seguimiento, formularios, validaciones y consulta operativa.",
-    icon: Smartphone,
+      "Acordamos qué se puede entregar, qué queda fuera y qué datos o materiales se necesitan.",
   },
   {
-    title: "iOS",
+    step: "3",
+    title: "Construimos la herramienta",
     description:
-      "Aplicaciones para iPhone o iPad cuando el contexto del proyecto lo justifique.",
-    icon: MonitorSmartphone,
+      "Desarrollamos algo usable: página, formulario, base de datos, dashboard o sistema interno sencillo.",
   },
   {
-    title: "Dashboards",
+    step: "4",
+    title: "Entregamos y documentamos",
     description:
-      "Visualización de registros, avance, indicadores, sedes, servicios, beneficiarios y actividad.",
-    icon: BarChart3,
+      "Dejamos instrucciones básicas para que la organización pueda usarlo sin depender de explicaciones largas.",
   },
 ];
 
-const projectTypes = [
-  "Registro de beneficiarios, pacientes, voluntarios o participantes.",
-  "Sistemas de captura para brigadas, eventos o sedes.",
-  "Paneles internos para seguimiento y reportes.",
-  "Formularios conectados a bases de datos.",
-  "Aplicaciones móviles para trabajo en campo.",
-  "Documentación técnica y operativa.",
-  "Métricas de impacto y reportes básicos.",
-  "Apoyo audiovisual o técnico para eventos y sedes.",
+const requirements = [
+  "Una persona responsable del seguimiento",
+  "Una necesidad concreta y priorizada",
+  "Información base del proyecto u organización",
+  "Fechas aproximadas si hay evento o campaña",
+  "Claridad sobre datos personales y permisos necesarios",
 ];
 
-const principles = [
-  "Empezar por una necesidad concreta.",
-  "Cuidar datos personales y privacidad.",
-  "Diseñar para usuarios reales, no para lucir complejo.",
-  "Documentar lo suficiente para que el proyecto pueda continuar.",
-  "Medir lo que tenga sentido medir.",
-  "Mantener un alcance viable.",
+const boundaries = [
+  "No prometemos sistemas grandes sin revisar alcance y mantenimiento.",
+  "No trabajamos datos sensibles sin revisar privacidad, permisos y uso responsable.",
+  "No buscamos hacer la página más complicada de lo necesario.",
 ];
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#60738c] md:text-sm">
-      {children}
-    </p>
-  );
-}
-
-function InfoCard({
-  title,
-  description,
-  icon: Icon,
-}: {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}) {
-  return (
-    <Card className="h-full border-[#d7dedf] bg-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
-      <CardContent className="p-6">
-        <div className="mb-8 flex size-12 items-center justify-center rounded-2xl border border-[#d7dedf] bg-[#fbfaf7]">
-          <Icon className="size-6 text-[#10233f]" />
-        </div>
-
-        <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
-          {title}
-        </h3>
-
-        <p className="mt-4 leading-7 text-[#425875]">{description}</p>
-      </CardContent>
-    </Card>
-  );
-}
 
 export default function OngsPage() {
   return (
     <SiteShell>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[700px] bg-[radial-gradient(circle_at_top_left,rgba(65,105,150,0.18),transparent_38%),linear-gradient(180deg,#f7f4ed_0%,#f3efe6_100%)]" />
-
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1fr_0.88fr] md:py-24">
+      <main className="bg-[#f7f4ed] text-[#10233f]">
+        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div>
-            <Badge className="mb-6 w-fit rounded-full border-[#c7d2df] bg-white/75 px-4 py-1.5 text-[#10233f] shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
               ONGs
-            </Badge>
-
-            <h1 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.065em] text-[#10233f] sm:text-6xl md:text-8xl">
-              Tecnología útil para organizaciones sociales.
-            </h1>
-
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875] md:text-xl md:leading-9">
-              Apoyamos a organizaciones que necesitan ordenar información, mejorar procesos,
-              capturar datos en campo, generar reportes o documentar mejor su operación.
             </p>
 
-            <p className="mt-5 max-w-2xl leading-8 text-[#60738c]">
-              Cada caso se revisa con cuidado. Lo importante es entender la necesidad, el equipo
-              responsable, los datos disponibles y el alcance realista del proyecto.
+            <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#10233f] md:text-7xl">
+              Software gratuito para ONGs, proyectos sociales y sustentables.
+            </h1>
+
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-[#425875]">
+              Apoyamos a organizaciones sociales con herramientas digitales concretas: páginas web, formularios, bases de datos, dashboards, registros de eventos y documentación básica.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
+                className="inline-flex items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f] focus:outline-none focus:ring-2 focus:ring-[#10233f]/30"
                 href="/contacto"
               >
-                Contactar
-                <ArrowRight className="ml-2 size-4" />
+                Solicitar apoyo
               </Link>
-
-              <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
-                href="/servicios"
+              <a
+                className="inline-flex items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#10233f]/20"
+                href="https://calendly.com/contacto-puenteimpacto/30min"
+                rel="noreferrer"
+                target="_blank"
               >
-                Ver servicios
-              </Link>
-            </div>
-          </div>
-
-          <Card className="border-[#d7dedf] bg-white/82 shadow-sm">
-            <CardContent className="p-6 md:p-8">
-              <div className="mb-8 flex items-start gap-4">
-                <div className="flex size-12 items-center justify-center rounded-2xl bg-[#10233f]">
-                  <HeartHandshake className="size-6 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
-                    Cómo ayudamos
-                  </h2>
-                  <p className="mt-2 text-sm leading-6 text-[#60738c]">
-                    Partimos de necesidades operativas claras y construimos soluciones simples de explicar.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid gap-3">
-                {principles.map((principle) => (
-                  <div
-                    className="grid grid-cols-[34px_1fr] gap-3 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4"
-                    key={principle}
-                  >
-                    <div className="flex size-8 items-center justify-center rounded-full bg-white">
-                      <BadgeCheck className="size-4 text-[#0f7890]" />
-                    </div>
-                    <p className="text-sm leading-6 text-[#425875]">{principle}</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-          <div>
-            <SectionLabel>Áreas de apoyo</SectionLabel>
-            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              Orden, datos y continuidad.
-            </h2>
-          </div>
-
-          <p className="text-lg leading-8 text-[#425875]">
-            La tecnología solo ayuda si queda conectada con el proceso real de la organización,
-            las personas que la usarán y la forma en que se dará seguimiento.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {supportAreas.map((area) => (
-            <InfoCard
-              description={area.description}
-              icon={area.icon}
-              key={area.title}
-              title={area.title}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-          <div>
-            <SectionLabel>Herramientas</SectionLabel>
-            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              Web, Android, iOS y datos.
-            </h2>
-          </div>
-
-          <p className="text-lg leading-8 text-[#425875]">
-            Dependiendo del contexto, una solución puede ser una aplicación web, una app móvil,
-            un dashboard, una base de datos, documentación técnica o una combinación sencilla de varias herramientas.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {tools.map((tool) => (
-            <InfoCard
-              description={tool.description}
-              icon={tool.icon}
-              key={tool.title}
-              title={tool.title}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="rounded-[2rem] border border-[#d7dedf] bg-white/80 p-6 shadow-sm md:p-8">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <div>
-              <SectionLabel>Casos comunes</SectionLabel>
-              <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-                Proyectos que sí suelen tener sentido.
-              </h2>
-
-              <p className="mt-6 leading-8 text-[#425875]">
-                Estos ejemplos ayudan a aterrizar el tipo de apoyo que Puente puede revisar con una organización.
-              </p>
+                Agendar reunión
+              </a>
             </div>
 
-            <div className="grid gap-3">
-              {projectTypes.map((item) => (
+            <p className="mt-5 max-w-3xl text-sm leading-6 text-[#526981]">
+              El apoyo se revisa según alcance, calendario y viabilidad técnica. La prioridad es entregar soluciones pequeñas, útiles y sostenibles.
+            </p>
+          </div>
+
+          <aside className="rounded-[1.75rem] border border-[#d7dedf] bg-white/70 p-5 shadow-sm">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
+              Qué podemos entregar
+            </p>
+            <div className="mt-5 grid gap-3">
+              {deliverables.map((item) => (
                 <div
-                  className="grid grid-cols-[34px_1fr] gap-3 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4"
+                  className="rounded-2xl border border-[#d7dedf] bg-[#f7f4ed]/75 px-4 py-3 text-sm font-medium leading-6 text-[#10233f]"
                   key={item}
                 >
-                  <div className="flex size-8 items-center justify-center rounded-full bg-white">
-                    <BadgeCheck className="size-4 text-[#0f7890]" />
-                  </div>
-                  <p className="text-sm leading-6 text-[#425875]">{item}</p>
+                  {item}
                 </div>
               ))}
             </div>
+          </aside>
+        </section>
+
+        <section className="border-y border-[#d7dedf] bg-white/45">
+          <div className="mx-auto grid max-w-7xl gap-4 px-6 py-10 md:grid-cols-3">
+            {useCases.map((item) => (
+              <article
+                className="rounded-[1.35rem] border border-[#d7dedf] bg-[#f7f4ed]/80 p-5 shadow-sm"
+                key={item.title}
+              >
+                <h2 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[#425875]">{item.description}</p>
+              </article>
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <FieldSupportCompact />
+        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
+              Forma de trabajo
+            </p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
+              Proyectos claros, pequeños y usables.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-[#425875]">
+              No buscamos llenar a la organización de tecnología innecesaria. Primero se define el problema; después se construye la herramienta mínima que ayude a resolverlo.
+            </p>
+          </div>
 
-      <ResearchCompactSection />
+          <div className="grid gap-4 md:grid-cols-2">
+            {process.map((item) => (
+              <article
+                className="rounded-[1.35rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm"
+                key={item.step}
+              >
+                <div className="flex size-9 items-center justify-center rounded-full bg-[#10233f] text-sm font-semibold text-white">
+                  {item.step}
+                </div>
+                <h3 className="mt-5 text-lg font-semibold tracking-[-0.025em] text-[#10233f]">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-[#425875]">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="rounded-[2rem] bg-[#10233f] p-6 text-white shadow-sm md:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_0.75fr] md:items-center">
-            <div>
-              <div className="mb-5 flex gap-3 text-[#d7e7f6]">
-                <Users className="size-6" />
-                <Database className="size-6" />
-                <MonitorSmartphone className="size-6" />
-              </div>
-
-              <h2 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-7xl">
-                Revisemos si el proyecto tiene sentido.
+        <section className="border-y border-[#d7dedf] bg-white/45">
+          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-2">
+            <div className="rounded-[1.5rem] border border-[#d7dedf] bg-[#f7f4ed]/80 p-5 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
+                Para empezar
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#10233f]">
+                Qué necesitamos de la organización
               </h2>
+              <div className="mt-5 grid gap-2">
+                {requirements.map((item) => (
+                  <div
+                    className="rounded-2xl border border-[#d7dedf] bg-white/75 px-4 py-3 text-sm font-medium text-[#425875]"
+                    key={item}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
 
-              <p className="mt-6 text-lg leading-8 text-[#c9d8e8]">
-                Podemos empezar por entender el problema, los usuarios, la información disponible
-                y el alcance mínimo que podría generar utilidad real.
+            <div className="rounded-[1.5rem] border border-[#d7dedf] bg-[#10233f] p-5 text-white shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/65">
+                Alcance responsable
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white">
+                Qué cuidamos antes de aceptar un proyecto
+              </h2>
+              <div className="mt-5 grid gap-2">
+                {boundaries.map((item) => (
+                  <div
+                    className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-medium leading-6 text-white/85"
+                    key={item}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-6 py-16">
+          <div className="grid gap-6 rounded-[1.5rem] border border-[#d7dedf] bg-white/75 p-6 shadow-sm md:grid-cols-[1fr_auto] md:items-center md:p-8">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
+                Solicitar apoyo
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-[#10233f]">
+                Cuéntanos qué necesita resolver la organización.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#425875]">
+                Comparte el tipo de organización, el problema principal, la fecha aproximada y quién dará seguimiento.
               </p>
             </div>
-
-            <div className="grid gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-[#10233f] transition hover:bg-[#f3efe6]"
+                className="inline-flex items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f]"
                 href="/contacto"
               >
-                Contactar
-                <ArrowRight className="ml-2 size-4" />
+                Solicitar apoyo
               </Link>
-
-              <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 text-sm font-medium text-white transition hover:bg-white/15"
-                href="/nosotros"
+              <a
+                className="inline-flex items-center justify-center rounded-full border border-[#d7dedf] bg-[#f7f4ed] px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white"
+                href="https://calendly.com/contacto-puenteimpacto/30min"
+                rel="noreferrer"
+                target="_blank"
               >
-                Ver equipo
-              </Link>
+                Agendar reunión
+              </a>
             </div>
           </div>
-        </div>
-      </section>
-          <BookingSection title="Revisemos si podemos apoyar a tu organizacion." description="Agenda una reunion general de 30 minutos para entender la necesidad, el alcance y el siguiente paso razonable." />
-          <FAQLinkSection />
+        </section>
+      </main>
     </SiteShell>
   );
 }
