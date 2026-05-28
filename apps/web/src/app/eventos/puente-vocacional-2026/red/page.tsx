@@ -1,4 +1,5 @@
 import { ArrowRight, ExternalLink, GraduationCap, MapPin, UsersRound } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { BookingLink } from "@/components/site/booking-link";
 import { SiteShell } from "@/components/site/site-shell";
@@ -33,9 +34,9 @@ function ProfileCard({ profile }: { profile: VocationalProfile }) {
   return (
     <article className="rounded-[1.4rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm">
       <div className="flex items-start gap-4">
-        <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#d7dedf] bg-[#f7f4ed] text-base font-semibold text-[#10233f]">
+        <div className="relative flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#d7dedf] bg-[#f7f4ed] text-base font-semibold text-[#10233f]">
           {profile.photo ? (
-            <img alt={profile.name} className="size-full object-cover" src={profile.photo} />
+            <Image alt={profile.name} className="size-full object-cover" fill sizes="64px" src={profile.photo} />
           ) : (
             initials(profile.name)
           )}
