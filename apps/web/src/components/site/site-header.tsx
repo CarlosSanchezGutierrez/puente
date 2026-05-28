@@ -8,6 +8,7 @@ const navItems = [
   { href: "/servicios", label: "Servicios" },
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
+  { href: "/nosotros", label: "Equipo" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/colabora", label: "Colabora" },
   { href: "/contacto", label: "Contacto" },
