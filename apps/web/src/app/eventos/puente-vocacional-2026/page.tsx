@@ -110,7 +110,7 @@ export default function PuenteVocacionalPage() {
               </Link>
               <a
                 className="inline-flex items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white"
-                href="#red-orientadores"
+                href="/eventos/puente-vocacional-2026/red"
               >
                 Red de orientadores vocacionales
               </a>
@@ -178,6 +178,12 @@ export default function PuenteVocacionalPage() {
               <p className="text-base leading-7 text-white/80">
                 La red reúne estudiantes universitarios, profesionistas, profesores y perfiles académicos que pueden participar en sesiones vocacionales. Los perfiles se organizan por ciudad, institución y familia vocacional para que cada escuela pueda encontrar invitados relacionados con los intereses de sus estudiantes.
               </p>
+              <Link
+                className="mt-6 inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white/90"
+                href="/eventos/puente-vocacional-2026/red"
+              >
+                Ver red de orientadores vocacionales
+              </Link>
               <div className="mt-6 grid gap-2 sm:grid-cols-2">
                 {families.map((family) => (
                   <div
