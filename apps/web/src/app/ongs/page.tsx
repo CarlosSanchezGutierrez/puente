@@ -4,14 +4,14 @@ import { SiteShell } from "@/components/site/site-shell";
 export const metadata = {
   title: "ONGs | Software gratuito para organizaciones sociales",
   description:
-    "Software gratuito para ONGs, proyectos sociales y sustentables: páginas web, formularios, bases de datos, dashboards y herramientas internas sencillas.",
+    "Software gratuito para ONGs, proyectos sociales y sustentables: páginas web, apps móviles para Android y iOS, formularios, bases de datos, dashboards y herramientas internas.",
   alternates: {
     canonical: "/ongs",
   },
   openGraph: {
     title: "ONGs | Software gratuito para organizaciones sociales",
     description:
-      "Apoyo gratuito para ONGs, proyectos sociales y sustentables con herramientas digitales concretas.",
+      "Apoyo gratuito para ONGs, proyectos sociales y sustentables con páginas web, apps móviles, formularios, bases de datos y herramientas digitales concretas.",
     url: "https://puenteimpacto.org/ongs",
     images: [
       {
@@ -26,6 +26,7 @@ export const metadata = {
 
 const deliverables = [
   "Páginas web para explicar servicios, programas y formas de contacto",
+  "Apps móviles completas para Android y iOS",
   "Formularios para beneficiarios, voluntarios, donantes o asistentes",
   "Bases de datos sencillas para ordenar información operativa",
   "Dashboards para revisar registros, actividades y resultados",
@@ -88,8 +89,9 @@ const requirements = [
 
 const boundaries = [
   "No prometemos sistemas grandes sin revisar alcance y mantenimiento.",
+  "Las apps móviles completas requieren revisar alcance, operación, publicación y soporte.",
   "No trabajamos datos sensibles sin revisar privacidad, permisos y uso responsable.",
-  "No buscamos hacer la página más complicada de lo necesario.",
+  "No buscamos hacer la página, app o sistema más complicado de lo necesario.",
 ];
 
 export default function OngsPage() {
@@ -107,7 +109,7 @@ export default function OngsPage() {
             </h1>
 
             <p className="mt-7 max-w-3xl text-lg leading-8 text-[#425875]">
-              Apoyamos a organizaciones sociales con herramientas digitales concretas: páginas web, formularios, bases de datos, dashboards, registros de eventos y documentación básica.
+              Apoyamos a organizaciones sociales con herramientas digitales concretas: páginas web, apps móviles completas para Android y iOS, formularios, bases de datos, dashboards, registros de eventos y documentación básica.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
