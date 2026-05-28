@@ -20,50 +20,65 @@ import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { SiteShell } from "@/components/site/site-shell";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata = {
-  title: "Investigacion",
+  title: "Investigación | Puente Impacto",
   description:
-    "Investigacion aplicada y ODS en Puente Impacto: tecnologia, salud, educacion, IoT, inteligencia artificial, documentacion y proyectos sociales.",
+    "Investigación aplicada en Puente Impacto: reportes, prototipos, datos, documentación, salud, educación, tecnología social y proyectos con evidencia.",
+  alternates: {
+    canonical: "/investigacion",
+  },
+  openGraph: {
+    title: "Investigación | Puente Impacto",
+    description:
+      "Proyectos de investigación aplicada, documentación técnica, prototipos y evidencia para organizaciones, escuelas y comunidades.",
+    url: "https://puenteimpacto.org/investigacion",
+    images: [
+      {
+        url: "/og/puente-impacto-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Investigación aplicada de Puente Impacto",
+      },
+    ],
+  },
 };
 
 const researchLines = [
   {
     title: "Salud, IA e IoT",
     description:
-      "Proyectos que conectan sensores, monitoreo, analitica e inteligencia artificial con necesidades reales de salud.",
+      "Proyectos con sensores, monitoreo, datos e inteligencia artificial aplicados a necesidades reales de salud.",
     icon: HeartPulse,
   },
   {
-    title: "Educacion en ingenieria",
+    title: "Educación e ingeniería",
     description:
-      "Modelos de aprendizaje basado en proyectos, prototipos funcionales y desarrollo de competencias tecnicas.",
+      "Proyectos formativos, prototipos funcionales y documentación de aprendizaje basado en problemas reales.",
     icon: GraduationCap,
   },
   {
-    title: "Tecnologia para organizaciones sociales",
+    title: "Tecnología para ONG",
     description:
-      "Sistemas, datos, documentacion, trazabilidad y herramientas digitales para ONG e iniciativas comunitarias.",
+      "Sistemas, datos, documentación, trazabilidad y herramientas digitales para organizaciones sociales.",
     icon: Network,
   },
   {
     title: "Datos para impacto social",
     description:
-      "Medicion, indicadores, reportes, tableros y analisis aplicados a proyectos con impacto comunitario.",
+      "Indicadores, reportes, tableros y análisis aplicados a proyectos comunitarios o educativos.",
     icon: BrainCircuit,
   },
   {
     title: "Infraestructura digital",
     description:
-      "Soluciones de operacion, conectividad, seguridad basica, documentacion tecnica y continuidad para organizaciones.",
+      "Operación, conectividad, seguridad básica, continuidad y documentación técnica para organizaciones.",
     icon: ShieldCheck,
   },
   {
-    title: "Sistemas criticos humanos",
+    title: "Sistemas críticos humanos",
     description:
-      "Exploracion de sistemas donde la tecnologia debe apoyar decisiones, monitoreo y procesos con consecuencias humanas.",
+      "Exploración de sistemas donde la tecnología apoya decisiones, monitoreo y procesos con consecuencias humanas.",
     icon: Stethoscope,
   },
 ];
@@ -72,44 +87,44 @@ const researchProcess = [
   {
     title: "Problema real",
     description:
-      "Identificamos una necesidad concreta con una organizacion, escuela, grupo estudiantil o comunidad.",
+      "Partimos de una necesidad concreta de una organización, escuela, grupo estudiantil o comunidad.",
   },
   {
     title: "Evidencia y datos",
     description:
-      "Ordenamos contexto, registros, observaciones, indicadores, prototipos, entrevistas o documentacion tecnica.",
+      "Ordenamos contexto, registros, observaciones, indicadores, entrevistas, prototipos o documentación técnica.",
   },
   {
-    title: "Analisis y validacion",
+    title: "Análisis y validación",
     description:
-      "Revisamos alcance, limitaciones, fuentes, etica, privacidad y posibilidad de convertir el trabajo en conocimiento.",
+      "Revisamos alcance, limitaciones, fuentes, ética, privacidad y utilidad real del trabajo.",
   },
   {
-    title: "Salida publicable",
+    title: "Salida clara",
     description:
-      "El resultado puede ser reporte, poster, guia, demo, articulo academico, paper o material institucional.",
+      "El resultado puede ser reporte, guía, demo, póster, artículo, paper o material institucional.",
   },
 ];
 
 const outputs = [
   {
-    title: "Reporte tecnico",
-    description: "Documento claro para explicar hallazgos, metodologia, resultados y recomendaciones.",
+    title: "Reporte técnico",
+    description: "Documento claro con hallazgos, metodología, resultados y recomendaciones.",
     icon: FileText,
   },
   {
-    title: "Poster o presentacion",
-    description: "Material sintetico para congresos, ferias, eventos academicos o aliados institucionales.",
+    title: "Póster o presentación",
+    description: "Material breve para eventos académicos, ferias, aliados o instituciones.",
     icon: ClipboardList,
   },
   {
-    title: "Articulo o paper",
-    description: "Cuando el proyecto tenga suficiente rigor, evidencia, novedad y acompanamiento academico.",
+    title: "Artículo o paper",
+    description: "Solo cuando el proyecto tenga evidencia, rigor, novedad y acompañamiento suficiente.",
     icon: BookOpenCheck,
   },
   {
     title: "Demo o prototipo",
-    description: "Sistema, maqueta, dashboard o prueba funcional que muestre una solucion concreta.",
+    description: "Sistema, maqueta, dashboard o prueba funcional que muestre una solución concreta.",
     icon: Layers3,
   },
 ];
@@ -118,30 +133,30 @@ const collaborationPaths = [
   {
     title: "Organizaciones",
     description:
-      "Pueden proponer problemas reales, datos, necesidades operativas o proyectos que requieran medicion y documentacion.",
+      "Pueden proponer problemas reales, datos, necesidades operativas o proyectos que requieran medición.",
     icon: HeartPulse,
   },
   {
-    title: "Profesores y grupos de investigacion",
+    title: "Profesores",
     description:
-      "Pueden ayudar a convertir proyectos en metodologias, revisiones, articulos, posters o publicaciones con mayor rigor.",
+      "Pueden apoyar con metodología, revisión, publicación, póster, artículo o validación académica.",
     icon: School,
   },
   {
     title: "Estudiantes",
     description:
-      "Pueden integrarse a proyectos formativos, levantamiento de informacion, prototipos, documentacion o investigacion aplicada.",
+      "Pueden integrarse a levantamiento de información, prototipos, documentación o investigación aplicada.",
     icon: Users,
   },
 ];
 
 const selectionCriteria = [
   "Problema real y bien delimitado.",
-  "Posibilidad de recopilar evidencia o datos de forma responsable.",
-  "Utilidad para una comunidad, organizacion o proceso formativo.",
+  "Evidencia o datos que puedan recopilarse de forma responsable.",
+  "Utilidad para una comunidad, organización, escuela o proceso formativo.",
   "Alcance viable para el equipo y aliados disponibles.",
-  "Cuidado con privacidad, datos sensibles y consentimiento.",
-  "Potencial de producir una salida clara: reporte, prototipo, guia, poster o publicacion.",
+  "Cuidado con privacidad, consentimiento y datos sensibles.",
+  "Salida clara: reporte, prototipo, guía, póster, artículo o publicación.",
 ];
 
 const publicationKeywords = [
@@ -163,19 +178,19 @@ const sdgCards = [
   },
   {
     title: "ODS 9",
-    description: "Industria, innovacion e infraestructura mediante prototipos IoT, sensores y analitica con IA.",
+    description: "Industria, innovación e infraestructura mediante prototipos IoT, sensores y analítica con IA.",
     icon: Network,
   },
   {
     title: "ODS 10",
-    description: "Reduccion de desigualdades al explorar tecnologia de bajo costo para entornos con menor acceso.",
+    description: "Reducción de desigualdades al explorar tecnología de bajo costo para entornos con menor acceso.",
     icon: School,
   },
 ];
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#60738c] md:text-sm">
+    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#526981]">
       {children}
     </p>
   );
@@ -191,19 +206,14 @@ function InfoCard({
   icon: LucideIcon;
 }) {
   return (
-    <Card className="h-full border-[#d7dedf] bg-white/80 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
-      <CardContent className="p-6">
-        <div className="mb-8 flex size-12 items-center justify-center rounded-2xl border border-[#d7dedf] bg-[#fbfaf7]">
-          <Icon className="size-6 text-[#10233f]" />
-        </div>
+    <article className="h-full rounded-[1.35rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md">
+      <div className="mb-5 flex size-10 items-center justify-center rounded-2xl border border-[#d7dedf] bg-[#f7f4ed]">
+        <Icon className="size-5 text-[#10233f]" />
+      </div>
 
-        <h3 className="text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
-          {title}
-        </h3>
-
-        <p className="mt-4 leading-7 text-[#425875]">{description}</p>
-      </CardContent>
-    </Card>
+      <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#10233f]">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-[#425875]">{description}</p>
+    </article>
   );
 }
 
@@ -217,35 +227,39 @@ function StepCard({
   description: string;
 }) {
   return (
-    <Card className="h-full border-[#d7dedf] bg-white/80 shadow-sm">
-      <CardContent className="p-6">
-        <div className="mb-8 flex size-12 items-center justify-center rounded-2xl bg-[#10233f] text-lg font-semibold text-white">
-          {index}
-        </div>
-        <h3 className="text-xl font-semibold tracking-[-0.035em] text-[#10233f]">
-          {title}
-        </h3>
-        <p className="mt-4 text-sm leading-7 text-[#425875]">{description}</p>
-      </CardContent>
-    </Card>
+    <article className="rounded-[1.35rem] border border-[#d7dedf] bg-white/75 p-5 shadow-sm">
+      <div className="flex size-9 items-center justify-center rounded-full bg-[#10233f] text-sm font-semibold text-white">
+        {index}
+      </div>
+      <h3 className="mt-5 text-lg font-semibold tracking-[-0.025em] text-[#10233f]">{title}</h3>
+      <p className="mt-3 text-sm leading-6 text-[#425875]">{description}</p>
+    </article>
   );
 }
 
-function DetailPill({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
+function DetailPill({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c]">
+    <div className="rounded-2xl border border-[#d7dedf] bg-[#f7f4ed]/75 px-4 py-3">
+      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#526981]">
         {label}
       </p>
-      <p className="mt-2 break-words text-sm font-medium leading-6 text-[#10233f]">
+      <p className="mt-2 break-words text-sm font-semibold leading-6 text-[#10233f]">
         {value}
       </p>
+    </div>
+  );
+}
+
+function SdgCard({ title, description, icon: Icon }: { title: string; description: string; icon: LucideIcon }) {
+  return (
+    <div className="grid grid-cols-[42px_1fr] gap-4 rounded-[1.25rem] border border-white/15 bg-white/10 p-4">
+      <div className="flex size-10 items-center justify-center rounded-2xl bg-white/10">
+        <Icon className="size-5 text-[#d7e7f6]" />
+      </div>
+      <div>
+        <p className="font-semibold text-white">{title}</p>
+        <p className="mt-1 text-sm leading-6 text-[#c9d8e8]">{description}</p>
+      </div>
     </div>
   );
 }
@@ -253,33 +267,22 @@ function DetailPill({
 export default function InvestigacionPage() {
   return (
     <SiteShell>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-x-0 top-0 -z-10 h-[760px] bg-[radial-gradient(circle_at_top_left,rgba(65,105,150,0.22),transparent_38%),linear-gradient(180deg,#f7f4ed_0%,#f3efe6_100%)]" />
-
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1fr_0.88fr] md:py-24">
+      <main className="bg-[#f7f4ed] text-[#10233f]">
+        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div>
-            <Badge className="mb-6 w-fit rounded-full border-[#c7d2df] bg-white/75 px-4 py-1.5 text-[#10233f] shadow-sm">
-              Investigaci&oacute;n aplicada y ODS
-            </Badge>
+            <SectionLabel>Investigación</SectionLabel>
 
-            <h1 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.065em] text-[#10233f] sm:text-6xl md:text-8xl">
-              De proyectos reales a conocimiento aplicable.
+            <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.98] tracking-[-0.055em] text-[#10233f] md:text-7xl">
+              Investigación aplicada para proyectos sociales, educativos y de salud.
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#425875] md:text-xl md:leading-9">
-              Conectamos tecnolog&iacute;a, educaci&oacute;n, salud e impacto social mediante
-              proyectos acad&eacute;micos, prototipos, documentaci&oacute;n, datos, reportes y posibles
-              publicaciones cient&iacute;ficas.
-            </p>
-
-            <p className="mt-5 max-w-2xl leading-8 text-[#60738c]">
-              Esta l&iacute;nea todav&iacute;a est&aacute; en etapa inicial. La primera publicaci&oacute;n
-              formal es NeoGuard, un proyecto de IA, IoT, educaci&oacute;n en ingenier&iacute;a y salud neonatal.
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-[#425875]">
+              Documentamos problemas reales, prototipos, datos y resultados para convertir proyectos en reportes, demos, presentaciones o publicaciones cuando el alcance lo permite.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
+                className="inline-flex items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f]"
                 href="https://doi.org/10.1109/LARS69345.2025.11273018"
                 rel="noreferrer"
                 target="_blank"
@@ -289,160 +292,128 @@ export default function InvestigacionPage() {
               </a>
 
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 px-5 text-sm font-medium text-[#10233f] transition hover:bg-white"
+                className="inline-flex items-center justify-center rounded-full border border-[#d7dedf] bg-white/80 px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white"
                 href="/contacto"
               >
-                Proponer colaboraci&oacute;n
+                Proponer colaboración
               </Link>
             </div>
+
+            <p className="mt-5 max-w-3xl text-sm leading-6 text-[#526981]">
+              Esta línea está en crecimiento. La prioridad es trabajar con evidencia, límites claros y utilidad real antes de buscar una publicación.
+            </p>
           </div>
 
-          <div className="rounded-[2rem] border border-[#d7dedf] bg-white/80 p-5 shadow-sm">
-            <div className="rounded-[1.75rem] bg-[#10233f] p-6 text-white md:p-8">
-              <div className="mb-12 flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-[0.28em] text-[#b7c8dc]">
-                  Enfoque
-                </span>
-                <Microscope className="size-6 text-[#d7e7f6]" />
-              </div>
-
-              <p className="font-[var(--font-serif)] text-3xl font-semibold leading-10 tracking-[-0.04em] md:text-4xl md:leading-[1.08]">
-                No todo proyecto tiene que ser paper. Pero todo proyecto serio puede dejar evidencia, aprendizaje y trazabilidad.
-              </p>
-
-              <div className="mt-10 grid gap-3">
-                {[
-                  "Problemas reales antes que temas inventados.",
-                  "Evidencia y documentacion antes que discurso.",
-                  "Rigor proporcional al alcance y acompanamiento disponible.",
-                ].map((item) => (
-                  <div
-                    className="grid grid-cols-[36px_1fr] gap-4 rounded-[1.25rem] border border-white/15 bg-white/10 p-4"
-                    key={item}
-                  >
-                    <div className="flex size-9 items-center justify-center rounded-full bg-white/10">
-                      <BadgeCheck className="size-5 text-[#d7e7f6]" />
-                    </div>
-                    <p className="leading-7 text-[#c9d8e8]">{item}</p>
-                  </div>
-                ))}
-              </div>
+          <aside className="rounded-[1.75rem] border border-[#d7dedf] bg-white/70 p-5 shadow-sm">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#d7dedf] bg-[#f7f4ed] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#526981]">
+              <Microscope className="size-4 text-[#10233f]" />
+              Enfoque
             </div>
+
+            <p className="text-2xl font-semibold leading-tight tracking-[-0.04em] text-[#10233f]">
+              No todo proyecto tiene que ser paper. Todo proyecto serio sí puede dejar evidencia, aprendizaje y trazabilidad.
+            </p>
+
+            <div className="mt-6 grid gap-2">
+              {[
+                "Problemas reales antes que temas inventados.",
+                "Evidencia y documentación antes que discurso.",
+                "Rigor proporcional al alcance y acompañamiento disponible.",
+              ].map((item) => (
+                <div
+                  className="rounded-2xl border border-[#d7dedf] bg-[#f7f4ed]/75 px-4 py-3 text-sm font-medium leading-6 text-[#425875]"
+                  key={item}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </aside>
+        </section>
+
+        <section className="border-y border-[#d7dedf] bg-white/45">
+          <div className="mx-auto grid max-w-7xl gap-4 px-6 py-10 md:grid-cols-4">
+            {researchProcess.map((step, index) => (
+              <StepCard
+                description={step.description}
+                index={index + 1}
+                key={step.title}
+                title={step.title}
+              />
+            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-          <div>
-            <SectionLabel>Ruta de trabajo</SectionLabel>
-            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              Como convertimos una iniciativa en conocimiento.
-            </h2>
+        <section className="mx-auto max-w-7xl px-6 py-16">
+          <div className="mb-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <SectionLabel>Publicación destacada</SectionLabel>
+              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
+                NeoGuard
+              </h2>
+            </div>
+
+            <p className="text-base leading-7 text-[#425875]">
+              Primera publicación formal relacionada con IA, IoT, educación en ingeniería, salud neonatal y Objetivos de Desarrollo Sostenible.
+            </p>
           </div>
 
-          <p className="text-lg leading-8 text-[#425875]">
-            La investigaci&oacute;n aplicada debe partir de problemas reales, evidencia verificable,
-            colaboraci&oacute;n y una salida clara. El resultado puede ser acad&eacute;mico,
-            t&eacute;cnico o institucional.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-4">
-          {researchProcess.map((step, index) => (
-            <StepCard
-              description={step.description}
-              index={index + 1}
-              key={step.title}
-              title={step.title}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-          <div>
-            <SectionLabel>Publicaci&oacute;n destacada</SectionLabel>
-            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              NeoGuard
-            </h2>
-          </div>
-
-          <p className="text-lg leading-8 text-[#425875]">
-            Primera publicaci&oacute;n formal relacionada con IA, IoT, educaci&oacute;n en ingenier&iacute;a,
-            salud neonatal y Objetivos de Desarrollo Sostenible.
-          </p>
-        </div>
-
-        <Card className="overflow-hidden border-[#d7dedf] bg-white/80 shadow-sm">
-          <CardContent className="p-0">
+          <article className="overflow-hidden rounded-[1.75rem] border border-[#d7dedf] bg-white/75 shadow-sm">
             <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
               <div className="p-6 md:p-8">
-                <div className="mb-6 flex w-fit items-center gap-2 rounded-full border border-[#d7dedf] bg-[#fbfaf7] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#60738c]">
+                <div className="mb-5 flex w-fit items-center gap-2 rounded-full border border-[#d7dedf] bg-[#f7f4ed] px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#526981]">
                   <BookOpenCheck className="size-4" />
                   IEEE / LARS 2025
                 </div>
 
-                <h3 className="text-3xl font-semibold leading-tight tracking-[-0.045em] text-[#10233f] md:text-5xl">
+                <h3 className="text-3xl font-semibold leading-tight tracking-[-0.045em] text-[#10233f] md:text-4xl">
                   AI in Education: NeoGuard Advanced IoT and AI enabled Incubator for Neonatal Health Monitoring
                 </h3>
 
-                <p className="mt-6 leading-8 text-[#425875]">
-                  NeoGuard presenta un prototipo funcional de incubadora neonatal de bajo costo
-                  con sensores, monitoreo continuo, intervenci&oacute;n automatizada y anal&iacute;tica
-                  con inteligencia artificial. El proyecto tambi&eacute;n plantea un modelo educativo
-                  de aprendizaje basado en proyectos para desarrollar competencias de IA e IoT en ingenier&iacute;a.
+                <p className="mt-5 text-sm leading-7 text-[#425875]">
+                  NeoGuard presenta un prototipo funcional de incubadora neonatal de bajo costo con sensores, monitoreo continuo, intervención automatizada y analítica con inteligencia artificial. El proyecto también plantea un modelo educativo de aprendizaje basado en proyectos para desarrollar competencias de IA e IoT en ingeniería.
                 </p>
 
-                <div className="mt-7 grid gap-3 md:grid-cols-2">
+                <div className="mt-6 grid gap-3 md:grid-cols-2">
                   <DetailPill label="DOI" value="10.1109/LARS69345.2025.11273018" />
                   <DetailPill label="Conferencia" value="2025 Latin American Robotics Symposium" />
-                  <DetailPill label="Ubicacion" value="Monterrey, Mexico" />
+                  <DetailPill label="Ubicación" value="Monterrey, México" />
                   <DetailPill label="IEEE Xplore" value="05 de diciembre de 2025" />
                 </div>
 
                 <a
-                  className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-[#10233f] px-5 text-sm font-medium text-white transition hover:bg-[#1b365f]"
+                  className="mt-6 inline-flex items-center justify-center rounded-full bg-[#10233f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#1b365f]"
                   href="https://doi.org/10.1109/LARS69345.2025.11273018"
                   rel="noreferrer"
                   target="_blank"
                 >
-                  Abrir publicaci&oacute;n
+                  Abrir publicación
                   <ExternalLink className="ml-2 size-4" />
                 </a>
               </div>
 
               <div className="border-t border-[#d7dedf] bg-[#10233f] p-6 text-white lg:border-l lg:border-t-0 md:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#b7c8dc]">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#b7c8dc]">
                   ODS relacionados
                 </p>
 
-                <div className="mt-6 grid gap-4">
+                <div className="mt-6 grid gap-3">
                   {sdgCards.map((sdg) => (
-                    <div
-                      className="grid grid-cols-[44px_1fr] gap-4 rounded-[1.25rem] border border-white/15 bg-white/10 p-4"
+                    <SdgCard
+                      description={sdg.description}
+                      icon={sdg.icon}
                       key={sdg.title}
-                    >
-                      <div className="flex size-11 items-center justify-center rounded-2xl bg-white/10">
-                        <sdg.icon className="size-5 text-[#d7e7f6]" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-white">{sdg.title}</p>
-                        <p className="mt-1 text-sm leading-6 text-[#c9d8e8]">
-                          {sdg.description}
-                        </p>
-                      </div>
-                    </div>
+                      title={sdg.title}
+                    />
                   ))}
                 </div>
 
-                <div className="mt-7 rounded-[1.25rem] border border-white/15 bg-white/10 p-4">
+                <div className="mt-6 rounded-[1.25rem] border border-white/15 bg-white/10 p-4">
                   <p className="text-sm font-semibold text-white">Palabras clave</p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {publicationKeywords.map((keyword) => (
                       <span
-                        className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-[#d7e7f6]"
+                        className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-[#d7e7f6]"
                         key={keyword}
                       >
                         {keyword}
@@ -452,149 +423,138 @@ export default function InvestigacionPage() {
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
-      </section>
+          </article>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10">
-          <SectionLabel>L&iacute;neas de trabajo</SectionLabel>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-6xl">
-            Temas que Puente puede desarrollar.
-          </h2>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {researchLines.map((line) => (
-            <InfoCard
-              description={line.description}
-              icon={line.icon}
-              key={line.title}
-              title={line.title}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10 grid gap-8 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-          <div>
-            <SectionLabel>Salidas posibles</SectionLabel>
-            <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              No todo tiene que terminar igual.
-            </h2>
-          </div>
-
-          <p className="text-lg leading-8 text-[#425875]">
-            Dependiendo del alcance, datos y acompanamiento, una iniciativa puede producir
-            diferentes tipos de entregables utiles para la organizaci&oacute;n, el equipo o la comunidad.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {outputs.map((output) => (
-            <InfoCard
-              description={output.description}
-              icon={output.icon}
-              key={output.title}
-              title={output.title}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="rounded-[2rem] border border-[#d7dedf] bg-white/80 p-6 shadow-sm md:p-8">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <section className="border-y border-[#d7dedf] bg-white/45">
+          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
-              <SectionLabel>Criterios de selecci&oacute;n</SectionLabel>
-              <h2 className="mt-4 font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-                Antes de investigar, hay que cuidar el alcance.
+              <SectionLabel>Líneas de trabajo</SectionLabel>
+              <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
+                Temas que podemos desarrollar.
               </h2>
-
-              <p className="mt-6 leading-8 text-[#425875]">
-                Esta secci&oacute;n ayuda a que la investigaci&oacute;n no se vea improvisada.
-                Un proyecto debe tener sentido, evidencia, responsables y l&iacute;mites claros.
+              <p className="mt-5 text-base leading-7 text-[#425875]">
+                Las líneas no son promesas de publicación. Sirven para ordenar proyectos que puedan documentarse, medirse o prototiparse.
               </p>
             </div>
 
-            <div className="grid gap-3">
+            <div className="grid gap-4 md:grid-cols-2">
+              {researchLines.map((line) => (
+                <InfoCard
+                  description={line.description}
+                  icon={line.icon}
+                  key={line.title}
+                  title={line.title}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionLabel>Salidas posibles</SectionLabel>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
+              No todo tiene que terminar igual.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-[#425875]">
+              Según el alcance, los datos y el acompañamiento disponible, una iniciativa puede terminar en distintos entregables útiles para la organización, el equipo o la comunidad.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {outputs.map((output) => (
+              <InfoCard
+                description={output.description}
+                icon={output.icon}
+                key={output.title}
+                title={output.title}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="border-y border-[#d7dedf] bg-white/45">
+          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="rounded-[1.5rem] border border-[#d7dedf] bg-[#f7f4ed]/80 p-5 shadow-sm">
+              <SectionLabel>Criterios</SectionLabel>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#10233f]">
+                Antes de investigar, hay que cuidar el alcance.
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-[#425875]">
+                Esta sección evita que la investigación se vuelva discurso. Un proyecto necesita sentido, evidencia, responsables y límites.
+              </p>
+            </div>
+
+            <div className="grid gap-2">
               {selectionCriteria.map((criterion) => (
                 <div
-                  className="grid grid-cols-[34px_1fr] gap-3 rounded-[1.25rem] border border-[#d7dedf] bg-[#fbfaf7] p-4"
+                  className="grid grid-cols-[30px_1fr] gap-3 rounded-2xl border border-[#d7dedf] bg-white/75 px-4 py-3"
                   key={criterion}
                 >
-                  <div className="flex size-8 items-center justify-center rounded-full bg-white">
-                    <BadgeCheck className="size-4 text-[#0f7890]" />
+                  <div className="mt-0.5 flex size-7 items-center justify-center rounded-full bg-[#10233f]">
+                    <BadgeCheck className="size-4 text-white" />
                   </div>
                   <p className="text-sm leading-6 text-[#425875]">{criterion}</p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="mb-10">
-          <SectionLabel>Colaboraci&oacute;n</SectionLabel>
-          <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-6xl">
-            Qui&eacute;nes pueden participar.
-          </h2>
-        </div>
+        <section className="mx-auto max-w-7xl px-6 py-16">
+          <div className="mb-8">
+            <SectionLabel>Colaboración</SectionLabel>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.045em] text-[#10233f] md:text-5xl">
+              Quiénes pueden participar.
+            </h2>
+          </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
-          {collaborationPaths.map((path) => (
-            <InfoCard
-              description={path.description}
-              icon={path.icon}
-              key={path.title}
-              title={path.title}
-            />
-          ))}
-        </div>
-      </section>
+          <div className="grid gap-4 md:grid-cols-3">
+            {collaborationPaths.map((path) => (
+              <InfoCard
+                description={path.description}
+                icon={path.icon}
+                key={path.title}
+                title={path.title}
+              />
+            ))}
+          </div>
+        </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
-        <div className="rounded-[2rem] bg-[#10233f] p-6 text-white shadow-sm md:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_0.75fr] md:items-center">
+        <section className="mx-auto max-w-7xl px-6 pb-16 md:pb-24">
+          <div className="grid gap-6 rounded-[1.5rem] border border-[#d7dedf] bg-[#10233f] p-6 text-white shadow-sm md:grid-cols-[1fr_auto] md:items-center md:p-8">
             <div>
-              <div className="mb-5 flex gap-3 text-[#d7e7f6]">
-                <Microscope className="size-6" />
-                <BookOpenCheck className="size-6" />
-                <Network className="size-6" />
-              </div>
-
-              <h2 className="font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-7xl">
-                Proponer una colaboraci&oacute;n de investigaci&oacute;n aplicada.
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/65">
+                Proponer colaboración
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] text-white">
+                Cuéntanos qué problema se puede documentar, medir o prototipar.
               </h2>
-
-              <p className="mt-6 text-lg leading-8 text-[#c9d8e8]">
-                Si una organizaci&oacute;n, profesor, grupo estudiantil o estudiante tiene un problema
-                real que pueda documentarse, medirse o prototiparse, podemos revisar si tiene sentido
-                convertirlo en una salida t&eacute;cnica o acad&eacute;mica.
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-white/80">
+                Revisamos si tiene sentido convertirlo en reporte, demo, póster, artículo, paper o material institucional.
               </p>
             </div>
 
-            <div className="grid gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-[#10233f] transition hover:bg-[#f3efe6]"
+                className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-[#f3efe6]"
                 href="/contacto"
               >
-                Proponer colaboraci&oacute;n
+                Proponer colaboración
                 <ArrowRight className="ml-2 size-4" />
               </Link>
 
               <Link
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 text-sm font-medium text-white transition hover:bg-white/15"
+                className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
                 href="/biblioteca"
               >
                 Ver biblioteca
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </SiteShell>
   );
 }
