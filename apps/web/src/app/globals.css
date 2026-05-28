@@ -298,3 +298,92 @@ a {
     scroll-margin-top: 88px;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/* Puente Impacto - Mobile viewport/menu fixes                                */
+/* -------------------------------------------------------------------------- */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body[data-pi-mobile-menu-open="true"] {
+  overflow: hidden;
+  touch-action: none;
+}
+
+#__next,
+main,
+header,
+footer,
+section {
+  max-width: 100%;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+.pi-mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(16, 35, 63, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+.pi-mobile-menu-panel {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  top: 5rem;
+  z-index: 50;
+  max-height: calc(100dvh - 6rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #d7dedf;
+  border-radius: 1.5rem;
+  background: rgba(247, 244, 237, 0.97);
+  box-shadow: 0 24px 80px rgba(16, 35, 63, 0.18);
+  backdrop-filter: blur(16px);
+}
+
+@supports not (height: 100dvh) {
+  .pi-mobile-menu-panel {
+    max-height: calc(100vh - 6rem);
+  }
+}
+
+.pi-mobile-menu-scroll {
+  max-height: inherit;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pi-mobile-menu-link {
+  min-height: 44px;
+  width: 100%;
+  touch-action: manipulation;
+}
+
+.pi-mobile-menu-button {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+  .pi-mobile-menu-backdrop,
+  .pi-mobile-menu-panel {
+    display: none;
+  }
+}
