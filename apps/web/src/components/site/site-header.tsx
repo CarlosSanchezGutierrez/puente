@@ -1,10 +1,17 @@
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { ActiveNavLink } from "@/components/site/active-nav-link";
 import { BookingLink } from "@/components/site/booking-link";
 import { MobileMenu } from "@/components/site/mobile-menu";
 import { SocialIconLinks } from "@/components/site/social-icon-links";
 
-const navItems = [
+type NavItem = {
+  href: string;
+  label: string;
+  exact?: boolean;
+};
+
+const navItems: NavItem[] = [
   { href: "/servicios", label: "Servicios" },
   { href: "/ongs", label: "ONG" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
@@ -13,8 +20,8 @@ const navItems = [
   { href: "/contacto", label: "Contacto" },
 ];
 
-const secondaryNavItems = [
-  { href: "/eventos", label: "Programas" },
+const secondaryNavItems: NavItem[] = [
+  { href: "/eventos", label: "Programas", exact: true },
   { href: "/recursos", label: "Recursos" },
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/faq", label: "FAQ" },
@@ -22,21 +29,21 @@ const secondaryNavItems = [
   { href: "/descargar", label: "App" },
 ];
 
-const mobileQuickItems = [
+const mobileQuickItems: NavItem[] = [
   { href: "/ongs", label: "ONG" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
   { href: "/nosotros", label: "Equipo" },
 ];
 
-const mobileMenuItems = [
+const mobileMenuItems: NavItem[] = [
   { href: "/servicios", label: "Servicios" },
   { href: "/recursos", label: "Recursos" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/contacto", label: "Contacto" },
 ];
 
-const mobileMoreItems = [
-  { href: "/eventos", label: "Programas" },
+const mobileMoreItems: NavItem[] = [
+  { href: "/eventos", label: "Programas", exact: true },
   { href: "/biblioteca", label: "Biblioteca" },
   { href: "/faq", label: "FAQ" },
   { href: "/kit", label: "Kit" },
@@ -53,13 +60,16 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-2 xl:flex">
           {navItems.map((item) => (
-            <Link
+            <ActiveNavLink
+              activeClassName="bg-white text-[#10233f] shadow-sm"
               className="rounded-full px-3.5 py-2 text-sm font-medium text-[#425875] transition hover:bg-white hover:text-[#10233f]"
+              exact={item.exact}
               href={item.href}
+              inactiveClassName=""
               key={item.href}
             >
               {item.label}
-            </Link>
+            </ActiveNavLink>
           ))}
 
           <details className="group relative">
@@ -72,13 +82,15 @@ export function SiteHeader() {
                 Más opciones
               </p>
               {secondaryNavItems.map((item) => (
-                <Link
+                <ActiveNavLink
+                  activeClassName="bg-white text-[#10233f] shadow-sm"
                   className="block rounded-xl px-4 py-3 text-sm font-medium text-[#425875] transition hover:bg-white hover:text-[#10233f]"
+                  exact={item.exact}
                   href={item.href}
                   key={item.href}
                 >
                   {item.label}
-                </Link>
+                </ActiveNavLink>
               ))}
             </div>
           </details>
@@ -95,13 +107,15 @@ export function SiteHeader() {
       <nav aria-label="Accesos rápidos móviles" className="border-t border-[#d7dedf]/70 px-4 pb-3 xl:hidden">
         <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto pt-2">
           {mobileQuickItems.map((item) => (
-            <Link
+            <ActiveNavLink
+              activeClassName="bg-white text-[#10233f] shadow-sm"
               className="shrink-0 rounded-full border border-[#d7dedf] bg-white/75 px-3.5 py-2 text-xs font-semibold text-[#10233f] shadow-sm transition hover:bg-white"
+              exact={item.exact}
               href={item.href}
               key={item.href}
             >
               {item.label}
-            </Link>
+            </ActiveNavLink>
           ))}
 
           <a

@@ -1,12 +1,13 @@
 "use client";
 
 import { ChevronDown, Menu, X } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
+import { ActiveNavLink } from "@/components/site/active-nav-link";
 
 type NavItem = {
   href: string;
   label: string;
+  exact?: boolean;
 };
 
 type MobileMenuProps = {
@@ -88,15 +89,17 @@ export function MobileMenu({ navItems, secondaryItems = [] }: MobileMenuProps) {
 
           <div className="grid gap-1">
             {navItems.map((item) => (
-              <Link
+              <ActiveNavLink
+                activeClassName="bg-white text-[#10233f] shadow-sm"
                 className="flex min-h-11 items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-[#10233f] transition hover:bg-white"
+                exact={item.exact}
                 href={item.href}
                 key={item.href}
                 onClick={closeMenu}
               >
                 <span>{item.label}</span>
                 <span aria-hidden="true">→</span>
-              </Link>
+              </ActiveNavLink>
             ))}
           </div>
 
@@ -119,15 +122,17 @@ export function MobileMenu({ navItems, secondaryItems = [] }: MobileMenuProps) {
               {moreOpen ? (
                 <div className="mt-1 grid gap-1" id={moreId}>
                   {secondaryItems.map((item) => (
-                    <Link
+                    <ActiveNavLink
+                      activeClassName="bg-white text-[#10233f] shadow-sm"
                       className="flex min-h-11 items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-[#425875] transition hover:bg-white hover:text-[#10233f]"
+                      exact={item.exact}
                       href={item.href}
                       key={item.href}
                       onClick={closeMenu}
                     >
                       <span>{item.label}</span>
                       <span aria-hidden="true">→</span>
-                    </Link>
+                    </ActiveNavLink>
                   ))}
                 </div>
               ) : null}
