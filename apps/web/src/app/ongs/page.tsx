@@ -151,6 +151,37 @@ export default function ONGPage() {
           </aside>
         </section>
 
+        <section className="mx-auto max-w-7xl px-6 pb-10">
+          <div className="grid gap-5 rounded-[1.5rem] border border-[#d7dedf] bg-white/70 p-4 shadow-sm md:grid-cols-[0.92fr_1.08fr] md:items-center md:p-5">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#526981]">
+                Video breve
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#10233f]">
+                Qué hacemos para ONG y proyectos sociales.
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-6 text-[#425875]">
+                Una explicación rápida de cómo apoyamos con software, apps móviles, documentación, producción audiovisual y diagnóstico técnico básico.
+              </p>
+            </div>
+
+            <div className="overflow-hidden rounded-[1.15rem] border border-[#d7dedf] bg-[#10233f]">
+              <div className="aspect-video">
+                <iframe
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="h-full w-full"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  src="https://www.youtube-nocookie.com/embed/-9ufUMvOzOQ?rel=0&modestbranding=1"
+                  title="Video de Puente Impacto para ONG y proyectos sociales"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+
         <section className="border-y border-[#d7dedf] bg-white/45">
           <div className="mx-auto grid max-w-7xl gap-4 px-6 py-10 md:grid-cols-3">
             {useCases.map((item) => (
