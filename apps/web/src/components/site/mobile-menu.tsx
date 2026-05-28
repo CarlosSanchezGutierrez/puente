@@ -19,7 +19,7 @@ export function MobileMenu({ navItems, secondaryItems = [] }: MobileMenuProps) {
   const close = () => setOpen(false);
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         aria-label={open ? "Cerrar menú" : "Abrir menú"}
         className="inline-flex size-10 items-center justify-center rounded-full border border-[#d7dedf] bg-white/75 text-[#10233f]"

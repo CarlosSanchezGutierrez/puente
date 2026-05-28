@@ -8,16 +8,16 @@ const navItems = [
   { href: "/servicios", label: "Servicios" },
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
-  { href: "/biblioteca", label: "Biblioteca" },
   { href: "/investigacion", label: "Investigación" },
   { href: "/colabora", label: "Colabora" },
-  { href: "/faq", label: "FAQ" },
   { href: "/contacto", label: "Contacto" },
 ];
 
 const secondaryNavItems = [
-  { href: "/recursos", label: "Recursos" },
   { href: "/eventos", label: "Programas" },
+  { href: "/recursos", label: "Recursos" },
+  { href: "/biblioteca", label: "Biblioteca" },
+  { href: "/faq", label: "FAQ" },
   { href: "/kit", label: "Kit" },
   { href: "/descargar", label: "App" },
 ];
@@ -30,10 +30,10 @@ export function SiteHeader() {
           Puente Impacto
         </Link>
 
-        <nav className="hidden items-center gap-3 lg:flex">
+        <nav className="hidden items-center gap-2 xl:flex">
           {navItems.map((item) => (
             <Link
-              className="rounded-full px-2.5 py-2 text-sm font-medium text-[#425875] transition hover:bg-white/70 hover:text-[#10233f]"
+              className="rounded-full px-3 py-2 text-sm font-medium text-[#425875] transition hover:bg-white/70 hover:text-[#10233f]"
               href={item.href}
               key={item.href}
             >
@@ -42,13 +42,13 @@ export function SiteHeader() {
           ))}
 
           <details className="group relative">
-            <summary className="inline-flex list-none cursor-pointer items-center gap-1.5 rounded-full border border-[#d7dedf] bg-white/65 px-3 py-2 text-sm font-semibold text-[#10233f] transition hover:bg-white">
+            <summary className="inline-flex list-none cursor-pointer items-center gap-1.5 rounded-full border border-[#d7dedf] bg-white/70 px-3.5 py-2 text-sm font-semibold text-[#10233f] transition hover:bg-white">
               Más
               <ChevronDown className="size-4 transition group-open:rotate-180" />
             </summary>
-            <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 min-w-44 rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-2 shadow-xl">
+            <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 min-w-48 rounded-2xl border border-[#d7dedf] bg-[#f7f4ed] p-2 shadow-xl">
               <p className="px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#526981]">
-                Opciones
+                Más opciones
               </p>
               {secondaryNavItems.map((item) => (
                 <Link
@@ -63,7 +63,7 @@ export function SiteHeader() {
           </details>
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <BookingLink variant="header" />
           <SocialIconLinks />
         </div>

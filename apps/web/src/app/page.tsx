@@ -179,7 +179,7 @@ function ActionCard({
 }
 
 export const metadata = {
-  title: "Inicio",
+  title: { absolute: "Puente Impacto" },
   description: "Tecnologia civica, biblioteca comunitaria, voluntariado, recursos abiertos y software para impacto social.",
 };
 export default function Home() {
