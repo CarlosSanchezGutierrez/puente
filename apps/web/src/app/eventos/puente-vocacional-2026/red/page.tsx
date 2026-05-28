@@ -1,4 +1,4 @@
-import { ExternalLink, MapPin, UsersRound } from "lucide-react";
+import { ExternalLink, UsersRound } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BookingLink } from "@/components/site/booking-link";

@@ -67,7 +67,8 @@ const une = "Universidad del Noreste (UNE)";
 const uat = "Universidad Autónoma de Tamaulipas (UAT)";
 
 export const vocationalProfiles: VocationalProfile[
-  {
+
+{
     name: "Jorge Iván Hidalgo Reyes",
     city: "Monterrey",
     role: "Directiva académica",
@@ -87,8 +88,7 @@ export const vocationalProfiles: VocationalProfile[
     photo: "/vocacional/orientadores/juan-pablo-mendez-lomeli.jpg",
     linkedin: "https://www.linkedin.com/in/juan-pablo-m%C3%A9ndez-lomel%C3%AD/",
     badges: ["Arquitectura, Arte y Diseño", "Arquitectura"],
-  },
-] = [
+  },] = [
   {
     name: "Carlos Sánchez Gutiérrez",
     credential: "Ingeniería en Tecnologías Computacionales (ITC)",
