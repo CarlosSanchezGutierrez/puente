@@ -25,14 +25,14 @@ const secondaryNavItems = [
 const mobileQuickItems = [
   { href: "/ongs", label: "ONGs" },
   { href: "/eventos/puente-vocacional-2026", label: "Vocacional" },
-  { href: "/recursos", label: "Recursos" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/nosotros", label: "Equipo" },
 ];
 
 const mobileMenuItems = [
   { href: "/servicios", label: "Servicios" },
-  { href: "/nosotros", label: "Equipo" },
+  { href: "/recursos", label: "Recursos" },
   { href: "/investigacion", label: "Investigación" },
+  { href: "/contacto", label: "Contacto" },
 ];
 
 const mobileMoreItems = [
@@ -45,7 +45,7 @@ const mobileMoreItems = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[#d7dedf] bg-[#f7f4ed]/96">
+    <header className="relative z-40 border-b border-[#d7dedf] bg-[#f7f4ed]/96">
       <div className="relative mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-4 px-6">
         <Link className="min-w-0 text-sm font-semibold tracking-[-0.02em] text-[#10233f]" href="/">
           Puente Impacto
@@ -103,6 +103,15 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
+
+          <a
+            className="shrink-0 rounded-full bg-[#10233f] px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#1b365f]"
+            href="https://calendly.com/contacto-puenteimpacto/30min"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Agendar
+          </a>
         </div>
       </nav>
     </header>

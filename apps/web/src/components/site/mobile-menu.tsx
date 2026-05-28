@@ -77,7 +77,7 @@ export function MobileMenu({ navItems, secondaryItems = [] }: MobileMenuProps) {
       {open ? (
         <nav
           aria-label="Menú móvil"
-          className="fixed left-4 right-4 top-[7.35rem] z-50 max-h-[min(68svh,30rem)] overflow-y-auto overflow-x-hidden overscroll-contain rounded-[1.25rem] border border-[#d7dedf] bg-[#f7f4ed] p-3 shadow-xl"
+          className="fixed left-4 right-4 top-[7.15rem] z-50 max-h-[min(64svh,28rem)] overflow-y-auto overflow-x-hidden overscroll-contain rounded-[1.25rem] border border-[#d7dedf] bg-[#f7f4ed] p-3 shadow-xl"
           id={menuId}
         >
           <div className="mb-2 border-b border-[#d7dedf] pb-2">
