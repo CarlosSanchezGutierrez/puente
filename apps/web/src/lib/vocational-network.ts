@@ -312,7 +312,7 @@ export const vocationalProfiles: VocationalProfile[] = [
 
   {
     name: "Valeria Ivett Navejas Cedillo",
-    credential: "LAET | Recursos Humanos, Cultura, Comunicación y Responsabilidad Social",
+    credential: "Licenciatura en Estrategia y Transformación de Negocios (LAET) | EXATEC | Recursos Humanos, Cultura, Comunicación y Responsabilidad Social",
     institution: "OXXO, Región Tamaulipas",
     family: "Negocios",
     city: "Tampico",
