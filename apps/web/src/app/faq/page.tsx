@@ -208,7 +208,7 @@ export default function FAQPage() {
               FAQ
             </p>
             <h1 className="mt-4 max-w-4xl font-[var(--font-serif)] text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#10233f] md:text-7xl">
-              {"\\u00bfTienes dudas?"}
+              {"\¿Tienes dudas?"}
             </h1>
           </div>
 
