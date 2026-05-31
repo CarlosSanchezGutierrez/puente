@@ -246,9 +246,9 @@ export default function VocationalNetworkPage() {
                 {vocationalFamilies.map((family) => (
                   <span
                     className="rounded-full border border-[#d7dedf] bg-white px-3 py-1.5 text-xs font-semibold text-[#425875]"
-                    key={family}
+                    key={family.title}
                   >
-                    {family}
+                    {family.title}
                   </span>
                 ))}
               </div>
